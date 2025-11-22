@@ -1,0 +1,1131 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = 'blind.lua'
+pattern = '''if self.name == 'The Wheel' and SMODS.pseudorandom_probability(self, pseudoseed('wheel'), 1, 7, 'wheel') then'''
+position = 'before'
+match_indent = true
+payload = '''
+if card.config.center.config.extra and card.config.center.config.extra.flipped then
+    return true
+end
+
+'''
+
+# static draw from play to discard
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "draw_card(G.play,G.discard, it*100/play_count,'down', false, v)"
+position = 'at'
+match_indent = true
+payload = '''
+
+local cards_to_hand = {}
+for _, c in ipairs(G.play.cards) do
+    if c.config.center.key == 'm_bld_house' then
+        for __, card in ipairs(G.play.cards) do
+        if card ~= c then
+            table.insert(cards_to_hand, card)
+            end
+        end
+        break
+    end
+end
+
+if cards_to_hand ~= {} then
+    local condition = false
+    for _, card_to_hand in ipairs(cards_to_hand) do
+        if v == card_to_hand then
+            condition = true
+        end
+    end
+    if condition then
+        draw_card(G.play,G.hand, it*100/play_count,'up', true, v)
+    else
+        draw_card(G.play,G.discard, it*100/play_count,'down', false, v)
+    end
+else
+    draw_card(G.play,G.discard, it*100/play_count,'down', false, v)
+end
+
+'''
+# collection add blind
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = "UIBox_button({button = 'your_collection_blinds', label = {localize('b_blinds')}, count = G.DISCOVER_TALLIES.blinds, minw = 5, minh = 2.0, id = 'your_collection_blinds', focus_args = {snap_to = true}}),UIBox_button({button = 'your_collection_other_gameobjects', label = {localize('k_other')}, minw = 5, id = 'your_collection_other_gameobjects', focus_args = {snap_to = true}}),"
+position = 'at'
+match_indent = true
+payload = '''
+      UIBox_button({button = 'your_collection_blinds', label = {localize('b_blinds')}, count = G.DISCOVER_TALLIES.blinds, minw = 5, minh = 2.0, id = 'your_collection_blinds', focus_args = {snap_to = true}}),UIBox_button({button = 'your_collection_other_gameobjects', label = {localize('k_other')}, minw = 5, id = 'your_collection_other_gameobjects', focus_args = {snap_to = true}}),
+    }},
+    {n=G.UIT.C, config={align = "cm", padding = 0.15}, nodes={
+        {n = G.UIT.O, config = {object = G.Blindside_Collection}}
+'''
+
+# collection add blind
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = "function create_UIBox_your_collection()"
+position = 'after'
+match_indent = true
+payload = '''
+  G.Blindside_Collection = CardArea(
+        0, 0,
+    1.05*G.CARD_W,
+    1.05*G.CARD_H, 
+        {card_limit = 1, type = 'title'})
+'''
+
+
+# collection cardarea add blind click
+[[patches]]
+[patches.pattern]
+target = 'cardarea.lua'
+pattern = "function CardArea:click() "
+position = 'after'
+match_indent = true
+payload = '''
+    if self == G.Blindside_Collection then 
+        G.FUNCS.blindside_collection()
+    end
+    if self == G.Blindside_Collection then
+        G.FUNCS.your_collection()
+    end
+'''
+
+# collection cardarea add blind click
+[[patches]]
+[patches.pattern]
+target = 'cardarea.lua'
+pattern = "function CardArea:update(dt)"
+position = 'after'
+match_indent = true
+payload = '''
+    if self == G.Blindside_Collection then 
+        self.states.collide.can = true
+        self.states.click.can = true
+    end
+    if self == G.Blindside_Collection then
+        self.states.collide.can = true
+        self.states.click.can = true
+    end
+'''
+
+
+# collection card add blind click
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "if self.area and self.area == G.deck and self.area.cards[1] == self then "
+position = 'before'
+match_indent = true
+payload = '''
+    if self.area and self.area == G.Blindside_Collection and self.area.cards[1] == self then 
+        G.FUNCS.blindside_collection()
+    end
+    if self.area and self.area == G.Blindside_Back and self.area.cards[1] == self then 
+        G.FUNCS.your_collection()
+    end
+'''
+
+
+# collection card remove tallies
+[[patches]]
+[patches.pattern]
+target = 'functions/misc_functions.lua'
+pattern = "if not v.omit and not v.no_collection then "
+position = 'at'
+match_indent = true
+payload = '''
+    if not v.omit and not v.no_collection and not BLINDSIDE.is_blindside(v.key) then 
+'''
+
+# collection card remove tallies
+[[patches]]
+[patches.pattern]
+target = 'functions/misc_functions.lua'
+pattern = "if not v.no_collection then "
+position = 'at'
+match_indent = true
+payload = '''
+    if not v.no_collection and not BLINDSIDE.is_blindside(v.key) then 
+'''
+
+# remove all non blindside jokers
+
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''if add and not G.GAME.banned_keys[v.key] then'''
+position = 'before'
+match_indent = true
+payload = '''
+    if (not BLINDSIDE.is_blindside(v.key)) and (G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside) then
+        add = false
+    end 
+'''
+
+# remove all non blindside boosters
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+match_indent = true
+position = 'before'
+pattern = '''
+if add and not G.GAME.banned_keys[v.key] then cume = cume + (v.current_weight or 1); temp_in_pool[v.key] = true end
+'''
+payload = '''
+if (not BLINDSIDE.is_blindside(v.key)) and (G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside) then
+    add = false
+end
+'''
+
+# freeze tags
+[[patches]]
+[patches.pattern]
+target = 'tag.lua'
+pattern = '''if not self.triggered and self.config.type == _context.type then'''
+position = 'after'
+match_indent = true
+payload = '''
+    if not next(SMODS.find_card("j_bld_taglock")) then
+'''
+
+# freeze tags
+[[patches]]
+[patches.pattern]
+target = 'tag.lua'
+pattern = '''function Tag:save()'''
+position = 'before'
+match_indent = true
+payload = '''
+    end
+'''
+
+# debuff tag
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = 'if flags.prevent_debuff then return false end'
+position = 'before'
+match_indent = true
+payload = '''
+for i = 1, #G.GAME.tags do
+    if G.GAME.tags[i].key == "tag_bld_debuff" and G.GAME.tags[i].ability.debuffed_hand == handname and not next(SMODS.find_card("j_bld_taglock"))  then
+        flags.debuff = true
+        flags.debuff_text = G.GAME.tags[i].ability.debuff_text
+    end
+end
+
+'''
+
+# update to blindside shop
+
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''self:update_shop(dt)'''
+position = 'at'
+match_indent = true
+payload = '''
+if G.GAME.selected_back.effect.center.config.extra then
+    if not G.GAME.selected_back.effect.center.config.extra.blindside then return self:update_shop(dt) end
+    self:blindupdate_shop(dt)
+else
+self:update_shop(dt)
+end
+
+'''
+
+# update to blindside blind hud
+
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''self.HUD_blind = UIBox{'''
+position = 'before'
+match_indent = true
+payload = '''
+if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside then
+    self.HUD_blind = UIBox{
+        definition = create_UIBox_HUD_jokerblind(),
+        config = {major = G.HUD:get_UIE_by_ID('row_blind_bottom'), align = 'bmi', offset = {x=0,y=-10}, bond = 'Weak'}
+    }
+else
+
+'''
+
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''self.HUD_tags = {}'''
+position = 'before'
+match_indent = true
+payload = '''
+end
+'''
+
+# blindside blind chips area
+
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''blind_chips = self.HUD_blind:get_UIE_by_ID('HUD_blind_count'),'''
+position = 'before'
+match_indent = true
+payload = '''
+blind_mult_text = self.HUD_blind:get_UIE_by_ID('blind_mult'),
+blind_chip_text = self.HUD_blind:get_UIE_by_ID('blind_chips'),
+'''
+# blindside blind chips
+
+[[patches]]
+[patches.pattern]
+target = 'blind.lua'
+pattern = '''self.chips = get_blind_amount(G.GAME.round_resets.ante)*self.mult*G.GAME.starting_params.ante_scaling'''
+position = 'before'
+match_indent = true
+payload = '''
+self.original_mult = self.mult
+self.active = self.active
+self.small = self.small
+self.big = self.big
+self.extra = self.extra
+self.original_chips = get_blind_amount(G.GAME.round_resets.ante)*G.GAME.starting_params.ante_scaling
+self.basechips = get_blind_amount(G.GAME.round_resets.ante)*G.GAME.starting_params.ante_scaling
+self.basechips_text = number_format(self.basechips)
+self.mult_text = number_format(self.mult)
+self.blindassist = blind and blind.blindassist or nil
+
+'''
+
+# blindside blind chips saving
+[[patches]]
+[patches.pattern]
+target = 'blind.lua'
+pattern = '''chips = self.chips,'''
+position = 'before'
+match_indent = true
+payload = '''
+original_mult = self.original_mult,
+original_chips = self.original_chips,
+active = self.active,
+small = self.small,
+extra = self.extra,
+big = self.big,
+basechips = self.basechips,
+basechips_text = self.basechips_text,
+mult_text = self.mult_text,
+blindassist = self.blindassist,
+visible = self.visible,
+
+'''
+
+# blindside blind chips loading
+[[patches]]
+[patches.pattern]
+target = 'blind.lua'
+pattern = '''self.chips = blindTable.chips'''
+position = 'before'
+match_indent = true
+payload = '''
+self.original_mult = blindTable.original_mult
+self.original_chips = blindTable.original_chips
+self.active = blindTable.active
+self.basechips = blindTable.basechips
+self.small = blindTable.small
+self.extra = blindTable.extra
+self.big = blindTable.big
+self.basechips_text = blindTable.basechips_text
+self.mult_text = blindTable.mult_text
+self.blindassist = blindTable.blindassist
+self.visible = blindTable.visible
+
+'''
+
+# custom small/big blinds
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''G.GAME.round_resets.blind_choices.Boss = get_new_boss()'''
+position = 'before'
+match_indent = true
+payload = '''
+G.GAME.round_resets.blind_choices.Small = get_new_small()
+G.GAME.round_resets.blind_choices.Big = get_new_big()
+'''
+
+# Add Custom Small/Big Blinds
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+match_indent = true
+position = 'before'
+pattern = '''
+self.GAME.round_resets.blind_choices.Boss = get_new_boss()
+'''
+payload = '''
+self.GAME.round_resets.blind_choices.Small = get_new_small()
+self.GAME.round_resets.blind_choices.Big = get_new_big()
+'''
+
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''local min_use = 100'''
+position = 'before'
+match_indent = true
+payload = '''
+if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside then
+    for k, v in pairs(eligible_bosses) do
+        if eligible_bosses[k] and not G.P_BLINDS[k].mod or G.P_BLINDS[k].mod.id ~= 'Blindside' then
+            eligible_bosses[k] = nil
+        end
+    end
+end
+'''
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''if v.boss.showdown then '''
+position = "at"
+payload = '''if v.boss and v.boss.showdown then '''
+match_indent = true
+
+
+[[patches]]
+[patches.pattern]
+target = 'blind.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+self.name = blind and blind.name or ''
+'''
+payload = '''
+self.small = blind and not not blind.small
+self.big = blind and not not blind.big
+'''
+
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+match_indent = true
+position = 'at'
+pattern = '''
+if G.GAME.round_resets.blind == G.P_BLINDS.bl_small then
+'''
+payload = '''
+if G.GAME.round_resets.blind_states.Small == 'Current' then
+'''
+
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+match_indent = true
+position = 'at'
+pattern = '''
+elseif G.GAME.round_resets.blind == G.P_BLINDS.bl_big then
+'''
+payload = '''
+elseif G.GAME.round_resets.blind_states.Big == 'Current' then
+'''
+
+# The Wedge
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "G.FUNCS.discard_cards_from_highlighted = function(e, hook)"
+position = 'after'
+match_indent = true
+payload = '''
+
+G.hand.wedge_highlighted = {}
+local wedge_played = false
+local highlightcount = 0
+
+for i = 1, #G.hand.cards do
+    if G.hand.cards[i] and G.hand.cards[i].highlighted then
+    highlightcount = highlightcount + 1
+    end
+end
+if highlightcount == 1 and next(SMODS.find_card("j_bld_miniature")) then
+    wedge_played = true
+end
+
+for i = 1, #G.hand.cards do
+    if G.hand.cards[i] and G.hand.cards[i].highlighted
+    and G.hand.cards[i].config.center == G.P_CENTERS.m_bld_wedge
+    and not G.hand.cards[i].debuff then
+        wedge_played = true
+        break
+    end
+end
+
+for i = 1, #G.hand.cards do
+    if G.hand.cards[i] and G.hand.cards[i].highlighted
+    and wedge_played then
+        table.insert(G.hand.wedge_highlighted, G.hand.cards[i])
+        G.hand:remove_from_highlighted(G.hand.cards[i], true)
+    end
+end
+
+'''
+
+# The Wedge
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = 'G.GAME.current_round.discards_used = G.GAME.current_round.discards_used + 1'
+position = 'after'
+match_indent = true
+payload = '''
+
+if G.hand.wedge_highlighted and #G.hand.wedge_highlighted >= 1 then
+    for i = 1, #G.hand.wedge_highlighted do
+        if not G.hand.wedge_highlighted[i].highlighted then
+            G.hand:add_to_highlighted(G.hand.wedge_highlighted[i], true)
+        end
+    end
+    local highlighted_count = math.min(#G.hand.highlighted, G.discard.config.card_limit - #G.play.cards)
+    SMODS.calculate_context({pre_discard = true, full_hand = G.hand.highlighted, hook = hook})
+    for i=1, highlighted_count do
+        G.hand.highlighted[i]:calculate_seal({discard = true})
+        local removed = false
+        local effects = {}
+        SMODS.calculate_context({discard = true, other_card =  G.hand.highlighted[i], full_hand = G.hand.highlighted, ignore_other_debuff = true}, effects)
+        SMODS.trigger_effects(effects)
+    end
+    G.E_MANAGER:add_event(Event({func = function()
+        G.GAME.ignore_hand_played = true
+        G.FUNCS.play_cards_from_highlighted()
+    return true end}))
+
+    return
+end
+
+'''
+
+# The Wedge
+[[patches]]
+[patches.regex]
+target = 'functions/state_events.lua'
+pattern = 'end\n(.*)\}\)\)\n(.*)end\n(?<indent>[\t ]*)(.*)end'
+position = "after"
+line_prepend = "$indent"
+payload = '''
+
+if G.hand.wedge_highlighted and #G.hand.wedge_highlighted >= 1 then
+
+    ease_discard(-1)
+
+    for i = 1, #G.hand.wedge_highlighted do
+        if not G.hand.wedge_highlighted[i].highlighted then
+            G.hand:add_to_highlighted(G.hand.wedge_highlighted[i], true)
+        end
+    end
+    
+    local highlighted_count = math.min(#G.hand.highlighted, G.discard.config.card_limit - #G.play.cards)
+    SMODS.calculate_context({pre_discard = true, full_hand = G.hand.highlighted, hook = hook})
+    for i=1, highlighted_count do
+        G.hand.highlighted[i]:calculate_seal({discard = true})
+        local removed = false
+        local effects = {}
+        SMODS.calculate_context({discard = true, other_card =  G.hand.highlighted[i], full_hand = G.hand.highlighted, ignore_other_debuff = true}, effects)
+        SMODS.trigger_effects(effects)
+    end
+
+    if #G.play.cards ~= 0 then
+        for i=1, #G.hand.highlighted do
+            if G.hand.highlighted[i] and G.hand.highlighted[i].config.center == G.P_CENTERS.m_bld_wedge then
+                G.hand.highlighted[i].base.times_played = G.hand.highlighted[i].base.times_played + 1
+                G.GAME.round_scores.cards_played.amt = G.GAME.round_scores.cards_played.amt + 1
+                draw_card(G.hand, G.play, i*100/#G.hand.highlighted, 'up', nil, G.hand.highlighted[i])
+            end
+        end
+    end
+
+    G.E_MANAGER:add_event(Event({func = function()
+        if #G.play.cards == 0 then
+            G.GAME.ignore_hand_played = true
+            G.FUNCS.play_cards_from_highlighted()
+        end
+    return true end}))
+
+    return
+end
+
+'''
+
+# The Wedge
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "ease_hands_played(-1)"
+position = 'at'
+match_indent = true
+payload = '''
+
+if not G.GAME.ignore_hand_played then
+    ease_hands_played(-1)
+else
+    G.GAME.ignore_hand_played = nil
+end
+
+'''
+
+# blind shrink
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+SMODS.calculate_context({full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, after = true})
+'''
+payload = '''
+BLINDSIDE.chipsupdate()
+'''
+
+
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "local nu_chip, nu_mult = G.GAME.selected_back:trigger_effect{context = 'final_scoring_step'*"
+position = 'before'
+match_indent = true
+payload = '''
+
+for i = 1, #G.GAME.tags do
+    G.GAME.tags[i]:apply_to_run({type = 'after_hand'})
+end
+
+'''
+
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "SMODS.calculate_context({first_hand_drawn = not G.GAME.current_round.any_hand_drawn and G.GAME.facing_blind,"
+position = 'before'
+match_indent = true
+payload = '''
+if not G.GAME.current_round.any_hand_drawn and G.GAME.facing_blind then
+for i = 1, #G.GAME.tags do
+    G.GAME.tags[i]:apply_to_run({type = 'real_round_start'})
+end
+end
+
+'''
+
+[[patches]]
+[patches.pattern]
+target = 'functions/button_callbacks.lua'
+pattern = "SMODS.calculate_context({using_consumeable = true, consumeable = card, area = card.from_area})"
+position = 'before'
+match_indent = true
+payload = '''
+for i = 1, #G.GAME.tags do
+    G.GAME.tags[i]:apply_to_run({type = 'use_consumeable', consumeable = card, area = card.from_area})
+end
+'''
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = "function add_tag(_tag)"
+position = 'after'
+match_indent = true
+payload = '''
+if _tag.key == 'tag_bld_reroll' then
+    SMODS.change_free_rerolls(1)
+end
+
+'''
+
+
+# noir channel card
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+match_indent = true
+position = 'after'
+pattern = '''last_tarot_planet = nil,
+'''
+payload = '''
+        last_channel = nil,
+        last_joker = nil,
+'''
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+    G.GAME.blind = Blind(0,0,2, 1)
+'''
+payload = '''
+    G.GAME.blindassist = Blind(0,0,2,1)
+'''
+
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+        G.GAME.blind:load(saveTable.BLIND)
+'''
+payload = '''
+        G.GAME.blindassist:load(saveTable.BLINDASSIST)
+'''
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+        G.GAME.blind:set_blind(nil, nil, true)
+'''
+payload = '''
+        G.GAME.blindassist:set_blind(nil, nil, true)
+'''
+
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = 'functions/misc_functions.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+    BLIND = G.GAME.blind:save(),
+'''
+payload = '''
+    BLINDASSIST = G.GAME.blindassist:save(),
+'''
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+    G.GAME.blind:set_blind(G.GAME.round_resets.blind)
+'''
+payload = '''
+if G.GAME.blind.blindassist then
+    G.GAME.blindassist:set_blind(G.GAME.blind.blindassist)
+end
+'''
+
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+    SMODS.calculate_context({end_of_round = true, game_over = game_over, beat_boss = G.GAME.blind.boss })
+'''
+payload = '''
+G.GAME.last_joker = G.GAME.blind.boss
+'''
+
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = 'functions/button_callbacks.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+      G.GAME.blind.states.visible = true
+'''
+payload = '''
+if G.GAME.blind.blindassist then
+      G.GAME.blindassist.states.visible = true
+end
+'''
+
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = 'functions/button_callbacks.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+      G.GAME.blind.states.visible = false
+'''
+payload = '''
+if G.GAME.blind.blindassist then
+      G.GAME.blindassist.states.visible = false
+end
+'''
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+  blind_choice.animation = AnimatedSprite(0,0, 1.4, 1.4, G.ANIMATION_ATLAS[blind_choice.config.atlas] or G.ANIMATION_ATLAS['blind_chips'],  blind_choice.config.pos)
+'''
+payload = '''
+  local blind_assist = {}
+  if blind_choice.config.config and blind_choice.config.config.extra then
+  end
+  if blind_choice.config.key == 'bl_bld_photograph' then
+    blind_assist.config = G.P_BLINDS['bl_bld_chad']
+    blind_assist.animation = AnimatedSprite(0,0, 1.4, 1.4, G.ANIMATION_ATLAS[blind_assist.config.atlas] or G.ANIMATION_ATLAS['blind_chips'],  blind_assist.config.pos)
+  	blind_assist.animation:define_draw_steps({
+  		{shader = 'dissolve', shadow_height = 0.05},
+  		{shader = 'dissolve'}
+  	})
+  end
+  if blind_choice.config.key == 'bl_bld_baron' then
+    blind_assist.config = G.P_BLINDS['bl_bld_mime']
+    blind_assist.animation = AnimatedSprite(0,0, 1.4, 1.4, G.ANIMATION_ATLAS[blind_assist.config.atlas] or G.ANIMATION_ATLAS['blind_chips'],  blind_assist.config.pos)
+  	blind_assist.animation:define_draw_steps({
+  		{shader = 'dissolve', shadow_height = 0.05},
+  		{shader = 'dissolve'}
+  	})
+  end
+'''
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+                {n=G.UIT.O, config={object = blind_choice.animation}},
+'''
+payload = '''
+                blind_assist.config and {n=G.UIT.O, config={object = blind_assist.animation}} or nil,
+'''
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = 'blind.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+                self:change_colour()
+'''
+payload = '''
+local obj = self.config.blind
+if obj.load and type(obj.load) == 'function' then
+    obj:load()
+end
+'''
+
+# wave tag
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+match_indent = true
+position = 'before'
+pattern = '''
+local splashed = SMODS.always_scores(G.play.cards[i]) or next(find_joker('Splash'))
+'''
+payload = '''
+local waved = false
+for i = 1, #G.GAME.tags do
+    if G.GAME.tags[i].key == "tag_bld_wave" and not next(SMODS.find_card("j_bld_taglock"))  then
+        waved = true
+    end
+end
+'''
+# wave tag
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+local splashed = SMODS.always_scores(G.play.cards[i]) or next(find_joker('Splash'))
+'''
+payload = '''
+or waved
+'''
+
+# wave tag
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+match_indent = true
+position = 'before'
+pattern = '''
+local splashed = SMODS.always_scores(G.play.cards[i]) or next(find_joker('Splash'))
+'''
+payload = '''
+local waved = false
+for i = 1, #G.GAME.tags do
+    if G.GAME.tags[i].key == "tag_bld_wave" and not next(SMODS.find_card("j_bld_taglock"))  then
+        waved = true
+    end
+end
+'''
+
+# wave tag
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+match_indent = true
+position = 'after'
+pattern = '''
+local splashed = SMODS.always_scores(G.play.cards[i]) or next(find_joker('Splash'))
+'''
+payload = '''
+or waved
+'''
+
+
+# symmetry tag
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/utils.lua"]'
+match_indent = true
+position = 'after'
+pattern = '''
+SMODS.score_card(card, context)
+'''
+payload = '''
+for i = 1, #G.GAME.tags do
+    G.GAME.tags[i]:apply_to_run({type = 'scoring_card', card = card, context = context})
+end
+'''
+
+
+# before tag context
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+SMODS.calculate_context({full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, before = true})
+'''
+payload = '''
+for i = 1, #G.GAME.tags do
+    G.GAME.tags[i]:apply_to_run({full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, type = 'before'})
+end
+'''
+
+
+# collector tag
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "SMODS.calculate_context({open_booster = true, card = self})"
+position = 'after'
+match_indent = true
+payload = '''
+
+for i = 1, #G.GAME.tags do
+    if self.config.center.kind == 'symbol' then
+        if G.GAME.tags[i]:apply_to_run({type = 'symbol_pack_opened'}) then break end
+    end
+end 
+
+'''
+
+# reload
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = 'self:set_sprites(self.config.center, self.config.card)'
+match_indent = true
+position = 'after'
+payload = '''
+local obj = self.config.center
+if obj.reload and type(obj.reload) == 'function' then
+	obj:reload(self, cardTable, other_card)
+end
+'''
+
+# reshuffle
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''
+if G.FUNCS.draw_from_deck_to_hand(nil) then
+'''
+match_indent = true
+position = 'before'
+payload = '''
+if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside then
+if G.FUNCS.blind_draw_from_deck_to_hand(nil) then
+return true
+end
+else
+'''
+
+# reshuffle
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''
+-- removed first hand drawn context
+'''
+match_indent = true
+position = 'before'
+payload = '''
+end
+'''
+
+# exhaust pile
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''
+self.discard = CardArea(
+'''
+match_indent = true
+position = 'before'
+payload = '''
+self.exhaust = CardArea(
+    0, 0,
+    CAI.discard_W,CAI.discard_H,
+    {card_limit = 500, type = 'discard'})
+'''
+
+# exhaust pile
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''
+G.discard.T.x = G.jokers.T.x + G.jokers.T.w/2 + 0.3 + 15
+'''
+match_indent = true
+position = 'before'
+payload = '''
+G.exhaust.T.x = G.jokers.T.x + G.jokers.T.w/2 + 0.3 + 15
+'''
+
+# exhaust pile
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''
+G.discard:hard_set_VT()
+'''
+match_indent = true
+position = 'before'
+payload = '''
+G.exhaust:hard_set_VT()
+'''
+
+# exhaust pile
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''
+elseif card.jimbo  then
+'''
+match_indent = true
+position = 'before'
+payload = '''
+    elseif card.area == G.exhaust or card.area == G.vouchers then
+    y_off = card.area == G.exhaust and -0.35*G.CARD_H or -0.65*G.CARD_H
+    card = G.deck.cards[1] or G.deck
+    card_aligned = 'tm'
+'''
+
+# exhaust pile
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''
+G.FUNCS.draw_from_discard_to_deck = function(e)
+'''
+match_indent = true
+position = 'after'
+payload = '''
+    G.E_MANAGER:add_event(Event({
+        trigger = 'immediate',
+        func = function()
+            local discard_count = #G.exhaust.cards
+            for i=1, discard_count do --draw cards from deck
+                draw_card(G.exhaust, G.deck, i*100/discard_count,'up', nil ,nil, 0.005, i%2==0, nil, math.max((21-i)/20,0.7))
+            end
+            return true
+        end
+      }))
+'''
+
+# burn context
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''
+-- context.remove_playing_cards calculations
+'''
+match_indent = true
+position = 'before'
+payload = '''
+local cards_burned = {}
+
+    for _,v in ipairs(SMODS.get_card_areas('playing_cards', 'destroying_cards')) do
+        BLINDSIDE.calculate_burning_cards({ full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, cardarea = v }, cards_burned, v == G.play and scoring_hand or nil)
+    end
+
+    if cards_burned[1] then
+            SMODS.calculate_context({scoring_hand = scoring_hand, remove_playing_cards = true, removed = cards_burned})
+        end
+
+    for i=1, #cards_burned do
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                cards_burned[i]:start_burn()
+                return true
+            end
+            }))
+            
+    end
+'''
+
+# exhaust pile
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''
+if (not v.shattered) and (not v.destroyed) then 
+'''
+match_indent = true
+position = 'at'
+payload = '''
+        if (not v.shattered) and (not v.destroyed) and (not v.burned) then 
+'''
+
+# exhaust pile
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/utils.lua"]'
+pattern = '''
+        -- TARGET: add your own CardAreas for playing card evaluation
+'''
+match_indent = true
+position = 'before'
+payload = '''
+t[#t+1] = G.exhaust
+'''

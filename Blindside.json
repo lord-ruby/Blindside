@@ -1,0 +1,18 @@
+{
+	"id": "Blindside",
+	"name": "Balatro: Blindside",
+	"author": ["LunaAstraCassiopeia", "AnneBean"],
+	"description": "A dumb test",
+	"prefix": "bld",
+	"main_file": "Blindside.lua",
+	"priority": 0,
+	"badge_colour": "3F6AA4",
+	"badge_text_colour": "FFFFFF",
+	"display_name": "Blind",
+	"version": "0.1.2.3",
+	"dependencies": [
+		{
+			"id": "Steamodded"
+		} 
+	]
+}
