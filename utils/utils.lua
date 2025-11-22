@@ -1,0 +1,743 @@
+
+    
+    function BLINDSIDE.is_blindside(string)
+        for _, v in ipairs(SMODS.ObjectTypes.bld_obj_blindside.cards) do
+            if v == string then
+            return true
+            end
+        end
+    end
+
+    function BLINDSIDE.is_relic(string)
+        for _, v in ipairs(SMODS.ObjectTypes.bld_obj_relics.cards) do
+            if v == string then
+            return true
+            end
+        end
+    end
+    
+    function BLINDSIDE.set_up_blindside()
+            G.GAME.tarot_rate = 0
+            G.GAME.planet_rate = 0
+            SMODS.change_booster_limit(1)
+            G.GAME.round_resets.reroll_cost = G.GAME.round_resets.reroll_cost + 3
+            G.GAME.banned_keys['p_buffoon_normal_1'] = true
+            G.GAME.hands['bld_blind_high'].visible = true
+            G.GAME.hands['bld_blind_2oak'].visible = true
+            G.GAME.hands['bld_blind_2pair'].visible = true
+            G.GAME.hands['bld_blind_3oak'].visible = true
+            G.GAME.hands['bld_blind_flush'].visible = true
+            G.GAME.hands['bld_blind_fullhouse'].visible = true
+            G.GAME.hands['bld_raise'].visible = true
+            G.GAME.hands['bld_blind_4oak'].visible = true
+            G.GAME.hands['High Card'].visible = false
+            G.GAME.hands['Pair'].visible = false
+            G.GAME.hands['Two Pair'].visible = false
+            G.GAME.hands['Three of a Kind'].visible = false
+            G.GAME.hands['Straight'].visible = false
+            G.GAME.hands['Flush'].visible = false
+            G.GAME.hands['Full House'].visible = false
+            G.GAME.hands['Four of a Kind'].visible = false
+            G.GAME.hands['Straight Flush'].visible = false
+            G.GAME.doodad_mod = 5
+            G.GAME.keepsake_mod = 5
+            G.GAME.curio_mod = 5
+            G.GAME.hobby_mod = 5
+            G.GAME['common_mod'] = 0
+            G.GAME['rare_mod'] = 0
+            G.GAME['uncommon_mod'] = 0
+    end
+
+    local reference_tallies = set_discover_tallies
+    function set_discover_tallies()
+        reference_tallies()
+        G.DISCOVER_TALLIES.allblindcards = {tally = 0, of = 0}
+        G.DISCOVER_TALLIES.allfilmcards = {tally = 0, of = 0}
+        G.DISCOVER_TALLIES.allminerals = {tally = 0, of = 0}
+        G.DISCOVER_TALLIES.blindeditions = {tally = 0, of = 0}
+        G.DISCOVER_TALLIES.blindboosters = {tally = 0, of = 0}
+        G.DISCOVER_TALLIES.blindtrinkets = {tally = 0, of = 0}
+        G.DISCOVER_TALLIES.blindjokers = {tally = 0, of = 0}
+        G.DISCOVER_TALLIES.blindtags = {tally = 0, of = 0}
+        G.DISCOVER_TALLIES.blindrelics = {tally = 0, of = 0}
+
+        for _, v in pairs(G.P_CENTERS) do
+            if v.set and v.set == 'Enhanced' and BLINDSIDE.is_blindside(v.key) and not v.omit  then
+                G.DISCOVER_TALLIES.allblindcards.of = G.DISCOVER_TALLIES.allblindcards.of+1
+                if v.discovered then 
+                    G.DISCOVER_TALLIES.allblindcards.tally = G.DISCOVER_TALLIES.allblindcards.tally+1
+                end
+            end
+            if v.set and v.set == 'bld_obj_filmcard' and BLINDSIDE.is_blindside(v.key) and not v.omit  then
+                G.DISCOVER_TALLIES.allfilmcards.of = G.DISCOVER_TALLIES.allfilmcards.of+1
+                if v.discovered then 
+                    G.DISCOVER_TALLIES.allfilmcards.tally = G.DISCOVER_TALLIES.allfilmcards.tally+1
+                end
+            end
+            if v.set and v.set == 'bld_obj_mineral' and BLINDSIDE.is_blindside(v.key) and not v.omit  then
+                G.DISCOVER_TALLIES.allminerals.of = G.DISCOVER_TALLIES.allminerals.of+1
+                if v.discovered then 
+                    G.DISCOVER_TALLIES.allminerals.tally = G.DISCOVER_TALLIES.allminerals.tally+1
+                end
+            end
+            if v.set and v.set == 'Edition' and BLINDSIDE.is_blindside(v.key) and not v.omit then
+                G.DISCOVER_TALLIES.blindeditions.of = G.DISCOVER_TALLIES.blindeditions.of+1
+                if v.discovered then 
+                    G.DISCOVER_TALLIES.blindeditions.tally = G.DISCOVER_TALLIES.blindeditions.tally+1
+                end
+            end
+            if v.set and v.set == 'Booster' and BLINDSIDE.is_blindside(v.key) and not v.omit then
+                G.DISCOVER_TALLIES.blindboosters.of = G.DISCOVER_TALLIES.blindboosters.of+1
+                if v.discovered then 
+                    G.DISCOVER_TALLIES.blindboosters.tally = G.DISCOVER_TALLIES.blindboosters.tally+1
+                end
+            end
+            if v.set and v.set == 'Joker' and BLINDSIDE.is_blindside(v.key) and not v.omit then
+                G.DISCOVER_TALLIES.blindtrinkets.of = G.DISCOVER_TALLIES.blindtrinkets.of+1
+                if v.discovered then 
+                    G.DISCOVER_TALLIES.blindtrinkets.tally = G.DISCOVER_TALLIES.blindtrinkets.tally+1
+                end
+            end
+            if v.set and v.set == 'Voucher' and BLINDSIDE.is_blindside(v.key) and not v.omit then
+                G.DISCOVER_TALLIES.blindrelics.of = G.DISCOVER_TALLIES.blindrelics.of+1
+                if v.discovered then 
+                    G.DISCOVER_TALLIES.blindrelics.tally = G.DISCOVER_TALLIES.blindrelics.tally+1
+                end
+            end
+        end
+
+        for _, v in pairs(G.P_BLINDS) do
+            if BLINDSIDE.is_blindside(v.key) and not v.omit  then
+                G.DISCOVER_TALLIES.blindjokers.of = G.DISCOVER_TALLIES.blindjokers.of+1
+                if v.discovered then 
+                    G.DISCOVER_TALLIES.blindjokers.tally = G.DISCOVER_TALLIES.blindjokers.tally+1
+                end
+            end
+        end
+        
+        for _, v in pairs(G.P_TAGS) do
+            if BLINDSIDE.is_blindside(v.key) and not v.omit and not BLINDSIDE.is_relic(v.key)  then
+                G.DISCOVER_TALLIES.blindtags.of = G.DISCOVER_TALLIES.blindtags.of+1
+                if v.discovered then 
+                    G.DISCOVER_TALLIES.blindtags.tally = G.DISCOVER_TALLIES.blindtags.tally+1
+                end
+            end
+        end
+
+    end
+    
+    local blind_get_type = Blind.get_type
+function Blind:get_type()
+    if self.small then 
+        return 'Small'
+    elseif self.big then 
+        return 'Big'
+    else return blind_get_type(self) end
+end
+
+function get_new_small(current)
+    G.GAME.perscribed_small = G.GAME.perscribed_small or {
+    }
+    if G.GAME.perscribed_small and G.GAME.perscribed_small[G.GAME.round_resets.ante] then 
+        local ret_boss = G.GAME.perscribed_small[G.GAME.round_resets.ante] 
+        G.GAME.perscribed_small[G.GAME.round_resets.ante] = nil
+        return ret_boss
+    end
+    if G.FORCE_SMALL then return G.FORCE_SMALL end
+
+    local eligible_bosses = {bl_small = true}
+    for k, v in pairs(G.P_BLINDS) do
+        if not v.small then
+        elseif k == current then
+        elseif v.in_pool and type(v.in_pool) == 'function' then
+            local res, options = v:in_pool()
+            eligible_bosses[k] = res and true or nil
+        elseif v.small.min <= math.max(1, G.GAME.round_resets.ante) then
+            eligible_bosses[k] = true
+        end
+    end
+    for k, v in pairs(G.GAME.banned_keys) do
+        if eligible_bosses[k] then eligible_bosses[k] = nil end
+    end
+
+    if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside then
+        for k, v in pairs(eligible_bosses) do
+            if v and not G.P_BLINDS[k].mod or G.P_BLINDS[k].mod.id ~= 'Blindside' then
+                eligible_bosses[k] = nil
+            end
+        end
+    end
+
+    local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))
+    
+    return boss
+end
+
+-- Get a new big blind
+function get_new_big(current)
+    G.GAME.perscribed_big = G.GAME.perscribed_big or {
+    }
+    if G.GAME.perscribed_big and G.GAME.perscribed_big[G.GAME.round_resets.ante] then 
+        local ret_boss = G.GAME.perscribed_big[G.GAME.round_resets.ante] 
+        G.GAME.perscribed_big[G.GAME.round_resets.ante] = nil
+        return ret_boss
+    end
+    if G.FORCE_BIG then return G.FORCE_BIG end
+
+    local eligible_bosses = {bl_big = true}
+    for k, v in pairs(G.P_BLINDS) do
+        if not v.big then
+        elseif k == current then
+        elseif v.in_pool and type(v.in_pool) == 'function' then
+            local res, options = v:in_pool()
+            eligible_bosses[k] = res and true or nil
+        elseif v.big.min <= math.max(1, G.GAME.round_resets.ante) then
+            eligible_bosses[k] = true
+        end
+    end
+    for k, v in pairs(G.GAME.banned_keys) do
+        if eligible_bosses[k] then eligible_bosses[k] = nil end
+    end
+
+    if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside then
+        for k, v in pairs(eligible_bosses) do
+            if v and not G.P_BLINDS[k].mod or G.P_BLINDS[k].mod.id ~= 'Blindside' then
+                eligible_bosses[k] = nil
+            end
+        end
+    end
+
+    local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))
+    
+    return boss
+end
+
+
+function BLINDSIDE.chipsmodify(mult, originalchips, xmult, xchips, silent)
+        G.GAME.blind.basechips = G.GAME.blind.basechips + originalchips
+        G.GAME.blind.mult = G.GAME.blind.mult + mult
+        if xmult and xmult > 0 then
+            G.GAME.blind.mult = G.GAME.blind.mult*xmult
+        end
+        if xchips and xchips > 0 then
+            G.GAME.blind.basechips = G.GAME.blind.basechips*xchips
+        end
+        if mult and mult ~= 0 then
+            G.E_MANAGER:add_event(Event({trigger = 'before', delay = 0.3, func = function()
+            G.hand_text_area.blind_mult_text:juice_up()
+                G.GAME.blind.mult_text = number_format(G.GAME.blind.mult)
+                if not silent then play_sound('multhit1') end
+                return true
+            end}))
+        end
+        if xmult and xmult ~= 0 then
+            G.E_MANAGER:add_event(Event({trigger = 'before', delay = 0.3, func = function()
+            G.hand_text_area.blind_mult_text:juice_up()
+                G.GAME.blind.mult_text = number_format(G.GAME.blind.mult)
+                if not silent then play_sound('multhit2') end
+                return true
+            end}))
+        end
+        if xchips and xchips ~= 0 then
+            G.E_MANAGER:add_event(Event({trigger = 'before', delay = 0.3, func = function()
+            G.hand_text_area.blind_chip_text:juice_up()
+                G.GAME.blind.basechips_text = number_format(G.GAME.blind.basechips)
+                if not silent then play_sound('xchips') end
+                return true
+            end}))
+        end
+        if originalchips and originalchips ~= 0 then
+            G.E_MANAGER:add_event(Event({trigger = 'before', delay = 0.3, func = function()
+            G.hand_text_area.blind_chip_text:juice_up()
+                G.GAME.blind.basechips_text = number_format(G.GAME.blind.basechips)
+                if not silent then play_sound('chips1') end
+                return true
+            end}))
+        end
+end
+
+function BLINDSIDE.chipsupdate()
+    local final_chips = G.GAME.blind.basechips*G.GAME.blind.mult
+    local chip_mod -- iterate over ~120 ticks
+    if type(G.GAME.blind.chips) ~= 'table' then
+        chip_mod = math.ceil((final_chips - G.GAME.blind.chips) / 120)
+    else
+        chip_mod = ((final_chips - G.GAME.blind.chips) / 120):ceil()
+    end
+    local step = 0
+    if final_chips ~= G.GAME.blind.chips then
+        G.E_MANAGER:add_event(Event({trigger = 'after', blocking = true, delay = 0.3, func = function()
+            G.GAME.blind.chips = G.GAME.blind.chips + G.SETTINGS.GAMESPEED * chip_mod
+            if G.GAME.blind.chips < final_chips then
+                G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                if step % 5 == 0 then
+                    play_sound('chips1', 0.8 + (step * 0.005))
+                end
+                step = step + 1
+            else
+                G.GAME.blind.chips = final_chips
+                G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                G.GAME.blind:wiggle()
+                return true
+            end
+        end}))
+        delay(0.5)
+        G.E_MANAGER:add_event(Event({trigger = 'after', blocking = true, delay = 0.3, func = function()
+            local chips_UI = G.hand_text_area.blind_chips
+            G.FUNCS.blind_chip_UI_scale(G.hand_text_area.blind_chips)
+            delay(0.5)
+            if not silent then play_sound('generic1') end
+            chips_UI:juice_up()
+            return true
+        end}))
+    end
+end
+
+
+function joker_area_status_text(text, colour, silent, delay, scale)
+    local delay = delay or 0.6
+    G.E_MANAGER:add_event(Event({
+    trigger = (delay==0 and 'immediate' or 'before'),
+    delay = delay,
+    func = function()
+        attention_text({
+            text = text,
+            scale = scale or 1, 
+            hold = 0.9,
+            backdrop_colour = colour,
+            align = 'tl',
+            offset = {x = 1, y = -2},
+            major = G.play
+        })
+        if not silent then 
+            G.ROOM.jiggle = G.ROOM.jiggle + 2
+            play_sound('cardFan2')
+        end
+      return true
+    end
+    }))
+end
+
+
+function tag_area_status_text(tag, text, colour, silent, delay, scale)
+    local delay = delay or 0.6
+    G.E_MANAGER:add_event(Event({
+    trigger = (delay==0 and 'immediate' or 'before'),
+    delay = delay,
+    func = function()
+        attention_text({
+            text = text,
+            scale = scale or 1, 
+            hold = 0.8,
+            backdrop_colour = colour,
+            align = 'cl',
+            offset = {x=-0.7,y=0},
+            major = tag.HUD_tag
+        })
+        if not silent then 
+            G.ROOM.jiggle = G.ROOM.jiggle + 2
+            play_sound('cardFan2')
+        end
+      return true
+    end
+    }))
+end
+local set_cosumeable_ref = set_consumeable_usage
+function set_consumeable_usage(card)
+    set_cosumeable_ref(card)
+    if card.config.center_key and card.ability.consumeable then
+      if card.config.center.set == 'bld_obj_filmcard' then 
+        G.E_MANAGER:add_event(Event({
+          trigger = 'immediate',
+          func = function()
+            G.E_MANAGER:add_event(Event({
+              trigger = 'immediate',
+              func = function()
+                G.GAME.last_channel = card.config.center_key
+                  return true
+              end
+            }))
+              return true
+          end
+        }))
+      end
+    end
+end
+
+
+G.FUNCS.blind_draw_from_deck_to_hand = function(e)
+    local hand_space = e
+    local cards_to_draw = {}
+    if not hand_space then
+        local limit = G.hand.config.card_limit - #G.hand.cards
+        local unfixed = not G.hand.config.fixed_limit
+        local n = 0
+        while n < #G.deck.cards do
+            local card = G.deck.cards[#G.deck.cards-n]
+            local mod = unfixed and (card.ability.card_limit - card.ability.extra_slots_used) or 0
+            if limit - 1 + mod < 0 then
+            else    
+                limit = limit - 1 + mod
+                table.insert(cards_to_draw, card)
+                if limit <= 0 then break end
+            end
+            n = n + 1
+        end
+        hand_space = #cards_to_draw
+    end
+    if G.GAME.blind.name == 'The Serpent' and
+        not G.GAME.blind.disabled and
+        (G.GAME.current_round.hands_played > 0 or
+        G.GAME.current_round.discards_used > 0) then
+            hand_space = math.min(#G.deck.cards, 3)
+    end
+    local flags = SMODS.calculate_context({drawing_cards = true, amount = hand_space})
+    hand_space = math.min(#G.deck.cards, flags.cards_to_draw or hand_space)
+    delay(0.3)
+    SMODS.drawn_cards = {}
+    for i=1, hand_space do --draw cards from deckL
+        if G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK then 
+            draw_card(G.deck,G.hand, i*100/hand_space,'up', true, cards_to_draw[i])
+        else
+            draw_card(G.deck,G.hand, i*100/hand_space,'up', true, cards_to_draw[i])
+        end
+    end
+    delay(0.5)
+    if #G.deck.cards < G.hand.config.card_limit - #G.hand.cards and G.hand.config.card_limit - #G.hand.cards >= 1 then
+        local discard_count = #G.discard.cards
+        for i=1, discard_count do --draw cards from deck
+            draw_card(G.discard, G.deck, i*100/discard_count,'up', nil ,nil, 0.005, i%2==0, nil, math.max((21-i)/20,0.7))
+        end
+        SMODS.calculate_context({reshuffle = true})
+        delay(0.5)
+    G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        delay = 0.7,
+        func = function()
+            pseudoshuffle(G.deck.cards, 'beta'..G.GAME.round_resets.ante)
+            return true
+        end
+    }))
+    end
+        G.E_MANAGER:add_event(Event({
+            trigger = 'immediate',
+            func = function()
+                local cards_to_draw = {}
+                local limit = G.hand.config.card_limit - #G.hand.cards
+                local unfixed = not G.hand.config.fixed_limit
+                local n = 0
+                while n < #G.deck.cards do
+                    local card = G.deck.cards[#G.deck.cards-n]
+                    local mod = unfixed and (card.ability.card_limit - card.ability.extra_slots_used) or 0
+                    if limit - 1 + mod < 0 then
+                    else    
+                        limit = limit - 1 + mod
+                        table.insert(cards_to_draw, card)
+                        if limit <= 0 then break end
+                    end
+                    n = n + 1
+                end
+                hand_space = #cards_to_draw
+                SMODS.drawn_cards = {}
+                for i=1, hand_space do --draw cards from deckL
+                    if G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK then 
+                        draw_card(G.deck,G.hand, i*100/hand_space,'up', true, cards_to_draw[i])
+                    else
+                        draw_card(G.deck,G.hand, i*100/hand_space,'up', true, cards_to_draw[i])
+                    end
+                end
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'after',
+                    delay = 0.7,
+                    func = function()
+                        save_run()
+                        return true
+                    end
+                }))
+                return true
+            end
+        }))
+
+    G.E_MANAGER:add_event(Event({
+        trigger = 'before',
+        delay = 0.4,
+        func = function()
+            if #SMODS.drawn_cards > 0 then
+                if G.GAME.current_round.discards_used == 0 and G.GAME.current_round.hands_played == 0 then
+                for i = 1, #G.GAME.tags do
+                    G.GAME.tags[i]:apply_to_run({type = 'real_round_start'})
+                end
+                end
+                
+                SMODS.calculate_context({first_hand_drawn = not G.GAME.current_round.any_hand_drawn and G.GAME.facing_blind,
+                                        hand_drawn = G.GAME.facing_blind and SMODS.drawn_cards,
+                                        other_drawn = not G.GAME.facing_blind and SMODS.drawn_cards})
+                SMODS.drawn_cards = {}
+                if G.GAME.facing_blind then G.GAME.current_round.any_hand_drawn = true end
+            end
+            return true
+        end
+    }))
+end
+
+
+function update_joker_hand_text(config, vals)
+    G.E_MANAGER:add_event(Event({--This is the Hand name text for the poker hand
+    trigger = 'before',
+    blockable = not config.immediate,
+    delay = config.delay or 0.8,
+    func = function()
+        local col = G.C.GREEN
+        if vals.chips then
+            local delta = (vals.chips - G.GAME.blind.basechips) or 0
+            if delta < 0 then delta = number_format(delta); col = G.C.RED
+            elseif delta > 0 then delta = '-'..number_format(delta)
+            else delta = number_format(delta)
+            end
+            if type(vals.chips) == 'string' then delta = vals.chips end
+            if type(delta) == 'string' and string.sub(delta, 1, 1) == '-' then col = G.C.RED end
+            G.GAME.blind.basechips = vals.chips
+            G.hand_text_area.blind_chips:update(0)
+            G.GAME.blind.basechips_text = number_format(G.GAME.blind.basechips)
+            if vals.StatusText then 
+                attention_text({
+                    text =delta,
+                    scale = 0.3*2.3, 
+                    hold = 1,
+                    cover = G.hand_text_area.blind_chip_text.parent,
+                    cover_colour = mix_colours(G.C.CHIPS, col, 0.1),
+                    emboss = 0.05,
+                    align = 'cm',
+                    cover_align = 'cr'
+                })
+            end
+        end
+        if vals.mult then
+            local delta = (vals.mult - G.GAME.blind.mult) or 0
+            if delta < 0 then delta = number_format(delta); col = G.C.RED
+            elseif delta > 0 then delta = '+'..number_format(delta)
+            else delta = number_format(delta)
+            end
+            if type(vals.mult) == 'string' then delta = vals.mult end
+            if type(delta) == 'string' and string.sub(delta, 1, 1) == '-' then col = G.C.RED end
+            G.GAME.blind.mult = vals.mult
+            G.GAME.blind.mult_text = number_format(G.GAME.blind.mult)
+            G.hand_text_area.mult:update(0)
+            if vals.StatusText then 
+                attention_text({
+                    text =delta,
+                    scale = 0.3*2.3, 
+                    hold = 1,
+                    cover = G.hand_text_area.blind_mult_text.parent,
+                    cover_colour = mix_colours(G.C.MULT, col, 0.1),
+                    emboss = 0.05,
+                    align = 'cm',
+                    cover_align = 'cl'
+                })
+            end
+            if not G.TAROT_INTERRUPT then G.hand_text_area.blind_mult_text:juice_up() end
+        end
+        if vals.chip_total then G.GAME.current_round.current_hand.chip_total = vals.chip_total;G.hand_text_area.chip_total.config.object:pulse(0.5) end
+        if config.sound and not config.modded then play_sound(config.sound, config.pitch or 1, config.volume or 1) end
+        	if config.modded then 
+        		SMODS.juice_up_blind(config.modded)
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.06*G.SETTINGS.GAMESPEED, blockable = false, blocking = false, func = function()
+                play_sound('tarot2', 0.76, 0.4);return true end}))
+            play_sound('tarot2', 1, 0.4)
+        end
+        return true
+    end}))
+end
+
+function Card:start_burn(dissolve_colours, silent, dissolve_time_fac, no_juice)
+    dissolve_colours = dissolve_colours or (type(self.destroyed) == 'table' and self.destroyed.colours) or nil
+    dissolve_time_fac = dissolve_time_fac or (type(self.destroyed) == 'table' and self.destroyed.time) or nil
+    local dissolve_time = 0.7*(dissolve_time_fac or 1)
+    self.dissolve = 0
+    self.dissolve_colours = dissolve_colours
+        or {G.C.BLACK, G.C.ORANGE, G.C.RED, G.C.GOLD, G.C.JOKER_GREY}
+    if not no_juice then self:juice_up() end
+    local childParts = Particles(0, 0, 0,0, {
+        timer_type = 'TOTAL',
+        timer = 0.01*dissolve_time,
+        scale = 0.1,
+        speed = 2,
+        lifespan = 0.7*dissolve_time,
+        attach = self,
+        colours = self.dissolve_colours,
+        fill = true
+    })
+    G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        blockable = false,
+        delay =  0.7*dissolve_time,
+        func = (function() childParts:fade(0.3*dissolve_time) return true end)
+    }))
+    if not silent then 
+        G.E_MANAGER:add_event(Event({
+            blockable = false,
+            func = (function()
+                    play_sound('whoosh2', math.random()*0.2 + 0.9,0.5)
+                    play_sound('crumple'..math.random(1, 5), math.random()*0.2 + 0.9,0.5)
+                return true end)
+        }))
+    end
+    G.E_MANAGER:add_event(Event({
+        trigger = 'ease',
+        blockable = false,
+        ref_table = self,
+        ref_value = 'dissolve',
+        ease_to = 1,
+        delay =  1*dissolve_time,
+        func = (function(t) return t end)
+    }))
+    local drawn = nil
+    G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        blockable = false,
+        delay =  1.05*dissolve_time,
+        func = (function()
+        if self then 
+            if G.play then self = G.play:remove_card(self) end
+            if self then drawn = true end
+            local stay_flipped = G.GAME and G.GAME.blind and G.GAME.blind:stay_flipped(G.exhaust, self, G.play)
+            if G.GAME.modifiers.flipped_cards and to == G.hand then
+                if pseudorandom(pseudoseed('flipped_card')) < 1/G.GAME.modifiers.flipped_cards then
+                    stay_flipped = true
+                end
+            end
+            G.exhaust:emplace(self, nil, stay_flipped)
+        else
+            self = G.exhaust:draw_card_from(G.play, stay_flipped, discarded_only)
+            if self then drawn = true end
+        end
+        if not mute and drawn then
+            if G.play == G.deck or G.play == G.hand or G.play == G.play or G.play == G.jokers or G.play == G.consumeables or G.play == G.discard then
+                G.VIBRATION = G.VIBRATION + 0.6
+            end
+            play_sound('card1', 0.85 + #G.play.cards*0.2, 0.6*1)
+        end
+        if true then
+            G.exhaust:sort()
+        end
+        SMODS.drawn_cards = SMODS.drawn_cards or {}
+        if self and self.playing_card then SMODS.drawn_cards[#SMODS.drawn_cards+1] = self end
+        return true end)
+    }))
+    G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        blockable = false,
+        delay =  1.5*dissolve_time,
+        func = (function() self:start_rematerialize() return true end)
+    }))
+end
+
+
+function Card:start_rematerialize(dissolve_colours, silent, timefac)
+    local dissolve_time = 0.6*(timefac or 1)
+    self.states.visible = true
+    self.states.hover.can = false
+    self.dissolve = 1
+    self.dissolve_colours = dissolve_colours or
+    (self.ability.set == 'Joker' and {G.C.RARITY[self.config.center.rarity]}) or
+    (self.ability.set == 'Planet'  and {G.C.SECONDARY_SET.Planet}) or
+    (self.ability.set == 'Tarot' and {G.C.SECONDARY_SET.Tarot}) or
+    (self.ability.set == 'Spectral' and {G.C.SECONDARY_SET.Spectral}) or
+    (self.ability.set == 'Booster' and {G.C.BOOSTER}) or
+    (self.ability.set == 'Voucher' and {G.C.SECONDARY_SET.Voucher, G.C.CLEAR}) or 
+    {G.C.GREEN}
+    self:juice_up()
+    self.children.particles = Particles(0, 0, 0,0, {
+        timer_type = 'TOTAL',
+        timer = 0.025*dissolve_time,
+        scale = 0.25,
+        speed = 3,
+        lifespan = 0.7*dissolve_time,
+        attach = self,
+        colours = self.dissolve_colours,
+        fill = true
+    })
+    G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        blockable = false,
+        delay =  0.5*dissolve_time,
+        func = (function() if self.children.particles then self.children.particles.max = 0 end return true end)
+    }))
+    G.E_MANAGER:add_event(Event({
+        trigger = 'ease',
+        blockable = false,
+        ref_table = self,
+        ref_value = 'dissolve',
+        ease_to = 0,
+        delay =  1*dissolve_time,
+        func = (function(t) return t end)
+    }))
+    G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        blockable = false,
+        delay =  1.05*dissolve_time,
+        func = (function() self.states.hover.can = true; if self.children.particles then self.children.particles:remove(); self.children.particles = nil end return true end)
+    }))
+end
+
+
+function BLINDSIDE.calculate_burning_cards(context, cards_burned, scoring_hand)
+    for i,card in ipairs(context.cardarea.cards) do
+        local burned = nil
+        --un-highlight all cards
+        local in_scoring = scoring_hand and SMODS.in_scoring(card, context.scoring_hand)
+        if scoring_hand and in_scoring and not card.destroyed then 
+            -- Use index of card in scoring hand to determine pitch
+            local m = 1
+            for j, _card in pairs(scoring_hand) do
+                if card == _card then m = j break end
+            end
+            highlight_card(card,(m-0.999)/(#scoring_hand-0.998),'down')
+        end
+
+        -- context.burning_card calculations
+        context.burn_card = card
+        context.burning_card = nil
+        if scoring_hand then
+            if in_scoring then
+                context.cardarea = G.play
+                context.burning_card = card
+            else
+                context.cardarea = 'unscored'
+            end
+        end
+        local flags = SMODS.calculate_context(context)
+        if flags.remove then burned = true end
+
+        -- TARGET: card destroyed
+
+        if burned then
+            card.burned = true
+            cards_burned[#cards_burned+1] = card
+        else
+            card.burned = false
+        end
+    end
+end
+
+
+local cardareasortref = CardArea.sort
+
+function CardArea:sort(method)
+    self.config.sort = method or self.config.sort
+    if self.config.sort == 'color desc' then
+        table.sort(self.cards, function (a, b) return a:get_blind_nominal('color') > b:get_blind_nominal('color') end )
+    elseif self.config.sort == 'color asc' then
+        table.sort(self.cards, function (a, b) return a:get_blind_nominal('color') < b:get_blind_nominal('color') end )
+    else
+        cardareasortref(self, method)
+    end
+end
+
+G.FUNCS.sort_hand_color = function(e)
+    G.hand:sort('color desc')
+    play_sound('paper1')
+end
+----------------------------------------------
+------------MOD CODE END----------------------
+
