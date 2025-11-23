@@ -31,7 +31,7 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.main_scoring and context.cardarea == G.hand and context.scoring_hand then
+            if context.before and context.cardarea == G.hand and context.scoring_hand then
                 if next(context.poker_hands[card.ability.extra.poker_hand]) then
                     return {
                         mult = card.ability.mult
