@@ -1248,9 +1248,9 @@ return {
 			["m_bld_price"] = {
 				["name"] = "The Price",
 				["text"] = {
-					{"{X:money,C:white}Yellow{}",
-					"{C:money}-#3#${} and",
-					"currently {C:mult}+#1#{} Mult"},
+					{"Currently {C:mult}+#1#{} Mult"},
+					{"Flips all Blinds",
+					"{C:attention}held in hand"},
 					{"Gains {C:red}+#2#{} Mult",
 					"when scored"},
 				},
