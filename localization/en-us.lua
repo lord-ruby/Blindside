@@ -48,6 +48,7 @@ return {
 		["v_dictionary"] = {
 			["a_rmult"] = "-#1#",
 			["a_pchips"] = "-#1#%",
+			["ante_x_price_tag"] = "ANTE #1# PRICE TAG",
 		},
         ["suits_singular"] = {
 			["bld_Red"] = 'Red',

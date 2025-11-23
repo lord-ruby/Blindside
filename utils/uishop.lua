@@ -37,8 +37,15 @@ function Game:blindupdate_shop(dt)
                                         end
                                         G.load_shop_jokers = nil
                                     else
-                                        for i = 1, G.GAME.shop.joker_max - #G.shop_jokers.cards do
-                                            G.shop_jokers:emplace(create_card_for_shop(G.shop_jokers))
+                                        local vouchers_to_spawn = 0
+                                        for _,_ in pairs(G.GAME.current_round.trinket.spawn) do vouchers_to_spawn = vouchers_to_spawn + 1 end
+                                        if vouchers_to_spawn < G.GAME.shop.joker_max then
+                                            BLINDSIDE.get_next_trinket(G.GAME.current_round.trinket)
+                                        end
+                                        for _, key in ipairs(G.GAME.current_round.trinket or {}) do
+                                            if G.P_CENTERS[key] and G.GAME.current_round.trinket.spawn[key] then
+                                                BLINDSIDE.add_trinket_to_shop(key)
+                                            end
                                         end
                                     end
                                     
@@ -120,21 +127,21 @@ function G.UIDEF.blind_shop()
     G.shop_jokers = CardArea(
       G.hand.T.x+0,
       G.hand.T.y+G.ROOM.T.y + 9,
-      2.4*G.CARD_W,
+      (G.GAME.shop.joker_max)*G.CARD_W,
       1.05*G.CARD_H, 
-      {card_limit = 2, type = 'shop', highlight_limit = 1, card_w = 1.27*G.CARD_W})
+      {card_limit = G.GAME.shop.joker_max, type = 'shop', highlight_limit = 1, card_w = 1.27*G.CARD_W})
 
     G.shop_vouchers = CardArea(
       G.hand.T.x+0,
       G.hand.T.y+G.ROOM.T.y + 9,
-      2.1*G.CARD_W,
+      G.CARD_W,
       1.05*G.CARD_H, 
       {card_limit = 1, type = 'shop', highlight_limit = 1})
 
     G.shop_booster = CardArea(
       G.hand.T.x+0,
       G.hand.T.y+G.ROOM.T.y + 9,
-      (G.GAME.starting_params.boosters_in_shop + (G.GAME.modifiers.extra_boosters or 0))*1.27*G.CARD_W,
+      (G.GAME.starting_params.boosters_in_shop + (G.GAME.modifiers.extra_boosters or 0))*1.3*G.CARD_W,
       1.05*G.CARD_H, 
       {card_limit = G.GAME.starting_params.boosters_in_shop + (G.GAME.modifiers.extra_boosters or 0) + (not G.GAME.last_joker and 1 or 0), type = 'shop', highlight_limit = 1, card_w = 1.27*G.CARD_W})
 
@@ -174,17 +181,17 @@ function G.UIDEF.blind_shop()
                 {n=G.UIT.C, config={align = "cm", padding = 0.1, emboss = 0.05, r = 0.1, colour = G.C.DYN_UI.BOSS_MAIN}, nodes={
                     {n=G.UIT.R, config={align = "cm", padding = 0.05}, nodes={
                       {n=G.UIT.C, config={align = "cm", padding = 0.1}, nodes={
-                        {n=G.UIT.R,config={id = 'next_round_button', align = "cm", minw = 2.8, minh = 1.5, r=0.15,colour = G.C.RED, one_press = true, button = 'toggle_shop', hover = true,shadow = true}, nodes = {
+                        {n=G.UIT.R,config={id = 'next_round_button', align = "cm", minw = 3, minh = 1.5, r=0.15,colour = G.C.RED, one_press = true, button = 'toggle_shop', hover = true,shadow = true}, nodes = {
                           {n=G.UIT.R, config={align = "cm", padding = 0.07, focus_args = {button = 'y', orientation = 'cr'}, func = 'set_button_pip'}, nodes={
-                            {n=G.UIT.R, config={align = "cm", maxw = 1.3}, nodes={
+                            {n=G.UIT.R, config={align = "cm", maxw = 1.6}, nodes={
                               {n=G.UIT.T, config={text = localize('b_next_round_1'), scale = 0.4, colour = G.C.WHITE, shadow = true}}
                             }},
-                            {n=G.UIT.R, config={align = "cm", maxw = 1.3}, nodes={
+                            {n=G.UIT.R, config={align = "cm", maxw = 1.6}, nodes={
                               {n=G.UIT.T, config={text = localize('b_next_round_2'), scale = 0.4, colour = G.C.WHITE, shadow = true}}
                             }}   
                           }},              
                         }},
-                        {n=G.UIT.R, config={align = "cm", minw = 2.8, minh = 1.6, r=0.15,colour = G.C.GREEN, button = 'blindreroll_shop', func = 'blindcan_reroll', hover = true,shadow = true}, nodes = {
+                        {n=G.UIT.R, config={align = "cm", minw = 3, minh = 1.6, r=0.15,colour = G.C.GREEN, button = 'blindreroll_shop', func = 'blindcan_reroll', hover = true,shadow = true}, nodes = {
                             --[[(not G.GAME.last_joker) and
                             {n=G.UIT.R, config={align = "cm", padding = 0.07, focus_args = {button = 'x', orientation = 'cr'}, func = 'set_button_pip'}, nodes={
                               {n=G.UIT.R, config={align = "cm", maxw = 1.3}, nodes={
@@ -196,10 +203,10 @@ function G.UIDEF.blind_shop()
                             }}
                             or]]
                           {n=G.UIT.R, config={align = "cm", padding = 0.07, focus_args = {button = 'x', orientation = 'cr'}, func = 'set_button_pip'}, nodes={
-                            {n=G.UIT.R, config={align = "cm", maxw = 1.3}, nodes={
+                            {n=G.UIT.R, config={align = "cm", maxw = 1.6}, nodes={
                               {n=G.UIT.T, config={text = localize('k_reroll'), scale = 0.4, colour = G.C.WHITE, shadow = true}},
                             }},
-                            {n=G.UIT.R, config={align = "cm", maxw = 1.3, minw = 1}, nodes={
+                            {n=G.UIT.R, config={align = "cm", maxw = 1.6, minw = 1}, nodes={
                               {n=G.UIT.T, config={text = localize('$'), scale = 0.7, colour = G.C.WHITE, shadow = true}},
                               {n=G.UIT.T, config={ref_table = G.GAME.current_round, ref_value = 'reroll_cost', scale = 0.75, colour = G.C.WHITE, shadow = true}},
                             }}
@@ -212,13 +219,13 @@ function G.UIDEF.blind_shop()
                     }},
                     {n=G.UIT.R, config={align = "cm", minh = 0.2}, nodes={}},
                     {n=G.UIT.R, config={align = "cm", padding = 0.1}, nodes={
-                      {n=G.UIT.C, config={align = "cm", padding = 0.15, r=0.2, colour = G.C.L_BLACK, emboss = 0.05}, nodes={
+                      {n=G.UIT.C, config={align = "cm", padding = 0.1, r=0.2, colour = G.C.L_BLACK, emboss = 0.05}, nodes={
                         {n=G.UIT.C, config={align = "cm", padding = 0.2, r=0.2, colour = G.C.BLACK, maxh = G.shop_vouchers.T.h+0.4}, nodes={
-                          {n=G.UIT.T, config={text = localize{type = 'variable', key = 'ante_x_voucher', vars = {G.GAME.round_resets.ante}}, scale = 0.45, colour = G.C.L_BLACK, vert = true}},
+                          {n=G.UIT.T, config={text = localize{type = 'variable', key = 'ante_x_price_tag', vars = {G.GAME.round_resets.ante}}, scale = 0.4, colour = G.C.L_BLACK, vert = true}},
                           {n=G.UIT.O, config={object = G.shop_vouchers}},
                         }},
                       }},
-                      {n=G.UIT.C, config={align = "cm", padding = 0.15, r=0.2, colour = G.C.L_BLACK, emboss = 0.05}, nodes={
+                      {n=G.UIT.C, config={align = "cm", padding = 0.1, r=0.2, colour = G.C.L_BLACK, emboss = 0.05}, nodes={
                         {n=G.UIT.O, config={object = G.shop_jokers}},
                       }},
                     }}

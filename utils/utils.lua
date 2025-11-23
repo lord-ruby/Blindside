@@ -46,6 +46,7 @@
             G.GAME['common_mod'] = 0
             G.GAME['rare_mod'] = 0
             G.GAME['uncommon_mod'] = 0
+            change_shop_size(2)
     end
 
     local reference_tallies = set_discover_tallies
@@ -737,6 +738,66 @@ end
 G.FUNCS.sort_hand_color = function(e)
     G.hand:sort('color desc')
     play_sound('paper1')
+end
+
+function BLINDSIDE.get_next_trinket(trinkets)
+    trinkets = trinkets or {spawn = {}}
+    local _pool, _pool_key = get_current_pool('Joker')
+    for i=#trinkets+1, math.min(SMODS.size_of_pool(_pool), G.GAME.shop.joker_max) do
+        local center = pseudorandom_element(_pool, pseudoseed(_pool_key))
+        local it = 1
+        while center == 'UNAVAILABLE' or trinkets.spawn[center] do
+            it = it + 1
+            center = pseudorandom_element(_pool, pseudoseed(_pool_key..'_resample'..it))
+        end
+
+        trinkets[#trinkets+1] = center
+        trinkets.spawn[center] = true
+    end
+    return trinkets
+end
+
+function get_next_trinket_key(_from_tag)
+    local _pool, _pool_key = get_current_pool('Joker')
+    if _from_tag then _pool_key = 'Joker_fromtag' end
+    local center = pseudorandom_element(_pool, pseudoseed(_pool_key))
+    local it = 1
+    while center == 'UNAVAILABLE' do
+        it = it + 1
+        center = pseudorandom_element(_pool, pseudoseed(_pool_key..'_resample'..it))
+    end
+
+    return center
+end
+
+function BLINDSIDE.add_trinket_to_shop(key, dont_save)
+    if key then assert(G.P_CENTERS[key], "Invalid trinket key: "..key) else
+        key = get_next_voucher_key()
+        if not dont_save then
+            G.GAME.current_round.trinket.spawn[key] = true
+            G.GAME.current_round.trinket[#G.GAME.current_round.trinket + 1] = key
+        end
+    end
+    local card = Card(G.shop_jokers.T.x + G.shop_jokers.T.w/2,
+        G.shop_jokers.T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, G.P_CENTERS[key],{bypass_discovery_center = true, bypass_discovery_ui = true})
+        create_shop_card_ui(card, 'Voucher', G.shop_jokers)
+        card.shop_voucher = true
+        card:start_materialize()
+        G.shop_jokers:emplace(card)
+        G.shop_jokers.config.card_limit = #G.shop_jokers.cards
+        return card
+end
+
+G.FUNCS.shop_trinket_empty = function(e)
+  if (G.shop_jokers and G.shop_jokers.cards and G.shop_jokers.cards[1]) then
+    print(G.shop_jokers)
+    print(G.shop_jokers.cards)
+    print(G.shop_jokers.cards[1])
+    e.states.visible = false
+  else
+    print("visible!")
+    e.states.visible = true
+  end
 end
 ----------------------------------------------
 ------------MOD CODE END----------------------
