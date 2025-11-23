@@ -152,7 +152,7 @@
             end
         end
         for i=#hand, 1, -1 do
-            if hand[i]:is_color("Faded") and fadedblind or hand[i].seal == "bld_wild" then
+            if (hand[i]:is_color("Faded") and fadedblind) or hand[i].seal == "bld_wild" then
                 table.insert(wilds, hand[i])
             end
         end
@@ -167,6 +167,7 @@
         end
         local multicolors = {}
         for v = #multicolor, 1, -1 do
+            allcolors["Bleh"] = {}
             local bestColor = "Bleh"
             local secondBestColor = "Bleh"
             local thirdBestColor = "Bleh"
@@ -221,15 +222,12 @@
             end
         end
         for i = #colors, 1, -1 do
-            if or_more and (#allcolors[colors[i]] >= num) or (#allcolors[colors[i]] == num) then
+            if (or_more and (#allcolors[colors[i]] >= num) or (#allcolors[colors[i]] == num)) and not fadedsOnly then
                 vals[colors[i]] = allcolors[colors[i]]
             end
         end
         if (or_more and (#wilds >= num) or (#wilds == num)) and fadedsOnly then
             vals["Faded"] = wilds
-        end
-        if (or_more and (#highest >= num) or (#highest == num)) and not fadedsOnly then
-            vals[highest[1].config.center.config.extra.hues[1]] = highest
         end
         local ret = {}
         for k, v in pairs(vals) do
@@ -335,11 +333,11 @@
         end
         if not allFaded then
         if flush_calc then
-            if self.seal and self.seal == "bld_wild" then
+        if self.seal and self.seal == "bld_wild" and suit ~= "Bleh" then
                 return true
             end
             for i=1, #self.config.center.config.extra.hues do
-                if self.config.center.config.extra.hues[i] == suit  or "bld_" .. self.config.center.config.extra.hues[i] == suit or (self.config.center.config.extra.hues[i] == "Faded" and next(SMODS.find_card("j_bld_insignia")))then
+                if (self.config.center.config.extra.hues[i] == suit  or "bld_" .. self.config.center.config.extra.hues[i] == suit or (self.config.center.config.extra.hues[i] == "Faded" and next(SMODS.find_card("j_bld_insignia")))) and suit ~= "Bleh" then
                     return true
                 end
             end
@@ -357,11 +355,11 @@
             end
             return false
         else
-            if self.seal and self.seal == "bld_wild" and not self.debuff then
+            if self.seal and self.seal == "bld_wild" and not self.debuff and suit ~= "Bleh" then
                 return true
             end
             for i=1, #self.config.center.config.extra.hues do
-                if self.config.center.config.extra.hues[i] == suit or "bld_" .. self.config.center.config.extra.hues[i] == suit or (self.config.center.config.extra.hues[i] == "Faded" and next(SMODS.find_card("j_bld_insignia"))) then
+                if (self.config.center.config.extra.hues[i] == suit or "bld_" .. self.config.center.config.extra.hues[i] == suit or (self.config.center.config.extra.hues[i] == "Faded" and next(SMODS.find_card("j_bld_insignia")))) and suit ~= "Bleh"  then
                     return true
                 end
             end
