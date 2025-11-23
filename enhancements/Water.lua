@@ -5,8 +5,8 @@
         config = {
             extra = {
                 value = 100,
-                chips_bonus = 10,
-                chips = 10,
+                xchips_bonus = 0.2,
+                xchips = 1,
                 hues = {"Faded", "Blue"}
             }},
         replace_base_card = true,
@@ -32,7 +32,7 @@
         info_queue[#info_queue+1] = {key = 'bld_burn', set = 'Other'}
             return {
                 vars = {
-                    card.ability.extra.chips, card.ability.extra.chips_bonus
+                    card.ability.extra.xchips, card.ability.extra.xchips_bonus
                 }
             }
         end,
@@ -40,15 +40,15 @@
             if context.cardarea == G.play and context.before and card.facing ~= 'back' then   
                     SMODS.scale_card(card, {
                         ref_table = card.ability.extra,
-                        ref_value = "chips",
-                        scalar_value = "chips_bonus",
+                        ref_value = "xchips",
+                        scalar_value = "xchips_bonus",
                         operation = '+',
                         message_colour = G.C.BLUE
                     })
             end
             if context.main_scoring and context.cardarea == G.play then
                 return {
-                    chips = card.ability.extra.chips
+                    xchips = card.ability.extra.xchips
                 }
             end
             if context.burn_card and context.cardarea == G.play and context.burn_card == card then

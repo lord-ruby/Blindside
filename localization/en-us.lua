@@ -1193,9 +1193,9 @@ return {
 				["name"] = "The Water",
 				["text"] = {
 					{"{X:chips,C:white}Blue{} {X:dark_edition,C:white}Faded{}",
-					"Currently {C:chips}+#1#{} Chips"},
+					"Currently {X:chips,C:white}+#1#{} Chips"},
 					{"When played,",
-					"gains {C:chips}+#2#{} Chips"},
+					"gains {X:chips,C:white}+#2#{} Chips"},
 					{"{C:attention}Burns"},
 				},
 			},
