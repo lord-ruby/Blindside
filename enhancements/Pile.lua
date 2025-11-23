@@ -29,31 +29,37 @@
         },
         calculate = function(self, card, context) 
             if context.cardarea == G.play and context.main_scoring then
-                G.E_MANAGER:add_event(Event({ func = function()
-                    local any_selected = nil
-                    local _cards = {}
-                    for k, v in ipairs(G.hand.cards) do
-                        if not v:is_color("Blue") and v.config.center ~= G.P_CENTERS.m_bld_wedge then
-                        _cards[#_cards+1] = v
-                    end
-                    end
-                    local repetitions = 0
-                    for i = 1, card.ability.extra.nonblue do
-                        if G.hand.cards[i] then
-                            local selected_card, card_key = pseudorandom_element(_cards, pseudoseed('pile'))
-                            if not selected_card:is_color("Blue") and selected_card.config.center ~= G.P_CENTERS.m_bld_wedge then
-                                G.hand:add_to_highlighted(selected_card, true)
-                                table.remove(_cards, card_key)
-                                any_selected = true
-                                play_sound('card1', 1)
-                            else
-                                i = i-1
-                                repetitions = repetitions + 1
-                            end
+                local any_selected = nil
+                local _cards = {}
+                local discardedcards = {}
+                for k, v in ipairs(G.hand.cards) do
+                    if not v:is_color("Blue") and v.config.center ~= G.P_CENTERS.m_bld_wedge and not v.getting_sliced then
+                    _cards[#_cards+1] = v
+                end
+                end
+                local repetitions = 0
+                for i = 1, math.min(card.ability.extra.nonblue,#_cards) do
+                    if G.hand.cards[i] then
+                        local selected_card, card_key = pseudorandom_element(_cards, pseudoseed('pile'))
+                        if not selected_card:is_color("Blue") and selected_card.config.center ~= G.P_CENTERS.m_bld_wedge then
+                            G.hand:add_to_highlighted(selected_card, true)
+                            selected_card.getting_sliced = true
+                            discardedcards[#discardedcards+1] = selected_card
+                            table.remove(_cards, card_key)
+                            any_selected = true
+                            play_sound('card1', 1)
+                        else
+                            i = i-1
+                            repetitions = repetitions + 1
                         end
                     end
+                end
+                G.E_MANAGER:add_event(Event({ func = function()
                     card:juice_up()
                     if any_selected then G.FUNCS.discard_cards_from_highlighted(nil, true) end
+                    for i = 1, #discardedcards do
+                        discardedcards[i].getting_sliced = false
+                    end
                 return true end }))
                 return {
                     chips = card.ability.extra.chips
