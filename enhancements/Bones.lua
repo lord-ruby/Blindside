@@ -29,10 +29,10 @@
             ["bld_obj_blindcard_faded"] = true,
         },
         calculate = function(self, card, context)
-                if context.cardarea == G.play and context.before and card.facing ~= 'back' then
+                if context.cardarea == G.play and context.before then
 		            G.GAME.probabilities.normal = G.GAME.probabilities.normal + card.ability.extra.chance
                 end
-                if context.cardarea == G.play and context.after and card.facing ~= 'back' then
+                if context.cardarea == G.play and context.after then
 		            G.GAME.probabilities.normal = G.GAME.probabilities.normal - card.ability.extra.chance
                 end
         end,
