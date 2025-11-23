@@ -4,8 +4,8 @@
         pos = {x = 3, y = 3},
         config = {
             extra = {
-                mult_mod = 3,
-                mult = 0,
+                xmult_mod = 0.25,
+                xmult = 0,
                 value = 15,
                 hues = {"Purple"}
             }},
@@ -30,7 +30,7 @@
         calculate = function(self, card, context)
                 if context.cardarea == G.play and context.main_scoring and card.ability.extra.mult > 0 then
                         return {
-                            mult = card.ability.extra.mult
+                            xmult = card.ability.extra.xmult
                         }
                 end
                 if context.cardarea == G.play and context.after and context.scoring_hand and context.full_hand and card.facing ~= 'back' then
@@ -64,8 +64,8 @@
                         end}))
                         SMODS.scale_card(card, {
                             ref_table = card.ability.extra,
-                            ref_value = "mult",
-                            scalar_value = "mult_mod",
+                            ref_value = "xmult",
+                            scalar_value = "xmult_mod",
                             operation = '+',
                             message_colour = G.C.PURPLE
                         })
@@ -75,7 +75,7 @@
         loc_vars = function(self, info_queue, card)
             return {
                 vars = {
-                    card.ability.extra.mult_mod, card.ability.extra.mult
+                    card.ability.extra.xmult_mod, card.ability.extra.xmult
                 }
             }
         end

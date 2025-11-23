@@ -1183,10 +1183,10 @@ return {
 				["name"] = "The Skull",
 				["text"] = {
 					{"{X:purple,C:white}Purple{}",
-					"Currently {C:mult}+#2#{} Mult)"},
+					"Currently {X:mult,C:white}+#2#{} Mult)"},
 					{"{C:attention}Destroys{} a random",
 					"played, unscored Blind and",
-					"gains {C:mult}+#1#{} Mult"},
+					"gains {X:mult,C:white}+#1#{} Mult"},
 				},
 			},
 			["m_bld_water"] = {
