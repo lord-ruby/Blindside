@@ -5,7 +5,7 @@
         config = {
             extra = {
                 value = 10,
-                chips_gain = 0.1,
+                chips_gain = 0.3,
                 hues = {"Blue"}
             }},
         replace_base_card = true,
@@ -52,6 +52,9 @@
             end
             if context.cardarea == G.play and context.after then
                 card.ability.chips = 0
+            end
+            if context.burn_card and context.cardarea == G.play and context.burn_card == card and context.burn_card.facing ~= 'back' then
+                return { remove = true }
             end
         end,
         loc_vars = function(self, info_queue, card)

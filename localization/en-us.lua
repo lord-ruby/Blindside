@@ -1060,6 +1060,7 @@ return {
 					"Blind {C:attention}held in hand"},
 					{"Flips all Blinds",
 					"{C:attention}held in hand"},
+					{"{C:attention}Burns"},
 				},
 			},
 			["m_bld_path"] = {
