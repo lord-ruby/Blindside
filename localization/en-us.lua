@@ -1346,10 +1346,12 @@ return {
 			["m_bld_pillar"] = {
 				["name"] = "The Pillar",
 				["text"] = {
-					"{X:dark_edition,C:white}Faded{}",
+					{"{X:dark_edition,C:white}Faded{}",
 					"Once per {C:attention}Ante{},",
 					"{X:mult,C:white}X#1#{} Mult",
-					"{C:inactive}(Currently: #2#)",
+					"{C:inactive}(Currently: #2#)"},
+					{"Otherwise, {C:mult}+#3#{} Mult",
+					"and {C:attention}Burns"},
 				},
 			},
 			["m_bld_needle"] = {

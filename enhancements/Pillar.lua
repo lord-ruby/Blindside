@@ -6,6 +6,7 @@
             extra = {
                 value = 13,
                 x_mult = 5,
+                mult = 5,
                 status = "Active!",
                 hues = {"Faded"}
             }},
@@ -33,26 +34,26 @@
                                 xmult = card.ability.extra.x_mult
                             }
                         else
-                            if card.facing ~= 'back' then 
-                            card:flip()
-                            end
                             return {
-                                message = localize('k_nope_ex'),
-                                colour = G.C.YELLOW
+                                mult = card.ability.extra.mult
                             }
                     end
                 end
-            if context.end_of_round and context.cardarea == G.discard and not context.beat_boss then
+            if context.after and context.cardarea == G.play then
                 card.ability.extra.status = "Inactive"
             end
             if context.beat_boss then
                 card.ability.extra.status = "Active!"
             end
+            if context.burn_card and context.cardarea == G.play and context.burn_card == card and context.burn_card.facing ~= 'back' and card.ability.extra.status == "Inactive" then
+                return { remove = true }
+            end
         end,
         loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = {key = 'bld_burn', set = 'Other'}
             return {
                 vars = {
-                    card.ability.extra.x_mult, card.ability.extra.status
+                    card.ability.extra.x_mult, card.ability.extra.status, card.ability.extra.mult
                 }
             }
         end
