@@ -57,6 +57,7 @@
             end
         end,
         loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = {key = 'bld_self_scoring', set = 'Other'}
             local chance, trigger = SMODS.get_probability_vars(card, card.ability.extra.chance+#G.GAME.tags, card.ability.extra.trigger, 'flip')
             return {
                 vars = {
