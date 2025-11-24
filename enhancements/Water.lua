@@ -5,7 +5,7 @@
         config = {
             extra = {
                 value = 100,
-                xchips_bonus = 0.2,
+                xchips_bonus = 0.25,
                 xchips = 1,
                 hues = {"Faded", "Blue"}
             }},
