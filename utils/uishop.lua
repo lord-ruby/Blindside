@@ -344,8 +344,11 @@ function BLINDSIDE.create_blindcard_for_shop(area)
     end
     if pseudorandom('flip') > 1*(math.min(G.GAME.current_round.reroll_cost_increase/20, 0.4)) then
       local enhancement = nil
-      local cardtype = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_generate, 'booster')
-      local card = SMODS.create_card({ set = 'Base', seal = enhancement, enhancement = cardtype.key, area = area })
+      local args = {}
+      args.guaranteed = true
+      args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
+      local cardtype = BLINDSIDE.poll_enhancement(args)
+      local card = SMODS.create_card({ set = 'Base', seal = enhancement, enhancement = cardtype, area = area })
       create_shop_card_ui(card, 'Enhanced', area)
       if card.ability.set == 'Base' or card.ability.set == 'Enhanced' then
         card.cost = card.cost + 2

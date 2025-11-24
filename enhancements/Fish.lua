@@ -20,12 +20,13 @@
             return false
             end
         end,
+        weight = 3,
         pools = {
             ["bld_obj_blindcard_generate"] = true,
             ["bld_obj_blindcard_cool"] = true,
             ["bld_obj_blindcard_single"] = true,
             ["bld_obj_blindcard_blue"] = true,
-        }, -- Thank you Ortalab :P
+        },
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.main_scoring then
             local chip_return = 1

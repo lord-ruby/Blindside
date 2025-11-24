@@ -5,7 +5,7 @@
         config = {
             extra = {
                 value = 15,
-                chips = 10,
+                chips = 5,
                 cell_tally = 0,
                 chance = 1,
                 trigger = 2,
@@ -25,6 +25,7 @@
             return false
             end
         end,
+        weight = 3,
         pools = {
             ["bld_obj_blindcard_generate"] = true,
             ["bld_obj_blindcard_cool"] = true,

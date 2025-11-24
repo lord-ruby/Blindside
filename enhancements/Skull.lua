@@ -27,6 +27,7 @@
             ["bld_obj_blindcard_single"] = true,
             ["bld_obj_blindcard_purple"] = true,
         },
+        weight = 3,
         calculate = function(self, card, context)
                 if context.cardarea == G.play and context.main_scoring and card.ability.extra.mult > 0 then
                         return {

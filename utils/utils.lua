@@ -799,6 +799,60 @@ G.FUNCS.shop_trinket_empty = function(e)
     e.states.visible = true
   end
 end
+
+
+function BLINDSIDE.poll_enhancement(args)
+    args = args or {}
+    local key = args.key or 'std_enhance'
+    local mod = args.mod or 1
+    local guaranteed = args.guaranteed or false
+    local options = args.options or get_current_pool("Enhanced")
+    if args.no_replace then
+        for i, k in pairs(options) do
+            if G.P_CENTERS[k] and G.P_CENTERS[k].replace_base_card then
+                options[i] = 'UNAVAILABLE'
+            end
+        end
+    end
+    local type_key = args.type_key or key.."type"..G.GAME.round_resets.ante
+    key = key..G.GAME.round_resets.ante
+
+    local available_enhancements = {}
+    local total_weight = 0
+    for k, v in ipairs(options) do
+        if v ~= "UNAVAILABLE" then
+            local enhance_option = {}
+            if type(k) == 'string' then
+                assert(G.P_CENTERS[v], ("Could not find enhancement \"%s\"."):format(v))
+                enhance_option = { key = v, weight = G.P_CENTERS[v].weight or 5 } -- default weight set to 5 to replicate base game weighting
+            elseif type(v) == 'table' then
+                assert(G.P_CENTERS[v.key], ("Could not find enhancement \"%s\"."):format(v.key))
+                enhance_option = { key = v.key, weight = v.weight or 5 }
+            end
+            table.insert(available_enhancements, enhance_option)
+            total_weight = total_weight + enhance_option.weight
+        end
+      end
+    total_weight = total_weight + (total_weight / 40 * 60) -- set base rate to 40%
+
+    local type_weight = 0 -- modified weight total
+    for _,v in ipairs(available_enhancements) do
+        v.weight = G.P_CENTERS[v.key].get_weight and G.P_CENTERS[v.key]:get_weight() or v.weight
+        type_weight = type_weight + v.weight
+    end
+
+    local enhance_poll = pseudorandom(pseudoseed(key))
+    if enhance_poll > 1 - (type_weight*mod / total_weight) or guaranteed then -- is an enhancement selected
+        local seal_type_poll = pseudorandom(pseudoseed(type_key)) -- which enhancement is selected
+        local weight_i = 0
+        for k, v in ipairs(available_enhancements) do
+            weight_i = weight_i + v.weight
+            if seal_type_poll > 1 - (weight_i / type_weight) then
+                return v.key
+            end
+        end
+    end
+end
 ----------------------------------------------
 ------------MOD CODE END----------------------
 

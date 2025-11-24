@@ -1048,7 +1048,7 @@ return {
 				["text"] = {
 					{"{X:money,C:white}Yellow{} {X:dark_edition,C:white}Faded{}",
 					"{C:mult}+#1#{} Mult",
-					"{X:mult,C;white}X#2#{} Mult"},
+					"{X:mult,C:white}X#2#{} Mult"},
 					{"{C:red}Debuffs{} all",
 					"scoring {X:mult,C:white}Red{} Blinds",}
 				},
@@ -1058,7 +1058,7 @@ return {
 				["text"] = {
 					{"{X:blue,C:white}Blue{}",
 					"{X:chips,C:white}X1{} Chips and",
-					"{X:chips,C:white}+X0.1{} Chips for each",
+					"{X:chips,C:white}+X#1#{} Chips for each",
 					"Blind {C:attention}held in hand"},
 					{"Flips all Blinds",
 					"{C:attention}held in hand"},

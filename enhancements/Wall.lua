@@ -28,6 +28,7 @@
             ["bld_obj_blindcard_single"] = true,
             ["bld_obj_blindcard_purple"] = true,
         },
+        weight = 3,
         loc_vars = function(self, info_queue, card)
             return {
                 vars = {

@@ -32,12 +32,15 @@ SMODS.Booster{
         end,
         create_card = function(self, card)
             local enhancement = nil
-            local cardtype = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_generate, 'booster')
+            local args = {}
+            args.guaranteed = true
+            args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
+            local cardtype = BLINDSIDE.poll_enhancement(args)
             local enhancement_poll = pseudorandom(pseudoseed('booster'..G.GAME.round_resets.ante))
             if enhancement_poll > 0.8 then
                 enhancement = pseudorandom_element(SMODS.ObjectTypes.bld_obj_enhancements.enhancements, 'booster')
             end
-            return SMODS.create_card({ set = 'Base', seal = enhancement, enhancement = cardtype.key })
+            return SMODS.create_card({ set = 'Base', seal = enhancement, enhancement = cardtype })
         end,
         group_key = "k_bld_symbol_pack",
 }
@@ -68,12 +71,15 @@ SMODS.Booster{
         end,
         create_card = function(self, card)
             local enhancement = nil
-            local cardtype = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_cool, 'booster')
+            local args = {}
+            args.guaranteed = true
+            args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
+            local cardtype = BLINDSIDE.poll_enhancement(args)
             local enhancement_poll = pseudorandom(pseudoseed('booster'..G.GAME.round_resets.ante))
             if enhancement_poll > 0.8 then
                 enhancement = pseudorandom_element(SMODS.ObjectTypes.bld_obj_enhancements.enhancements, 'booster')
             end
-            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype.key })
+            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype })
         end,
         group_key = "k_bld_symbol_pack",
 }
@@ -104,12 +110,15 @@ SMODS.Booster{
         end,
         create_card = function(self, card)
             local enhancement = nil
-            local cardtype = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_generate, 'booster')
+            local args = {}
+            args.guaranteed = true
+            args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
+            local cardtype = BLINDSIDE.poll_enhancement(args)
             local enhancement_poll = pseudorandom(pseudoseed('booster'..G.GAME.round_resets.ante))
             if enhancement_poll > 0.8 then
                 enhancement = pseudorandom_element(SMODS.ObjectTypes.bld_obj_enhancements.enhancements, 'booster')
             end
-            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype.key })
+            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype })
         end,
         group_key = "k_bld_symbol_pack",
 }
@@ -140,12 +149,15 @@ SMODS.Booster{
         end,
         create_card = function(self, card)
             local enhancement = nil
-            local cardtype = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_warm, 'booster')
+            local args = {}
+            args.guaranteed = true
+            args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
+            local cardtype = BLINDSIDE.poll_enhancement(args)
             local enhancement_poll = pseudorandom(pseudoseed('booster'..G.GAME.round_resets.ante))
             if enhancement_poll > 0.8 then
                 enhancement = pseudorandom_element(SMODS.ObjectTypes.bld_obj_enhancements.enhancements, 'booster')
             end
-            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype.key })
+            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype })
         end,
         group_key = "k_bld_symbol_pack",
 }
@@ -177,12 +189,15 @@ SMODS.Booster{
         end,
         create_card = function(self, card)
             local enhancement = nil
-            local cardtype = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_cool, 'booster')
+            local args = {}
+            args.guaranteed = true
+            args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
+            local cardtype = BLINDSIDE.poll_enhancement(args)
             local enhancement_poll = pseudorandom(pseudoseed('booster'..G.GAME.round_resets.ante))
             if enhancement_poll > 0.8 then
                 enhancement = pseudorandom_element(SMODS.ObjectTypes.bld_obj_enhancements.enhancements, 'booster')
             end
-            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype.key })
+            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype })
         end,
         group_key = "k_bld_symbol_pack",
 }
@@ -214,12 +229,15 @@ SMODS.Booster{
         end,
         create_card = function(self, card)
             local enhancement = nil
-            local cardtype = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_warm, 'booster')
+            local args = {}
+            args.guaranteed = true
+            args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
+            local cardtype = BLINDSIDE.poll_enhancement(args)
             local enhancement_poll = pseudorandom(pseudoseed('booster'..G.GAME.round_resets.ante))
             if enhancement_poll > 0.8 then
                 enhancement = pseudorandom_element(SMODS.ObjectTypes.bld_obj_enhancements.enhancements, 'booster')
             end
-            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype.key })
+            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype })
         end,
         group_key = "k_bld_symbol_pack",
 }
@@ -250,12 +268,15 @@ SMODS.Booster{
         end,
         create_card = function(self, card)
             local enhancement = nil
-            local cardtype = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_generate, 'booster')
+            local args = {}
+            args.guaranteed = true
+            args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
+            local cardtype = BLINDSIDE.poll_enhancement(args)
             local enhancement_poll = pseudorandom(pseudoseed('booster'..G.GAME.round_resets.ante))
             if enhancement_poll > 0.8 then
                 enhancement = pseudorandom_element(SMODS.ObjectTypes.bld_obj_enhancements.enhancements, 'booster')
             end
-            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype.key })
+            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype })
         end,
         group_key = "k_bld_symbol_pack",
 }
@@ -286,12 +307,15 @@ SMODS.Booster{
         end,
         create_card = function(self, card)
             local enhancement = nil
-            local cardtype = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_generate, 'booster')
+            local args = {}
+            args.guaranteed = true
+            args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
+            local cardtype = BLINDSIDE.poll_enhancement(args)
             local enhancement_poll = pseudorandom(pseudoseed('booster'..G.GAME.round_resets.ante))
             if enhancement_poll > 0.8 then
                 enhancement = pseudorandom_element(SMODS.ObjectTypes.bld_obj_enhancements.enhancements, 'booster')
             end
-            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype.key })
+            return SMODS.create_card({ set = 'Playing Card', seal = enhancement, enhancement = cardtype })
         end,
         group_key = "k_bld_symbol_pack",
 }

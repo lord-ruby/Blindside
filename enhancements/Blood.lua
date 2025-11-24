@@ -27,6 +27,7 @@
             ["bld_obj_blindcard_single"] = true,
             ["bld_obj_blindcard_red"] = true,
         },
+        weight = 3,
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.before and card.facing ~= 'back' then
                 if #G.jokers.cards > 0 then
