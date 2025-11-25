@@ -29,7 +29,7 @@
         end,
         calculate = function(self, card, context)
             if context.after and not context.blueprint and not context.other_card and not context.repetition then
-                hand_chips = hand_chips
+                local hand_chips = hand_chips
                 card.ability.extra.last_chips = hand_chips*0.5
             card_eval_status_text(card, 'extra', nil, nil, nil, {
                 message = localize {
