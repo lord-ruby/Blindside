@@ -1830,9 +1830,8 @@ return {
 			['j_bld_mask'] = {
 				["name"] = "Ancient Mask",
 				["text"] = {
-                    "Prevents Death and",
-                    "sets money to {C:money}$0",
-                    "{S:1.1,C:red,E:2}self destructs{}"
+                    "Sell trinket to {C:attention}reroll",
+                    "upcoming {C:attention}Joker",
 				}
 			},
 			['j_bld_fridgemagnet'] = {

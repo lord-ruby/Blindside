@@ -4,7 +4,7 @@
         atlas = 'bld_trinkets',
         pos = {x = 3, y = 3},
         rarity = 'bld_curio',
-        cost = 10,
+        cost = 6,
         blueprint_compat = true,
         eternal_compat = true,
         in_pool = function(self, args)
@@ -16,23 +16,20 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.game_over and not context.blueprint and context.end_of_round then
-                G.E_MANAGER:add_event(Event({
-                    func = function()
-                        play_sound('tarot1')
-                        card:start_dissolve()
-                        if G.GAME.dollars ~= 0 then
-                            ease_dollars(-G.GAME.dollars, true)
-                        end
-                        return true
-                    end
-                })) 
-                G.GAME.saved_text = localize('ph_mask_saved')
-                return {
-                    message = localize('k_saved_ex'),
-                    saved = 'ph_mask_saved',
-                    colour = G.C.RED
-                }
+            if context.selling_self then
+                if G.GAME.round_resets.blind_states.Small == 'Select' then
+                    print("Small")
+                    G.from_boss_tag = true
+                    G.FUNCS.reroll_small()
+                elseif G.GAME.round_resets.blind_states.Big == 'Select' then
+                    print("Big")
+                    G.from_boss_tag = true
+                    G.FUNCS.reroll_big()
+                elseif G.GAME.round_resets.blind_states.Boss == 'Select' then
+                    print("Boss")
+                    G.from_boss_tag = true
+                    G.FUNCS.reroll_boss()
+                end
             end
         end
     })
