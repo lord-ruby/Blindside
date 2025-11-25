@@ -6,7 +6,7 @@
         rarity = 'bld_keepsake',
         config = {
             extra = {
-                money = 2,
+                money = 3,
             }
         },
         cost = 10,
