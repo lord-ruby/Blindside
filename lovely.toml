@@ -188,28 +188,6 @@ if (not BLINDSIDE.is_blindside(v.key)) and (G.GAME.selected_back.effect.center.c
 end
 '''
 
-# freeze tags
-[[patches]]
-[patches.pattern]
-target = 'tag.lua'
-pattern = '''if not self.triggered and self.config.type == _context.type then'''
-position = 'after'
-match_indent = true
-payload = '''
-    if not next(SMODS.find_card("j_bld_taglock")) then
-'''
-
-# freeze tags
-[[patches]]
-[patches.pattern]
-target = 'tag.lua'
-pattern = '''function Tag:save()'''
-position = 'before'
-match_indent = true
-payload = '''
-    end
-'''
-
 # debuff tag
 [[patches]]
 [patches.pattern]
@@ -219,7 +197,7 @@ position = 'before'
 match_indent = true
 payload = '''
 for i = 1, #G.GAME.tags do
-    if G.GAME.tags[i].key == "tag_bld_debuff" and G.GAME.tags[i].ability.debuffed_hand == handname and not next(SMODS.find_card("j_bld_taglock"))  then
+    if G.GAME.tags[i].key == "tag_bld_debuff" and G.GAME.tags[i].ability.debuffed_hand == handname and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
         flags.debuff = true
         flags.debuff_text = G.GAME.tags[i].ability.debuff_text
     end
@@ -615,6 +593,7 @@ payload = '''
 
 for i = 1, #G.GAME.tags do
     G.GAME.tags[i]:apply_to_run({type = 'after_hand'})
+    delay(0.5)
 end
 
 '''
@@ -859,7 +838,7 @@ local splashed = SMODS.always_scores(G.play.cards[i]) or next(find_joker('Splash
 payload = '''
 local waved = false
 for i = 1, #G.GAME.tags do
-    if G.GAME.tags[i].key == "tag_bld_wave" and not next(SMODS.find_card("j_bld_taglock"))  then
+    if G.GAME.tags[i].key == "tag_bld_wave" then
         waved = true
     end
 end
@@ -889,7 +868,7 @@ local splashed = SMODS.always_scores(G.play.cards[i]) or next(find_joker('Splash
 payload = '''
 local waved = false
 for i = 1, #G.GAME.tags do
-    if G.GAME.tags[i].key == "tag_bld_wave" and not next(SMODS.find_card("j_bld_taglock"))  then
+    if G.GAME.tags[i].key == "tag_bld_wave"  then
         waved = true
     end
 end

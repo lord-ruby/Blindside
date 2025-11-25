@@ -10,7 +10,7 @@ SMODS.Tag {
         return false
     end,
     apply = function(self, tag, context)
-        if context.type == 'use_consumeable' and context.consumeable.ability.set == 'bld_obj_mineral' and not next(SMODS.find_card("j_bld_taglock")) then
+        if context.type == 'use_consumeable' and context.consumeable.ability.set == 'bld_obj_mineral'  then
             if SMODS.pseudorandom_probability(card, pseudoseed("flip"),1,2, 'flip') then
                 SMODS.calculate_context({using_consumeable = true, consumeable = context.consumeable, area = context.from_area})
                 tag:juice_up()

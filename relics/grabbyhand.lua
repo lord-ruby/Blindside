@@ -18,7 +18,7 @@ SMODS.Tag {
         }
     end,
     apply = function(self, tag, context)
-        if context.type == 'real_round_start' and not next(SMODS.find_card("j_bld_taglock")) then
+        if context.type == 'real_round_start'  then
             G.E_MANAGER:add_event(Event({func = function()
                 ease_hands_played(1)
                 tag_area_status_text(tag, "+1 Hand", G.C.BLUE, false, 0)

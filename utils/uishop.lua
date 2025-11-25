@@ -258,6 +258,7 @@ end
           for i = 1, #G.GAME.tags do
               G.GAME.tags[i]:apply_to_run({type = 'after_reroll'})
           end
+          print(G.GAME.round_resets.free_rerolls)
           G.GAME.rerolled = false
           for i = #G.shop_booster.cards,1, -1 do
             local c = G.shop_booster:remove_card(G.shop_booster.cards[i])

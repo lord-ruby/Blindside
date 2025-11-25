@@ -12,7 +12,7 @@ SMODS.Tag {
             end
         end,
     apply = function(self, tag, context)
-        if context.type == 'symbol_pack_opened' and not next(SMODS.find_card("j_bld_taglock")) then
+        if context.type == 'symbol_pack_opened'  then
             tag:yep('+', G.C.DARK_EDITION, function()
                 return true
             end)

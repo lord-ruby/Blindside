@@ -12,10 +12,10 @@ SMODS.Tag {
             end
         end,
     apply = function(self, tag, context)
-        if context.type == 'shop_start' and not next(SMODS.find_card("j_bld_taglock")) then
+        if context.type == 'shop_start'  then
             calculate_blindreroll_cost(true)
         end
-        if context.type == 'after_reroll' and not next(SMODS.find_card("j_bld_taglock")) and not G.GAME.rerolled then
+        if context.type == 'after_reroll'  and not G.GAME.rerolled then
             G.GAME.round_resets.free_rerolls = G.GAME.round_resets.free_rerolls - 1
             G.GAME.rerolled = true
             tag:yep('+', G.C.GREEN, function() 

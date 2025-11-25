@@ -12,7 +12,7 @@ SMODS.Tag {
             end
         end,
     apply = function(self, tag, context)
-        if context.type == 'immediate' and not next(SMODS.find_card("j_bld_taglock")) then
+        if context.type == 'immediate'  then
             tag:yep('+', G.C.bld_keepsake, function()
                 return true
             end)

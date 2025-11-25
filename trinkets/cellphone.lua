@@ -6,10 +6,8 @@
         rarity = 'bld_doodad',
         config = {
             extra = {
-                money = 1,
-                colors = {"Red", "Green", "Blue", "Purple", "Yellow"},
-                colorstring = {G.C.RED, G.C.GREEN, G.C.BLUE, G.C.PURPLE, G.C.MONEY},
-                colorID = 1
+                xmult = 2,
+                burned = false,
             }
         },
         cost = 7,
@@ -18,12 +16,8 @@
         loc_vars = function (self, info_queue, card)
             return {
                 vars = {
-                card.ability.extra.money,
-                card.ability.extra.colors[card.ability.extra.colorID],
-                colours = {
-                    card.ability.extra.colorstring[card.ability.extra.colorID]
+                    card.ability.extra.xmult
             },
-            }
         }
         end,
         in_pool = function(self, args)
@@ -35,15 +29,19 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.discard then 
-                if context.other_card:is_color(card.ability.extra.colors[card.ability.extra.colorID]) and context.other_card.facing ~= "back" then
-                    return {
-                        dollars = card.ability.extra.money
-                    }
-                end
+            if context.burning_card then 
+                card.ability.extra.burned = true
+                local eval = function() return card.ability.extra.burned end
+                juice_card_until(card, eval, true)
+            end
+            if context.joker_main and card.ability.extra.burned then
+                card.ability.extra.burned = false
+                return {
+                    xmult = card.ability.extra.xmult
+                }
             end
             if context.end_of_round and not context.blueprint then
-                card.ability.extra.colorID = pseudorandom('discount', 1, 6)
+                card.ability.extra.burned = false
             end
         end
     })

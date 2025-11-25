@@ -24,12 +24,12 @@ SMODS.Tag {
         }
     end,
     apply = function(self, tag, context)
-        if context.type == 'shop_start' and not next(SMODS.find_card("j_bld_taglock")) then
+        if context.type == 'shop_start' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
                 tag:yep('+', G.C.GREEN, function() 
                     return true end)
                 tag.triggered = true
         end
-        if context.type == 'scoring_card' and not next(SMODS.find_card("j_bld_taglock"))  then
+        if context.type == 'scoring_card' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
             if SMODS.pseudorandom_probability(tag, pseudoseed("flip"), 1, 2, 'flip') and context.card.flipped ~= true and context.context.main_scoring and context.context.cardarea == G.play then
                 tag:juice_up()
                 tag_area_status_text(tag, localize('k_again_ex'), G.C.FILTER, false, 0)

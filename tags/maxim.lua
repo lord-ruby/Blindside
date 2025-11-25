@@ -22,12 +22,12 @@ SMODS.Tag {
         }
     end,
     apply = function(self, tag, context)
-        if context.type == 'shop_start' and not next(SMODS.find_card("j_bld_taglock")) then
+        if context.type == 'shop_start' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
                 tag:yep('+', G.C.RED, function() 
                     return true end)
                 tag.triggered = true
         end
-        if context.type == 'after_hand' and not next(SMODS.find_card("j_bld_taglock"))  then
+        if context.type == 'after_hand' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker))  then
             mult = mod_mult(mult * tag.config.xmult)
             update_hand_text({delay = 0}, {mult = mult})
             tag_area_status_text(tag, "X1.5", G.C.RED, false, 0)

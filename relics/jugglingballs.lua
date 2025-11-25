@@ -10,7 +10,7 @@ SMODS.Tag {
         return false
     end,
     apply = function(self, tag, context)
-        if context.type == 'eval' and G.GAME.last_blind and G.GAME.last_blind.boss and not next(SMODS.find_card("j_bld_taglock")) then
+        if context.type == 'eval' and G.GAME.last_blind and G.GAME.last_blind.boss  then
             add_tag(Tag('tag_juggle'))
         end
     end

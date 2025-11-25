@@ -449,7 +449,6 @@ G.FUNCS.blind_draw_from_deck_to_hand = function(e)
                     n = n + 1
                 end
                 hand_space = #cards_to_draw
-                SMODS.drawn_cards = {}
                 for i=1, hand_space do --draw cards from deckL
                     if G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK then 
                         draw_card(G.deck,G.hand, i*100/hand_space,'up', true, cards_to_draw[i])
@@ -800,12 +799,8 @@ end
 
 G.FUNCS.shop_trinket_empty = function(e)
   if (G.shop_jokers and G.shop_jokers.cards and G.shop_jokers.cards[1]) then
-    print(G.shop_jokers)
-    print(G.shop_jokers.cards)
-    print(G.shop_jokers.cards[1])
     e.states.visible = false
   else
-    print("visible!")
     e.states.visible = true
   end
 end

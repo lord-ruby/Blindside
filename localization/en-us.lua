@@ -1297,7 +1297,7 @@ return {
 			["m_bld_joy"] = { -- base will loc later, do not remove note
 				["name"] = "The Joy",
 				["text"] = {
-					"{X:blue,C:white}Blue{} {X:yellow,C:white}Yellow",
+					"{X:blue,C:white}Blue{} {X:money,C:white}Yellow",
 					"{C:chips}+#1#{} Chips,",
 					"for each {C:money}2${} Held",
 					"{C:inactive}(Currently: {C:blue}+#2#{C:inactive} Chips)",
@@ -1506,7 +1506,8 @@ return {
 			['j_bld_taglock'] = {
 				["name"] = "Taglock",
 				["text"] = {
-					"Freeze all {C:attention}Tags"
+					"Freeze all {C:attention}Round Tags",
+					"Until start of {C:attention}Boss Joker"
 				}
 			},
 			['j_bld_miniature'] = {
@@ -1591,7 +1592,7 @@ return {
 				["text"] = {
 					"{X:dark_edition,C:white}Faded{} blinds",
 					"give {C:blue}+#1#{} Chips",
-					"when scored"
+					"when held in hand"
 				}
 			},
 			['j_bld_flag'] = {
@@ -1612,9 +1613,9 @@ return {
 			['j_bld_cellphone'] = {
 				["name"] = "Cellphone",
 				["text"] = {
-					"Earn {C:money}+#1#${} for each",
-					"discarded {B:1,C:white}#2#{} Blind",
-					"{C:inactive,S:0.8}(Changes at end of round)"
+					"If previous hand",
+					"contained a {C:attention}burned",
+					"card, {X:mult,C:white}X#1#{} Mult"
 				}
 			},
 			['j_bld_fineart'] = {
@@ -1628,9 +1629,11 @@ return {
 			['j_bld_bedazzler'] = {
 				["name"] = "Bedazzler",
 				["text"] = {
-					"{C:attention}Enhance{} a random blind",
+					{"When selecting {C:attention}Joker{}, creates",
+					"a random {C:bld_obj_mineral}Mineral{} card"},
+					{"{C:attention}Enhance{} a random blind",
 					"{C:attention}held in hand{} after using",
-					"a {C:bld_obj_mineral}Mineral{} card"
+					"a {C:bld_obj_mineral}Mineral{} card"}
 				}
 			},
 			['j_bld_pickaxe'] = {  -- base will loc later, do not remove note
@@ -1707,9 +1710,9 @@ return {
 			['j_bld_saltlamp'] = {
 				["name"] = "Salt Lamp",
 				["text"] = {
-					"If played hand",
-					"contains a {C:attention}Flush{}, creates",
-					"2 random {C:bld_obj_mineral}Mineral{} cards",
+					"Once per round,",
+					"if played hand contains a {C:attention}Flush{},",
+					"Creates a {C:bld_obj_mineral}Mineral{} card of most played hand",
 					"{C:inactive,S:0.8}(Must have room)"
 				}
 			},

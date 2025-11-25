@@ -18,15 +18,12 @@
         calculate = function(self, card, context)
             if context.selling_self then
                 if G.GAME.round_resets.blind_states.Small == 'Select' then
-                    print("Small")
                     G.from_boss_tag = true
                     G.FUNCS.reroll_small()
                 elseif G.GAME.round_resets.blind_states.Big == 'Select' then
-                    print("Big")
                     G.from_boss_tag = true
                     G.FUNCS.reroll_big()
                 elseif G.GAME.round_resets.blind_states.Boss == 'Select' then
-                    print("Boss")
                     G.from_boss_tag = true
                     G.FUNCS.reroll_boss()
                 end

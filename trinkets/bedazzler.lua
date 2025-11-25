@@ -16,6 +16,23 @@
             end
         end,
         calculate = function(self, card, context)
+            if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+                G.E_MANAGER:add_event(Event({
+                    func = (function()
+                        G.E_MANAGER:add_event(Event({
+                            func = function()
+                                SMODS.add_card {set = 'bld_obj_mineral',}
+                                G.GAME.consumeable_buffer = 0
+                                return true
+                            end
+                        }))
+                        SMODS.calculate_effect({ message = localize('k_mineral_ex'), colour = G.C.SECONDARY_SET.bld_obj_mineral },
+                            context.blueprint_card or card)
+                        return true
+                    end)
+                }))
+            end
             if context.using_consumeable and context.consumeable.ability.set == 'bld_obj_mineral' then
                 if #G.hand.cards > 0 then
                     G.hand:unhighlight_all()

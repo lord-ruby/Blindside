@@ -5,7 +5,7 @@
         config = {
             extra = {
                 value = 100,
-                chips = 10,
+                chips = 5,
                 dollars = 2,
                 hues = {"Blue", "Yellow"}
             }},
@@ -30,7 +30,7 @@
         calculate = function(self, card, context) 
             if context.cardarea == G.hand and context.main_scoring then
                 return {
-                    chips = card.ability.extra.chips * math.floor((G.GAME.dollars or 0) + (G.GAME.dollar_buffer or 0)/card.ability.extra.dollars)
+                    chips = card.ability.extra.chips * math.floor(((G.GAME.dollars or 0) + (G.GAME.dollar_buffer or 0))/card.ability.extra.dollars)
                 }
             end
         end,
@@ -38,7 +38,7 @@
             return {
                 vars = {
                     card.ability.extra.chips, 
-                    card.ability.extra.chips * math.floor((G.GAME.dollars or 0) + (G.GAME.dollar_buffer or 0)/card.ability.extra.dollars)
+                    card.ability.extra.chips * math.floor(((G.GAME.dollars or 0) + (G.GAME.dollar_buffer or 0))/card.ability.extra.dollars)
                 }
             }
         end

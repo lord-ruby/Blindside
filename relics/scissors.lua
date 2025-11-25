@@ -10,7 +10,7 @@ SMODS.Tag {
         return false
     end,
     apply = function(self, tag, context)
-        if context.type == 'shop_final_pass' and not next(SMODS.find_card("j_bld_taglock")) then
+        if context.type == 'shop_final_pass'  then
             if G.shop then
                 G.shop_booster.cards[1].ability.couponed = true
                 G.shop_booster.cards[1]:set_cost()
