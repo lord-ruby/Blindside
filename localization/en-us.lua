@@ -1701,7 +1701,7 @@ return {
 				["name"] = "Pawn",
 				["text"] = {
 					{"{C:mult}+#1#{} Mult"},
-					{"{C:inactive}(#2#{}/8){}",}
+					{"{C:inactive}(#3#/8){}",}
 				}
 			},
 			['j_bld_saltlamp'] = {
@@ -1716,7 +1716,7 @@ return {
 			['j_bld_queen'] = {
 				["name"] = "Queen",
 				["text"] = {
-					"{X:mult,C:white}X#3#{} Mult",
+					"{X:mult,C:white}X#2#{} Mult",
 				}
 			},
 			['j_bld_sunset'] = {

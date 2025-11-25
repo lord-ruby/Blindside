@@ -1078,7 +1078,7 @@ local cards_burned = {}
     end
 
     if cards_burned[1] then
-            SMODS.calculate_context({scoring_hand = scoring_hand, remove_playing_cards = true, removed = cards_burned})
+            SMODS.calculate_context({scoring_hand = scoring_hand, remove_playing_cards = true, cards_burned = cards_burned})
         end
 
     for i=1, #cards_burned do

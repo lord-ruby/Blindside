@@ -6,8 +6,8 @@
         rarity = 'bld_hobby',
         config = {
             extra = {
-                mult = 3,
-                xmult = 2,
+                mult = 2,
+                xmult = 3,
                 hand_count = 0,
                 x_value = {x = 8, y = 0},
                 queen = false
@@ -40,7 +40,7 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.before and not context.blueprint and card.ability.extra.hand_count < 9 and not card.ability.extra.queen then
+            if context.end_of_round and not context.repetition and not context.individual and not context.blueprint and card.ability.extra.hand_count < 9 and not card.ability.extra.queen then
                 card.ability.extra.hand_count = card.ability.extra.hand_count+1
             end
             if context.joker_main and not card.ability.extra.queen then
@@ -48,7 +48,7 @@
                     mult = card.ability.extra.mult
                 }
             end
-            if context.before and card.ability.extra.hand_count == 8 and not context.blueprint and not card.ability.extra.queen then 
+            if context.end_of_round and not context.repetition and not context.individual and card.ability.extra.hand_count == 8 and not context.blueprint and not card.ability.extra.queen then 
                 G.E_MANAGER:add_event(Event({
                     func = function()
                     play_sound('tarot1')
