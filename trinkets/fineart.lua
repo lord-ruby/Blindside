@@ -47,7 +47,7 @@
                 end
             end
             if context.end_of_round and not context.blueprint then
-                card.ability.extra.colorID = pseudorandom('fineart', 1, 6)
+                card.ability.extra.colorID = pseudorandom('fineart', 1, 5)
             end
         end
     })
