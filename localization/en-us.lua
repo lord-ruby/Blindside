@@ -1381,8 +1381,8 @@ return {
 				["name"] = "The Tooth",
 				["text"] = {
 					"{X:red,C:white}Red{}",
-					"{C:money}+#1#${} for each",
-					"held {C:attention}Trinket",
+					"{C:money}+#1#${} for each Blind",
+					"in {C:attention}played hand",
 				},
 			},
 			["m_bld_flint"] = {
