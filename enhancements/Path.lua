@@ -3,7 +3,7 @@
         atlas = 'bld_blindrank',
         pos = {x = 2, y = 8},
         config = {
-            mult = 15,
+            mult = 12,
             extra = {
                 value = 100,
                 poker_hand = "bld_blind_2pair",
@@ -31,7 +31,7 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.before and context.cardarea == G.hand and context.scoring_hand then
+            if context.modify_hand and context.cardarea == G.hand and context.scoring_hand and context.main_eval then
                 if next(context.poker_hands[card.ability.extra.poker_hand]) then
                     return {
                         mult = card.ability.mult
