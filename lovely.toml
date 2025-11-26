@@ -1195,3 +1195,30 @@ for _, key in ipairs(G.GAME.current_round.voucher or {}) do
 end
 end
 '''
+
+
+# reshufles this round
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = '''
+G.GAME.current_round.discards_used = 0
+'''
+match_indent = true
+position = 'after'
+payload = '''
+G.GAME.current_round.reshuffles_round = 0
+'''
+
+# reshufles this round
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''
+        hands_played = 0,
+'''
+match_indent = true
+position = 'after'
+payload = '''
+reshuffles_round = 0,
+'''

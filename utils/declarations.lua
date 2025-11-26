@@ -28,6 +28,7 @@
         "m_bld_needle",
         "m_bld_head",
         "m_bld_tooth",
+        "m_bld_bell",
         "m_bld_flint",
         "m_bld_mark",
         "m_bld_vast",

@@ -420,6 +420,7 @@ G.FUNCS.blind_draw_from_deck_to_hand = function(e)
             draw_card(G.discard, G.deck, i*100/discard_count,'up', nil ,nil, 0.005, i%2==0, nil, math.max((21-i)/20,0.7))
         end
         SMODS.calculate_context({reshuffle = true})
+        G.GAME.current_round.reshuffles_round = G.GAME.current_round.reshuffles_round + 1
         delay(0.5)
     G.E_MANAGER:add_event(Event({
         trigger = 'after',

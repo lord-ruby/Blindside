@@ -1493,6 +1493,15 @@ return {
 					"{X:red,C:white}X#1#{} Mult",
 				},
 			},
+			["m_bld_bell"] = {
+				["name"] = "The Bell",	
+				["text"] = {
+					"{X:green,C:white}Green{}",
+					"Gains {C:chips}+#1#{} Chips each time deck",
+					"is {C:attention}reshuffled{} this round",
+					"{C:inactive}(Currently: {C:chips}+#2#{C:inactive} Chips)"
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
