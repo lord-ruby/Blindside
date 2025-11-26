@@ -28,7 +28,7 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.individual and context.cardarea == G.hand and context.other_card:is_color("Faded") and context.other_card.facing ~= "back" then
+            if context.individual and context.cardarea == G.hand and (not context.end_of_round) and context.other_card:is_color("Faded") and context.other_card.facing ~= "back" then
                 return {
                     chips = card.ability.extra.chips
                 }
