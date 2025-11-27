@@ -14,7 +14,7 @@
             ["bld_obj_blindcard_red"] = true,
             ["bld_obj_blindcard_yellow"] = true,
         },
-        --weight = 3,
+        weight = 3,
         always_scores = true,
         replace_base_card = true,
         no_rank = true,
