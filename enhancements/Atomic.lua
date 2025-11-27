@@ -22,14 +22,7 @@
                 return false
             end
         end,
-        --weight = 1,
-        pools = {
-            ["bld_obj_blindcard_generate"] = true,
-            ["bld_obj_blindcard_warm"] = true,
-            ["bld_obj_blindcard_dual"] = true,
-            ["bld_obj_blindcard_yellow"] = true,
-            ["bld_obj_blindcard_green"] = true,
-        },
+        weight = 0,
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.main_scoring then
                 card.ability.extra.goingtoburn = true

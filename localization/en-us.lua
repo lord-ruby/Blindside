@@ -1318,7 +1318,6 @@ return {
 					"scoring Blinds"},
 					{"{C:attention,E:1}Self-Scoring{} with a",
 					"{C:green}#1#{} in {C:green}#2#{} chance"},
-
 				},
 			},
 			["m_bld_mouth"] = {
@@ -1623,6 +1622,24 @@ return {
 					"for each Blind {C:attention}burned{}",
 					"this round",
 					"{C:inactive}(Currently: {X:mult,C:white}X#2#{C:inactive} Mult)",
+				},
+			},
+			["m_bld_wound"] = {
+				["name"] = "The Wound",
+				["text"] = {
+					"{X:mult,C:white}Red{}",
+					"{C:attention}Burns{}"
+				},
+			},
+			["m_bld_claw"] = {
+				["name"] = "The Claw",
+				["text"] = {
+					{"{X:mult,C:white}Red{} {X:purple,C:white}Purple",
+					"{C:mult}+#1#{} Mult for each",
+					"{C:attention}Wound{} in full deck",
+					"{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"},
+					{"Creates a {C:attention}Wound{} in hand",
+					"after scoring",}
 				},
 			},
 		},

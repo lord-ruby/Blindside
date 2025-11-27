@@ -45,7 +45,7 @@ SMODS.Back({
                 keys_to_remove[i]:remove()
             end
             for i = 1, #keys_to_alpha do
-                keys_to_alpha[i]:set_ability("m_bld_atomic")
+                keys_to_alpha[i]:set_ability("m_bld_adder")
             end
             for i = 1, #keys_to_beta do
                 keys_to_beta[i]:set_ability("m_bld_sharp")
@@ -68,6 +68,13 @@ SMODS.Back({
             local rounded = int_part + (frac_part >= 0.5 and 1 or 0) 
             G.GAME.win_ante = rounded
         return true end }))
+    end,
+    calculate = function(self, back, context) 
+        if context.after then
+            for i = 1, #G.playing_cards do
+                G.playing_cards[i]:set_debuff(false)
+            end
+        end
     end
 })
 

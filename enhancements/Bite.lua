@@ -26,24 +26,26 @@
         },
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.before and card.facing ~= 'back' then
-                local my_pos = -1
+                local self_pos = -1
                 for i=1, #context.scoring_hand do
                     if context.scoring_hand[i] == card then
-                        my_pos = i
+                        self_pos = i
                         break
                     end
                 end
 
                 local coin_flip = pseudorandom(pseudoseed('bite')) < 0.5
-
-                for i=1, #context.scoring_hand do
-                    if (i == my_pos-1 and coin_flip) or (i == my_pos+1 and not coin_flip) or (i == 2 and my_pos == 1) or (i == my_pos-1 and my_pos == #context.scoring_hand) then
-                        if G.play.cards[i].facing ~= 'back' then 
-                            G.play.cards[i]:flip()
+                if G.play.cards[self_pos-1] and (coin_flip or not G.play.cards[self_pos+1]) then
+                    if G.play.cards[self_pos-1].facing ~= 'back' then 
+                        G.play.cards[self_pos-1]:flip()
+                    end
+                    G.play.cards[self_pos-1]:set_debuff(true)
+                else
+                    if G.play.cards[self_pos+1] then
+                        if G.play.cards[self_pos+1].facing ~= 'back' then 
+                            G.play.cards[self_pos+1]:flip()
                         end
-                        G.play.cards[i]:set_debuff(true)
-                        card.ability.extra.debuffed_blind = G.play.cards[i]
-                        break
+                        G.play.cards[self_pos+1]:set_debuff(true)
                     end
                 end
             end
@@ -54,8 +56,18 @@
             end
 
             if card.ability.extra.debuffed_blind and context.cardarea == G.play and context.after then
-                card.ability.extra.debuffed_blind:set_debuff(false)
-                card.ability.extra.debuffed_blind = nil
+                local self_pos = nil
+                for i=1, #G.play.cards do
+                    if G.play.cards[i] == card then
+                        self_pos = i
+                    end
+                end
+                if G.play.cards[self_pos-1] then
+                    G.play.cards[self_pos-1]:set_debuff(false)
+                end
+                if G.play.cards[self_pos+1] then
+                    G.play.cards[self_pos+1]:set_debuff(false)
+                end
             end
         end,
         loc_vars = function(self, info_queue, card)
