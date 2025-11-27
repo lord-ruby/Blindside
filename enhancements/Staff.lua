@@ -28,6 +28,17 @@
         },
         calculate = function(self, card, context)
             if context.modify_hand and context.scoring_hand then
+                local i_scored = false
+                for key, value in pairs(context.scoring_hand) do
+                    if value == card then
+                        i_scored = true
+                    end
+                end
+
+                if not i_scored then
+                    return
+                end
+
                 local enhancement = pseudorandom_element(SMODS.ObjectTypes.bld_obj_enhancements.enhancements, 'booster')
                 local _cards = {}
                 for k, v in ipairs(context.scoring_hand) do
