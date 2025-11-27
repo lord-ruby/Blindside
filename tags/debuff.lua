@@ -18,7 +18,7 @@ SMODS.Tag {
         }
     end,
     apply = function(self, tag, context)
-        if context.type == 'shop_start'  then
+        if context.type == 'shop_start' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
                 tag:yep('+', G.C.DARK_EDITION, function() 
                     return true end)
                 tag.triggered = true
