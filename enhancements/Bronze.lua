@@ -26,7 +26,7 @@
             ["bld_obj_blindcard_single"] = true,
             ["bld_obj_blindcard_red"] = true,
         },
-        --weight = 3,
+        weight = 3,
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.main_scoring then
                 local flipped = 0
