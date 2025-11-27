@@ -63,6 +63,8 @@
         "m_bld_sun",
         "m_bld_alert",
         "m_bld_joy",
+        "m_bld_atomic",
+        "m_bld_deep",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",

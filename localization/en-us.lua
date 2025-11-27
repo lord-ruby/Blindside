@@ -1509,6 +1509,28 @@ return {
 					"{X:red,C:white}X#1#{} Mult",
 				},
 			},
+			["m_bld_atomic"] = {
+				["name"] = "The Atomic",
+				["text"] = {
+					{"{X:money,C:white}Yellow{} {X:green,C:white}Green{}",
+					"Gives a {C:attention}Max Tag{}"},
+					{"Retriggers {C:attention}#1#{} times"},
+					{"{C:green}#2# in #3#{} chance to",
+					"{C:attention}burn{} all blinds played",
+					"or held in hand"}
+				}
+			},
+			["m_bld_deep"] = {
+				["name"] = "The Deep",
+				["text"] = {
+					{"{X:chips,C:white}Blue{} {X:dark_edition,C:white}Faded{}",
+					"While held in hand,",
+					"all {X:chips,C:white}Blue{} Blinds in hand",
+					"give {X:chips,C:white}X1.5{} Chips"},
+					{"Unplayable",
+					"IMPLEMENT CURSE LATER!"}
+				}
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
