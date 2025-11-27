@@ -1630,6 +1630,17 @@ return {
 					"{C:attention}Burns{}"
 				},
 			},
+			["m_bld_claw"] = {
+				["name"] = "The Claw",
+				["text"] = {
+					{"{X:mult,C:white}Red{} {X:purple,C:white}Purple",
+					"{C:mult}+#1#{} Mult for each",
+					"{C:attention}Wound{} in full deck",
+					"{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"},
+					{"Creates a {C:attention}Wound{} in hand",
+					"after scoring",}
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {

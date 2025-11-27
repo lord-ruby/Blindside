@@ -171,6 +171,8 @@ local card_list = {
         "Key",
         "Door",
         "Bell",
+        "Wound",
+        "Claw",
 }
 
 local trinket_list = {
