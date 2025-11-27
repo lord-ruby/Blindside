@@ -626,7 +626,7 @@ function Card:start_burn(cardarea, dissolve_colours, silent, dissolve_time_fac, 
             if cardarea == G.deck or cardarea == G.hand or cardarea == cardarea or cardarea == G.jokers or cardarea == G.consumeables or cardarea == G.discard then
                 G.VIBRATION = G.VIBRATION + 0.6
             end
-            play_sound('card1', 0.85 + #cardarea.cards*0.2, 0.6*1)
+            play_sound('card1', 0.85 + #G.hand.cards*0.2, 0.6*1)
         end
         if true then
             G.exhaust:sort()
