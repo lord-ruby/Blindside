@@ -22,7 +22,7 @@
                 return false
             end
         end,
-        --weight = 1,
+        weight = 0,
         pools = {
             ["bld_obj_blindcard_generate"] = true,
             ["bld_obj_blindcard_warm"] = true,
