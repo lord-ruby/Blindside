@@ -61,6 +61,8 @@
         "m_bld_lantern",
         "m_bld_peace",
         "m_bld_hat",
+        "m_bld_sun",
+        "m_bld_alert",
         "m_bld_joy",
         "e_bld_finish",
         "e_bld_blue",

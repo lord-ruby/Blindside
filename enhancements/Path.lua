@@ -3,7 +3,7 @@
         atlas = 'bld_blindrank',
         pos = {x = 2, y = 8},
         config = {
-            mult = 12,
+            mult = 10,
             extra = {
                 value = 100,
                 poker_hand = "bld_blind_2pair",

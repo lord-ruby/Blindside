@@ -1467,6 +1467,22 @@ return {
 					"{C:attention}#1#{} additional times"
 				},
 			},
+			["m_bld_sun"] = {
+				["name"] = "The Sun",
+				["text"] = {
+					"{X:money,C:white}Yellow{}",
+					"{C:money}+#1#${} when held in hand",
+					"at end of round"
+				},
+			},
+			["m_bld_alert"] = {
+				["name"] = "The Alert",
+				["text"] = {
+					"{X:money,C:white}Yellow{}",
+					"{C:mult}+#1#{} Mult",
+					"{C:money}-#2#${}",
+				},
+			},
 			["m_bld_door"] = {
 				["name"] = "The Door",	
 				["text"] = {
