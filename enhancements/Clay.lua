@@ -30,32 +30,19 @@
         },
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.main_scoring then
-                local burned = 0
-                for key, value in pairs(G.exhaust.cards) do
-                    if value.burned then
-                        burned = burned + 1
-                    end
-                end
-
-                if burned > 0 then
+                if #G.exhaust.cards > 0 then
                     return {
-                        xmult = 1 + card.ability.extra.xmult*burned
+                        xmult = 1 + card.ability.extra.xmult*#G.exhaust.cards
                     }
                 end
             end
         end,
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue+1] = {key = 'bld_burn', set = 'Other'}
-            local burned = 0
-            for key, value in pairs(G.exhaust.cards) do
-                if value.burned then
-                    burned = burned + 1
-                end
-            end
             return {
                 vars = {
                     card.ability.extra.xmult,
-                    1 + card.ability.extra.xmult*burned
+                    1 + card.ability.extra.xmult*#G.exhaust.cards
                 }
             }
         end
