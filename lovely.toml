@@ -1084,7 +1084,7 @@ local cards_burned = {}
     for i=1, #cards_burned do
         G.E_MANAGER:add_event(Event({
             func = function()
-                cards_burned[i]:start_burn()
+                cards_burned[i]:start_burn(v)
                 return true
             end
             }))

@@ -560,7 +560,7 @@ function update_joker_hand_text(config, vals)
     end}))
 end
 
-function Card:start_burn(dissolve_colours, silent, dissolve_time_fac, no_juice)
+function Card:start_burn(cardarea, dissolve_colours, silent, dissolve_time_fac, no_juice)
     dissolve_colours = dissolve_colours or (type(self.destroyed) == 'table' and self.destroyed.colours) or nil
     dissolve_time_fac = dissolve_time_fac or (type(self.destroyed) == 'table' and self.destroyed.time) or nil
     local dissolve_time = 0.7*(dissolve_time_fac or 1)
@@ -609,7 +609,7 @@ function Card:start_burn(dissolve_colours, silent, dissolve_time_fac, no_juice)
         delay =  1.05*dissolve_time,
         func = (function()
         if self then 
-            if G.play then self = G.play:remove_card(self) end
+            if cardarea then self = cardarea:remove_card(self) end
             if self then drawn = true end
             local stay_flipped = G.GAME and G.GAME.blind and G.GAME.blind:stay_flipped(G.exhaust, self, G.play)
             if G.GAME.modifiers.flipped_cards and to == G.hand then
@@ -619,14 +619,14 @@ function Card:start_burn(dissolve_colours, silent, dissolve_time_fac, no_juice)
             end
             G.exhaust:emplace(self, nil, stay_flipped)
         else
-            self = G.exhaust:draw_card_from(G.play, stay_flipped, discarded_only)
+            self = G.exhaust:draw_card_from(cardarea, stay_flipped, discarded_only)
             if self then drawn = true end
         end
         if not mute and drawn then
-            if G.play == G.deck or G.play == G.hand or G.play == G.play or G.play == G.jokers or G.play == G.consumeables or G.play == G.discard then
+            if cardarea == G.deck or cardarea == G.hand or cardarea == cardarea or cardarea == G.jokers or cardarea == G.consumeables or cardarea == G.discard then
                 G.VIBRATION = G.VIBRATION + 0.6
             end
-            play_sound('card1', 0.85 + #G.play.cards*0.2, 0.6*1)
+            play_sound('card1', 0.85 + #cardarea.cards*0.2, 0.6*1)
         end
         if true then
             G.exhaust:sort()
