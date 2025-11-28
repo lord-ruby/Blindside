@@ -332,6 +332,7 @@ end
 
 
 function tag_area_status_text(tag, text, colour, silent, delay, scale)
+    percent = percent or (0.9 + 0.2*math.random())
     local delay = delay or 0.6
     G.E_MANAGER:add_event(Event({
     trigger = (delay==0 and 'immediate' or 'before'),
@@ -340,15 +341,14 @@ function tag_area_status_text(tag, text, colour, silent, delay, scale)
         attention_text({
             text = text,
             scale = scale or 1, 
-            hold = 0.8,
+            hold = 0.45,
             backdrop_colour = colour,
             align = 'cl',
             offset = {x=-0.7,y=0},
             major = tag.HUD_tag
         })
         if not silent then 
-            G.ROOM.jiggle = G.ROOM.jiggle + 2
-            play_sound('cardFan2')
+            play_sound('generic1', 0.8+percent*0.2, 1)
         end
       return true
     end

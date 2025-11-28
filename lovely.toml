@@ -1230,7 +1230,7 @@ payload = '''
 reshuffles_round = 0,
 '''
 
-# reshufles this round
+# burn when discarded
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
@@ -1248,7 +1248,7 @@ if burned then
 '''
 
 
-# reshufles this round
+# burn when discarded
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
@@ -1262,7 +1262,7 @@ end
 '''
 
 
-# reshufles this round
+# burn when discarded
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
@@ -1275,7 +1275,7 @@ payload = '''
 if key == 'burn' or (type(eval2) == 'table' and eval2.burn) then burned = true end
 '''
 
-# reshufles this round
+# burn when discarded
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
@@ -1288,7 +1288,7 @@ payload = '''
 local burned = false
 '''
 
-# reshufles this round
+# burn when discarded
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
@@ -1301,7 +1301,7 @@ payload = '''
         local burned_cards = {}
 '''
 
-# reshufles this round
+# burn when discarded
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
@@ -1319,12 +1319,14 @@ if burned_cards[1] then
 # the spear money for mult
 [[patches]]
 [patches.pattern]
-target = 'functions/common_events.lua'
+target = '=[SMODS _ "src/utils.lua"]'
 pattern = '''
-play_sound('coin1')
+ease_dollars(amount)
 '''
 match_indent = true
 position = 'after'
 payload = '''
-SMODS.calculate_context({earn_money = mod})
+for i = 1, #G.GAME.tags do
+    G.GAME.tags[i]:apply_to_run({type = 'after_money'})
+end
 '''

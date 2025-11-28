@@ -424,6 +424,13 @@ return {
 					"{C:attention}Boss Shops{}"
 				},
 			},
+			["tag_bld_strike"] = {
+				["name"] = "Strike Tag",
+				["text"] = {
+					"{C:mult}+#1#{} Mult whenever {C:money}money{} is",
+					"earned while scoring"
+				},
+			},
 		},
 		["bld_obj_mineral"] = {
 			["c_bld_stibnite"] = {
@@ -1696,11 +1703,10 @@ return {
 			["m_bld_spear"] = {
 				["name"] = "The Spear",
 				["text"] = {
-					{"{X:mult,C:white}Red{} {X:money,C:white}Yellow{}",
-					"When played, gives {C:mult}Mult",
-					"whenever {C:money}money{} is",
-					"earned this hand"},
-					{"Always scores"}
+					"{X:mult,C:white}Red{} {X:money,C:white}Yellow{}",
+					"If scoring hand",
+					"conatins 3 Blinds, creates a",
+					"{C:mult,E:1}Strike Tag{} and {C:attention}burns{}"
 				},
 			},
 			["m_bld_line"] = {

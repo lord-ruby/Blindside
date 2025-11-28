@@ -29,17 +29,35 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.earn_money and context.earn_money > 0 then
-                for key, value in pairs(G.play.cards) do
-                    if value == card then
-                        print(context.earn_money)
-                        return {
-                            mult = context.earn_money
-                        }
+            if context.cardarea == G.play and context.main_scoring then
+                if #context.scoring_hand >= 3 then
+                    return {
+                        focus = card,
+                        message = localize('k_tagged_ex'),
+                        func = function()
+                            add_tag(Tag('tag_bld_strike'))
+                        end,
+                        card = card
+                    }
+                else
+                    if card.facing ~= 'back' and context.cardarea == G.play then
+                        card:flip()
                     end
+                    return {
+                        message = localize('k_nope_ex'),
+                        colour = G.C.MONEY
+                    }
                 end
             end
+            if context.burn_card == card and #context.scoring_hand >= 3 then
+                return {
+                    remove = true,
+                }
+            end
         end,
+        loc_vars = function(self, info_queue, card)
+            info_queue[#info_queue+1] = G.P_TAGS['tag_bld_strike']
+        end
     })
 ----------------------------------------------
 ------------MOD CODE END----------------------
