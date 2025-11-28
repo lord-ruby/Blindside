@@ -1288,48 +1288,49 @@ return {
 					"{C:attention}held in hand{}"},
 				},
 			},
-			["m_bld_peace"] = { -- base will loc later, do not remove note
+			["m_bld_peace"] = {
 				["name"] = "The Peace",
 				["text"] = {
 					"{X:blue,C:white}Blue{}",
-					"While held in hand",
-					"{C:chips}+#1#{} Chips for each",
+					"While {C:attention}held in hand{},",
+					"gives {C:chips}+#1#{} Chips for each",
 					"card {C:attention}held in hand",
 				},
 			},
-			["m_bld_lantern"] = { -- base will loc later, do not remove note
+			["m_bld_lantern"] = {
 				["name"] = "The Lantern",
 				["text"] = {
-					"{X:blue,C:white}Blue{}",
-					"If played hand does not",
-					"Contain a {C:attention}Three of a Blind,",
-					"Gain {X:blue,C:white}X#2#{} Chips",
-					"{C:inactive}(Currently: {X:blue,C:white}X#1#{C:inactive} Chips)",
+					{"{X:blue,C:white}Blue{}",
+					"Currently {X:blue,C:white}X#1#{} Chips"},
+					{"If poker hand does not",
+					"contain {C:attention}Three of a Blind,",
+					"gains {X:blue,C:white}X#2#{} Chips"},
 				},
 			},
-			["m_bld_meteor"] = { -- base will loc later, do not remove note
+			["m_bld_meteor"] = {
 				["name"] = "The Meteor",
 				["text"] = {
-					"{X:blue,C:white}Blue{}",
-					"{C:chips}+#1#{} Chips,",
-					"Must be a {C:attention}Bet",
+					{"{X:blue,C:white}Blue{}",
+					"{C:chips}+#1#{} Chips"},
+					{"Hand must",
+					"be {C:attention}Bet"},
 				},
 			},
-			["m_bld_joy"] = { -- base will loc later, do not remove note
+			["m_bld_joy"] = {
 				["name"] = "The Joy",
 				["text"] = {
 					"{X:blue,C:white}Blue{} {X:money,C:white}Yellow",
-					"{C:chips}+#1#{} Chips,",
-					"for each {C:money}2${} Held",
+					"{C:chips}+#1#{} Chips for",
+					"every {C:money}2${} held",
 					"{C:inactive}(Currently: {C:blue}+#2#{C:inactive} Chips)",
 				},
 			},
-			["m_bld_hat"] = { -- base will loc later, do not remove note
+			["m_bld_hat"] = {
 				["name"] = "The Hat",
 				["text"] = {
 					"{X:dark_edition,C:white}Faded{}",
 					"When scored, gives a",
-					"random effect",
+					"varied effect",
 				},
 			},
 			["m_bld_earth"] = {
