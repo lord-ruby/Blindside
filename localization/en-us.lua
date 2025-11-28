@@ -214,6 +214,13 @@ return {
 					"each {C:attention}Boss Joker{} is defeated"
 				},
 			},
+			["v_bld_antidote"] = {
+				["name"] = "Antidote",
+				["text"] = {
+					"{C:attention}+#1#{} Booster pack in",
+					"{C:attention}Boss Shops{}"
+				},
+			},
 		},
 		["Tag"] = {
 			["tag_bld_reroll"] = {
@@ -408,6 +415,13 @@ return {
 				["text"] = {
 					"{C:attention}+1{} Hand Size",
 					"this round"
+				},
+			},
+			["tag_bld_antidote_relic"] = {
+				["name"] = "Antidote",
+				["text"] = {
+					"{C:attention}+#1#{} Booster pack in",
+					"{C:attention}Boss Shops{}"
 				},
 			},
 		},

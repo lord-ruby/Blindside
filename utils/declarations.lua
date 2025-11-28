@@ -231,6 +231,7 @@
         "v_bld_timemachine",
         "v_bld_jugglingballs",
         "v_bld_cannonball",
+        "v_bld_antidote",
         "tag_bld_grabbyhand_relic",
         "tag_bld_prosthetic_relic",
         "tag_bld_bindle_relic",
@@ -256,6 +257,7 @@
         "tag_bld_timemachine_relic",
         "tag_bld_jugglingballs_relic",
         "tag_bld_cannonball_relic",
+        "tag_bld_antidote_relic",
         "tag_bld_maxim",
         "tag_bld_debuff",
         "tag_bld_reroll",
@@ -327,6 +329,7 @@
         "tag_bld_timemachine_relic",
         "tag_bld_jugglingballs_relic",
         "tag_bld_cannonball_relic",
+        "tag_bld_antidote_relic",
         },
     }
 

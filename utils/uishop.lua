@@ -81,7 +81,7 @@ function Game:blindupdate_shop(dt)
                                             end
                                             G.load_shop_booster = nil
                                         else
-                                        for i=1, G.GAME.starting_params.boosters_in_shop + (G.GAME.modifiers.extra_boosters or 0) + (not G.GAME.last_joker and 1 or 0) do
+                                        for i=1, G.GAME.starting_params.boosters_in_shop + (G.GAME.last_joker and G.GAME.modifiers.extra_boosters or 0) + (not G.GAME.last_joker and 2 or 0) do
                                           if G.GAME.last_joker then
                                             G.GAME.current_round.used_packs = G.GAME.current_round.used_packs or {}
                                             if not G.GAME.current_round.used_packs[i] then
@@ -142,7 +142,7 @@ function G.UIDEF.blind_shop()
     G.shop_booster = CardArea(
       G.hand.T.x+0,
       G.hand.T.y+G.ROOM.T.y + 9,
-      (G.GAME.starting_params.boosters_in_shop + (G.GAME.modifiers.extra_boosters or 0))*1.3*G.CARD_W,
+      (G.GAME.starting_params.boosters_in_shop + 1)*1.3*G.CARD_W,
       1.05*G.CARD_H, 
       {card_limit = G.GAME.starting_params.boosters_in_shop + (G.GAME.modifiers.extra_boosters or 0) + (not G.GAME.last_joker and 1 or 0), type = 'shop', highlight_limit = 1, card_w = 1.27*G.CARD_W})
 
