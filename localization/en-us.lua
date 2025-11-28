@@ -1303,7 +1303,7 @@ return {
 					{"{X:blue,C:white}Blue{}",
 					"Currently {X:blue,C:white}X#1#{} Chips"},
 					{"If poker hand does not",
-					"contain {C:attention}Three of a Blind,",
+					"contain {C:attention}Three of a Blind{},",
 					"gains {X:blue,C:white}X#2#{} Chips"},
 				},
 			},
@@ -1330,7 +1330,7 @@ return {
 				["text"] = {
 					"{X:dark_edition,C:white}Faded{}",
 					"When scored, gives a",
-					"varied effect",
+					"{C:green,E:1}varied{} effect",
 				},
 			},
 			["m_bld_earth"] = {
@@ -1487,8 +1487,8 @@ return {
 				["text"] = {
 					"{X:dark_edition,C:white}Faded{}",
 					"While {C:attention}held in hand{},",
-					"retrigger {C:attention}first{} scoring Blind",
-					"{C:attention}#1#{} additional times"
+					"retrigger {C:attention}first{} scoring",
+					"Blind {C:attention}#1#{} times"
 				},
 			},
 			["m_bld_sun"] = {
@@ -1524,9 +1524,9 @@ return {
 				["text"] = {
 					{"{X:red,C:white}Red{} {X:dark_edition,C:white}Faded{} {X:blue,C:white}Blue{}",
 					"{X:green,C:white}Green{} {X:money,C:white}Yellow{} {X:purple,C:white}Purple{}"},
-					{"Always scores",
-					"{X:red,C:white}X#1#{} Mult",
-					"{C:blue}+#2#{} Chips"}
+					{"{X:red,C:white}X#1#{} Mult",
+					"{C:blue}+#2#{} Chips"},
+					{"Always scores",}
 				},
 			},
 			["m_bld_lock"] = {
@@ -1679,7 +1679,7 @@ return {
 					{"{X:purple,C:white}Purple{} {X:green,C:white}Green{}",
 					"{V:1}Balances{} {C:blue}Chips{} and {C:red}Mult",},
 					{"{C:attention,E:1}Self-Scoring{} with a",
-					"{C:green}#1#{} in {C:green}#2#{} chance"}
+					"{C:green}#1# in #2#{} chance"}
 				},
 			},
 			["m_bld_ball"] = {
