@@ -2,7 +2,7 @@
     SMODS.Joker({
         key = 'dreamcatcher',
         atlas = 'bld_trinkets',
-        pos = {x = 1, y = 7}, --replace with real sprite location
+        pos = {x = 3, y = 5}, --replace with real sprite location
         rarity = 'bld_curio',
         config = {
             extra = {
