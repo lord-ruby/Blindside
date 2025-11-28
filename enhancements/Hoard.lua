@@ -5,8 +5,8 @@
         config = {
             extra = {
                 value = 13,
-                mult = 2,
-                xmult = 1.75,
+                mult = 5,
+                xmult = 1.5,
                 hues = {"Red"}
             }},
         replace_base_card = true,
