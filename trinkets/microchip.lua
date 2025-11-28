@@ -2,7 +2,7 @@
     SMODS.Joker({
         key = 'microchip',
         atlas = 'bld_trinkets',
-        pos = {x = 4, y = 9},
+        pos = {x = 4, y = 5},
         rarity = 'bld_doodad',
         cost = 8,
         blueprint_compat = true,
