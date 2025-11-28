@@ -2084,6 +2084,13 @@ return {
 					"{C:inactive}(Currently #2#/#1#)"
 				}
 			},
+			['j_bld_microchip'] = {
+				["name"] = "Microchip",
+				["text"] = {
+					"When {C:attention}Joker{} is selected,",
+					"creates a {C:green}Recursive Tag"
+				}
+			}
 		},
 		["Edition"] = {
 			['e_bld_enameled'] = {
