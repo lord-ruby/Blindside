@@ -172,8 +172,8 @@ return {
 			["v_bld_scissors"] = {
 				["name"] = "Scissors",
 				["text"] = {
-					"{C:attention}Free Booster{} at",
-					"start of shop",
+					"Leftmost initial blind or",
+					"booster each shop is {C:attention}free"
 				},
 			},
 			["v_bld_swearjar"] = {
@@ -406,8 +406,8 @@ return {
 			["tag_bld_toss"] = {
 				["name"] = "Toss Tag",
 				["text"] = {
-					"{C:attention}+1{} Hand Size for the",
-					"next round"
+					"{C:attention}+1{} Hand Size",
+					"this round"
 				},
 			},
 		},
