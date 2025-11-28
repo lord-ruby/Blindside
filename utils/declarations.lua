@@ -160,6 +160,7 @@
         "j_bld_glasseye",
         "j_bld_pirateship",
         "j_bld_talkingfish",
+        "j_bld_dreamcatcher",
         "c_bld_horror",
         "c_bld_action",
         "c_bld_comedy",

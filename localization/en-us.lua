@@ -10,6 +10,7 @@ return {
 			["k_tagged_ex"] = "Tagged!",
 			["k_cuckoo_ex"] = "Cuckoo!",
 			["k_divide_ex"] = "Mitosis!",
+			["k_caught_dream"] = "Caught!",
 			["k_stop_ex"] = "Stop!",
 			["k_slow_ex"] = "Hold!",
 			["k_go_ex"] = "GO!",
@@ -2073,6 +2074,14 @@ return {
 					"only both {X:mult,C:white}Red{} and {X:blue,C:white}Blue{} Blinds,",
 					"create a {C:bld_obj_filmcard}Channel{} Card",
 					"{C:inactive,S:0.8}(Must have room)"
+				}
+			},
+			['j_bld_dreamcatcher'] = {
+				["name"] = "Dream Catcher",
+				["text"] = {
+					"Every #1# {C:blue}Hands{} played,",
+					"gain {C:blue}+1 Hand",
+					"{C:inactive}(Currently #2#/#1#)"
 				}
 			},
 		},
