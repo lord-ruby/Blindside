@@ -31,7 +31,7 @@
     end,
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.before and card.facing ~= 'back' then
-                add_tag(Tag('tag_bld_debuff'))
+                add_tag(Tag('tag_bld_toss'))
                 return {
                     card = card,
                     message = localize('k_tagged_ex')
