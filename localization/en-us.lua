@@ -247,8 +247,8 @@ return {
 			["tag_bld_scissors_relic"] = {
 				["name"] = "Scissors",
 				["text"] = {
-					"{C:attention}Free Booster{} at",
-					"start of shop",
+					"Leftmost initial blind or",
+					"booster each shop is {C:attention}free"
 				},
 			},
 			["tag_bld_swearjar_relic"] = {
