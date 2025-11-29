@@ -4,7 +4,7 @@ SMODS.Seal {
     pos = { x = 3, y = 0 },
     config = { 
         extra = { 
-            mult = 1
+            mult = 2
         } 
     },
     badge_colour = HEX('757CDC'),
