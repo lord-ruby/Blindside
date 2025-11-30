@@ -2173,6 +2173,15 @@ return {
 					"{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
 				}
 			},
+			['j_bld_pogs'] = {
+				["name"] = "Pogs",
+				["text"] = {
+					"Scoring {X:money,C:white}Yellow{} Blinds",
+					"give {C:chips}+1{} Chip per",
+					"held {C:money}dollar",
+					"{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
+				}
+			},
 		},
 		["Edition"] = {
 			['e_bld_enameled'] = {
