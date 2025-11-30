@@ -233,6 +233,7 @@ local trinket_list = {
         "dreamcatcher",
         "microchip",
         "breadboard",
+        "barrel"
 }
 
 local joker_list = {

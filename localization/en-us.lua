@@ -2156,6 +2156,14 @@ return {
 					"all {C:blue}Hands{} are spent"
 				}
 			},
+			['j_bld_barrel'] = {
+				["name"] = "Monkey Barrel",
+				["text"] = {
+					"{X:mult,C:white}X1{} Mult, and {X:mult,C:white}+X0.25{}",
+					"for each unique",
+					"Blind scored"
+				}
+			},
 		},
 		["Edition"] = {
 			['e_bld_enameled'] = {
