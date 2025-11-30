@@ -236,6 +236,7 @@ local trinket_list = {
         "barrel",
         "candle",
         "pogs",
+        "crane",
 }
 
 local joker_list = {

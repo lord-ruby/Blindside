@@ -562,6 +562,12 @@ function update_joker_hand_text(config, vals)
 end
 
 function Card:start_burn(cardarea, dissolve_colours, silent, dissolve_time_fac, no_juice)
+    if next(find_joker('j_bld_crane')) and SMODS.pseudorandom_probability(self, pseudoseed('bld_crane'), 1, 2, 'bld_crane') then
+        card_eval_status_text(self, 'extra', nil, nil, nil, "Doused!")
+        self = G.discard:draw_card_from(cardarea, stay_flipped, discarded_only)
+        return
+    end
+
     dissolve_colours = dissolve_colours or (type(self.destroyed) == 'table' and self.destroyed.colours) or nil
     dissolve_time_fac = dissolve_time_fac or (type(self.destroyed) == 'table' and self.destroyed.time) or nil
     local dissolve_time = 0.7*(dissolve_time_fac or 1)

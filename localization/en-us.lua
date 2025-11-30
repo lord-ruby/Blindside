@@ -2182,6 +2182,15 @@ return {
 					"{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
 				}
 			},
+			['j_bld_crane'] = {
+				["name"] = "Crane",
+				["text"] = {
+					"When a Blind is going",
+					"to {C:attention}Burn{}, this trinket",
+					"has a {C:green}#1# in #2#{} chance",
+					"to prevent it"
+				}
+			},
 		},
 		["Edition"] = {
 			['e_bld_enameled'] = {
