@@ -6,16 +6,18 @@
         rarity = 'bld_keepsake',
         config = {
             extra = {
-                chips_mod = 30,
+                xchips = 3,
+                min = 1,
             }
         },
-        cost = 10,
+        cost = 15,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)
             return {
                 vars = {
-                card.ability.extra.chips_mod,
+                    card.ability.extra.xchips,
+                    card.ability.extra.min,
             }
         }
         end,
@@ -28,18 +30,33 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.individual and context.cardarea == G.play and context.other_card:is_color("Blue") and context.other_card.facing ~= "back" then
-                local chip_return = 0
-                for i, held_card in pairs(G.hand.cards) do
-                    if held_card:is_color("Blue") then
-                        chip_return = chip_return + card.ability.extra.chips_mod 
+            if context.before and context.scoring_hand then
+                local count = 0
+                for i, card in pairs(context.scoring_hand) do
+                    if card:is_color("Blue") then
+                        count = count + 1
                     end
                 end
-                if chip_return then
-                    return {
-                        chips = chip_return
-                    }
+                if count < card.ability.extra.min then
+                    for key, value in pairs(context.scoring_hand) do
+                        if value.facing ~= 'back' then 
+                            value:flip()
+                        end
+                        value:set_debuff(true)
+                    end
                 end
+            end
+
+            if context.after then
+                for key, value in pairs(context.scoring_hand) do
+                    value:set_debuff(false)
+                end
+            end
+
+            if context.joker_main then
+                return {
+                    xchips = card.ability.extra.xchips
+                }
             end
         end
     })

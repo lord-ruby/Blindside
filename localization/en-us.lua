@@ -1896,9 +1896,10 @@ return {
 			['j_bld_crest'] = {
 				["name"] = "Cerulean Crest",
 				["text"] = {
-					"{X:chips,C:white}Blue{} Blinds give {C:chips}+#1#{} chips",
-					"for each {X:chips,C:white}Blue{} Blind ",
-					"{C:attention}held in hand{} when scored"
+					{"{X:chips,C:white}X#1#{} Chips"},
+					{"Debuff all scoring blinds",
+					"if scoring hand does not",
+					"contain a {X:chips,C:white}Blue{} Blind"},
 				}
 			},
 			['j_bld_standard'] = {
@@ -1912,7 +1913,7 @@ return {
 				["name"] = "Bookmark",
 				["text"] = {
 					"{X:mult,C:white}X#1#{} Mult if deck",
-					"has {C:attention}0{} cards left",
+					"has {C:attention}0{} blinds left",
 				}
 			},
 			['j_bld_scratchticket'] = {
