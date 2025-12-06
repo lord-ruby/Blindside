@@ -1837,9 +1837,10 @@ return {
 			['j_bld_statuette'] = {
 				["name"] = "Statuette",
 				["text"] = {
-					"{X:dark_edition,C:white}Faded{} blinds",
-					"give {C:blue}+#1#{} Chips",
-					"when held in hand"
+					{"{C:white,X:mult}X#1#{} Mult if scoring hand",
+					"contains a {X:dark_edition,C:white}Faded{} Blind"},
+					{"Debuffs all scoring",
+					"{X:dark_edition,C:white}Faded{} Blinds"}
 				}
 			},
 			['j_bld_flag'] = {

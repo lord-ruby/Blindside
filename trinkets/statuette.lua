@@ -6,16 +6,16 @@
         rarity = 'bld_curio',
         config = {
             extra = {
-                chips = 50,
+                xmult = 3,
             }
         },
-        cost = 8,
+        cost = 15,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)
             return {
                 vars = {
-                card.ability.extra.chips,
+                card.ability.extra.xmult,
             }
         }
         end,
@@ -28,10 +28,31 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.individual and context.cardarea == G.hand and (not context.end_of_round) and context.other_card:is_color("Faded") and context.other_card.facing ~= "back" then
-                return {
-                    chips = card.ability.extra.chips
-                }
+            if context.before then
+                for key, value in pairs(context.scoring_hand) do
+                    if value:is_color("Faded") then
+                        if value.facing ~= 'back' then 
+                            value:flip()
+                        end
+                        value:set_debuff(true)
+                    end
+                end
+            end
+
+            if context.after then
+                for key, value in pairs(context.scoring_hand) do
+                    value:set_debuff(false)
+                end
+            end
+            
+            if context.joker_main and context.scoring_hand then
+                for key, value in pairs(context.scoring_hand) do
+                    if value:is_color("Faded") then
+                        return {
+                            xmult = card.ability.extra.xmult
+                        }
+                    end
+                end
             end
         end
     })
