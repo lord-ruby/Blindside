@@ -1784,7 +1784,7 @@ return {
 				["name"] = "Action Figure",
 				["text"] = {
 					"Each {X:mult,C:white}Red{} Blind held in",
-					"hand gives {C:mult}+#1#{} Mult",
+					"hand gives {C:white,X:mult}X#1#{} Mult",
 				}
 			},
 			['j_bld_pirateship'] = {

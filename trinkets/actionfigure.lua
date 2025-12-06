@@ -6,16 +6,16 @@
         rarity = 'bld_keepsake',
         config = {
             extra = {
-                mult = 4,
+                xmult = 1.3,
             }
         },
-        cost = 7,
+        cost = 12,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)
             return {
                 vars = {
-                card.ability.extra.mult
+                card.ability.extra.xmult
             }
         }
         end,
@@ -28,11 +28,10 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.individual and context.cardarea == G.hand and not context.end_of_round  then
-                local other_card = context.other_card
-                if other_card:is_color("Red") and not other_card.debuff then
+            if context.individual and context.cardarea == G.hand and not context.end_of_round then
+                if context.other_card:is_color("Red") and not context.other_card.debuff then
                     return {
-                        h_mult = card.ability.extra.mult,
+                        xmult = card.ability.extra.xmult,
                         card = card
                     }
                 end
