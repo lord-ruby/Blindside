@@ -6,7 +6,7 @@
         rarity = 'bld_curio',
         config = {
             extra = {
-                xmult = 2
+                xmult = 3
             }
         },
         cost = 8,
