@@ -6,10 +6,10 @@
         rarity = 'bld_curio',
         config = {
             extra = {
-                xmult = 1.5
+                xmult = 3
             }
         },
-        cost = 8,
+        cost = 15,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)
@@ -28,9 +28,9 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.joker_main and #G.deck.cards <= (#G.playing_cards)/2 then
+            if context.joker_main and #G.deck.cards == 0 then
                 return {
-                    xchips = card.ability.extra.xmult
+                    xmult = card.ability.extra.xmult
                 }
             end
         end

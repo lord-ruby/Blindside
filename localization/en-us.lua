@@ -1911,9 +1911,8 @@ return {
 			['j_bld_bookmark'] = {
 				["name"] = "Bookmark",
 				["text"] = {
-					"{X:blue,C:white}X1.5{} Chips if",
-					"deck contains half",
-					"its blinds",
+					"{X:mult,C:white}X#1#{} Mult if deck",
+					"has {C:attention}0{} cards left",
 				}
 			},
 			['j_bld_scratchticket'] = {
