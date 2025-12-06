@@ -9,7 +9,7 @@
                 retriggers = 1,
             }
         },
-        cost = 9,
+        cost = 10,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)
