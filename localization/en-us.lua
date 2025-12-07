@@ -1700,8 +1700,8 @@ return {
 				["text"] = {
 					{"{X:purple,C:white}Purple{}",
 					"{X:mult,C:white}X#1#{} Mult"},
-					{"Debuff an adjacent",
-					"scoring Blind"},
+					{"Debuff the scoring",
+					"Blind to the left"},
 				},
 			},
 			["m_bld_snow"] = {

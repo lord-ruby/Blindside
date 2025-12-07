@@ -34,19 +34,11 @@
                     end
                 end
 
-                local coin_flip = pseudorandom(pseudoseed('bite')) < 0.5
-                if G.play.cards[self_pos-1] and (coin_flip or not G.play.cards[self_pos+1]) then
+                if G.play.cards[self_pos-1] then
                     if G.play.cards[self_pos-1].facing ~= 'back' then 
                         G.play.cards[self_pos-1]:flip()
                     end
                     G.play.cards[self_pos-1]:set_debuff(true)
-                else
-                    if G.play.cards[self_pos+1] then
-                        if G.play.cards[self_pos+1].facing ~= 'back' then 
-                            G.play.cards[self_pos+1]:flip()
-                        end
-                        G.play.cards[self_pos+1]:set_debuff(true)
-                    end
                 end
             end
             if context.cardarea == G.play and context.main_scoring then
@@ -64,9 +56,6 @@
                 end
                 if G.play.cards[self_pos-1] then
                     G.play.cards[self_pos-1]:set_debuff(false)
-                end
-                if G.play.cards[self_pos+1] then
-                    G.play.cards[self_pos+1]:set_debuff(false)
                 end
             end
         end,
