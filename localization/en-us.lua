@@ -248,6 +248,20 @@ return {
 					"{C:attention}Boss Shops{}"
 				},
 			},
+			["v_bld_coolrock_relic"] = {
+				["name"] = "Cool Rock",
+				["text"] = {
+					"{C:bld_obj_mineral}Mineral{} cards may appear",
+					"in Blind Shops"
+				},
+			},
+			["v_bld_television_relic"] = {
+				["name"] = "Television",
+				["text"] = {
+					"{C:bld_obj_filmcard}Channel{} cards may appear",
+					"in Blind Shops"
+				},
+			},
 		},
 		["Tag"] = {
 			["tag_bld_reroll"] = {
@@ -456,6 +470,20 @@ return {
 				["text"] = {
 					"{C:mult}+#1#{} Mult whenever {C:money}money{} is",
 					"earned while scoring"
+				},
+			},
+			["tag_bld_coolrock_relic"] = {
+				["name"] = "Cool Rock",
+				["text"] = {
+					"{C:bld_obj_mineral}Mineral{} cards may appear",
+					"in Blind Shops"
+				},
+			},
+			["tag_bld_television_relic"] = {
+				["name"] = "Television",
+				["text"] = {
+					"{C:bld_obj_filmcard}Channel{} cards may appear",
+					"in Blind Shops"
 				},
 			},
 		},
