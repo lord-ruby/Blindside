@@ -6,6 +6,7 @@ SMODS.Joker({
     config = {
         extra = {
             sell_value = 5,
+            broken = false
         }
     },
     cost = 6,
@@ -13,6 +14,7 @@ SMODS.Joker({
     eternal_compat = true,
     loc_vars = function (self, info_queue, card)
         return {
+            key = (card.ability.extra.broken and "j_bld_porcelaindoll_broken") or card.config.center.key,
             vars = {
             card.ability.extra.sell_value
         }
@@ -26,8 +28,13 @@ SMODS.Joker({
         return false
         end
     end,
+    reload = function(self, card, card_table, other_card)
+        if card.ability.extra.broken then
+            card.children.center:set_sprite_pos({X = 3, y = 6})
+        end
+    end,
     calculate = function(self, card, context)
-        if context.end_of_round and not context.blueprint and not context.other_card and not context.repetition then
+        if context.end_of_round and not context.blueprint and not context.other_card and not context.repetition and not card.ability.extra.broken then
             card.ability.extra_value = card.ability.extra_value + card.ability.extra.sell_value
             card:set_cost()
             return {
@@ -35,21 +42,14 @@ SMODS.Joker({
                 colour = G.C.MONEY
             }
         end
-        if context.after and context.scoring_hand and not context.blueprint and not context.other_card then
+        if context.after and context.scoring_hand and not context.blueprint and not context.other_card and not card.ability.extra.broken then
             if #context.scoring_hand >= 5 then
                 G.E_MANAGER:add_event(Event({
                 func = function()
                     play_sound('tarot1')
-                    card.T.r = -0.2
-                    card:juice_up(0.3, 0.4)
-                    card.states.drag.is = true
-                    card.children.center.pinch.x = true
-                    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, blockable = false,
-                        func = function()
-                                G.jokers:remove_card(card)
-                                card:remove()
-                                card = nil
-                            return true; end})) 
+                    card:juice_up()
+                    card.children.center:set_sprite_pos({x = 3, y = 6})
+                    card.ability.extra.broken = true
                     return true
                 end
                 })) 

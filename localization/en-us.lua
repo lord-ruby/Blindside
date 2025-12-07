@@ -2149,6 +2149,12 @@ return {
 					"contains {C:attention}5{} Blinds"},
 				}
 			},
+			['j_bld_porcelaindoll_broken'] = {
+				["name"] = "Porcelain Doll",
+				["text"] = {
+					"{C:inactive}Broken...",
+				}
+			},
 			['j_bld_glasses'] = {
 				["name"] = "3D Glasses",
 				["text"] = {
