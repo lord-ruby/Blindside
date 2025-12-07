@@ -148,6 +148,15 @@ return {
 					"???",
 					"{C:attention}+2{} {C:red}discard{} size"
 				},
+			},
+			["b_bld_yellowdispenser"] = {
+				["name"] = "Yellow Deck?",
+				["text"] = {
+					"???",
+					"Start with {C:attention,T:v_bld_swearjar}Swear Jar",
+					"Extra hands earn",
+					"{C:attention}no money"
+				},
 			}
 		},
 		['Voucher'] = {
