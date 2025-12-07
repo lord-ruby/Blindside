@@ -150,6 +150,15 @@ return {
 					"{C:attention}+2{} {C:red}discard{} size"
 				},
 			},
+			["b_bld_greendispenser"] = {
+				["name"] = "Green Deck?",
+				["text"] = {
+					"???",
+					"{C:attention}+1{} consumable slot",
+					"Start with {C:attention,T:v_bld_coolrock}Cool Rock{}",
+					"and {C:attention,T:v_bld_television}Television{}",
+				},
+			},
 			["b_bld_yellowdispenser"] = {
 				["name"] = "Yellow Deck?",
 				["text"] = {
