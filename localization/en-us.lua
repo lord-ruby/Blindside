@@ -159,6 +159,15 @@ return {
 					"and {C:attention,T:v_bld_television}Television{}",
 				},
 			},
+			["b_bld_bluedispenser"] = {
+				["name"] = "Blue Deck?",
+				["text"] = {
+					"???",
+					"Leftover hands",
+					"give {C:money}$2{}",
+					"{C:red}-1{} discard",
+				},
+			},
 			["b_bld_yellowdispenser"] = {
 				["name"] = "Yellow Deck?",
 				["text"] = {
