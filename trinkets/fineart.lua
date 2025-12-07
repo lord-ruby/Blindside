@@ -40,7 +40,7 @@
             end
 
             if context.end_of_round and not context.blueprint and not context.repetition and not context.individual then
-                if card.ability.extra.secret and card.ability.extra.secret >= 1 and SMODS.pseudorandom_probability(card, pseudoseed('fineart'), 1, card.ability.extra.odds) then
+                if card.ability.extra.secret and card.ability.extra.secret >= 2 and SMODS.pseudorandom_probability(card, pseudoseed('fineart'), 1, card.ability.extra.odds) then
                     G.E_MANAGER:add_event(Event({
                         func = function()
                             play_sound('tarot1')
