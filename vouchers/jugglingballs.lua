@@ -16,5 +16,8 @@ SMODS.Voucher {
     end,
     redeem = function(self, card)
         add_tag(Tag('tag_bld_jugglingballs_relic'))
+    end,
+    loc_vars = function (self, info_queue, card)
+        info_queue[#info_queue+1] = G.P_TAGS.tag_juggle
     end
 }
