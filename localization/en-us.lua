@@ -2232,7 +2232,7 @@ return {
 				}
 			},
 			['j_bld_bottle'] = {
-				["name"] = "Bottle",
+				["name"] = "Soda Bottle",
 				["text"] = {
 					"{C:attention}+1{} Discard"
 				}
