@@ -17,6 +17,7 @@
     end
     
     function BLINDSIDE.set_up_blindside()
+            G.GAME.blind_rate = 4
             G.GAME.tarot_rate = 0
             G.GAME.planet_rate = 0
             SMODS.change_booster_limit(1)

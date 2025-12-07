@@ -655,6 +655,7 @@ payload = '''
         last_channel = nil,
         last_joker = nil,
         chips_buffer = 0,
+        blind_rate = 0,
 '''
 
 # blind assists

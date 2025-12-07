@@ -343,23 +343,51 @@ function BLINDSIDE.create_blindcard_for_shop(area)
           return forced_tag end
       end
     end
-      local enhancement = nil
-      local args = {}
-      args.guaranteed = true
-      args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
-      local cardtype = BLINDSIDE.poll_enhancement(args)
-      local card = SMODS.create_card({ set = 'Base', seal = enhancement, enhancement = cardtype, area = area })
-      create_shop_card_ui(card, 'Enhanced', area)
-      if card.ability.set == 'Base' or card.ability.set == 'Enhanced' then
-        card.cost = card.cost + 2 + ((card.config and card.config.center and card.config.center.weight) and 1 or 0)
-      end
-      G.E_MANAGER:add_event(Event({
-          func = (function()
-              for k, v in ipairs(G.GAME.tags) do
-                if v:apply_to_run({type = 'store_joker_modify', card = card}) then break end
+        local total_rate = G.GAME.blind_rate + G.GAME.bld_obj_filmcard_rate + G.GAME.bld_obj_mineral_rate
+        local polled_rate = pseudorandom(pseudoseed('cdt'..G.GAME.round_resets.ante))*total_rate
+        local check_rate = 0
+        -- need to preserve order to leave RNG unchanged
+        local rates = {
+          {type = 'Base', val = G.GAME.blind_rate},
+          {type = 'bld_obj_filmcard', val = G.GAME.bld_obj_filmcard_rate},
+          {type = 'bld_obj_mineral', val = G.GAME.bld_obj_mineral_rate}
+        }
+        for _, v in ipairs(rates) do
+          if polled_rate > check_rate and polled_rate <= check_rate + v.val then
+            if v.type == 'Base' then
+              local enhancement = nil
+              local args = {}
+              args.guaranteed = true
+              args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
+              local cardtype = BLINDSIDE.poll_enhancement(args)
+              local card = SMODS.create_card({ set = 'Base', seal = enhancement, enhancement = cardtype, area = area })
+              create_shop_card_ui(card, 'Enhanced', area)
+              if card.ability.set == 'Base' or card.ability.set == 'Enhanced' then
+                card.cost = card.cost + 2 + ((card.config and card.config.center and card.config.center.weight) and 1 or 0)
               end
-              return true
-          end)
-      }))
-      return card
+              G.E_MANAGER:add_event(Event({
+                  func = (function()
+                      for k, v in ipairs(G.GAME.tags) do
+                        if v:apply_to_run({type = 'store_joker_modify', card = card}) then break end
+                      end
+                      return true
+                  end)
+              }))
+              return card
+            else
+            local card = create_card(v.type, area, nil, nil, nil, nil, nil, 'sho')
+            create_shop_card_ui(card, v.type, area)
+            G.E_MANAGER:add_event(Event({
+                func = (function()
+                    for k, v in ipairs(G.GAME.tags) do
+                      if v:apply_to_run({type = 'store_joker_modify', card = card}) then break end
+                    end
+                    return true
+                end)
+            }))
+            return card
+          end
+          end
+          check_rate = check_rate + v.val
+        end
   end
