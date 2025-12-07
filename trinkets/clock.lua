@@ -6,18 +6,18 @@
         rarity = 'bld_doodad',
         config = {
             extra = {
-                chips = 120,
-                count = 0,
+                xmult = 3,
+                count = 4,
             }
         },
-        cost = 7,
+        cost = 15,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)
             return {
                 vars = {
-                card.ability.extra.chips,
-                3 - card.ability.extra.count
+                card.ability.extra.xmult,
+                card.ability.extra.count
             }
         }
         end,
@@ -30,16 +30,48 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.joker_main and card.ability.extra.count == 2 then
-                card.ability.extra.count = 0
+            if context.joker_main and card.ability.extra.count == 4 then
                 return {
-                    chips = card.ability.extra.chips
+                    xmult = card.ability.extra.xmult,
+                    message = localize('k_reset')
                 }
             end
-            if context.before and not context.blueprint and card.ability.extra.count < 2 then
-                card.ability.extra.count = card.ability.extra.count+1
-                card:juice_up()
-                return {}
+            if context.before and not context.blueprint then
+                card.ability.extra.count = card.ability.extra.count - 1
+                if card.ability.extra.count == 1 then
+                    juice_card_until(card, function ()
+                        return card.ability.extra.count == 1
+                    end)
+                    return {
+                        message = "1!"
+                    }
+                elseif card.ability.extra.count == 0 then
+                    card.ability.extra.count = 4
+                else
+                    return {
+                        message = card.ability.extra.count .. "..."
+                    }
+                end
+            end
+            if context.pre_discard then
+                card.ability.extra.count = card.ability.extra.count - 1
+                if card.ability.extra.count == 1 then
+                    juice_card_until(card, function ()
+                        return card.ability.extra.count > 1
+                    end)
+                    return {
+                        message = "1!"
+                    }
+                elseif card.ability.extra.count == 0 then
+                    card.ability.extra.count = 4
+                    return {
+                        message = localize('k_reset')
+                    }
+                else
+                    return {
+                        message = card.ability.extra.count .. "..."
+                    }
+                end
             end
         end
     })

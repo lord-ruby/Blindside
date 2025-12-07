@@ -1,0 +1,19 @@
+
+    SMODS.Joker({
+        key = 'checker',
+        atlas = 'bld_trinkets',
+        pos = {x = 0, y = 2},
+        rarity = 'bld_curio',
+        cost = 9,
+        blueprint_compat = false,
+        eternal_compat = true,
+        loc_vars = function (self, info_queue, card)
+        end,
+        in_pool = function(self, args)
+            if G.GAME.selected_back.effect.center.config.extra then
+                if not G.GAME.selected_back.effect.center.config.extra.blindside then return false end
+            else
+            return false
+            end
+        end,
+    })

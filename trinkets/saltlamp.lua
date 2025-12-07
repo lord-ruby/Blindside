@@ -9,7 +9,7 @@
                 active = false
             }
         },
-        cost = 9,
+        cost = 15,
         blueprint_compat = true,
         eternal_compat = true,
         in_pool = function(self, args)

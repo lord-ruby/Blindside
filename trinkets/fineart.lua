@@ -6,17 +6,21 @@
         rarity = 'bld_hobby',
         config = {
             extra = {
-                money = 1,
+                xmult = 3,
+                odds = 6
             }
         },
-        cost = 8,
+        cost = 15,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)
+            local n,d = SMODS.get_probability_vars(card, 1, card.ability.extra.odds)
             return {
                 vars = {
-                card.ability.extra.money,
-            },
+                    card.ability.extra.xmult,
+                    n,
+                    d
+                },
             }
         end,
         in_pool = function(self, args)
@@ -28,14 +32,37 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.individual and context.cardarea == G.play then 
-                if context.other_card:is_color("Yellow") and context.other_card.facing ~= "back" then
-                    card.ability.extra_value = card.ability.extra_value + card.ability.extra.money
-                    card:set_cost()
+            if context.joker_main then
+                return {
+                    xmult = card.ability.extra.xmult
+                }
+            end
+
+            if context.end_of_round and not context.blueprint and not context.repetition and not context.individual then
+                if SMODS.pseudorandom_probability(card, pseudoseed('fineart'), 1, card.ability.extra.odds) then
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            play_sound('tarot1')
+                            card.T.r = -0.2
+                            card:juice_up(0.3, 0.4)
+                            card.states.drag.is = true
+                            card.children.center.pinch.x = true
+                            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, blockable = false,
+                                func = function()
+                                    G.jokers:remove_card(self)
+                                    card:remove()
+                                    card = nil
+                                    return true
+                                end}))
+                            return true
+                        end
+                    }))
                     return {
-                        message = localize('k_val_up'),
-                        colour = G.C.MONEY,
-                        card = card,
+                        message = localize('bld_fineart_dead')
+                    }
+                else
+                    return {
+                        message = localize('k_safe_ex')
                     }
                 end
             end

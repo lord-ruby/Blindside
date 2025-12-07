@@ -12,7 +12,7 @@
                 queen = false
             }
         },
-        cost = 6,
+        cost = 10,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)

@@ -47,6 +47,7 @@ return {
 			['ui_bld_deck_view'] = 'Deck View',
 			["ph_mask_saved"] = "Saved by Ancient Mask",
 			['matryoshka_none'] = "None!",
+			['bld_fineart_dead'] = "Devalued!",
 			},
 		["v_dictionary"] = {
 			["a_rmult"] = "-#1#",
@@ -134,10 +135,18 @@ return {
 	},
 	["descriptions"] = {
 		["Back"] = {
+			["b_bld_whitedispenser"] = {
+				["name"] = "White Deck?",
+				["text"] = {
+					"???",
+					"{C:attention}+1{} hand size"
+				},
+			},
 			["b_bld_reddispenser"] = {
 				["name"] = "Red Deck?",
 				["text"] = {
-					"???"
+					"???",
+					"{C:attention}+2{} {C:red}discard{} size"
 				},
 			}
 		},
@@ -1784,7 +1793,7 @@ return {
 				["name"] = "Action Figure",
 				["text"] = {
 					"Each {X:mult,C:white}Red{} Blind held in",
-					"hand gives {C:mult}+#1#{} Mult",
+					"hand gives {C:white,X:mult}X#1#{} Mult",
 				}
 			},
 			['j_bld_pirateship'] = {
@@ -1837,9 +1846,10 @@ return {
 			['j_bld_statuette'] = {
 				["name"] = "Statuette",
 				["text"] = {
-					"{X:dark_edition,C:white}Faded{} blinds",
-					"give {C:blue}+#1#{} Chips",
-					"when held in hand"
+					{"{C:white,X:mult}X#1#{} Mult if scoring hand",
+					"contains a {X:dark_edition,C:white}Faded{} Blind"},
+					{"Debuffs all scoring",
+					"{X:dark_edition,C:white}Faded{} Blinds"}
 				}
 			},
 			['j_bld_flag'] = {
@@ -1870,8 +1880,9 @@ return {
 			['j_bld_fineart'] = {
 				["name"] = "Fine Art",
 				["text"] = {
-					"Gains {C:money}+#1#${} of sell value",
-					"when a {X:money,C:white}Yellow{} Blind is scored",
+					{"{C:white,X:mult}X#1#{} Mult"},
+					{"{C:green}#2# in #3#{} chance to",
+					"{C:red}self-destruct{} each round"}
 				}
 			},
 			['j_bld_bedazzler'] = {
@@ -1895,9 +1906,10 @@ return {
 			['j_bld_crest'] = {
 				["name"] = "Cerulean Crest",
 				["text"] = {
-					"{X:chips,C:white}Blue{} Blinds give {C:chips}+#1#{} chips",
-					"for each {X:chips,C:white}Blue{} Blind ",
-					"{C:attention}held in hand{} when scored"
+					{"{X:chips,C:white}X#1#{} Chips"},
+					{"Debuff all scoring blinds",
+					"if scoring hand does not",
+					"contain a {X:chips,C:white}Blue{} Blind"},
 				}
 			},
 			['j_bld_standard'] = {
@@ -1910,17 +1922,16 @@ return {
 			['j_bld_bookmark'] = {
 				["name"] = "Bookmark",
 				["text"] = {
-					"{X:blue,C:white}X1.5{} Chips if",
-					"deck contains half",
-					"its blinds",
+					"{X:mult,C:white}X#1#{} Mult if deck",
+					"has {C:attention}0{} blinds left",
 				}
 			},
 			['j_bld_scratchticket'] = {
 				["name"] = "Scratch Ticket",
 				["text"] = {
 					{"{C:green}#2# in #3#{} chance for {C:money}+#1#${}"},
-					{"Chance increases for each scored",
-					"{C:attention}blind{} of a repeated {C:attention}Hue"}
+					{"Chance increases for each",
+					"{X:green,C:white}Green{} Blind scored"}
 				}
 			},
 			['j_bld_ensign'] = {
@@ -1934,9 +1945,9 @@ return {
 			['j_bld_pennant'] = {
 				["name"] = "Violet Pennant",
 				["text"] = {
-					"{X:purple,C:white}Purple{} Blinds have a {C:green}#1# in #2#{}",
-					"chance to create a random",
-					"{C:bld_obj_filmcard}Channel{} Card when scored",
+					"{C:white,X:mult}X1{} Mult for",
+					"each unique scoring",
+					"{X:purple,C:white}Purple{} Blind",
 				}
 			},
 			['j_bld_insignia'] = {
@@ -2073,9 +2084,13 @@ return {
 			['j_bld_clock'] = {
 				["name"] = "Cuckoo Clock",
 				["text"] = {
-					"Every third played hand,",
-					"gives {C:chips}+#1#{} Chips",
-					"{C:inactive}(#2# Remaining){}"
+					{"Counts down by 1 for",
+					"each {C:blue}hand{} and {C:red}discard",
+					"{C:inactive}(Currently: #2#)"},
+					{"Resets to {C:attention}4{} when",
+					"clock strikes 0"},
+					{"{C:white,X:mult}X#1#{} Mult exactly",
+					"when clock strikes 0"}
 				}
 			},
 			['j_bld_mask'] = {
@@ -2095,10 +2110,9 @@ return {
 			['j_bld_whiteout'] = {
 				["name"] = "Whiteout",
 				["text"] = {
-                    "If {C:attention}first hand{} of",
-                    "round has only {C:attention}1{}",
-                    "blind, convert it into",
-                    "a {X:dark_edition,C:white}Blank{}"
+					"Once per {C:attention}ante{}, if hand",
+					"has only 1 Blind, convert",
+					"it into a {X:dark_edition,C:white}Blank{}"
 				}
 			},
 			['j_bld_discount'] = {
@@ -2214,6 +2228,34 @@ return {
 					"When deck is",
 					"{C:attention}reshuffled{}, Joker loses",
 					"{C:mult}-#1#{} Mult"
+				}
+			},
+			['j_bld_bottle'] = {
+				["name"] = "Bottle",
+				["text"] = {
+					"{C:attention}+1{} Discard"
+				}
+			},
+			['j_bld_hackysack'] = {
+				["name"] = "Hacky Sack",
+				["text"] = {
+					"{C:attention}+1{} hand size"
+				}
+			},
+			['j_bld_checker'] = {
+				["name"] = "Checkers",
+				["text"] = {
+					"{C:attention}Raise{} can be made with",
+					"{C:attention}3{} blinds if poker hand",
+					"contains no {C:attention}Pairs"
+				}
+			},
+			['j_bld_necronomicon'] = {
+				["name"] = "Necronomicon",
+				["text"] = {
+					"PLACEHOLDER EFFECT:",
+					"Create a channel card",
+					"each joker"
 				}
 			},
 		},

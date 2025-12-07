@@ -10,7 +10,7 @@
                 hands_target = 4,
             }
         },
-        cost = 7,
+        cost = 6,
         blueprint_compat = false,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)

@@ -472,16 +472,21 @@
     SMODS.PokerHandPart{ -- Spectrum base (Referenced from SixSuits) (and then from Bunco)
     key = 'allin',
     func = function(hand)
-            if G.GAME.selected_back.effect.center.config.extra then
-                if not G.GAME.selected_back.effect.center.config.extra.blindside then return {} end
-                local colorsuits = {}
+        if G.GAME.selected_back.effect.center.config.extra then
+        if not G.GAME.selected_back.effect.center.config.extra.blindside then return {} end
+        local colorsuits = {}
         local colors = {'Red', 'Green', 'Blue', 'Yellow', 'Purple', 'Faded'}
         for _, v in ipairs(colors) do
-        colorsuits[v] = true
+            colorsuits[v] = true
         end
-        
+
+        local checker = false
+        if next(find_joker('j_bld_checker', true)) then
+            checker = true
+        end
+
         -- < 5 hand cant be a spectrum
-        if #hand < 5 then return {} end
+        if (#hand < 5 and not checker) or #hand < 3 then return {} end
 
         local nonwilds = {}
         for i = 1, #hand do

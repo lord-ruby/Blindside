@@ -4,7 +4,7 @@
         atlas = 'bld_trinkets',
         pos = {x = 8, y = 1},
         rarity = 'bld_doodad',
-        cost = 6,
+        cost = 10,
         blueprint_compat = true,
         eternal_compat = true,
         in_pool = function(self, args)
