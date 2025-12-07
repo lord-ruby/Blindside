@@ -2,7 +2,7 @@
     SMODS.Joker({
         key = 'checker',
         atlas = 'bld_trinkets',
-        pos = {x = 0, y = 2},
+        pos = {x = 7, y = 6},
         rarity = 'bld_curio',
         cost = 9,
         blueprint_compat = false,

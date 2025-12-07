@@ -2,7 +2,7 @@
     SMODS.Joker({
         key = 'hackysack',
         atlas = 'bld_trinkets',
-        pos = {x = 2, y = 1},
+        pos = {x = 8, y = 6},
         rarity = 'bld_hobby',
         config = {
             extra = {
