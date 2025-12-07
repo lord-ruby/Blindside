@@ -812,7 +812,7 @@ end
                 }},
                 {n=G.UIT.R, config={align = "cm", r = 0.1, outline_colour = G.C.L_BLACK, line_emboss = 0.05, outline = 1.5}, nodes={
                     {n=G.UIT.R, config={align = "cm", minh = 0.05, padding = 0.07}, nodes={
-                        {n=G.UIT.O, config={object = DynaText({string = {{string = localize('k_base_cards'), colour = G.C.RED}, modded and {string = localize('k_effective'), colour = G.C.BLUE} or nil}, colours = {G.C.RED}, silent = true,scale = 0.4,pop_in_rate = 10, pop_delay = 4})}}
+                        {n=G.UIT.O, config={object = DynaText({string = {{string = localize('k_base_blinds'), colour = G.C.RED}, modded and {string = localize('k_effective'), colour = G.C.BLUE} or nil}, colours = {G.C.RED}, silent = true,scale = 0.4,pop_in_rate = 10, pop_delay = 4})}}
                     }},
                     {n=G.UIT.R, config={align = "cm", minh = 0.05, padding = 0.1}, nodes={
                     tally_sprite({x=0,y=0}, {{string = ''..suit_tallies['Red'], colour = flip_col},{string =''..mod_suit_tallies['Red'], colour = G.C.BLUE}}, {localize('bld_Red', 'suits_plural')}, "bld_Red"),

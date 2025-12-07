@@ -48,6 +48,7 @@ return {
 			["ph_mask_saved"] = "Saved by Ancient Mask",
 			['matryoshka_none'] = "None!",
 			['bld_fineart_dead'] = "Devalued!",
+			['k_base_blinds'] = "Base Blinds",
 			},
 		["v_dictionary"] = {
 			["a_rmult"] = "-#1#",
