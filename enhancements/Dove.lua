@@ -5,8 +5,8 @@
         config = {
             extra = {
                 value = 10,
-                chips = 120,
-                odds = 3,
+                chips = 100,
+                odds = 2,
                 hues = {"Green"}
             }
         },
