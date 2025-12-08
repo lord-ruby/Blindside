@@ -5,6 +5,7 @@
         config = {
             extra = {
                 xmult = 0.2,
+                xmultup = 0.1,
                 discards = 1,
                 value = 10,
                 hues = {"Red"}
@@ -45,6 +46,12 @@
                     1 + card.ability.extra.xmult*((G.exhaust and G.exhaust.cards) and #G.exhaust.cards or 0)
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmultup
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------
