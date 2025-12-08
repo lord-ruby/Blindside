@@ -5,7 +5,7 @@
         config = {
             extra = {
                 value = 13,
-                odds = 3,
+                odds = 2,
                 hues = {"Green"},
                 activated = false,
             }},
