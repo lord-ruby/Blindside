@@ -1348,6 +1348,15 @@ return {
 					"by {C:green}#1#{} this hand",
 				},
 			},
+			["m_bld_bones_upgrade"] = {
+				["name"] = "The Bones",
+				["text"] = {
+					"{X:green,C:white}Green{} {X:dark_edition,C:white}Faded{}",
+					"Increases all {C:green,E:1}probabilities{}",
+					"by {C:green}#1#{} this hand when scored",
+					"or held in hand",
+				},
+			},
 			["m_bld_fruit"] = {
 				["name"] = "The Fruit",
 				["text"] = {

@@ -30,19 +30,25 @@
             ["bld_obj_blindcard_faded"] = true,
         },
         calculate = function(self, card, context)
-                if context.cardarea == G.play and context.before then
+                if (context.cardarea == G.play or (card.ability.extra.upgraded and context.cardarea == G.hand)) and context.before then
 		            G.GAME.probabilities.normal = G.GAME.probabilities.normal + card.ability.extra.chance
                 end
-                if context.cardarea == G.play and context.after then
+                if (context.cardarea == G.play or (card.ability.extra.upgraded and context.cardarea == G.hand)) and context.after then
 		            G.GAME.probabilities.normal = G.GAME.probabilities.normal - card.ability.extra.chance
                 end
         end,
         loc_vars = function(self, info_queue, card)
             return {
+                key = card.ability.extra.upgraded and 'm_bld_bones_upgrade' or 'm_bld_bones',
                 vars = {
                     card.ability.extra.chance
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------
