@@ -1616,6 +1616,14 @@ return {
 					"and {C:attention}Burns"
 				},
 			},
+			["m_bld_air_upgrade"] = {
+				["name"] = "The Air",	
+				["text"] = {
+					"{X:dark_edition,C:white}Faded{}",
+					"Makes a {C:attention,E:1}copy{} of an",
+					"adjacent scoring Blind",
+				},
+			},
 			["m_bld_hammer"] = {
 				["name"] = "The Hammer",	
 				["text"] = {

@@ -2,10 +2,11 @@ SMODS.Enhancement({
     key = 'beta',
     atlas = 'bld_blindrank',
     pos = {x = 0, y = 7},
-    config = {bonus = 100,
+    config = {
         extra = {
             value = 1,
-            hues = {"Blue"}
+            chips = 100,
+            hues = {"Blue"},
         }},
     replace_base_card = true,
     no_rank = true,
@@ -13,6 +14,11 @@ SMODS.Enhancement({
     always_scores = true,
     overrides_base_rank = true,
     calculate = function(self, card, context)
+        if context.cardarea == G.play and context.main_scoring then
+            return {
+                chips = card.ability.extra.chips
+            }
+        end
         if context.end_of_round then
             card:start_dissolve()
         end

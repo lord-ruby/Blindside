@@ -72,12 +72,15 @@
                     }
                 end
             end
-            if context.burn_card and context.cardarea == G.play and context.burn_card == card and context.burn_card.facing ~= 'back' then
+            if context.burn_card and context.cardarea == G.play and context.burn_card == card and context.burn_card.facing ~= 'back' and not card.ability.extra.upgraded then
                 return { remove = true }
             end
         end,
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue+1] = {key = 'bld_burn', set = 'Other'}
+            return {
+                key = card.ability.extra.upgraded and 'm_bld_air_upgrade' or 'm_bld_air'
+            }
         end
     })
     
