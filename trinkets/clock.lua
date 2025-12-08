@@ -57,7 +57,7 @@
                 card.ability.extra.count = card.ability.extra.count - 1
                 if card.ability.extra.count == 1 then
                     juice_card_until(card, function ()
-                        return card.ability.extra.count > 1
+                        return card.ability.extra.count == 1
                     end)
                     return {
                         message = "1!"
