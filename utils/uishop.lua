@@ -375,7 +375,7 @@ function BLINDSIDE.create_blindcard_for_shop(area)
               }))
               return card
             else
-            local card = create_card(v.type, area, nil, nil, nil, nil, nil, 'sho')
+            local card = SMODS.create_card({set = v.type, area = area, bypass_discovery_center = true, discover = true})
             create_shop_card_ui(card, v.type, area)
             G.E_MANAGER:add_event(Event({
                 func = (function()
