@@ -12,14 +12,15 @@ SMODS.Tag {
                 if not G.GAME.selected_back.effect.center.config.extra.blindside then return false end
                 return true
             else
-            return false
+                return false
             end
         end,
     loc_vars = function(self, info_queue, tag)
+        local n,d = SMODS.get_probability_vars(tag, 1, 2)
         return {
             vars = {
-                1,
-                2,
+                n,
+                d,
             }
         }
     end,
