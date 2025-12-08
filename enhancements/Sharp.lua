@@ -7,12 +7,7 @@
                 value = 1,
                 mult = 2,
                 hues = {"Red"},
-                upgrade = {
-                    value = 1,
-                    mult = 6,
-                    hues = {"Red"},
-                    upgraded = true
-                }
+                multup = 4,
             }},
         replace_base_card = true,
         no_rank = true,
@@ -47,6 +42,12 @@
                     card.ability.mult
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.multup
+            card.ability.extra.upgraded = true
+            end
         end
     })
     

@@ -9,16 +9,9 @@
                 chips = 12,
                 chance = 1,
                 trigger = 2,
+                chipsup = 18,
+                multup = 6,
                 hues = {"Green"},
-                upgrade = {
-                    value = 1,
-                    mult = 12,
-                    chips = 30,
-                    chance = 1,
-                    trigger = 2,
-                    hues = {"Green"},
-                    upgraded = true
-                }
             }
         },
         replace_base_card = true,
@@ -79,6 +72,14 @@
                     card.ability.extra.chips
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+
+            card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chipsup
+            card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.multup
+            card.ability.extra.upgraded = true
+            end
         end
     })
     

@@ -9,6 +9,8 @@ SMODS.Sticker {
 
     apply = function(self, card, val)
       card.ability[self.key] = val
-      card.ability.extra = card.ability.extra.upgrade or card.ability.extra
+      if card.config.center.upgrade and type(card.config.center.upgrade) == 'function' then
+        card.config.center.upgrade(card)
+      end
     end
 }

@@ -7,12 +7,7 @@
                 money = 1,
                 value = 1,
                 hues = {"Yellow"},
-            upgrade = {
-                money = 2,
-                value = 1,
-                hues = {"Yellow"},
-                upgraded = true
-            }
+                moneyup = 1,
             }},
         replace_base_card = true,
         no_rank = true,
@@ -43,6 +38,12 @@
                     card.ability.extra.money
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.money = card.ability.extra.money + card.ability.extra.moneyup
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

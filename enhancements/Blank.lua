@@ -8,12 +8,6 @@
                 value = 1,
                 rescore = 1,
                 hues = {"Faded"},
-                upgrade = {
-                    value = 1,
-                    rescore = 1,
-                    hues = {"Faded"},
-                    upgraded = true
-                },
             }},
         replace_base_card = true,
         no_rank = true,
@@ -69,6 +63,11 @@
                     }
             end
         end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.upgraded = true
+            end
+        end
     })
 ----------------------------------------------
 ------------MOD CODE END----------------------
