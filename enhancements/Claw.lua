@@ -6,6 +6,7 @@
             extra = {
                 value = 100,
                 mult = 5,
+                multup = 3,
                 wound_tally = 0,
                 hues = {"Red","Purple"}
             }
@@ -79,6 +80,12 @@
                     if v.config.center_key == 'm_bld_wound' then 
                         card.ability.extra.wound_tally = card.ability.extra.wound_tally+1 end
                 end
+            end
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.multup
+            card.ability.extra.upgraded = true
             end
         end
     })
