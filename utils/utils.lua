@@ -1,5 +1,3 @@
-
-    
     function BLINDSIDE.is_blindside(string)
         for _, v in ipairs(SMODS.ObjectTypes.bld_obj_blindside.cards) do
             if v == string then
@@ -15,7 +13,7 @@
             end
         end
     end
-    
+
     function BLINDSIDE.set_up_blindside()
             G.GAME.blind_rate = 4
             G.GAME.tarot_rate = 0
