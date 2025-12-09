@@ -145,7 +145,7 @@
         "j_bld_stoplight",
         "j_bld_porcelaindoll",
         "j_bld_microphone",
-        "j_bld_cellphone",
+        --"j_bld_cellphone",
         "j_bld_piggybank",
         "j_bld_pickaxe",
         "j_bld_scratchticket",

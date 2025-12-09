@@ -2024,9 +2024,8 @@ return {
 			['j_bld_cellphone'] = {
 				["name"] = "Cellphone",
 				["text"] = {
-					"If previous hand",
-					"contained a {C:attention}burned",
-					"Blind, {X:mult,C:white}X#1#{} Mult"
+					"{X:mult,C:white}X#1#{} Mult if a Blind",
+					"has {C:attention}burned{} this round",
 				}
 			},
 			['j_bld_fineart'] = {
