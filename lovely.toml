@@ -444,14 +444,14 @@ for i = 1, #G.hand.cards do
     highlightcount = highlightcount + 1
     end
 end
-if highlightcount == 1 and next(SMODS.find_card("j_bld_miniature")) then
+if highlightcount == 1 and next(SMODS.find_card("j_bld_miniature")) and not hook then
     wedge_played = true
 end
 
 for i = 1, #G.hand.cards do
     if G.hand.cards[i] and G.hand.cards[i].highlighted
     and G.hand.cards[i].config.center == G.P_CENTERS.m_bld_wedge
-    and not G.hand.cards[i].debuff then
+    and not G.hand.cards[i].debuff and not hook then
         wedge_played = true
         break
     end
