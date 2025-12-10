@@ -718,9 +718,9 @@ return {
 			["c_bld_horror"] = {
 				["name"] = "Horror",
 				["text"] = {
-					"{C:attention}Enhance{} up to #1#",
-					"selected blinds into",
-					"{C:attention}Spooky Blinds{}"
+					"{C:attention}Enhance{} #1#",
+					"selected blind into a",
+					"{C:attention}Spooky Blind{}"
 				},
 			},
 			["c_bld_scifi"] = {
