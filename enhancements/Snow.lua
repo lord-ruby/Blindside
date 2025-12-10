@@ -7,6 +7,7 @@
                 chips = 0,
                 gain_chips = 60,
                 value = 11,
+                retain = true,
                 hues = {"Purple"}
             }},
         replace_base_card = true,

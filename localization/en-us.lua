@@ -1412,6 +1412,16 @@ return {
 					"{C:attention}held in hand{}"},
 				},
 			},
+			["m_bld_eye_upgrade"] = {
+				["name"] = "The Eye",
+				["text"] = {	
+					{"{X:blue,C:white}Blue{}",
+					"{C:mult}+#2#{} Mult"},
+					{"{X:chips,C:white}X#1#{} Chips while",
+					"{C:attention}held in hand{}"},
+					{"{C:attention}Retains"},
+				},
+			},
 			["m_bld_peace"] = {
 				["name"] = "The Peace",
 				["text"] = {
@@ -1794,7 +1804,8 @@ return {
 					{"{X:purple,C:white}Purple{}",
 					"Currently {C:chips}+#1#{} Chips"},
 					{"When held in hand,",
-					"gains {C:chips}+#2#{} Chips"},
+					"gains {C:chips}+#2#{} Chips",
+					"and {C:attention}retains"},
 					{"After being scored, loses",
 					"all accumulated {C:chips}Chips{}"},
 				},
