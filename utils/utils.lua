@@ -474,7 +474,7 @@ G.FUNCS.blind_draw_from_deck_to_hand = function(e)
         delay = 0.4,
         func = function()
             if #SMODS.drawn_cards > 0 then
-                if G.GAME.current_round.discards_used == 0 and G.GAME.current_round.hands_played == 0 then
+                if not G.GAME.current_round.any_hand_drawn and G.GAME.facing_blind then
                 for i = 1, #G.GAME.tags do
                     G.GAME.tags[i]:apply_to_run({type = 'real_round_start'})
                 end
