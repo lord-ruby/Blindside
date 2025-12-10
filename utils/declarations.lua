@@ -178,7 +178,7 @@
         "j_bld_hackysack",
         "j_bld_checker",
         "j_bld_necronomicon",
-        --"j_bld_lighter",
+        "j_bld_lighter",
         "j_bld_dentures",
         "j_bld_giftbox",
         "c_bld_horror",
