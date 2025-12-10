@@ -4,7 +4,7 @@
         atlas = 'bld_trinkets',
         pos = {x = 5, y = 2},
         rarity = 'bld_keepsake',
-        cost = 7,
+        cost = 12,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)

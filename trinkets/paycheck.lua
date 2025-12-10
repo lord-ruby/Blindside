@@ -3,7 +3,7 @@
         key = 'paycheck',
         atlas = 'bld_trinkets',
         pos = {x = 0, y = 0},
-        rarity = 'bld_keepsake',
+        rarity = 'bld_curio',
         config = {
             extra = {
                 money = 0,

@@ -7,7 +7,7 @@
         config = {
             extra = {
                 mult = 2,
-                xmult = 3,
+                xmult = 2.5,
                 hand_count = 0,
                 x_value = {x = 8, y = 0},
                 queen = false

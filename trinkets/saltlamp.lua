@@ -3,7 +3,7 @@
         key = 'saltlamp',
         atlas = 'bld_trinkets',
         pos = {x = 1, y = 4},
-        rarity = 'bld_curio',
+        rarity = 'bld_keepsake',
         config = {
             extra = {
                 active = false

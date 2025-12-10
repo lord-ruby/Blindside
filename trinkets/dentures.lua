@@ -3,7 +3,7 @@
         key = 'dentures',
         atlas = 'bld_trinkets',
         pos = {x = 5, y = 6},
-        rarity = 'bld_keepsake',
+        rarity = 'bld_curio',
         cost = 10,
         blueprint_compat = true,
         eternal_compat = true,

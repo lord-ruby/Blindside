@@ -7,7 +7,7 @@
         config = {
             extra = {
                 xchips = 3,
-                min = 1,
+                min = 2,
             }
         },
         cost = 15,

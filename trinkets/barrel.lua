@@ -6,7 +6,7 @@
         rarity = 'bld_hobby',
         config = {
             extra = {
-                xmult_gain = 0.3,
+                xmult_gain = 0.25,
             }
         },
         cost = 12,

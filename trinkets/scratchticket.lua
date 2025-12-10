@@ -3,7 +3,7 @@
         key = 'scratchticket',
         atlas = 'bld_trinkets',
         pos = {x = 0, y = 3},
-        rarity = 'bld_keepsake',
+        rarity = 'bld_curio',
         config = {
             extra = {
                 chance = 1,

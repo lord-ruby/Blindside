@@ -3,7 +3,7 @@
         key = 'bookmark',
         atlas = 'bld_trinkets',
         pos = {x = 3, y = 4},
-        rarity = 'bld_curio',
+        rarity = 'bld_keepsake',
         config = {
             extra = {
                 xmult = 3

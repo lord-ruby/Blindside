@@ -3,14 +3,14 @@
         key = 'clock',
         atlas = 'bld_trinkets',
         pos = {x = 0, y = 1},
-        rarity = 'bld_doodad',
+        rarity = 'bld_keepsake',
         config = {
             extra = {
                 xmult = 3,
                 count = 4,
             }
         },
-        cost = 12,
+        cost = 15,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)

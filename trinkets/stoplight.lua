@@ -3,13 +3,13 @@
         key = 'stoplight',
         atlas = 'bld_trinkets',
         pos = {x = 4, y = 2},
-        rarity = 'bld_doodad',
+        rarity = 'bld_keepsake',
         config = {
             extra = {
                 x_value = {x = 4, y = 2},
             }
         },
-        cost = 10,
+        cost = 12,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)

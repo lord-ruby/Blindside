@@ -9,7 +9,7 @@
                 xmult = 0.3,
             }
         },
-        cost = 12,
+        cost = 15,
         blueprint_compat = false,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)

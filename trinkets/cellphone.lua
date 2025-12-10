@@ -6,7 +6,7 @@
         rarity = 'bld_doodad',
         config = {
             extra = {
-                xmult = 2.5,
+                xmult = 2,
             }
         },
         cost = 12,
