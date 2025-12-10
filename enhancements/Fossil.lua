@@ -68,7 +68,6 @@
             end]]
         end,
         loc_vars = function(self, info_queue, card)
-            info_queue[#info_queue+1] = {key = 'bld_burn', set = 'Other'}
             local n,d = SMODS.get_probability_vars(card, 1, card.ability.extra.odds)
             return {
                 vars = {
