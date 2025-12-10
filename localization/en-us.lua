@@ -1195,12 +1195,12 @@ return {
 				["name"] = "The Fish",
 				["text"] = {
 					{"{X:blue,C:white}Blue{}",
-					"{X:chips,C:white}X1{} Chips, and",
-					"{X:chips,C:white}+X#1#{} Chips for each",
-					"Blind {C:attention}held in hand"},
-					{"Flips all Blinds",
+					"{X:chips,C:white}X1{} Chips, and {X:chips,C:white}+X#1#{}",
+					"for each Blind",
 					"{C:attention}held in hand"},
-					{"{C:attention}Burns"},
+					{"Flips all Blinds",
+					"{C:attention}held in hand",
+					"until round end"},
 				},
 			},
 			["m_bld_path"] = {
@@ -1665,7 +1665,8 @@ return {
 					{"Gains {C:red}+#2#{} Mult",
 					"when scored"},
 					{"Flips all Blinds",
-					"{C:attention}held in hand"},
+					"{C:attention}held in hand",
+					"until round end"},
 				},
 			},
 			["m_bld_bronze"] = {

@@ -10,7 +10,7 @@ pattern = '''if self.name == 'The Wheel' and SMODS.pseudorandom_probability(self
 position = 'before'
 match_indent = true
 payload = '''
-if card.config.center.config.extra and card.config.center.config.extra.flipped then
+if card.config.center.config.extra and card.config.center.config.extra.flipped or (card.ability and card.ability.extra and card.ability.extra.temp_flipped) then
     return true
 end
 
@@ -1358,5 +1358,22 @@ if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effe
         draw_card(G.hand, G.discard, i*100/#_cards, 'down', false, _cards[i])
     end
     return true end }))
+end
+'''
+
+# the spear money for mult
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/utils.lua"]'
+pattern = '''
+-- TARGET: effects after end of round evaluation
+'''
+match_indent = true
+position = 'after'
+payload = '''
+for i = 1, #G.playing_cards do
+    if card.ability and card.ability.extra and card.ability.extra.temp_flipped then
+        card.ability.extra.temp_flipped = false
+    end
 end
 '''
