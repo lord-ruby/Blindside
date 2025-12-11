@@ -729,6 +729,14 @@ return {
 					"selected Blind",
 				},
 			},
+			["c_bld_pentagram"] = {
+				["name"] = "Pentagram",
+				["text"] = {
+					{"Chooses #2# random Blinds"},
+					{"Destroys {C:attention}#1#{} of them,",
+					"{C:dark_edition,E:1}upgrades{} the rest"},
+				},
+			},
 		},
 		["bld_obj_filmcard"] = {
 			["c_bld_horror"] = {
