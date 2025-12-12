@@ -280,7 +280,7 @@ end
                 card:start_materialize()
                 G.shop_booster:emplace(card) 
             else
-              G.shop_booster:emplace(BLINDSIDE.create_blindcard_for_shop(G.shop_booster, true))
+              G.shop_booster:emplace(BLINDSIDE.create_blindcard_for_shop(G.shop_booster, G.GAME.last_joker))
             end
           end
           return true
