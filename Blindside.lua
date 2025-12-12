@@ -396,7 +396,8 @@ local rune_list = {
 local ritual_list = {
     "prayer",
     "pentagram",
-    "sacrifice"
+    "sacrifice",
+    "intervene"
 }
 
 

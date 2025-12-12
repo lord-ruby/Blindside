@@ -225,6 +225,7 @@
         "c_bld_sacrifice",
         "c_bld_prayer",
         "c_bld_pentagram",
+        "c_bld_intervene",
         "bld_wild",
         "bld_astral",
         "bld_floral",

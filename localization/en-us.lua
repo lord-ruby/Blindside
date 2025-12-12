@@ -736,6 +736,19 @@ return {
 					"{C:dark_edition,E:1}Upgrades{} {C:attention}#2#{} random Blinds",
 				},
 			},
+			["c_bld_intervene"] = {
+				["name"] = "Intervene",
+				["text"] = {
+					"{C:dark_edition,E:1}Upgrade{} {C:attention}#1#{} selected",
+					"Blinds and {C:attention}reroll{} them",
+					"into Blinds of the",
+					"same {C:attention}hue"
+				},
+			},
+			--[[					"{C:dark_edition,E:1}Upgrade{} {C:attention}#1#",
+					"selected Blinds",
+					"{C:attention}Destroy{} a random",
+					"trinket"]]
 		},
 		["bld_obj_filmcard"] = {
 			["c_bld_horror"] = {
