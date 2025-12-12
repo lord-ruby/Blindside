@@ -1216,6 +1216,16 @@ return {
 					{"Drawn {C:attention}face down{}"},
 				},
 			},
+			["m_bld_house_upgraded"] = {
+				["name"] = "The House",
+				["text"] = {
+					{"{X:blue,C:white}Blue{}",
+					"{C:chips}+#1#{} Chips, {C:white,X:Chips}X#2#{} Chips"},
+					{"Returns other played",
+					"blinds back to hand"},
+					{"Drawn {C:attention}face down{}"},
+				},
+			},
 			["m_bld_arm"] = {
 				["name"] = "The Arm",
 				["text"] = {
@@ -1419,6 +1429,14 @@ return {
 					"played blinds"},
 				},
 			},
+			["m_bld_fruit_upgraded"] = {
+				["name"] = "The Fruit",
+				["text"] = {
+					"{X:red,C:white}Red{} {X:dark_edition,C:white}Faded{}",
+					"Retriggers all scoring",
+					"{X:red,C:white}Red{} Blinds",
+				},
+			},
 			["m_bld_window"] = {
 				["name"] = "The Window",
 				["text"] = {
@@ -1471,7 +1489,7 @@ return {
 					"{C:mult}+#2#{} Mult"},
 					{"{X:chips,C:white}X#1#{} Chips while",
 					"{C:attention}held in hand{}"},
-					{"{C:attention}Retains"},
+					{"{C:green}Retained"},
 				},
 			},
 			["m_bld_peace"] = {
@@ -1520,6 +1538,15 @@ return {
 				["text"] = {
 					"{X:dark_edition,C:white}Faded{}",
 					"When scored, gives a",
+					"{C:green,E:1}varied{} effect",
+				},
+			},
+			["m_bld_hat_upgraded"] = {
+				["name"] = "The Hat",
+				["text"] = {
+					"{X:dark_edition,C:white}Faded{}",
+					"When scored, or {C:attention}held",
+					"{C:attention}in hand{}, gives a",
 					"{C:green,E:1}varied{} effect",
 				},
 			},
@@ -1673,7 +1700,7 @@ return {
 				["text"] = {
 					{"{X:chips,C:white}Blue{}",
 					"{C:chips}+#2#{} Chips"},
-					{"Retain all cards",
+					{"{C:green}Retain{} all cards",
 					"{C:attention}held in hand"},
 				},
 			},
@@ -1710,6 +1737,15 @@ return {
 					"While {C:attention}held in hand{},",
 					"retrigger {C:attention}first{} scoring",
 					"Blind {C:attention}#1#{} times"
+				},
+			},
+			["m_bld_hammer_upgraded"] = {
+				["name"] = "The Hammer",
+				["text"] = {
+					"{X:dark_edition,C:white}Faded{}",
+					"While {C:attention}held in hand{},",
+					"retrigger {C:attention}first{} and {C:attention}last{}",
+					"scoring Blinds {C:attention}#1#{} times"
 				},
 			},
 			["m_bld_sun"] = {
@@ -1757,6 +1793,15 @@ return {
 					{"{X:dark_edition,C:white}Faded{}",
 					"{C:blue}+#1#{} Chips"},
 					{"Always scores"},
+				},
+			},
+			["m_bld_lock_upgraded"] = {
+				["name"] = "The Lock",	
+				["text"] = {
+					{"{X:dark_edition,C:white}Faded{}",
+					"{C:blue}+#1#{} Chips"},
+					{"Always scores"},
+					{"Retriggers once"},
 				},
 			},
 			["m_bld_key"] = {
@@ -1857,7 +1902,7 @@ return {
 					"Currently {C:chips}+#1#{} Chips"},
 					{"When held in hand,",
 					"gains {C:chips}+#2#{} Chips",
-					"and {C:attention}retains"},
+					"and is {C:green}retained"},
 					{"After being scored, loses",
 					"all accumulated {C:chips}Chips{}"},
 				},
@@ -1957,11 +2002,24 @@ return {
 				["name"] = "The Fossil",
 				["text"] = {
 					{"{X:green,C:white}Green{}",
-					"When held in hand,",
+					"When {C:attention}held in hand{},",
+					"{C:green}#1# in #2#{} chance to create",
+					"a {C:bld_obj_mineral}Mineral{} for the played",
+					"poker hand and {C:attention}burn",
+					"{C:inactive}(Must have room)"},
+					{"{C:green}Retained{}"}
+				},
+			},
+			["m_bld_fossil_upgraded"] = {
+				["name"] = "The Fossil",
+				["text"] = {
+					{"{X:green,C:white}Green{}",
+					"When {C:attention}held in hand{},",
 					"{C:green}#1# in #2#{} chance to create",
 					"a {C:bld_obj_mineral}Mineral{} for the played",
 					"poker hand",
 					"{C:inactive}(Must have room)"},
+					{"{C:green}Retained{}"}
 				},
 			},
 		},
@@ -2597,6 +2655,15 @@ return {
 				["text"] = {
 					"Blind is removed",
 					"until end of round",
+				}
+			},
+			["bld_retain"]	= {
+				["name"] = "Retained",
+				["text"] = {
+					"Blind is not",
+					"discarded after",
+					"play when {C:attention}held",
+					"{C:attention}in hand"
 				}
 			},
 			["p_bld_symbol_basic1"]	= {

@@ -5,6 +5,7 @@
         config = {bonus = 30,
             extra = {
                 value = 2,
+                retriggers = 1,
                 hues = {"Faded"}
             }},
         replace_base_card = true,
@@ -26,6 +27,11 @@
             end
         end,
         calculate = function(self, card, context)
+            if context.repetition and context.cardarea == G.play and card.facing ~= 'back' and context.ability.extra.upgraded then
+                return {
+                    repetitions = card.ability.extra.repetitions
+                }
+            end
             if context.after and context.cardarea == G.play and card.facing ~= 'back' then
                 G.playing_card = (G.playing_card and G.playing_card + 1) or 1
                 local key = nil
@@ -82,10 +88,16 @@
         end,
         loc_vars = function(self, info_queue, card)
             return {
+                key = card.ability.extra.upgraded and 'm_bld_lock_upgraded' or 'm_bld_lock',
                 vars = {
                     card.ability.bonus
                 }
             }
+        end,
+        upgrade = function(card)
+            if not card.ability.extra.upgraded then
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

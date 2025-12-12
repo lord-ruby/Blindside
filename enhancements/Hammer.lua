@@ -27,19 +27,25 @@
             ["bld_obj_blindcard_faded"] = true,
         },
         calculate = function(self, card, context) 
-        if context.repetition and context.cardarea == G.play and context.other_card == context.scoring_hand[1] then
-            return {
-                repetitions = card.ability.extra.repetitions
-            }
-        end
+            if context.repetition and context.cardarea == G.play and (context.other_card == context.scoring_hand[1] or (card.ability.extra.upgraded and context.other_card == context.scoring_hand[#context.scoring_hand])) then
+                return {
+                    repetitions = card.ability.extra.repetitions
+                }
+            end
         end,
         weight = 3,
         loc_vars = function(self, info_queue, card)
             return {
+                key = card.ability.extra.upgraded and 'm_bld_hammer_upgraded' or 'm_bld_hammer',
                 vars = {
                     card.ability.extra.repetitions
                 }
             }
+        end,
+        upgrade = function(card)
+            if not card.ability.extra.upgraded then
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

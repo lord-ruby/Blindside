@@ -42,7 +42,7 @@
                     }
                 end
             end
-            if context.cardarea == G.play and context.main_scoring then
+            if (context.cardarea == G.play and context.main_scoring) or (context.cardarea == G.hand and context.main_scoring and card.ability.extra.upgraded) then
                 if card.ability.extra.number == 2 then
                     return {
                         mult = pseudorandom('hat', card.ability.extra.minmult, card.ability.extra.maxmult)
@@ -93,6 +93,14 @@
                         colour = G.C.GREEN
                     }
                 end
+            end
+        end,
+        loc_vars = function (self, info_queue, card)
+            return {key = card.ability.extra.upgraded and 'm_bld_hat_upgraded' or 'm_bld_hat',}
+        end,
+        upgrade = function(card)
+            if not card.ability.extra.upgraded then
+            card.ability.extra.upgraded = true
             end
         end
     })

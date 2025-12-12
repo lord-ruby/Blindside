@@ -7,6 +7,7 @@
                 value = 13,
                 mult = 5,
                 xmult = 1.5,
+                xmult_gain = 0.5,
                 hues = {"Red"}
             }},
         replace_base_card = true,
@@ -47,6 +48,12 @@
                     card.ability.extra.mult, card.ability.extra.xmult
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_gain
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

@@ -7,6 +7,7 @@
             extra = {
                 discards = 1,
                 value = 10,
+                mult_gain = 6,
                 hues = {"Red"}
             }},
         replace_base_card = true,
@@ -42,6 +43,12 @@
                     card.ability.mult, card.ability.extra.discards
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

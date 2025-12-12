@@ -7,7 +7,9 @@
             p_dollars = 2,
             extra = {
                 value = 13,
-                hues = {"Yellow"}
+                hues = {"Yellow"},
+                mult_gain = 5,
+                dollar_gain = 2,
             }},
         pools = {
             ["bld_obj_blindcard_generate"] = true,
@@ -33,6 +35,13 @@
                     card.ability.h_mult, card.ability.p_dollars
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.p_dollars = card.ability.extra.p_dollars + card.ability.extra.dollar_gain
+            card.ability.extra.h_mult = card.ability.extra.h_mult + card.ability.extra.mult_gain
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

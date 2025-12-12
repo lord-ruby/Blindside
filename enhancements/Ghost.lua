@@ -7,6 +7,7 @@
                 value = 100,
                 chance = 1,
                 trigger = 3,
+                chancedown = -1,
                 hues = {"Purple", "Green"}
             }
         },
@@ -65,6 +66,12 @@
                     colours =  {HEX('cc73d9')}
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.trigger = card.ability.extra.trigger + card.ability.extra.chancedown
+            card.ability.extra.upgraded = true
+            end
         end
     })
     

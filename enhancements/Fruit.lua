@@ -30,26 +30,26 @@
             ["bld_obj_blindcard_faded"] = true,
         },
         calculate = function(self, card, context)
-                if context.cardarea == G.play and context.before and card.facing ~= 'back' then
-                    local self_pos = nil
-                    for i=1, #G.play.cards do
-                        if G.play.cards[i] == card then
-                            self_pos = i
-                        end
-                    end
-                    if G.play.cards[self_pos-1] then
-                        if G.play.cards[self_pos-1].facing ~= 'back' then 
-                        G.play.cards[self_pos-1]:flip()
-                        end
-                        G.play.cards[self_pos-1]:set_debuff(true)
-                    end
-                    if G.play.cards[self_pos+1] then
-                        if G.play.cards[self_pos+1].facing ~= 'back' then 
-                        G.play.cards[self_pos+1]:flip()
-                        end
-                        G.play.cards[self_pos+1]:set_debuff(true)
+            if not card.ability.extra.upgraded and context.cardarea == G.play and context.before and card.facing ~= 'back' then
+                local self_pos = nil
+                for i=1, #G.play.cards do
+                    if G.play.cards[i] == card then
+                        self_pos = i
                     end
                 end
+                if G.play.cards[self_pos-1] then
+                    if G.play.cards[self_pos-1].facing ~= 'back' then 
+                    G.play.cards[self_pos-1]:flip()
+                    end
+                    G.play.cards[self_pos-1]:set_debuff(true)
+                end
+                if G.play.cards[self_pos+1] then
+                    if G.play.cards[self_pos+1].facing ~= 'back' then 
+                    G.play.cards[self_pos+1]:flip()
+                    end
+                    G.play.cards[self_pos+1]:set_debuff(true)
+                end
+            end
             if context.cardarea == G.play and context.main_scoring and context.scoring_hand then
                 return {
                         func = function()
@@ -80,31 +80,37 @@
                 
             end
             if context.after and context.scoring_hand and card.facing ~= 'back' then
-            for _, other_card in ipairs(context.scoring_hand) do
-                other_card.ability.extra.rescore = 0
-            end
-        end
-        if context.cardarea == G.play and context.after and card.facing ~= 'back' then
-            local self_pos = nil
-            for i=1, #G.play.cards do
-                if G.play.cards[i] == card then
-                    self_pos = i
+                for _, other_card in ipairs(context.scoring_hand) do
+                    other_card.ability.extra.rescore = 0
                 end
             end
-            if G.play.cards[self_pos-1] then
-                G.play.cards[self_pos-1]:set_debuff(false)
+            if not card.ability.extra.upgraded and context.cardarea == G.play and context.after and card.facing ~= 'back' then
+                local self_pos = nil
+                for i=1, #G.play.cards do
+                    if G.play.cards[i] == card then
+                        self_pos = i
+                    end
+                end
+                if G.play.cards[self_pos-1] then
+                    G.play.cards[self_pos-1]:set_debuff(false)
+                end
+                if G.play.cards[self_pos+1] then
+                    G.play.cards[self_pos+1]:set_debuff(false)
+                end
             end
-            if G.play.cards[self_pos+1] then
-                G.play.cards[self_pos+1]:set_debuff(false)
-            end
-        end
-        end,
+            end,
         loc_vars = function(self, info_queue, card)
             return {
+                key = card.ability.extra.upgraded and 'm_bld_fruit_upgraded' or 'm_bld_fruit',
                 vars = {
                     card.ability.extra.repetitions
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

@@ -7,6 +7,7 @@
                 value = 13,
                 odds = 2,
                 hues = {"Green"},
+                retain = true,
                 activated = false,
             }},
         replace_base_card = true,
@@ -62,18 +63,28 @@
                 end
             end
 
-            --[[if context.burn_card and context.burn_card == card and card.ability.extra.activated then
+            if context.burn_card and context.burn_card == card and card.ability.extra.activated then
                 card.ability.extra.activated = false
                 return {remove = true}
-            end]]
+            end
         end,
         loc_vars = function(self, info_queue, card)
+            info_queue[#info_queue+1] = {key = 'bld_retain', set = 'Other'}
+            if not card.ability.extra.upgraded then
+                info_queue[#info_queue+1] = {key = 'bld_burn', set = 'Other'}
+            end
             local n,d = SMODS.get_probability_vars(card, 1, card.ability.extra.odds)
             return {
+                key = card.ability.extra.upgraded and 'm_bld_fossil_upgraded' or 'm_bld_fossil',
                 vars = {
                     n,d
                 }
             }
+        end,
+        upgrade = function(card)
+            if not card.ability.extra.upgraded then
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

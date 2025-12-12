@@ -6,6 +6,7 @@
             extra = {
                 xmult = 1,
                 xmult_gain = 0.25,
+                xmult_gainup = 0.15,
                 value = 11,
                 hues = {"Purple"}
             }},
@@ -70,6 +71,12 @@
                     card.ability.extra.xmult_gain
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.xmult_gain = card.ability.extra.xmult_gain + card.ability.extra.xmult_gain_up
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------
