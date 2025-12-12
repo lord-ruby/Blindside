@@ -887,6 +887,13 @@ return {
                     "{C:inactive}(Must have room)"
 				},
 			},
+			["c_bld_sports"] = {
+				["name"] = "Sports",
+				["text"] = {
+                    "Randomly {C:attention}enhance{} up to",
+					"{C:attention}#1#{} selected Blinds",
+				},
+			},
 		},
 		["Blind"] = {
 			["bl_bld_joker"] = {
