@@ -725,8 +725,9 @@ return {
 			["c_bld_sacrifice"] = {
 				["name"] = "Sacrifice",
 				["text"] = {
-					"{C:dark_edition,E:1}Upgrade{} #1#",
-					"selected Blind",
+					"Destroy {C:attention}#1#{} random",
+					"Blinds held in hand",
+					"and gain {C:money}#2#$",
 				},
 			},
 			["c_bld_pentagram"] = {
