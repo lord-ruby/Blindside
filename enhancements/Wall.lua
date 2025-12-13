@@ -31,6 +31,7 @@
         weight = 3,
         loc_vars = function(self, info_queue, card)
             return {
+                key = card.ability.extra.upgraded and 'm_bld_wall_upgraded' or 'm_bld_wall',
                 vars = {
                     card.ability.extra.x_mult, card.ability.extra.x_mult_bonus
                 }
@@ -46,11 +47,16 @@
                     message_colour = G.C.PURPLE
                 })
                 end
-                if context.cardarea == G.play and context.main_scoring then
+                if (context.cardarea == G.play or (card.ability.extra.upgraded and context.cardarea == G.hand)) and context.main_scoring then
                     return {
                         xmult = card.ability.extra.x_mult
                     }
                 end
+        end,
+        upgrade = function(card)
+            if not card.ability.extra.upgraded then
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

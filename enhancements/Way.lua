@@ -7,6 +7,8 @@
                 value = 12,
                 x_chips = 1.5,
                 chips = -20,
+                x_chips_up = 0.5,
+                chips_up = -10,
                 hues = {"Purple"}
             }},
         replace_base_card = true,
@@ -42,6 +44,13 @@
                     chips = card.ability.extra.chips,
                     xchips = card.ability.extra.x_chips
                 }
+            end
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_up
+            card.ability.extra.x_chips = card.ability.extra.x_chips + card.ability.extra.x_chips_up
+            card.ability.extra.upgraded = true
             end
         end
     })

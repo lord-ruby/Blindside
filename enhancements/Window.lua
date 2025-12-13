@@ -5,7 +5,8 @@
         config = {
             extra = {
                 value = 11,
-                money = 10,
+                money = 8,
+                money_up = 8,
                 hues = {"Faded"}
             }},
         replace_base_card = true,
@@ -56,6 +57,12 @@
                     card.ability.extra.money
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.money = card.ability.extra.money + card.ability.extra.money_up
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

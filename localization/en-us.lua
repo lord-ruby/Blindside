@@ -1218,6 +1218,17 @@ return {
 					{"Always scores"},
 				},
 			},
+			["m_bld_wall_upgraded"] = {
+				["name"] = "The Wall",
+				["text"] = {
+					{"{X:purple,C:white}Purple{}",
+					"Currently {X:mult,C:white}X#1#{} Mult"},
+					{"Gains {X:mult,C:white}X#2#{} Mult",
+					"after being played"},
+					{"Always scores, and",
+					"scores {C:attention}held in hand"},
+				},
+			},
 			["m_bld_house"] = {
 				["name"] = "The House",
 				["text"] = {
@@ -1337,6 +1348,15 @@ return {
 					"and {C:attention}Burns{}"}
 				},
 			},
+			["m_bld_wedge_upgraded"] = {
+				["name"] = "The Wedge",
+				["text"] = {
+					{"{X:green,C:white}Green{}",
+					"When {C:red}discarded{}, play",
+					"discarded hand"},
+					{"Always Scores"}
+				},
+			},
 			["m_bld_cell"] = {
 				["name"] = "The Cell",
 				["text"] = {
@@ -1356,6 +1376,15 @@ return {
 					"If scoring hand",
 					"conatins 5 Blinds, creates a",
 					"{C:chips,E:1}Wave Tag{} and {C:attention}burns{}"
+				},
+			},
+			["m_bld_psychic_upgraded"] = {
+				["name"] = "The Psychic",
+				["text"] = {
+					"{X:money,C:white}Yellow{}",
+					"Creates a",
+					"{C:chips,E:1}Wave Tag{}",
+					"and {C:attention}burns{}"
 				},
 			},
 			["m_bld_goad"] = {
@@ -1383,6 +1412,16 @@ return {
 				["text"] = {
 					{"{X:purple,C:white}Purple{} {X:money,C:white}Yellow{}",
 					"{C:bld_obj_mineral}Upgrades{} played hand"},
+					{"Creates a {C:red}Debuff Tag{}",
+					"for played hand"},
+				},
+			},
+			["m_bld_bolt_upgraded"] = {
+				["name"] = "The Bolt",
+				["text"] = {
+					{"{X:purple,C:white}Purple{} {X:money,C:white}Yellow{}",
+					"{C:bld_obj_mineral}Upgrades{} played",
+					"hand twice"},
 					{"Creates a {C:red}Debuff Tag{}",
 					"for played hand"},
 				},
@@ -1742,6 +1781,17 @@ return {
 					"{C:inactive,S:0.8}(Must have room)"
 				},
 			},
+			["m_bld_vast_upgraded"] = {
+				["name"] = "The Vast",
+				["text"] = {
+					"{X:chips,C:white}Blue{}",
+					"While held in hand,",
+					"if scoring hand contains",
+					"a {X:chips,C:white}Blue{} Blind, creates a",
+					"random {C:attention}Mineral{} card",
+					"{C:inactive,S:0.8}(Must have room)"
+				},
+			},
 			["m_bld_pile"] = {
 				["name"] = "The Pile",	
 				["text"] = {
@@ -1990,6 +2040,14 @@ return {
 					{"{C:attention}Burns{}"}
 				},
 			},
+			["m_bld_wound_upgraded"] = {
+				["name"] = "The Wound",
+				["text"] = {
+					{"{X:mult,C:white}Red{}",
+					"{X:mult,C:white}X#1#{} Mult"},
+					{"{C:attention}Burns{}"}
+				},
+			},
 			["m_bld_claw"] = {
 				["name"] = "The Claw",
 				["text"] = {
@@ -2041,8 +2099,20 @@ return {
 				["text"] = {
 					"{X:mult,C:white}Red{} {X:money,C:white}Yellow{}",
 					"If scoring hand",
-					"conatins 3 Blinds, creates a",
+					"conatins at least",
+					"3 Blinds, creates a",
 					"{C:mult,E:1}Strike Tag{} and {C:attention}burns{}"
+				},
+			},
+			["m_bld_spear_upgraded"] = {
+				["name"] = "The Spear",
+				["text"] = {
+					{"{X:mult,C:white}Red{} {X:money,C:white}Yellow{}",
+					"{C:money}+#1#${}"},
+					{"If scoring hand",
+					"conatins at least",
+					"3 Blinds, creates a",
+					"{C:mult,E:1}Strike Tag{} and {C:attention}burns{}"}
 				},
 			},
 			["m_bld_line"] = {

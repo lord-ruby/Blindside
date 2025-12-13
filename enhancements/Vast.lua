@@ -6,6 +6,7 @@
             extra = {
                 value = 14,
                 blue = 2,
+                less_blue = -1,
                 hues = {"Blue"}
             }},
         replace_base_card = true,
@@ -57,10 +58,17 @@
         end,
         loc_vars = function(self, info_queue, card)
             return {
+                key = card.ability.extra.upgraded and 'm_bld_vast_upgraded' or 'm_bld_vast',
                 vars = {
                     card.ability.extra.blue
                 }
             }
+        end,
+        upgrade = function(card) 
+            if not card.ability.extra.upgraded then
+            card.ability.extra.blue = card.ability.extra.blue + card.ability.extra.less_blue
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

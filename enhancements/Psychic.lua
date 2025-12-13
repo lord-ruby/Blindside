@@ -28,7 +28,7 @@
         },
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.main_scoring then
-                if #context.scoring_hand == 5 then
+                if #context.scoring_hand == 5 or card.ability.extra.upgraded then
                     return {
                         focus = card,
                         message = localize('k_tagged_ex'),
@@ -56,6 +56,15 @@
         end,
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue+1] = G.P_TAGS['tag_bld_wave']
+            info_queue[#info_queue+1] = {key = 'bld_burn', set = 'Other'}
+            return {
+                key = card.ability.extra.upgraded and 'm_bld_psychic_upgraded' or 'm_bld_psychic',
+            }
+        end,
+        upgrade = function(card)
+            if not card.ability.extra.upgraded then
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------

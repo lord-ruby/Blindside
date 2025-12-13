@@ -5,7 +5,8 @@
         config = {
             extra = {
                 value = 100,
-                hues = {"Red", "Yellow"}
+                hues = {"Red", "Yellow"},
+                dollars = 8,
             }},
         pools = {
             ["bld_obj_blindcard_generate"] = true,
@@ -31,14 +32,27 @@
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.main_scoring then
                 if #context.scoring_hand >= 3 then
-                    return {
-                        focus = card,
-                        message = localize('k_tagged_ex'),
-                        func = function()
-                            add_tag(Tag('tag_bld_strike'))
-                        end,
-                        card = card
-                    }
+                    if card.ability.extra.upgraded then
+                        return {
+                            focus = card,
+                            message = localize('k_tagged_ex'),
+                            func = function()
+                                add_tag(Tag('tag_bld_strike'))
+                            end,
+                            card = card,
+                            dollars = card.ability.extra.dollars
+                        }
+                    else
+                        return {
+                            focus = card,
+                            message = localize('k_tagged_ex'),
+                            func = function()
+                                add_tag(Tag('tag_bld_strike'))
+                            end,
+                            card = card
+                        }
+                    end
+                    
                 else
                     if card.facing ~= 'back' and context.cardarea == G.play then
                         card:flip()
@@ -57,6 +71,20 @@
         end,
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue+1] = G.P_TAGS['tag_bld_strike']
+            info_queue[#info_queue+1] = {key = 'bld_burn', set = 'Other'}
+            if card.ability.extra.upgraded then
+                return {
+                    key = 'm_bld_spear_upgraded',
+                    vars = {
+                        card.ability.extra.dollars
+                    }
+                }
+            end
+        end,
+        upgrade = function(card)
+            if not card.ability.extra.upgraded then
+            card.ability.extra.upgraded = true
+            end
         end
     })
 ----------------------------------------------
