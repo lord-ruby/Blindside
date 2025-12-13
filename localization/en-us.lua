@@ -1537,7 +1537,7 @@ return {
 					"{C:attention}scored blinds"},
 					{"Always Scores"},
 					{"If played hand conatins",
-					"{C:attention}5{} Blinds, debuffs self",}
+					"{C:attention}5{} Blinds, {C:red}debuffs{} self",}
 				},
 			},
 			["m_bld_manacle_upgraded"] = {
@@ -1674,7 +1674,7 @@ return {
 				["text"] = {
 					{"{X:purple,C:white}Purple{}",
 					"{X:mult,C:white}X#1#{} Mult"},
-					{"Debuffed if hand has not",
+					{"{C:red}Debuffed{} if hand has not",
 					"been played this round"},
 				},
 			},
@@ -2040,7 +2040,7 @@ return {
 				["text"] = {
 					{"{X:purple,C:white}Purple{}",
 					"{X:mult,C:white}X#1#{} Mult"},
-					{"Debuff all scoring",
+					{"{C:red}Debuffs{} all scoring",
 					"{C:white,X:red}Red{} Blinds"},
 				},
 			},
@@ -2307,7 +2307,7 @@ return {
 					{"{X:mult,C:white}X1{} Mult, and {X:mult,C:white}+X#1#{}",
 					"for each {X:dark_edition,C:white}Faded{} Blind",
 					"in scoring hand"},
-					{"Debuffs all scoring",
+					{"{C:red}Debuffs{} all scoring",
 					"{X:dark_edition,C:white}Faded{} Blinds"}
 				}
 			},
@@ -2366,7 +2366,7 @@ return {
 				["name"] = "Cerulean Crest",
 				["text"] = {
 					{"{X:chips,C:white}X#1#{} Chips"},
-					{"Debuff all scoring blinds",
+					{"{C:red}Debuff{} all scoring blinds",
 					"if scoring hand does not",
 					"contain a {X:chips,C:white}Blue{} Blind"},
 				}
