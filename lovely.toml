@@ -870,7 +870,7 @@ target = '=[SMODS _ "src/overrides.lua"]'
 match_indent = true
 position = 'before'
 pattern = '''
-local splashed = SMODS.always_scores(G.play.cards[i]) or next(find_joker('Splash'))
+local splashed = SMODS.always_scores(cards[i]) or next(find_joker('Splash'))
 '''
 payload = '''
 local waved = false
@@ -888,7 +888,7 @@ target = '=[SMODS _ "src/overrides.lua"]'
 match_indent = true
 position = 'after'
 pattern = '''
-local splashed = SMODS.always_scores(G.play.cards[i]) or next(find_joker('Splash'))
+local splashed = SMODS.always_scores(cards[i]) or next(find_joker('Splash'))
 '''
 payload = '''
 or waved
