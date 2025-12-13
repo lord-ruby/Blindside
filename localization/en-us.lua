@@ -1250,7 +1250,7 @@ return {
 				["name"] = "The House",
 				["text"] = {
 					{"{X:blue,C:white}Blue{}",
-					"{C:chips}+#1#{} Chips, {C:white,X:Chips}X#2#{} Chips"},
+					"{C:chips}+#1#{} Chips, {C:white,X:chips}X#2#{} Chips"},
 					{"Returns other played",
 					"blinds back to hand"},
 					{"Drawn {C:attention}face down{}"},
@@ -1529,7 +1529,8 @@ return {
 				["name"] = "The Manacle",
 				["text"] = {
 					{"{X:dark_edition,C:white}Faded{}",
-					"Retriggers all {C:attention}scored blinds"},
+					"Retriggers all",
+					"{C:attention}scored blinds"},
 					{"Always Scores"},
 					{"If played hand conatins",
 					"{C:attention}5{} Blinds, debuffs self",}
@@ -1539,7 +1540,8 @@ return {
 				["name"] = "The Manacle",
 				["text"] = {
 					{"{X:dark_edition,C:white}Faded{}",
-					"Retriggers all {C:attention}scored blinds"},
+					"Retriggers all",
+					"{C:attention}scored blinds"},
 					{"Always Scores"},
 				},
 			},
@@ -1624,7 +1626,7 @@ return {
 				["text"] = {
 					"{X:blue,C:white}Blue{} {X:money,C:white}Yellow",
 					"{C:chips}+#1#{} Chips for",
-					"every {C:money}2${} held",
+					"every {C:money}#3#${} held",
 					"{C:inactive}(Currently: {C:blue}+#2#{C:inactive} Chips)",
 				},
 			},
@@ -1653,6 +1655,14 @@ return {
 					"scoring Blinds"},
 					{"{C:attention,E:1}Self-Scoring{} with a",
 					"{C:green}#1# in #2#{} chance"},
+				},
+			},
+			["m_bld_earth_upgraded"] = {
+				["name"] = "The Earth",
+				["text"] = {
+					"{X:green,C:white}Green{}",
+					"Retrigger all",
+					"scoring Blinds"
 				},
 			},
 			["m_bld_mouth"] = {

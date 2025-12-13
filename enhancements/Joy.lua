@@ -8,7 +8,6 @@
                 chips = 5,
                 dollars = 2,
                 dollars_gain = -1,
-                chips_gain = -1,
                 hues = {"Blue", "Yellow"}
             }},
         replace_base_card = true,
@@ -41,13 +40,13 @@
             return {
                 vars = {
                     card.ability.extra.chips, 
-                    card.ability.extra.chips * math.floor(((G.GAME.dollars or 0) + (G.GAME.dollar_buffer or 0))/card.ability.extra.dollars)
+                    card.ability.extra.chips * math.floor(((G.GAME.dollars or 0) + (G.GAME.dollar_buffer or 0))/card.ability.extra.dollars),
+                    card.ability.extra.dollars
                 }
             }
         end,
         upgrade = function(card) 
             if not card.ability.extra.upgraded then
-            card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_gain
             card.ability.extra.dollars = card.ability.extra.dollars + card.ability.extra.dollars_gain
             card.ability.extra.upgraded = true
             end
