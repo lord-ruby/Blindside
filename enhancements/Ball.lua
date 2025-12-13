@@ -21,7 +21,12 @@
         end,
         loc_vars = function(self, info_queue, card)
             info_queue[#info_queue + 1] = G.P_TAGS['tag_bld_toss']
-            info_queue[#info_queue+1] = {key = 'bld_burn', set = 'Other'}
+            if not card.ability.extra.upgraded then
+                info_queue[#info_queue+1] = {key = 'bld_burn', set = 'Other'}
+            end
+            return {
+                key = card.ability.extra.upgraded and 'm_bld_ball_upgraded' or 'm_bld_ball',
+            }
         end,
             calculate = function(self, card, context)
                 if context.cardarea == G.play and context.before and card.facing ~= 'back' then

@@ -7,13 +7,8 @@
                 value = 14,
             }
         },
-        replace_base_card = true,
-        no_rank = true,
-        no_suit = true,
         hues = {"Faded"},
         rare = true,
-        overrides_base_rank = true,
-        always_scores = true,
         in_pool = function(self, args)
             if G.GAME.selected_back.effect.center.config.extra then
                 if not G.GAME.selected_back.effect.center.config.extra.blindside then return false end

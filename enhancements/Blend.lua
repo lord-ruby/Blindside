@@ -48,14 +48,12 @@
                             card = card
                         }
                     else
-                        for i = 1, 2 do
-                            if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+                        if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
                             G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
                             local planet = create_card('bld_obj_ritual',G.consumeables, nil, nil, nil, nil, nil, 'vast')
                             planet:add_to_deck()
                             G.consumeables:emplace(planet)
                             G.GAME.consumeable_buffer = 0
-                            end
                         end
                         return {
                             message = localize('k_ritual_ex'),
@@ -74,7 +72,7 @@
         end,
         loc_vars = function(self, info_queue, card)
             return {
-                key = card.ability.extra.upgraded and 'm_bld_blend_upgrade' or 'm_bld_blend',
+                key = card.ability.extra.upgraded and 'm_bld_blend_upgraded' or 'm_bld_blend',
                 vars = {
                     card.ability.chips
                 }

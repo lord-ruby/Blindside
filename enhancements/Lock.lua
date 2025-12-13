@@ -5,7 +5,7 @@
         config = {bonus = 30,
             extra = {
                 value = 2,
-                retriggers = 1,
+                repetitions = 1,
                 hues = {"Faded"}
             }},
         replace_base_card = true,
@@ -27,7 +27,7 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.repetition and context.cardarea == G.play and card.facing ~= 'back' and context.ability.extra.upgraded then
+            if context.repetition and context.cardarea == G.play and card.facing ~= 'back' and card.ability.extra.upgraded then
                 return {
                     repetitions = card.ability.extra.repetitions
                 }

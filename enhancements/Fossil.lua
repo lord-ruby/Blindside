@@ -63,7 +63,7 @@
                 end
             end
 
-            if context.burn_card and context.burn_card == card and card.ability.extra.activated then
+            if context.burn_card and context.burn_card == card and card.ability.extra.activated and not card.ability.extra.upgraded then
                 card.ability.extra.activated = false
                 return {remove = true}
             end

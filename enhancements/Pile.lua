@@ -50,7 +50,7 @@
         end,
         upgrade = function(card) 
             if not card.ability.extra.upgraded then
-            card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chipsup
+            card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_up
             card.ability.extra.upgraded = true
             card.ability.extra.retain = true
             end

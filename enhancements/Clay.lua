@@ -5,7 +5,7 @@
         config = {
             extra = {
                 xmult = 0.2,
-                xmultup = 0.1,
+                xmultup = 0.2,
                 discards = 1,
                 value = 10,
             }},

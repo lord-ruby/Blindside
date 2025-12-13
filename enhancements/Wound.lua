@@ -24,7 +24,7 @@
             if context.burn_card and context.cardarea == G.play and context.burn_card == card then
                 return { remove = true }
             end
-            if card.ability.extra.upgraded then
+            if card.ability.extra.upgraded and context.cardarea == G.play and context.main_scoring then
                 return {
                     xmult = card.ability.extra.xmult
                 }

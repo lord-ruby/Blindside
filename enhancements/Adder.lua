@@ -6,6 +6,7 @@
             extra = {
                 value = 1,
                 chips = 20,
+                xchips = 1.25,
                 chipsup = 20,
             }
         },
@@ -13,15 +14,25 @@
         basic = true,
         calculate = function(self, card, context) 
             if context.cardarea == G.play and context.main_scoring then
-                return {
-                    chips = card.ability.extra.chips
-                }
+                if card.ability.extra.upgraded then
+                    return {
+                        chips = card.ability.extra.chips,
+                        xchips = card.ability.extra.xchips
+                    }
+                else
+                    return {
+                        chips = card.ability.extra.chips
+                    }
+                end
+                
             end
         end,
         loc_vars = function(self, info_queue, card)
             return {
+                key = card.ability.extra.upgraded and 'm_bld_adder_upgraded' or 'm_bld_adder',
                 vars = {
-                    card.ability.extra.chips
+                    card.ability.extra.chips,
+                    card.ability.extra.xchips
                 }
             }
         end,

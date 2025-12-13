@@ -16,6 +16,7 @@
         no_suit = true,
         always_scores = true,
         overrides_base_rank = true,
+        hidden = true,
         in_pool = function(self, args)
             if G.GAME.selected_back.effect.center.config.extra then
                 if not G.GAME.selected_back.effect.center.config.extra.blindside then return false end

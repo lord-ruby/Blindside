@@ -1345,7 +1345,7 @@ if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effe
     local any_selected = nil
     local _cards = {}
     for k, v in ipairs(G.hand.cards) do
-        if not ((v.config.center.config.extra and v.config.center.config.extra.retain) or v.retain) then
+        if not ((v.config.center.config.extra and v.config.center.config.extra.retain) or v.retain or (v.ability.extra and v.ability.extra.retain)) then
         _cards[#_cards+1] = v
         end
         v.retain = false

@@ -39,7 +39,7 @@
                     }   
                 end
             end
-            if context.discard and context.other_card == card then
+            if context.discard and context.other_card == card and not card.ability.extra.upgraded then
                 return {
                     burn = true
                 }

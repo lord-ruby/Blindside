@@ -32,7 +32,7 @@
             ["bld_obj_blindcard_faded"] = true,
         },
         calculate = function(self, card, context) 
-            if context.before and context.cardarea == G.play and card.facing ~= 'back' then
+            if context.before and (context.cardarea == G.play or (context.cardarea == G.hand and card.ability.extra.upgraded)) and card.facing ~= 'back' then
                 card.ability.extra.number = pseudorandom('arengee', 1, 6)
                 if card.ability.extra.number == 1 then
                     return {

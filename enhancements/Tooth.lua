@@ -32,7 +32,8 @@
             return {
                 key = card.ability.extra.upgraded and 'm_bld_tooth_upgraded' or 'm_bld_tooth',
                 vars = {
-                    card.ability.extra.money
+                    card.ability.extra.money,
+                    card.ability.extra.mult_per
                 }
             }
         end,

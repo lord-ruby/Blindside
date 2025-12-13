@@ -1116,6 +1116,13 @@ return {
 					"{C:chips}+#1#{} Chips"
 				},
 			},
+			["m_bld_adder_upgraded"] = {
+				["name"] = "The Adder",
+				["text"] = {
+					"{X:chips,C:white}Blue{}",
+					"{C:chips}+#1#{} Chips, {C:white,X:chips}X#2#{} Chips"
+				},
+			},
 			["m_bld_beta"] = {
 				["name"] = "BETA.Blind",
 				["text"] = {
@@ -1407,6 +1414,17 @@ return {
 					"{X:mult,C:white}Red{} and {X:chips,C:white}Blue{} Blinds"},
 				},
 			},
+			["m_bld_blend_upgraded"] = {
+				["name"] = "The Blend",
+				["text"] = {
+					{"{X:purple,C:white}Purple{}",
+					"Creates a random",
+					"{C:bld_obj_ritual,E:1}Ritual{} card",
+					"{C:inactive,S:0.8}(Must have room)"},
+					{"{C:red}Debuffs{} all scoring",
+					"{X:mult,C:white}Red{} and {X:chips,C:white}Blue{} Blinds"},
+				},
+			},
 			["m_bld_bolt"] = {
 				["name"] = "The Bolt",
 				["text"] = {
@@ -1447,7 +1465,7 @@ return {
 				["name"] = "The Skull",
 				["text"] = {
 					{"{X:purple,C:white}Purple{}",
-					"Currently {X:mult,C:white}X#2#{} Mult)"},
+					"Currently {X:mult,C:white}X#2#{} Mult"},
 					{"{C:attention}Destroys{} a random",
 					"played, unscored Blind and",
 					"gains {X:mult,C:white}X#1#{} Mult"},
@@ -1529,7 +1547,7 @@ return {
 				["name"] = "The Pot",
 				["text"] = {
 					"{X:money,C:white}Yellow{}",
-					"{C:money}+1${} when scored",
+					"{C:money}+#1#${} when scored",
 					"or held in hand",
 				},
 			},
@@ -1622,7 +1640,7 @@ return {
 				["name"] = "The Hat",
 				["text"] = {
 					"{X:dark_edition,C:white}Faded{}",
-					"When scored, or {C:attention}held",
+					"When scored or {C:attention}held",
 					"{C:attention}in hand{}, gives a",
 					"{C:green,E:1}varied{} effect",
 				},
@@ -1858,9 +1876,10 @@ return {
 			["m_bld_sun"] = {
 				["name"] = "The Sun",
 				["text"] = {
-					"{X:money,C:white}Yellow{}",
+					{"{X:money,C:white}Yellow{}",
 					"{C:money}+#1#${} when {C:attention}held in hand",
-					"at end of round"
+					"at end of round"},
+					{"{C:green}Retained"}
 				},
 			},
 			["m_bld_alert"] = {
@@ -2092,6 +2111,13 @@ return {
 					"{X:purple,C:white}Purple{}",
 					"Creates a {C:attention}Toss Tag",
 					"and {C:attention}Burns",
+				},
+			},
+			["m_bld_ball_upgraded"] = {
+				["name"] = "The Ball",
+				["text"] = {
+					"{X:purple,C:white}Purple{}",
+					"Creates a {C:attention}Toss Tag"
 				},
 			},
 			["m_bld_spear"] = {
