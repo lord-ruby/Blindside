@@ -4,10 +4,10 @@
         pos = {x = 6, y = 0},
         config = {
             mult = 10,
-            x_mult = 1.75,
+            x_mult = 1.5,
             extra = {
                 multup = 5,
-                xmultup = 0.25,
+                xmultup = 0.5,
                 value = 100,
             }},
         hues = {"Yellow", "Faded"},
