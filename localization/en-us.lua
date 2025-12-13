@@ -417,28 +417,31 @@ return {
 			["tag_bld_tech"] = {
 				["name"] = "Tech Tag",
 				["text"] = {
-					"Create a random {C:bld_doodad}Doodad",
+					"Create a random",
+					"{C:bld_doodad}Doodad Trinket",
 					"{C:inactive}(Must have room)"
 				},
 			},
 			["tag_bld_magic"] = {
 				["name"] = "Magic Tag",
 				["text"] = {
-					"Create a random {C:bld_curio}Curio",
+					"Create a random",
+					"{C:bld_curio}Curio Trinket",
 					"{C:inactive}(Must have room)"
 				},
 			},
 			["tag_bld_memory"] = {
 				["name"] = "Memory Tag",
 				["text"] = {
-					"Create a random {C:bld_keepsake}Keepsake",
+					"Create a random {C:bld_keepsake,E:1}Keepsake",
 					"{C:inactive}(Must have room)"
 				},
 			},
 			["tag_bld_game"] = {
 				["name"] = "Game Tag",
 				["text"] = {
-					"Create a random {C:bld_hobby}Hobby",
+					"Create a random",
+					"{C:bld_hobby}Hobby Trinket",
 					"{C:inactive}(Must have room)"
 				},
 			},
