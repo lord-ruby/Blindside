@@ -30,7 +30,7 @@
         },
         weight = 3,
         calculate = function(self, card, context)
-                if context.cardarea == G.play and context.main_scoring and card.ability.extra.mult > 0 then
+                if context.cardarea == G.play and context.main_scoring and card.ability.extra.xmult > 0 then
                         return {
                             xmult = card.ability.extra.xmult
                         }
