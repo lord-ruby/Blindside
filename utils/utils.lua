@@ -885,10 +885,14 @@ function BLINDSIDE.poll_enhancement(args)
     local mod = args.mod or 1
     local guaranteed = args.guaranteed or false
     local options = args.options or get_current_pool("Enhanced")
-    if args.no_replace then
-        for i, k in pairs(options) do
-            if G.P_CENTERS[k] and G.P_CENTERS[k].replace_base_card then
-                options[i] = 'UNAVAILABLE'
+    if args.colors then
+        for i, k in ipairs(options) do
+            if k.config.extra.hues then
+                for key, value in pairs(args.colors) do
+                    if not tableContains(value, k.config.extra.hues) then
+                        options[i] = 'UNAVAILABLE'
+                    end
+                end
             end
         end
     end

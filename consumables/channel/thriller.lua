@@ -8,34 +8,18 @@ SMODS.Consumable {
         extra = 1
     },
     use = function(self, card, area)
-        local enhancement = nil
-        local card = G.hand.highlighted[1]
-        local color = card:get_color()
-        if color == "Red" then
-            SMODS.ObjectTypes.bld_obj_blindcard_red:delete_card(G.hand.highlighted[1].config.center)
-            enhancement = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_red, 'thriller')
-            SMODS.ObjectTypes.bld_obj_blindcard_red:inject_card(G.hand.highlighted[1].config.center)
-        elseif color == "Blue" then
-            SMODS.ObjectTypes.bld_obj_blindcard_blue:delete_card(G.hand.highlighted[1].config.center)
-            enhancement = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_blue, 'thriller')
-            SMODS.ObjectTypes.bld_obj_blindcard_blue:inject_card(G.hand.highlighted[1].config.center)
-        elseif color == "Green" then
-            SMODS.ObjectTypes.bld_obj_blindcard_green:delete_card(G.hand.highlighted[1].config.center)
-            enhancement = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_green, 'thriller')
-            SMODS.ObjectTypes.bld_obj_blindcard_green:inject_card(G.hand.highlighted[1].config.center)
-        elseif color == "Yellow" then
-            SMODS.ObjectTypes.bld_obj_blindcard_yellow:delete_card(G.hand.highlighted[1].config.center)
-            enhancement = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_yellow, 'thriller')
-            SMODS.ObjectTypes.bld_obj_blindcard_yellow:inject_card(G.hand.highlighted[1].config.center)
-        elseif color == "Purple" then
-            SMODS.ObjectTypes.bld_obj_blindcard_purple:delete_card(G.hand.highlighted[1].config.center)
-            enhancement = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_purple, 'thriller')
-            SMODS.ObjectTypes.bld_obj_blindcard_purple:inject_card(G.hand.highlighted[1].config.center)
-        else
-            SMODS.ObjectTypes.bld_obj_blindcard_faded:delete_card(G.hand.highlighted[1].config.center)
-            enhancement = pseudorandom_element(G.P_CENTER_POOLS.bld_obj_blindcard_faded, 'thriller')
-            SMODS.ObjectTypes.bld_obj_blindcard_faded:inject_card(G.hand.highlighted[1].config.center)
+        local enhancement = {}
+
+        local args = {}
+        args.guaranteed = true
+        for i, card in ipairs(G.hand.highlighted) do
+            SMODS.ObjectTypes.bld_obj_blindcard_generate:delete_card(G.hand.highlighted[1].config.center)
+            args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
+            args.colors = card.ability.extra.hues
+            enhancement = BLINDSIDE.poll_enhancement(args)
+            SMODS.ObjectTypes.bld_obj_blindcard_generate:inject_card(G.hand.highlighted[1].config.center)
         end
+        
         for i=1, #G.hand.highlighted do
             local percent = 1.15 - (i-0.999)/(#G.hand.highlighted-0.998)*0.3
             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.3,func = function() G.hand.highlighted[i]:flip();play_sound('card1', percent);G.hand.highlighted[i]:juice_up(0.3, 0.3);return true end }))
