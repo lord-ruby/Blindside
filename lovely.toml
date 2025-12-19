@@ -1195,7 +1195,7 @@ position = 'after'
 payload = '''
 if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside then
 self.GAME.current_round.trinket = BLINDSIDE.get_next_trinket()
--- G.GAME.round_resets.tags_bought = 0 
+G.GAME.round_resets.tags_bought = 0 
 end
 '''
 
