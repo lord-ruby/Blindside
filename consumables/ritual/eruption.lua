@@ -36,7 +36,7 @@ SMODS.Consumable {
         }))
     end,
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue + 1] = G.P_TAGS['tag_bld_joker']
+        info_queue[#info_queue + 1] = G.P_TAGS['tag_bld_mantle']
         return {
             vars = {
                 card.ability.max_highlighted
