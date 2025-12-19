@@ -561,6 +561,14 @@ return {
 					"all {C:attention}Modifiers"
 				},
 			},
+			["tag_bld_burden"] = {
+				["name"] = "Burden Tag",
+				["text"] = {
+					"After each hand,",
+					"lose {C:attention}half{} of held",
+					"{C:money}money{} rounded down",
+				},
+			},
 		},
 		["bld_obj_mineral"] = {
 			["c_bld_stibnite"] = {
@@ -858,6 +866,15 @@ return {
 					"each Blind in hand"},
 					{"Create a",
 					"{C:attention}Downpour Tag"}
+				},
+			},
+			["c_bld_journey"] = {
+				["name"] = "Journey",
+				["text"] = {
+					{"Give {C:money}Mint{} edition",
+					"to {C:attention}#1#{} random Blinds"},
+					{"Create a",
+					"{C:attention}Burden Tag"}
 				},
 			},
 		},
@@ -2896,7 +2913,8 @@ return {
 			['e_bld_mint'] = {
 				name = "Mint",
 				text = {
-					"{C:money}+#1#${}",
+					"{C:money}+#1#${} when scored",
+					"or {C:attention}held in hand",
 				}
 			},
 			['e_bld_finish'] = {
