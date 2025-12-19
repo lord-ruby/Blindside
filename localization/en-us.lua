@@ -44,6 +44,7 @@ return {
 			['k_bld_mineral_pack'] = 'Crystalline Pack',
 			['bld_3_hands'] = '3 Random Hands',
 			['k_bld_filmcard_pack'] = 'Cinema Pack',
+			['k_bld_ritual_pack'] = 'Hallow Pack',
 			['k_bld_noble_pack'] = 'Noble Pack',
 			['ui_bld_deck_view'] = 'Deck View',
 			["ph_mask_saved"] = "Saved by Ancient Mask",
