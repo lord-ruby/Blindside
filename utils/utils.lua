@@ -1306,6 +1306,28 @@ function BLINDSIDE.get_first_enhancement_with_exact_colors(colors)
     end
 end
 
+function BLINDSIDE.rescore_card(card, context)
+        context.main_scoring = true
+        local effects = { eval_card(card, context) }
+        SMODS.calculate_quantum_enhancements(card, effects, context)
+        context.main_scoring = nil
+        context.individual = true
+        context.other_card = card
+
+        if next(effects) then
+            SMODS.calculate_card_areas('jokers', context, effects, { main_scoring = true })
+            SMODS.calculate_card_areas('individual', context, effects, { main_scoring = true })
+        end
+
+        local flags = SMODS.trigger_effects(effects, card)
+
+        context.individual = nil
+        context.other_card = nil
+        card.lucky_trigger = nil
+end
+
+
+
 ----------------------------------------------
 ------------MOD CODE END----------------------
 

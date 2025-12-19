@@ -44,7 +44,7 @@
                                         message = localize('k_again_ex'),
                                         colour = G.C.DARK_EDITION})
                                             local passed_context = context
-                                            SMODS.score_card(play_card, passed_context)
+                                            BLINDSIDE.rescore_card(play_card, passed_context)
                                         end
                                     end
                                 end

@@ -40,7 +40,7 @@
                                         card:juice_up()
                                         local passed_context = context
                                         card_eval_status_text(play_card, 'extra', nil, nil, nil, {message = localize('k_again_ex'),colour = G.C.DARK_EDITION})
-                                        SMODS.score_card(play_card, passed_context)
+                                        BLINDSIDE.rescore_card(play_card, passed_context)
                                     end
                                 end
                             end

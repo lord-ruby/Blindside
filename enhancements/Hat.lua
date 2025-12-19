@@ -59,7 +59,7 @@
                                         colour = G.C.DARK_EDITION})
                                         card:juice_up()
                                             local passed_context = context
-                                            SMODS.score_card(play_card, passed_context)
+                                            BLINDSIDE.rescore_card(play_card, passed_context)
                                         end
                                     end
                                 end
