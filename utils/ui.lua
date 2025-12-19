@@ -398,6 +398,85 @@ function blind_jokers_ui(exit)
 	return t
 end
 
+function blind_decks_ui()
+    local deck_pool = {}
+    for k, v in pairs(G.P_CENTER_POOLS.Back) do
+        if BLINDSIDE.is_blindside(v.key) then
+            table.insert(deck_pool, v)
+        end
+    end
+  G.GAME.viewed_back = Back(deck_pool[1])
+  
+  local area = CardArea(
+    G.ROOM.T.x + 0.2*G.ROOM.T.w/2,G.ROOM.T.h,
+    1.2*G.CARD_W,
+    1.2*G.CARD_H, 
+    {card_limit = 20, type = 'deck', highlight_limit = 0})
+
+  for i = 1, 20 do
+    local card = Card(G.ROOM.T.x + 0.2*G.ROOM.T.w/2,G.ROOM.T.h, G.CARD_W*1.2, G.CARD_H*1.2, pseudorandom_element(G.P_CARDS), G.P_CENTERS.c_base, {playing_card = i, viewed_back = true})
+    card.sprite_facing = 'back'
+    card.facing = 'back'
+    area:emplace(card)
+    if i == 20 then G.sticker_card = card; card.sticker = get_deck_win_sticker(G.GAME.viewed_back.effect.center) end
+  end
+
+  local ordered_names = {}
+  for k, v in ipairs(deck_pool) do
+      ordered_names[#ordered_names+1] = v.key
+      print(v.key)
+  end
+  
+  local t = create_UIBox_generic_options({ 
+  colour = G.ACTIVE_MOD_UI and ((G.ACTIVE_MOD_UI.ui_config or {}).collection_colour or
+      (G.ACTIVE_MOD_UI.ui_config or {}).colour),
+  bg_colour = G.ACTIVE_MOD_UI and ((G.ACTIVE_MOD_UI.ui_config or {}).collection_bg_colour or
+      (G.ACTIVE_MOD_UI.ui_config or {}).bg_colour),
+  back_colour = G.ACTIVE_MOD_UI and ((G.ACTIVE_MOD_UI.ui_config or {}).collection_back_colour or
+      (G.ACTIVE_MOD_UI.ui_config or {}).back_colour),
+  outline_colour = G.ACTIVE_MOD_UI and ((G.ACTIVE_MOD_UI.ui_config or {}).collection_outline_colour or
+      (G.ACTIVE_MOD_UI.ui_config or {}).outline_colour),
+  back_func = G.ACTIVE_MOD_UI and "openModUI_"..G.ACTIVE_MOD_UI.id or 'blindside_collection', contents = {
+    create_option_cycle({options = ordered_names, opt_callback = 'change_viewed_blindback', current_option = 1, colour = G.ACTIVE_MOD_UI and (G.ACTIVE_MOD_UI.ui_config or {}).collection_option_cycle_colour or G.C.RED, w = 4.5, focus_args = {snap_to = true}, mid = 
+            {n=G.UIT.R, config={align = "cm", minw = 2.5, padding = 0.1, r = 0.1, colour = G.C.BLACK, emboss = 0.05}, nodes={
+              {n=G.UIT.R, config={align = "cm", padding = 0.2, colour = G.C.BLACK, r = 0.2}, nodes={
+                {n=G.UIT.C, config={align = "cm", padding = 0}, nodes={
+                  {n=G.UIT.O, config={object = area}}
+                }},
+                {n=G.UIT.C, config={align = "tm", minw = 3.7, minh = 2.1, r = 0.1, colour = G.C.L_BLACK, padding = 0.1}, nodes={
+                  {n=G.UIT.R, config={align = "cm", emboss = 0.1, r = 0.1, minw = 4, maxw = 4, minh = 0.6}, nodes={
+                    {n=G.UIT.O, config={id = nil, func = 'RUN_SETUP_check_back_name', object = Moveable()}},
+                  }},
+                  {n=G.UIT.R, config={align = "cm", colour = G.C.WHITE, emboss = 0.1, minh = 2.2, r = 0.1}, nodes={
+                    {n=G.UIT.O, config={id = G.GAME.viewed_back.name, func = 'RUN_SETUP_check_back', object = UIBox{definition = G.GAME.viewed_back:generate_UI(), config = {offset = {x=0,y=0}}}}}
+                  }}       
+                }},
+              }},
+            }}}),
+          }})
+  return t
+end
+
+
+G.FUNCS.change_viewed_blindback = function(args)
+  G.viewed_stake = G.viewed_stake or 1
+    local deck_pool = {}
+    for k, v in pairs(G.P_CENTER_POOLS.Back) do
+        if BLINDSIDE.is_blindside(v.key) then
+            table.insert(deck_pool, v)
+        end
+    end
+  G.GAME.viewed_back:change_to(deck_pool[args.to_key])
+  if G.sticker_card then G.sticker_card.sticker = get_deck_win_sticker(G.GAME.viewed_back.effect.center) end
+  -- local max_stake = get_deck_win_stake(G.GAME.viewed_back.effect.center.key) or 0
+  -- G.viewed_stake = math.min(G.viewed_stake, max_stake + 1)
+  G.PROFILES[G.SETTINGS.profile].MEMORY.deck = args.to_val
+  for key, val in pairs(G.sticker_card.area.cards) do
+  	val.children.back = false
+  	val:set_ability(val.config.center, true)
+  end
+end
+
 function blindtags_ui()
     local tag_matrix = {}
     local counter = 0
@@ -547,6 +626,13 @@ end
         definition = blind_jokers_ui()
         }
     end
+
+    G.FUNCS.your_collection_blindside_decks = function()
+        G.SETTINGS.paused = true
+        G.FUNCS.overlay_menu {
+        definition = blind_decks_ui()
+        }
+    end
         
         local function wrap_without_blindcards(func)
         local removed = {}
@@ -686,6 +772,22 @@ end
         return ret
     end
 
+    local function wrap_without_blinddeck(func)
+        local removed = {}
+        for k, v in pairs(G.P_CENTER_POOLS.Back) do
+        if BLINDSIDE.is_blindside(v.key) then
+            removed[k] = v
+            G.P_CENTER_POOLS.Back[k] = nil
+        end
+        end
+        local ret = func()
+
+        for k, v in pairs(removed) do
+        G.P_CENTER_POOLS.Back[k] = v
+        end
+        return ret
+    end
+
     local booster_ui_ref = create_UIBox_your_collection_boosters
     create_UIBox_your_collection_boosters = function()
         return wrap_without_blindboosters(booster_ui_ref)
@@ -725,6 +827,11 @@ end
     local joker_ui_seal = create_UIBox_your_collection_seals
     create_UIBox_your_collection_seals = function()
         return wrap_without_blindenhancement(joker_ui_seal)
+    end
+
+    local deck_ui_ref = create_UIBox_your_collection_decks
+    create_UIBox_your_collection_decks = function()
+        return wrap_without_blinddeck(deck_ui_ref)
     end
 
     function Card:get_blind_nominal(mod)
@@ -1060,7 +1167,7 @@ function create_UIBox_blindside_collection()
         {n = G.UIT.O, config = {object = G.Blindside_Back}}}},
     {n=G.UIT.C, config={align = "cm", padding = 0.15}, nodes={
       UIBox_button({button = 'your_collection_blindside_trinkets', label = {localize('bld_ui_trinkets')}, count = G.DISCOVER_TALLIES.blindtrinkets,  minw = 5, minh = 1.7, scale = 0.6, id = 'your_collection_blindside_trinkets'}),
-      UIBox_button({button = 'your_collection_decks', label = {localize('bld_ui_unknown')}, minw = 5}),
+      UIBox_button({button = 'your_collection_blindside_decks', label = {localize('bld_ui_decks')}, count = G.DISCOVER_TALLIES.blinddecks, minw = 5, id = 'your_collection_blindside_decks'}),
       UIBox_button({button = 'your_collection_blindside_relics', label = {localize('bld_ui_relics')}, count = G.DISCOVER_TALLIES.blindrelics, minw = 5, id = 'your_collection_blindside_relics'}),
       {n=G.UIT.R, config={align = "cm", padding = 0.1, r=0.2, colour = G.C.BLACK}, nodes={
         {n=G.UIT.C, config={align = "cm", maxh=2.9}, nodes={
