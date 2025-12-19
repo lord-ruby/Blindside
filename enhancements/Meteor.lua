@@ -1,4 +1,4 @@
-    SMODS.Enhancement({
+    BLINDSIDE.Blind({
         key = 'meteor',
         atlas = 'bld_blindrank',
         pos = {x = 5, y = 4},
@@ -21,7 +21,7 @@
             return false
             end
         end,
-        weight = 3,
+        rare = true,
         pools = {
             ["bld_obj_blindcard_generate"] = true,
             ["bld_obj_blindcard_cool"] = true,

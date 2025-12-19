@@ -1,4 +1,4 @@
-    SMODS.Enhancement({
+    BLINDSIDE.Blind({
         key = 'mouth',
         atlas = 'bld_blindrank',
         pos = {x = 0, y = 2},
