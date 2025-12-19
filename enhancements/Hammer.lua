@@ -10,7 +10,7 @@
         hues = {"Faded"},
         always_scores = true,
         calculate = function(self, card, context) 
-            if context.repetition and context.cardarea == G.play and (context.other_card == context.scoring_hand[1] or (card.ability.extra.upgraded and context.other_card == context.scoring_hand[#context.scoring_hand])) then
+            if context.repetition and context.cardarea == G.hand and (context.other_card == context.scoring_hand[1] or (card.ability.extra.upgraded and context.other_card == context.scoring_hand[#context.scoring_hand])) then
                 return {
                     repetitions = card.ability.extra.repetitions
                 }
