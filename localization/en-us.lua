@@ -826,9 +826,7 @@ return {
 				["name"] = "Worship",
 				["text"] = {
 					{"Turn an owned",
-					"trinket {C:dark_edition}Polychrome",
-					"(polychrome is placeholder)",
-					"(it still works though)"},
+					"trinket {C:dark_edition}Shiny"},
 					{"Create an",
 					"{C:attention}Awe Tag"}
 				},
@@ -843,10 +841,6 @@ return {
 					"{C:attention}most played hands"}
 				},
 			},
-			--[[					"{C:dark_edition,E:1}Upgrade{} {C:attention}#1#",
-					"selected Blinds",
-					"{C:attention}Destroy{} a random",
-					"trinket"]]
 		},
 		["bld_obj_filmcard"] = {
 			["c_bld_horror"] = {
@@ -2892,6 +2886,12 @@ return {
 					"{C:attention}+#1#{} Retrigger",
 				}
 			},
+			['e_bld_shiny'] = {
+				name = "Shiny",
+				text = {
+					"{C:white,X:mult}X#1#{} Mult"
+				}
+			}
 		},
 		["Other"] = {
 			["bld_boss_shop"]	= {

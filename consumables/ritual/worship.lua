@@ -21,7 +21,7 @@ SMODS.Consumable {
         local chosen_cards = choose_stuff(pool, 1, 'worship')
         G.E_MANAGER:add_event(Event({
             func = function ()
-                chosen_cards[1]:set_edition('e_polychrome', true)
+                chosen_cards[1]:set_edition('e_bld_shiny', true)
                 return true
             end
         }))
@@ -37,6 +37,7 @@ SMODS.Consumable {
     end,
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_TAGS['tag_bld_awe']
+        info_queue[#info_queue + 1] = G.P_CENTERS['e_bld_shiny']
         return {
             vars = {
                 G.GAME.bld_inversions + 1,

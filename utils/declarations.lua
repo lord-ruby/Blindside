@@ -96,6 +96,7 @@
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",
+        "e_bld_shiny",
         "e_bld_enameled",
         "p_bld_symbol_basic1",
         "p_bld_symbol_basic2",
