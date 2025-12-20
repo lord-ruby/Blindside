@@ -42,6 +42,9 @@
         calculate = function(self, card, context)
             if context.end_of_round and not context.repetition and not context.individual and not context.blueprint and card.ability.extra.hand_count < 9 and not card.ability.extra.queen then
                 card.ability.extra.hand_count = card.ability.extra.hand_count+1
+                return {
+                    message = card.ability.extra.hand_count.."/8"
+                }
             end
             if context.joker_main and not card.ability.extra.queen then
                 return {
