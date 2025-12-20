@@ -11,7 +11,7 @@
             }
         },
         hues = {"Green", "Blue"},
-        rare = true,
+        --rare = true,
         replace_base_card = true,
         no_rank = true,
         no_suit = true,
@@ -38,6 +38,19 @@
             end
             if context.cardarea == G.play and context.main_scoring then
                 if card.facing ~= "back" then
+                    return {
+                        xchips = card.ability.extra.xchips
+                    }
+                else
+                    return {
+                        message = localize('k_nope_ex'),
+                        colour = G.C.GREEN
+                    }
+                end
+            end
+
+            if context.cardarea == G.hand and context.main_scoring then
+                if SMODS.pseudorandom_probability(card, pseudoseed("butterfly"), 1, card.ability.extra.odds, 'butterfly') then
                     return {
                         xchips = card.ability.extra.xchips
                     }

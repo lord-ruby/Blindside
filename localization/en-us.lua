@@ -2193,6 +2193,8 @@ return {
 					"{X:chips,C:white}X#1#{} Chips"},
 					{"{C:attention,E:1}Self-Scoring{} with a",
 					"{C:green}#2# in #3#{} chance"},
+					{"{C:green}#2# in #3#{} chance to",
+					"score {C:attention}held in hand"}
 				},
 			},
 			["m_bld_moon"] = {
