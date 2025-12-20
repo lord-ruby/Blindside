@@ -12,9 +12,25 @@ SMODS.Tag {
             end
         end,
     apply = function(self, tag, context)
-        --print(context.type) 
         if context.type == 'after_hand' and not (next(SMODS.find_card("j_bld_taglock"))) then
-            --print('we are going to destroy your cards!!!')
+            local cards = choose_stuff(G.play.cards, 1, pseudoseed('mantle'))
+            G.E_MANAGER:add_event(Event({
+                func = function ()
+                    cards[1]:start_dissolve()
+                    G.E_MANAGER:add_event(Event({
+                        func = function ()
+                            G.E_MANAGER:add_event(Event({
+                                func = function ()
+                                    cards[1]:remove()
+                                    return true
+                                end
+                            }))
+                            return true
+                        end
+                    }))
+                    return true
+                end
+            }))
         end
 
         if context.type == 'shop_start' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
