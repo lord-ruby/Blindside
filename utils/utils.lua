@@ -926,7 +926,7 @@ function BLINDSIDE.poll_enhancement(args)
 
     local rand = pseudorandom(pseudoseed('bld_blind_rarity'))
 
-    if (rand < 0.9) then
+    if (rand < 0.85) then
         rarity = 0
     elseif rand <= 1 then --(rand < 0.999) then
         rarity = 1
@@ -943,7 +943,11 @@ function BLINDSIDE.poll_enhancement(args)
             if type(k) == 'string' then
                 assert(G.P_CENTERS[v], ("Could not find enhancement \"%s\"."):format(v))
                 local wght = G.P_CENTERS[v].weight or 5
-                if (wght == 5 and rarity == 0) or (wght == 3 and rarity == 1) or (wght == 1 and rarity == 2) then
+                local multicolor = #G.P_CENTERS[v].config.extra.hues > 1
+                local good_rarity = (wght == 5 and rarity == 0) or (wght == 3 and rarity == 1) or (wght == 1 and rarity == 2)
+                local good_colors = rarity == 0 or (multicolor and rand >= 0.95) or (not multicolor and rand < 0.95)
+
+                if good_colors and good_rarity then
                     enhance_option = { key = v, weight = 5 }
                 else
                     skip = true
@@ -951,7 +955,11 @@ function BLINDSIDE.poll_enhancement(args)
             elseif type(v) == 'table' then
                 assert(G.P_CENTERS[v.key], ("Could not find enhancement \"%s\"."):format(v.key))
                 local wght = v.weight or 5
-                if (wght == 5 and rarity == 0) or (wght == 3 and rarity == 1) or (wght == 1 and rarity == 2) then
+                local multicolor = #v.config.extra.hues > 1
+                local good_rarity = (wght == 5 and rarity == 0) or (wght == 3 and rarity == 1) or (wght == 1 and rarity == 2)
+                local good_colors = rarity == 0 or (multicolor and rand >= 0.95) or (not multicolor and rand < 0.95)
+
+                if good_colors and good_rarity then
                     enhance_option = { key = v.key, weight = 5 }
                 else
                     skip = true
