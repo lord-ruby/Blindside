@@ -3042,7 +3042,10 @@ return {
 			["bld_spooky_seal"]	= {
 				["name"] = "Spooky Blind",
 				["text"] = {
+					"When scored,",
 					"{X:dark_edition,C:white}-#1#%{} Chips to Joker",
+					"for each {C:attention}scoring",
+					"Blind sharing a {C:attention}hue",
 				}
 			},
 			["bld_sticky_seal"]	= {
