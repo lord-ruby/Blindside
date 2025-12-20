@@ -2119,13 +2119,12 @@ return {
 				},
 			},
 			["m_bld_door"] = {
-				["name"] = "The Door",	
+				["name"] = "The Door",
 				["text"] = {
 					{"{X:red,C:white}Red{} {X:dark_edition,C:white}Faded{} {X:blue,C:white}Blue{}",
 					"{X:green,C:white}Green{} {X:money,C:white}Yellow{} {X:purple,C:white}Purple{}"},
 					{"{X:red,C:white}X#1#{} Mult",
 					"{C:blue}+#2#{} Chips"},
-					{"Always scores",}
 				},
 			},
 			["m_bld_lock"] = {
@@ -2146,11 +2145,13 @@ return {
 				},
 			},
 			["m_bld_key"] = {
-				["name"] = "The Key",	
+				["name"] = "The Key",
 				["text"] = {
 					{"{X:dark_edition,C:white}Faded{}",
 					"{X:red,C:white}X#1#{} Mult"},
 					{"Always scores"},
+					{"Might be useful",
+					"to {C:attention}lockpick{} things"}
 				},
 			},
 			["m_bld_atomic"] = {
@@ -3028,10 +3029,15 @@ return {
 			}
 		},
 		["Other"] = {
-			["bld_red_deck"] = {
-
+			["bld_key_how_tf"] = {
+				["name"] = "How'd I get this?",
+				["text"] = {
+					"What two Blinds did",
+					"you play together to",
+					"get this?"
+				}
 			},
-			["bld_modifiers"]	= {
+			["bld_modifiers"] = {
 				["name"] = "Modifier",
 				["text"] = {
 					"{C:attention}Trims{} and",
@@ -3039,7 +3045,7 @@ return {
 					"not {C:dark_edition,E:1}Upgrades"
 				}
 			},
-			["bld_boss_shop"]	= {
+			["bld_boss_shop"] = {
 				["name"] = "Boss Shop",
 				["text"] = {
 					"The shop with",

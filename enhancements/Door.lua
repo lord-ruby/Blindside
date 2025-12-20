@@ -32,6 +32,7 @@
         end,
         rare = true,
         loc_vars = function(self, info_queue, card)
+            info_queue[#info_queue+1] = {key = "bld_key_how_tf", set = "Other"}
             return {
                 vars = {
                     card.ability.x_mult, card.ability.bonus

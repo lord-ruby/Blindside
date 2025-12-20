@@ -16,7 +16,7 @@ SMODS.Tag {
             local cards = choose_stuff(G.play.cards, 1, pseudoseed('mantle'))
             G.E_MANAGER:add_event(Event({
                 func = function ()
-                    cards[1]:start_dissolve()
+                    destroy_blinds_and_calc(cards, tag)
                     G.E_MANAGER:add_event(Event({
                         func = function ()
                             G.E_MANAGER:add_event(Event({

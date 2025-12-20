@@ -704,6 +704,11 @@
         path = 'clang.wav'
     })
 
+    SMODS.Sound({
+        key = 'bld_lockpick',
+        path = 'lockpick.wav'
+    })
+
 
 ----------------------------------------------
 ------------MOD CODE END----------------------

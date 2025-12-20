@@ -6,6 +6,8 @@
             extra = {
                 value = 2,
                 repetitions = 1,
+                pick_count = 0,
+                pick_target = 3,
             }},
         hues = {"Faded"},
         always_scores = true,
@@ -28,52 +30,141 @@
                 local key = nil
                 for i=1, #G.play.cards do
                     if G.play.cards[i].config.center_key == 'm_bld_key' and not G.play.cards[i].getting_sliced then
-                        G.play.cards[i].getting_sliced = true
+                        -- play lockpicking cutscene
+                        card.ability.extra.pick_count = card.ability.extra.pick_count + 1
                         key = G.play.cards[i]
                         break
                     end
                 end
                 if key then
-                local removed = {}
-                table.insert(removed, card)
-                table.insert(removed, key)
-                    SMODS.calculate_context({remove_playing_cards = true, removed = removed, scoring_hand = context.scoring_hand})
-                    removed.destroyed = true
-                    G.E_MANAGER:add_event(Event({trigger = 'before', delay = 1, func = function()
-                        for i = 1, #removed do
-                        removed[i]:start_dissolve()
-                        card_eval_status_text(
-                            removed[i],
-                            'extra',
-                            nil, nil, nil,
-                            {message = "Unlocked!", colour = G.C.DARK_EDITION, instant = true}
-                        )
-                        end
-                        delay(0.6)
-                        return true
-                    end}))
-                    local copy_card = SMODS.create_card({ set = 'Base', enhancement = 'm_bld_door' })
-                    copy_card:add_to_deck()
-                    G.deck.config.card_limit = G.deck.config.card_limit + 1
-                    table.insert(G.playing_cards, copy_card)
-                    G.hand:emplace(copy_card)
-                    copy_card.states.visible = nil
-                    G.E_MANAGER:add_event(Event({
-                        func = function()
-                            copy_card:start_materialize()
+                    if card.ability.extra.pick_count == 1 then
+                        local juiceit = true
+                        G.E_MANAGER:add_event(Event({trigger = 'before', delay = 2 * G.SETTINGS.GAMESPEED, func = function()
+                            key:juice_up()
+                            card_eval_status_text(
+                                key,
+                                'extra',
+                                nil, nil, nil,
+                                {message = "Lockpicking...", colour = G.C.DARK_EDITION, instant = true}
+                            )
+                            juice_card_until(key, function ()
+                                return juiceit
+                            end)
                             return true
-                        end
-                    }))   
-                    return {
-                        func = function()
-                            G.E_MANAGER:add_event(Event({
-                                func = function()
-                                    SMODS.calculate_context({ playing_card_added = true, cards = { copy_card } })
-                                    return true
-                                end
-                            }))
-                        end
-                    }
+                        end}))
+                        G.E_MANAGER:add_event(Event({trigger = 'before', delay = 1, func = function()
+                            juiceit = false
+                            card_eval_status_text(
+                                card,
+                                'extra',
+                                nil, nil, nil,
+                                {message = "Nope!", colour = G.C.DARK_EDITION, instant = true}
+                            )
+                            return true
+                        end}))
+                    elseif card.ability.extra.pick_count == 2 then
+                        local juiceit = true
+                        G.E_MANAGER:add_event(Event({trigger = 'before', delay = 2 * G.SETTINGS.GAMESPEED, func = function()
+                            key:juice_up()
+                            card_eval_status_text(
+                                key,
+                                'extra',
+                                nil, nil, nil,
+                                {message = "Lockpicking...", colour = G.C.DARK_EDITION, instant = true}
+                            )
+                            juice_card_until(key, function ()
+                                return juiceit
+                            end)
+                            return true
+                        end}))
+                        G.E_MANAGER:add_event(Event({trigger = 'before', delay = 1, func = function()
+                            juiceit = false
+                            card_eval_status_text(
+                                card,
+                                'extra',
+                                nil, nil, nil,
+                                {message = "Almost!", colour = G.C.DARK_EDITION, instant = true}
+                            )
+                            return true
+                        end}))
+                    elseif card.ability.extra.pick_count >= 3 then
+                        key.getting_sliced = true
+                        card.getting_sliced = true
+
+                        local juiceit = true
+                        G.E_MANAGER:add_event(Event({trigger = 'before', delay = 2 * G.SETTINGS.GAMESPEED, func = function()
+                            key:juice_up()
+                            card_eval_status_text(
+                                key,
+                                'extra',
+                                nil, nil, nil,
+                                {message = "Lockpicking...", colour = G.C.DARK_EDITION, instant = true}
+                            )
+                            juice_card_until(key, function ()
+                                return juiceit
+                            end)
+                            return true
+                        end}))
+                        G.E_MANAGER:add_event(Event({trigger = 'before', delay = 1, func = function()
+                            juiceit = false
+                            card_eval_status_text(
+                                card,
+                                'extra',
+                                nil, nil, nil,
+                                {message = "Unlocked!", colour = G.C.DARK_EDITION, instant = true}
+                            )
+                            key:start_dissolve()
+                            return true
+                        end}))
+                        G.E_MANAGER:add_event(Event({trigger = 'before', delay = 1, func = function()
+                            card:start_dissolve()
+                            return true
+                        end}))
+                        SMODS.calculate_context({remove_playing_cards = true, removed = {card, key}, scoring_hand = context.scoring_hand})
+
+                        local copy_card = SMODS.create_card({ set = 'Base', enhancement = 'm_bld_door' })
+                        copy_card:add_to_deck()
+                        G.deck.config.card_limit = G.deck.config.card_limit + 1
+                        table.insert(G.playing_cards, copy_card)
+                        G.hand:emplace(copy_card)
+                        copy_card.states.visible = nil
+                        G.E_MANAGER:add_event(Event({
+                            func = function()
+                                copy_card:start_materialize()
+                                return true
+                            end
+                        }))
+
+                        -- ghostbuster
+                        G.E_MANAGER:add_event(Event({
+                            func = function ()
+                                G.E_MANAGER:add_event(Event({
+                                    func = function ()
+                                        G.E_MANAGER:add_event(Event({
+                                            func = function ()
+                                                for key, value in pairs({card, key}) do
+                                                    value:remove()
+                                                end
+                                                return true
+                                            end
+                                        }))
+                                        return true
+                                    end
+                                }))
+                                return true
+                            end
+                        }))
+                        return {
+                            func = function()
+                                G.E_MANAGER:add_event(Event({
+                                    func = function()
+                                        SMODS.calculate_context({ playing_card_added = true, cards = { copy_card } })
+                                        return true
+                                    end
+                                }))
+                            end
+                        }
+                    end
                 end
             end
         end,
