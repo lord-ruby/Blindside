@@ -3035,9 +3035,8 @@ return {
 			["bld_frost_seal"] = {
 				["name"] = "Frost Blind",
 				["text"] = {
-					"{C:white,X:blue}#1#{} Chips for each",
-					"hand played this round",
-					"{C:inactive}(Currently: {X:chips,C:white}X#2#{C:inactive} Chips)"
+					"On last {C:attention}#1#{} hands of",
+					"round, retrigger {C:attention}once"
 				}
 			},
 			["bld_spooky_seal"]	= {

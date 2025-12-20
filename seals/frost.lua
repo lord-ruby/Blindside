@@ -4,8 +4,7 @@ SMODS.Seal {
     pos = { x = 3, y = 1 },
     config = { 
         extra = { 
-            xchips = 1,
-            xchips_mod = 0.2,
+            howmany = 2
         } 
     },
     badge_colour = HEX('757CDC'),
@@ -21,17 +20,16 @@ SMODS.Seal {
         ["bld_obj_enhancements"] = true,
     },
     calculate = function(self, card, context)
-        if context.main_scoring and context.cardarea == G.play and card.facing ~= 'back' then
+        if context.repetition and context.other_card == card and (context.cardarea == G.play and card.facing ~= 'back' or context.cardarea == G.hand) and G.GAME.current_round.hands_left <= 2 then
             return {
-                xchips = (next(SMODS.find_card('j_bld_snowglobe')) and card.ability.seal.extra.xchips*2 - G.GAME.current_round.hands_played*card.ability.seal.extra.xchips_mod/2) or (card.ability.seal.extra.xchips + G.GAME.current_round.hands_played*card.ability.seal.extra.xchips_mod)
-                }
+                repetitions = 1
+            }
         end
     end,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                (next(SMODS.find_card('j_bld_snowglobe')) and ('-X' .. tostring(card.ability.seal.extra.xchips_mod/2))) or ('X' .. tostring(card.ability.seal.extra.xchips_mod)), 
-                (next(SMODS.find_card('j_bld_snowglobe')) and card.ability.seal.extra.xchips*2 - G.GAME.current_round.hands_played*card.ability.seal.extra.xchips_mod/2) or (card.ability.seal.extra.xchips + G.GAME.current_round.hands_played*card.ability.seal.extra.xchips_mod)
+                card.ability.seal.extra.howmany
             }
         }
     end
