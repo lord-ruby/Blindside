@@ -5,8 +5,8 @@
         config = {
             extra = {
                 value = 100,
-                multreduc = 0.5,
-                mult_up = 0.5,
+                multreduc = 1,
+                mult_up = 1,
                 chance = 1,
                 trigger = 2,
             }

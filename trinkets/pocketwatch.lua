@@ -7,7 +7,7 @@
         cost = 12,
         config = {
             extra = {
-                multreduc = 1
+                multreduc = 2
             }
         },
         loc_vars = function (self, info_queue, card)
