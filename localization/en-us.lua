@@ -1296,6 +1296,14 @@ return {
 					"Gain 5 discards",
 				},
 			},
+			["bl_bld_stone"] = {
+				["name"] = "Stone Joker",
+				["text"] = {
+					"Gain #1# The Tablet",
+					"+8 Mult if scoring hand",
+					"contains a Faded Blind"
+				},
+			},
 			["bl_bld_yorick"] = {
 				["name"] = "Yorick",
 				["text"] = {
@@ -2454,6 +2462,16 @@ return {
 					{"When scored, gives",
 					"all {C:money}money{} and resets",
 					"by {C:attention}half"},
+					{"{C:green}Retained"}
+				},
+			},
+			["m_bld_tablet"] = {
+				["name"] = "The Tablet",
+				["text"] = {
+					{"{X:dark_edition,C:white}Faded{}",
+					"{C:chips}+#1#{} Chips,",
+					"Always Scores"},
+					{"{C:attention}Temporary"},
 					{"{C:green}Retained"}
 				},
 			},

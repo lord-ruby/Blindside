@@ -376,6 +376,7 @@ local card_list = {
         "Fossil",
         "Grate",
         "Vault",
+        "Tablet",
 }
 
 local trinket_list = {

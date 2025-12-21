@@ -94,6 +94,7 @@
         "m_bld_fossil",
         "m_bld_grate",
         "m_bld_vault",
+        "m_bld_tablet",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",
@@ -359,6 +360,7 @@
         "bl_bld_baron",
         "bl_bld_mime",
         "bl_bld_burglar",
+        "bl_bld_stone",
         "bl_bld_yorick",
         },
     }

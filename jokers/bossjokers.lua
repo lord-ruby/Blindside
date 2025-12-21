@@ -333,3 +333,93 @@ BLINDSIDE.Joker({
         ease_hands_played(G.GAME.round_resets.hands - 1)
     end,
 })
+
+BLINDSIDE.Joker({
+    key = 'stone',
+    atlas = 'bld_joker',
+    pos = {x=0, y=24},
+    boss_colour = HEX('BBBBBB'),
+    mult = 16,
+    dollars = 8,
+    order = 14,
+    boss = {min = 1},
+    --[[pool_override = function (self)
+        local num_fadeds = 0
+        for key, card in pairs(G.playing_cards) do
+            if card:is_color("Faded") then
+                num_fadeds = num_fadeds + 1
+            end
+        end
+        return num_fadeds >= 1
+    end,]]
+    loc_vars = function(self)
+        return {
+            vars = {
+                G.GAME.round_resets.ante and math.min(12, 2 + 2 * G.GAME.round_resets.ante) or "2 + 2*Ante"
+            }
+        }
+    end,
+    active = true,
+    calculate = function(self, blind, context)
+        if context.scoring_hand and context.poker_hands and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled then
+
+            local red = false
+            for i = 1, #context.scoring_hand do
+                if context.scoring_hand[i]:is_color("Faded") and context.scoring_hand[i].facing ~= "back" then
+                    red = true
+                end
+            end
+            if red then
+                BLINDSIDE.alert_debuff(self, true, "Hand contains a Faded Blind")
+            else
+                BLINDSIDE.alert_debuff(self, false)
+            end
+        end
+
+        if context.before then
+            BLINDSIDE.alert_debuff(self, false)
+        end
+
+        if context.after and not G.GAME.blind.disabled then            
+            local hasWildCanvas = false
+            for i = 1, #context.scoring_hand do
+                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                    hasWildCanvas = true
+                end
+            end
+            local changed = false
+            for i = 1, #context.scoring_hand do
+                if context.scoring_hand[i]:is_color("Faded") and context.scoring_hand[i].facing ~= "back" then
+                    changed = true
+                end
+            end
+            if changed then
+                BLINDSIDE.chipsmodify(8 - (hasWildCanvas and 4 or 0), 0, 0)
+            end
+        end
+    end,
+    set_joker = function()
+        for i = 1, 2+2*G.GAME.round_resets.ante, 1 do
+            local beta = SMODS.create_card { set = "Base", enhancement = "m_bld_tablet", area = G.discard }
+            G.playing_card = (G.playing_card and G.playing_card + 1) or 1
+            beta.playing_card = G.playing_card
+            table.insert(G.playing_cards, beta)
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 0.3,
+                func = function()
+                        beta:start_materialize({ G.C.SECONDARY_SET.Enhanced })
+                        G.deck:emplace(beta)
+                    return true
+                end
+            }))
+        end
+    end,
+    defeat_joker = function()
+        for key, value in pairs(G.playing_cards) do
+            if SMODS.has_enhancement(value, 'm_bld_tablet') then
+                value:start_dissolve()
+            end
+        end
+    end
+})
