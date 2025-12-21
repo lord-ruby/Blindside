@@ -186,7 +186,7 @@ BLINDSIDE.Joker({
     atlas = 'bld_joker',
     pos = {x=0, y=18},
     boss_colour = HEX('FA940B'),
-    mult = 24,
+    mult = 30,
     dollars = 10,
     order = 19,
     boss = {min = 2},
@@ -196,7 +196,7 @@ BLINDSIDE.Joker({
             blind.active = true
         end
         if not blind.disabled and context.selling_card and blind.active then
-            BLINDSIDE.chipsmodify(-16, 0, 0)
+            BLINDSIDE.chipsmodify(-20, 0, 0)
             G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
             BLINDSIDE.chipsupdate()
             blind.active = false
