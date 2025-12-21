@@ -38,11 +38,5 @@ SMODS.Consumable {
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_TAGS['tag_bld_awe']
         info_queue[#info_queue + 1] = G.P_CENTERS['e_bld_shiny']
-        return {
-            vars = {
-                G.GAME.bld_inversions + 1,
-                G.GAME.bld_inversions > 0 and "hands" or "hand"
-            }
-        }
     end
 }
