@@ -1,4 +1,4 @@
-SMODS.Blind({
+BLINDSIDE.Joker({
     key = 'slyjoker',
     atlas = 'bld_joker',
     pos = {x=0, y=6},
@@ -8,17 +8,8 @@ SMODS.Blind({
     order = 7,
     active = true,
     big = {min = 1},
-    in_pool = function(self, args)
-        if G.GAME.selected_back.effect.center.config.extra then
-            if not G.GAME.selected_back.effect.center.config.extra.blindside then return false end
-            return true
-        else
-        return false
-        end
-    end,
-    set_blind = function(self)
-        G.GAME.blindassist.states.visible = false
-        G.GAME.blindassist:change_dim(0,0)
+    pool_override = function()
+        return not G.GAME.modifiers.enable_bld_double_up or G.GAME.round_resets.ante == 1
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
@@ -56,13 +47,9 @@ SMODS.Blind({
             blind.active = false
         end
     end,
-    load = function()
-        G.GAME.blindassist.states.visible = false
-        G.GAME.blindassist:change_dim(0,0)
-    end,
 })
 
-SMODS.Blind({
+BLINDSIDE.Joker({
     key = 'wilyjoker',
     atlas = 'bld_joker',
     pos = {x=0, y=7},
@@ -72,17 +59,8 @@ SMODS.Blind({
     order = 8,
     active = true,
     big = {min = 1},
-    in_pool = function(self, args)
-        if G.GAME.selected_back.effect.center.config.extra then
-            if not G.GAME.selected_back.effect.center.config.extra.blindside then return false end
-            return true
-        else
-        return false
-        end
-    end,
-    set_blind = function(self)
-        G.GAME.blindassist.states.visible = false
-        G.GAME.blindassist:change_dim(0,0)
+    pool_override = function()
+        return not G.GAME.modifiers.enable_bld_double_up or G.GAME.round_resets.ante == 1
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
@@ -119,13 +97,9 @@ SMODS.Blind({
             blind.active = false
         end
     end,
-    load = function()
-        G.GAME.blindassist.states.visible = false
-        G.GAME.blindassist:change_dim(0,0)
-    end,
 })
 
-SMODS.Blind({
+BLINDSIDE.Joker({
     key = 'cleverjoker',
     atlas = 'bld_joker',
     pos = {x=0, y=8},
@@ -135,17 +109,8 @@ SMODS.Blind({
     order = 9,
     active = true,
     big = {min = 1},
-    in_pool = function(self, args)
-        if G.GAME.selected_back.effect.center.config.extra then
-            if not G.GAME.selected_back.effect.center.config.extra.blindside then return false end
-            return true
-        else
-        return false
-        end
-    end,
-    set_blind = function(self)
-        G.GAME.blindassist.states.visible = false
-        G.GAME.blindassist:change_dim(0,0)
+    pool_override = function()
+        return not G.GAME.modifiers.enable_bld_double_up or G.GAME.round_resets.ante == 1
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
@@ -182,13 +147,9 @@ SMODS.Blind({
             blind.active = false
         end
     end,
-    load = function()
-        G.GAME.blindassist.states.visible = false
-        G.GAME.blindassist:change_dim(0,0)
-    end,
 })
 
-SMODS.Blind({
+BLINDSIDE.Joker({
     key = 'deviousjoker',
     atlas = 'bld_joker',
     pos = {x=0, y=9},
@@ -198,17 +159,8 @@ SMODS.Blind({
     order = 10,
     active = true,
     big = {min = 1},
-    in_pool = function(self, args)
-        if G.GAME.selected_back.effect.center.config.extra then
-            if not G.GAME.selected_back.effect.center.config.extra.blindside then return false end
-            return true
-        else
-        return false
-        end
-    end,
-    set_blind = function(self)
-        G.GAME.blindassist.states.visible = false
-        G.GAME.blindassist:change_dim(0,0)
+    pool_override = function()
+        return not G.GAME.modifiers.enable_bld_double_up or G.GAME.round_resets.ante == 1
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
@@ -246,14 +198,10 @@ SMODS.Blind({
             blind.active = false
         end
     end,
-    load = function()
-        G.GAME.blindassist.states.visible = false
-        G.GAME.blindassist:change_dim(0,0)
-    end,
 })
 
 
-SMODS.Blind({
+BLINDSIDE.Joker({
     key = 'craftyjoker',
     atlas = 'bld_joker',
     pos = {x=0, y=10},
@@ -263,17 +211,8 @@ SMODS.Blind({
     order = 11,
     active = true,
     big = {min = 1},
-    in_pool = function(self, args)
-        if G.GAME.selected_back.effect.center.config.extra then
-            if not G.GAME.selected_back.effect.center.config.extra.blindside then return false end
-            return true
-        else
-        return false
-        end
-    end,
-    set_blind = function(self)
-        G.GAME.blindassist.states.visible = false
-        G.GAME.blindassist:change_dim(0,0)
+    pool_override = function()
+        return not G.GAME.modifiers.enable_bld_double_up or G.GAME.round_resets.ante == 1
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
@@ -310,8 +249,55 @@ SMODS.Blind({
             blind.active = false
         end
     end,
-    load = function()
-        G.GAME.blindassist.states.visible = false
-        G.GAME.blindassist:change_dim(0,0)
+})
+
+BLINDSIDE.Joker({
+    key = 'joker',
+    atlas = 'bld_joker',
+    pos = {x=0, y=6},
+    boss_colour = HEX("7fa5b5"),
+    mult = 12,
+    dollars = 6,
+    order = 7,
+    active = true,
+    big = {min = 1},
+    pool_override = function()
+        return not G.GAME.modifiers.enable_bld_double_up or G.GAME.round_resets.ante == 1
+    end,
+    calculate = function(self, blind, context)
+        if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
+            ease_hands_played(-1)
+        end
+
+        if context.scoring_name and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled and blind.active then
+            if has_group_of(2, context.poker_hands) then
+                BLINDSIDE.alert_debuff(self, true, "Hand contains Pair")
+            else
+                BLINDSIDE.alert_debuff(self, false)
+            end
+        end
+        if context.before then
+            BLINDSIDE.alert_debuff(self, false)
+            if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big and blind.active then
+                if has_group_of(2, context.poker_hands) then
+                    for key, value in pairs(context.scoring_hand) do
+                        value.config.center.blind_debuff(value, true)
+                    end
+                end
+            end
+        end
+        if context.setting_blind and not context.disabled then
+            blind.active = true
+        end
+        if context.after and not G.GAME.blind.disabled and blind.active and has_group_of(2, context.poker_hands) then
+            local hasWildCanvas = false
+            for i = 1, #context.scoring_hand do
+                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                    hasWildCanvas = true
+                end
+            end
+            BLINDSIDE.chipsmodify(0, 0, 0, 2- (hasWildCanvas and 0.5 or 0))
+            blind.active = false
+        end
     end,
 })

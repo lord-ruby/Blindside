@@ -1,17 +1,16 @@
 SMODS.Stake{
-    key = 'magic_deck',
+    key = 'anaglyph_deck',
 
-    above_stake = 'bld_anaglyph_deck',
-    applied_stakes = {'bld_black_deck'},
+    applied_stakes = {'bld_magic_deck'},
     prefix_config = {above_stake = {mod = false}, applied_stakes = {mod = false}, unlocked_stake = {mod = false}},
     
     modifiers = function()
-        G.GAME.modifiers.enable_bld_deadly_small_big = true
+        G.GAME.modifiers.enable_bld_double_up = true
     end,
 
     --colour = ,
 
-    pos = {x = 3, y = 0},
+    pos = {x = 0, y = 1},
     --sticker_pos = {x = 0, y = 0},
     atlas = 'bld_stakes',
     --sticker_atlas = 

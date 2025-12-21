@@ -1153,6 +1153,86 @@ return {
 					"a Yellow Blind",
 				},
 			},
+			["bl_bld_lustful1"] = {
+				["name"] = "Lustful Jokers",
+				["text"] = {
+					"Gains +4 Mult if",
+					"scoring hand contains",
+					"a Red or Blue Blind",
+				},
+			},
+			["bl_bld_lustful2"] = {
+				["name"] = "Lustful Jokers",
+				["text"] = {
+					"Gains +4 Mult if",
+					"scoring hand contains",
+					"a Red or Blue Blind",
+				},
+			},
+			["bl_bld_hoarder1"] = {
+				["name"] = "Hoarder Jokers",
+				["text"] = {
+					"Gains +4 Mult if",
+					"scoring hand contains",
+					"a Blue or Yellow Blind",
+				},
+			},
+			["bl_bld_hoarder2"] = {
+				["name"] = "Hoarder Jokers",
+				["text"] = {
+					"Gains +4 Mult if",
+					"scoring hand contains",
+					"a Blue or Yellow Blind",
+				},
+			},
+			["bl_bld_hedonist1"] = {
+				["name"] = "Hedonist Jokers",
+				["text"] = {
+					"Gains +4 Mult if",
+					"scoring hand contains",
+					"a Green or Red Blind",
+				},
+			},
+			["bl_bld_hedonist2"] = {
+				["name"] = "Hedonist Jokers",
+				["text"] = {
+					"Gains +4 Mult if",
+					"scoring hand contains",
+					"a Green or Red Blind",
+				},
+			},
+			["bl_bld_covetous1"] = {
+				["name"] = "Covetous Jokers",
+				["text"] = {
+					"Gains +4 Mult if",
+					"scoring hand contains",
+					"a Yellow or Green Blind",
+				},
+			},
+			["bl_bld_covetous2"] = {
+				["name"] = "Covetous Jokers",
+				["text"] = {
+					"Gains +4 Mult if",
+					"scoring hand contains",
+					"a Yellow or Green Blind",
+				},
+			},
+			["bl_bld_vengeful"] = {
+				["name"] = "Vengeful Jokers",
+				["text"] = {
+					"Gains +8 Mult if",
+					"scoring hand contains",
+					"a Purple Blind",
+				},
+			},
+			["bl_bld_arrowhead"] = {
+				["name"] = "Vengeful Jokers",
+				["text"] = {
+					"Gains +8 Mult if",
+					"scoring hand contains",
+					"a Purple Blind",
+				},
+			},
 			["bl_bld_slyjoker"] = {
 				["name"] = "Sly Joker",
 				["text"] = {
@@ -1185,10 +1265,10 @@ return {
 				["text"] = {
 					"Once per Round,",
 					"gains X4 Chips if",
-					"played hand contains",
-					"a Raise",
-				},
-			},
+					"played hand contains", -- wily + clever = Mad
+					"a Raise", -- wily + devious = Impractical
+				}, -- clever + crafty = Schemeing
+			},-- devious + crafty = Malicious
 			["bl_bld_craftyjoker"] = {
 				["name"] = "Crafty Joker",
 				["text"] = {
@@ -1204,6 +1284,24 @@ return {
 					"X8 Mult if",
 					"first hand",
 					"doesn't win",
+				},
+			},
+			["bl_bld_deceitfuljoker1"] = {
+				["name"] = "Deceitful Jokers",
+				["text"] = {
+					"Once per Round,",
+					"Gains X3 Chips if",
+					"played hand contains",
+					"a Pair",
+				},
+			},
+			["bl_bld_deceitfuljoker2"] = {
+				["name"] = "Deceitful Jokers",
+				["text"] = {
+					"Once per Round,",
+					"Gains X3 Chips if",
+					"played hand contains",
+					"a Pair",
 				},
 			},
 			["bl_bld_chad"] = {
@@ -3078,6 +3176,13 @@ return {
 					"their respective {C:attention}hue",
 					"{C:attention}Big{} Jokers {C:red}debuff",
 					"Blinds when triggered"
+				}
+			},
+			["stake_bld_anaglyph_deck"] = {
+				name = "Anaglyph Stake??",
+				text = {
+					"{C:attention}Small{} and {C:attention}Big{} Jokers",
+					"can {C:attention}Double Up",
 				}
 			}
 		},
