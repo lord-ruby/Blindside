@@ -35,7 +35,7 @@
         calculate = function(self, card, context)
             if context.before and card.ability.extra.x_value.x == 2 then
                 for i=1, #G.play.cards do
-                    G.play.cards[i]:blind_debuff(G.play.cards[i], true)
+                    G.play.cards[i].config.center.blind_debuff(G.play.cards[i], true)
                 end
             end
             if context.repetition and card.ability.extra.x_value.x == 4 and context.cardarea == G.play and context.other_card and context.other_card.facing ~= "back" then
