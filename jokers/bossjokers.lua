@@ -12,6 +12,9 @@ BLINDSIDE.Joker({
     end,
     active = true,
     calculate = function(self, blind, context)
+        if context.setting_blind and not context.disabled then
+            blind.active = true
+        end
         if context.after and not G.GAME.blind.disabled and G.GAME.blind.active and SMODS.calculate_round_score() - G.GAME.blind.chips <= 0 then
             G.GAME.blind.mult = G.GAME.blind.mult*8
             G.E_MANAGER:add_event(Event({trigger = 'before', delay = 0.5, func = function()
