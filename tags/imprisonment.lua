@@ -8,14 +8,9 @@ SMODS.Tag {
         }
     },]]
     pos = {x = 4, y = 4},
-        in_pool = function(self, args)
-            if G.GAME.selected_back.effect.center.config.extra then
-                if not G.GAME.selected_back.effect.center.config.extra.blindside then return false end
-                return true
-            else
-            return false
-            end
-        end,
+    in_pool = function(self, args)
+        return false
+    end,
     apply = function(self, tag, context)
         if not G.GAME.imprisonment_buffer and context.type == 'real_round_start' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) and G.GAME.blind.boss then
             G.GAME.imprisonment_buffer = true

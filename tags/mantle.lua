@@ -3,14 +3,9 @@ SMODS.Tag {
     hide_ability = false,
     atlas = 'bld_tag',
     pos = {x = 2, y = 4},
-        in_pool = function(self, args)
-            if G.GAME.selected_back.effect.center.config.extra then
-                if not G.GAME.selected_back.effect.center.config.extra.blindside then return false end
-                return true
-            else
-            return false
-            end
-        end,
+    in_pool = function(self, args)
+        return false
+    end,
     apply = function(self, tag, context)
         if context.type == 'after_hand' and not (next(SMODS.find_card("j_bld_taglock"))) then
             local cards = choose_stuff(G.play.cards, 1, pseudoseed('mantle'))
