@@ -58,7 +58,7 @@
                                 card,
                                 'extra',
                                 nil, nil, nil,
-                                {message = "Nope!", colour = G.C.DARK_EDITION, instant = true}
+                                {message = "Almost!", colour = G.C.DARK_EDITION, instant = true}
                             )
                             return true
                         end}))
@@ -83,7 +83,7 @@
                                 card,
                                 'extra',
                                 nil, nil, nil,
-                                {message = "Almost!", colour = G.C.DARK_EDITION, instant = true}
+                                {message = "One More!", colour = G.C.DARK_EDITION, instant = true}
                             )
                             return true
                         end}))
