@@ -362,7 +362,6 @@ BLINDSIDE.Joker({
     active = true,
     calculate = function(self, blind, context)
         if context.scoring_hand and context.poker_hands and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled then
-
             local red = false
             for i = 1, #context.scoring_hand do
                 if context.scoring_hand[i]:is_color("Faded") and context.scoring_hand[i].facing ~= "back" then
@@ -394,7 +393,7 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                BLINDSIDE.chipsmodify(8 - (hasWildCanvas and 4 or 0), 0, 0)
+                BLINDSIDE.chipsmodify(6 - (hasWildCanvas and 3 or 0), 0, 0)
             end
         end
     end,

@@ -1300,7 +1300,7 @@ return {
 				["name"] = "Stone Joker",
 				["text"] = {
 					"Gain #1# The Tablet",
-					"+8 Mult if scoring hand",
+					"+6 Mult if scoring hand",
 					"contains a Faded Blind"
 				},
 			},
