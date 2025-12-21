@@ -422,3 +422,34 @@ BLINDSIDE.Joker({
         end
     end
 })
+
+BLINDSIDE.Joker({
+    key = 'wee',
+    atlas = 'bld_joker',
+    pos = {x=0, y=25},
+    boss_colour = G.C.RED,
+    mult = 12,
+    dollars = 8,
+    order = 14,
+    boss = {min = 1},
+    active = true,
+    calculate = function(self, blind, context)
+        if context.scoring_hand and context.poker_hands and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled then
+            if #context.full_hand > 3 then
+                BLINDSIDE.alert_debuff(self, true, "Hand contains more than 3 Blinds")
+            else
+                BLINDSIDE.alert_debuff(self, false)
+            end
+        end
+
+        if context.before then
+            BLINDSIDE.alert_debuff(self, false)
+        end
+
+        if context.after and not G.GAME.blind.disabled then
+            if #context.full_hand > 3 then
+                BLINDSIDE.chipsmodify(4, 0, 0)
+            end
+        end
+    end,
+})

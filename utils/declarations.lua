@@ -361,6 +361,7 @@
         "bl_bld_mime",
         "bl_bld_burglar",
         "bl_bld_stone",
+        "bl_bld_wee",
         "bl_bld_yorick",
         },
     }

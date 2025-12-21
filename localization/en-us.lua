@@ -1304,6 +1304,14 @@ return {
 					"contains a Faded Blind"
 				},
 			},
+			["bl_bld_wee"] = {
+				["name"] = "Wee Joker",
+				["text"] = {
+					"Gains +4 Mult if",
+					"played hand contains",
+					"more than 3 Blinds"
+				},
+			},
 			["bl_bld_yorick"] = {
 				["name"] = "Yorick",
 				["text"] = {
