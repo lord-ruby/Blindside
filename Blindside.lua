@@ -444,6 +444,7 @@ local trinket_list = {
         "lighter",
         "dentures",
         "giftbox",
+        "hourglass",
 }
 
 local joker_list = {

@@ -3205,6 +3205,15 @@ return {
 					"for each held {C:attention}Tag"
 				}
 			},
+			['j_bld_hourglass'] = {
+				["name"] = "Hourglass",
+				["text"] = {
+					"First time {C:blue}hands{} are",
+					"less than {C:red}discards{} this",
+					"round, gives {C:blue}+#1# hands",
+					"{C:inactive}(Currently: #2#)"
+				}
+			},
 		},
 		["Edition"] = {
 			['e_bld_enameled'] = {
