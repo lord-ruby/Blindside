@@ -784,18 +784,8 @@ pattern = '''
 '''
 payload = '''
   local blind_assist = {}
-  if blind_choice.config.config and blind_choice.config.config.extra then
-  end
-  if blind_choice.config.key == 'bl_bld_photograph' then
-    blind_assist.config = G.P_BLINDS['bl_bld_chad']
-    blind_assist.animation = AnimatedSprite(0,0, 1.4, 1.4, G.ANIMATION_ATLAS[blind_assist.config.atlas] or G.ANIMATION_ATLAS['blind_chips'],  blind_assist.config.pos)
-  	blind_assist.animation:define_draw_steps({
-  		{shader = 'dissolve', shadow_height = 0.05},
-  		{shader = 'dissolve'}
-  	})
-  end
-  if blind_choice.config.key == 'bl_bld_baron' then
-    blind_assist.config = G.P_BLINDS['bl_bld_mime']
+  if blind_choice.config.get_assist then
+    blind_assist.config = blind_choice.config.get_assist()
     blind_assist.animation = AnimatedSprite(0,0, 1.4, 1.4, G.ANIMATION_ATLAS[blind_assist.config.atlas] or G.ANIMATION_ATLAS['blind_chips'],  blind_assist.config.pos)
   	blind_assist.animation:define_draw_steps({
   		{shader = 'dissolve', shadow_height = 0.05},
