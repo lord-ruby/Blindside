@@ -55,6 +55,10 @@ return {
 			['k_base_blinds'] = "Base Blinds",
 			['k_fossil_excavate'] = "Excavated!",
 			['k_exorcised_ex'] = "Exorcised!",
+			['bld_playing_with_fire'] = "Playing With Fire",
+			['bld_playing_with_fire_each_boss_joker'] = "$1 each",
+			['bld_playing_with_fire_each_big_joker'] = "$1 each XMult",
+			['bld_playing_with_fire_each_small_joker'] = "$2 each",
 			},
 		["v_dictionary"] = {
 			["a_rmult"] = "-#1#",
