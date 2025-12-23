@@ -3214,6 +3214,14 @@ return {
 					"{C:inactive}(Currently: #2#)"
 				}
 			},
+			['j_bld_snaketotem'] = {
+				["name"] = "Snake Totem",
+				["text"] = {
+					{"{C:attention}+#1#{} hand size"},
+					{"When using a {C:red}discard,",
+					"always draw {C:attention}3{} Blinds"}
+				}
+			}
 		},
 		["Edition"] = {
 			['e_bld_enameled'] = {

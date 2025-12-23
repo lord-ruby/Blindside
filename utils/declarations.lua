@@ -197,6 +197,7 @@
         "j_bld_dentures",
         "j_bld_giftbox",
         "j_bld_hourglass",
+        "j_bld_snaketotem",
         "c_bld_horror",
         "c_bld_action",
         "c_bld_comedy",
