@@ -180,7 +180,7 @@ return {
 				["text"] = {
 					"???",
 					"{C:attention}+1{} Trinket slot",
-					"{C:blue}-2{} hands",
+					"{C:blue}-1{} hand",
 				},
 			},
 			["b_bld_bluedispenser"] = {

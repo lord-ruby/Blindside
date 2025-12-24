@@ -4,6 +4,7 @@ SMODS.Back({
     config = {
         no_interest = true,
         hand_size = -1,
+        hands = 1,
         discards = -1,
         extra = {
             cash = 8,
