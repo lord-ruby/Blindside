@@ -2985,8 +2985,7 @@ return {
 				["name"] = "Pendant",
 				["text"] = {
 					"{C:attention}Astral{} Blinds",
-					"give {C:red}+#1#{} Mult per",
-					"hand level"
+					"give {C:white,X:red}X#1#{} Mult",
 				}
 			},
 			['j_bld_glasseye'] = {
