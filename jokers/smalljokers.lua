@@ -58,6 +58,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -123,6 +126,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -189,7 +195,10 @@ BLINDSIDE.Joker({
             end
         end
 
-                if context.before then
+                if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
+        if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
                 for key, value in pairs(context.scoring_hand) do
@@ -253,6 +262,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -316,6 +328,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -390,6 +405,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -481,6 +499,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -572,6 +593,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -663,6 +687,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -754,6 +781,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
