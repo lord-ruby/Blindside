@@ -28,6 +28,7 @@
             G.GAME.planet_rate = 0
             G.GAME.bld_inversions = 0
             G.GAME.playing_with_fire = 0
+            G.GAME.playing_with_fire_num = 0
             SMODS.change_booster_limit(1)
             G.GAME.starting_params.reroll_cost = 3
             G.GAME.banned_keys['p_buffoon_normal_1'] = true

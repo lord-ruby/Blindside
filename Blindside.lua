@@ -447,7 +447,8 @@ local trinket_list = {
         "hourglass",
         "snaketotem",
         "bingoball",
-        "sockpuppet"
+        "sockpuppet",
+        "nixietubes"
 }
 
 local joker_list = {

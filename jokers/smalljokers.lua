@@ -21,6 +21,7 @@ BLINDSIDE.Joker({
                     hasWildCanvas = true
                 end
             end
+            G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
             G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_boss_joker"
             G.GAME.playing_with_fire = G.GAME.playing_with_fire + 1
             BLINDSIDE.chipsmodify(2 - (hasWildCanvas and 1 or 0), 0, 0)
@@ -86,7 +87,8 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -155,7 +157,8 @@ BLINDSIDE.Joker({
             end
             if changed then
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -224,7 +227,8 @@ BLINDSIDE.Joker({
             end
             if changed then
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -290,7 +294,8 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -356,7 +361,8 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -433,7 +439,8 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -527,7 +534,8 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -621,7 +629,8 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -715,7 +724,8 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end

@@ -60,6 +60,8 @@ return {
 			['bld_playing_with_fire_each_boss_joker'] = "$1 each",
 			['bld_playing_with_fire_each_big_joker'] = "$1 each XMult",
 			['bld_playing_with_fire_each_small_joker'] = "$2 each",
+			['bld_neon_hands'] = 'Hands, Neon Tag ($3 each)',
+			['bld_neon_discards'] = 'Discards, Neon Tag ($5 each)'
 			},
 		["v_dictionary"] = {
 			["a_rmult"] = "-#1#",
@@ -618,6 +620,15 @@ return {
 				["text"] = {
 					"Disables next",
 					"{C:attention}Boss Joker{}"
+				},
+			},
+			["tag_bld_neon"] = {
+				["name"] = "Neon Tag",
+				["text"] = {
+					"Leftover {C:blue}hands",
+					"give {C:money}$3{} each",
+					"Leftover {C:red}discards",
+					"give {C:money}$5{} each"
 				},
 			}
 		},
@@ -3249,6 +3260,15 @@ return {
 				["text"] = {
 					"Retrigger {C:attention}2{} scoring",
 					"Blinds at random"
+				}
+			},
+			['j_bld_nixietubes'] = {
+				["name"] = "Nixie Tubes",
+				["text"] = {
+					"Every 10 used {C:blue}hands{}",
+					"and {C:red}discards{}, creates",
+					"a {C:attention}Neon Tag",
+					"{C:inactive}(Currently #1# left)"
 				}
 			}
 		},
