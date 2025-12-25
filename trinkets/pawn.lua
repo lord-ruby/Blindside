@@ -51,7 +51,7 @@
                     mult = card.ability.extra.mult
                 }
             end
-            if context.end_of_round and not context.repetition and not context.individual and card.ability.extra.hand_count == 8 and not context.blueprint and not card.ability.extra.queen then 
+            if context.end_of_round and not context.repetition and not context.individual and card.ability.extra.hand_count >= 8 and not context.blueprint and not card.ability.extra.queen then 
                 G.E_MANAGER:add_event(Event({
                     func = function()
                     play_sound('tarot1')
