@@ -2269,7 +2269,7 @@ return {
 				["text"] = {
 					{"{X:chips,C:white}Blue{}",
 					"{C:chips}+#2#{} Chips"},
-					{"{C:green}Retain{} all cards",
+					{"{C:green}Retain{} all Blinds",
 					"{C:attention}held in hand"},
 				},
 			},
@@ -2278,7 +2278,7 @@ return {
 				["text"] = {
 					{"{X:chips,C:white}Blue{}",
 					"{C:chips}+#2#{} Chips"},
-					{"{C:green}Retain{} all cards",
+					{"{C:green}Retain{} all Blinds",
 					"{C:attention}held in hand"},
 					{"{C:green}Retained"}
 				},
