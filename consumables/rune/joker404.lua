@@ -41,7 +41,7 @@ SMODS.Consumable {
         end
         if context.joker_main and card.ability.extra.active then
             return {
-                extra = {focus = card, message = localize{type='variable',key='a_rmult',vars={-1}}, 
+                extra = {focus = card, message = localize{type='variable',key='a_rmult',vars={1}}, 
                 colour = G.C.RED, func = function()
                     BLINDSIDE.chipsmodify(-1, 0 , 0)
                 end},
