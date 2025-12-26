@@ -482,7 +482,7 @@ G.FUNCS.blind_draw_from_deck_to_hand = function(e)
         trigger = 'after',
         delay = 0.7,
         func = function()
-            pseudoshuffle(G.deck.cards, 'beta'..G.GAME.round_resets.ante)
+            G.deck:shuffle('beta'..G.GAME.round_resets.ante)
             return true
         end
     }))
