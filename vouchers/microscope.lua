@@ -19,7 +19,5 @@ SMODS.Voucher {
         G.GAME.round_resets.reroll_cost = G.GAME.round_resets.reroll_cost - 2
         G.GAME.current_round.reroll_cost = math.max(0, G.GAME.current_round.reroll_cost - 2)
     end,
-    loc_vars = function (self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_TAGS.tag_bld_reroll
-    end
+    requires = {'v_bld_magnifyingglass'}
 }
