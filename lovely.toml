@@ -1204,6 +1204,9 @@ for i = 1, G.GAME.shop.joker_max do
     G.GAME.current_round.trinket = BLINDSIDE.get_next_trinket()
 end
 -- G.GAME.round_resets.tags_bought = 0
+if not G.GAME.round_resets.hands_removed then
+    G.GAME.round_resets.hands_removed = 0
+end
 G.GAME.round_resets.hands = G.GAME.round_resets.hands + G.GAME.round_resets.hands_removed
 G.GAME.round_resets.hands_removed = 0
 end
