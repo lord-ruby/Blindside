@@ -1,6 +1,6 @@
 SMODS.Voucher {
     key = 'antidote',
-    atlas = 'bld_voucher',
+    atlas = 'bld_price_tag',
     pos = {x = 3, y = 2},
     cost = 15,
     config = { extra = { shop_size = 1 } },

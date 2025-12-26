@@ -13,7 +13,7 @@
         rare = true,
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.main_scoring then
-                if #context.scoring_hand == 5 then
+                if #context.scoring_hand == 5 and not card.ability.extra.upgraded then
                             if card.facing ~= 'back' then 
                             card:flip()
                             end

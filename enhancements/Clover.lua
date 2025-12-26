@@ -28,7 +28,7 @@
         rare = true,
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.before then
-                if SMODS.pseudorandom_probability(card, pseudoseed("flip"), card.ability.extra.chance, card.ability.extra.trigger, 'flip') and card.facing ~= "back" then
+                if SMODS.pseudorandom_probability(card, pseudoseed("flip"), card.ability.extra.chance+#G.GAME.tags, card.ability.extra.trigger, 'flip') and card.facing ~= "back" then
                     card:flip()
                     card:flip()
                 else

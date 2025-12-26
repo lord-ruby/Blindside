@@ -1,6 +1,6 @@
 SMODS.Voucher {
     key = 'meteor',
-    atlas = 'bld_voucher',
+    atlas = 'bld_price_tag',
     pos = {x = 5, y = 1},
     cost = 15,
     in_pool = function(self, args)

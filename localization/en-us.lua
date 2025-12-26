@@ -60,6 +60,8 @@ return {
 			['bld_playing_with_fire_each_boss_joker'] = "$1 each",
 			['bld_playing_with_fire_each_big_joker'] = "$1 each XMult",
 			['bld_playing_with_fire_each_small_joker'] = "$2 each",
+			['bld_neon_hands'] = 'Hands, Neon Tag ($3 each)',
+			['bld_neon_discards'] = 'Discards, Neon Tag ($5 each)'
 			},
 		["v_dictionary"] = {
 			["a_rmult"] = "-#1#",
@@ -163,6 +165,10 @@ return {
 					"???",
 					"{C:attention}+2{} {C:red}discard{} size"
 				},
+				["unlock"] = {
+					"Reach Ante {C:attention}4",
+					"with {C:inactive}White Deck?"
+				}
 			},
 			["b_bld_greendispenser"] = {
 				["name"] = "Green Deck?",
@@ -172,14 +178,22 @@ return {
 					"Start with {C:attention,T:v_bld_coolrock}Cool Rock{}",
 					"and {C:attention,T:v_bld_television}Television{}",
 				},
+				["unlock"] = {
+					"Reach Ante {C:attention}5",
+					"with {C:red}Red Deck?"
+				}
 			},
 			["b_bld_blackdispenser"] = {
 				["name"] = "Black Deck?",
 				["text"] = {
 					"???",
 					"{C:attention}+1{} Trinket slot",
-					"{C:blue}-2{} hands",
+					"{C:blue}-1{} hand",
 				},
+				["unlock"] = {
+					"Reach Ante {C:attention}6",
+					"with {C:green}Green Deck?"
+				}
 			},
 			["b_bld_bluedispenser"] = {
 				["name"] = "Blue Deck?",
@@ -189,6 +203,10 @@ return {
 					"give {C:money}$2{} each",
 					"{C:red}-1{} discard",
 				},
+				["unlock"] = {
+					"Reach Ante {C:attention}6",
+					"with Black Deck?"
+				}
 			},
 			["b_bld_purpledispenser"] = {
 				["name"] = "Purple Deck?",
@@ -201,6 +219,10 @@ return {
 					"{s:0.2} {}",
 					"{C:attention}-1{} hand size"
 				},
+				["unlock"] = {
+					"Defeat Ante {C:attention}6",
+					"with {C:blue}Blue Deck?"
+				}
 			},
 			["b_bld_orangedispenser"] = {
 				["name"] = "Orange Deck?",
@@ -212,9 +234,28 @@ return {
 					"{s:0.2} {}",
 					"All Blinds {C:attention,T:bld_burn}burn"
 				},
+				["unlock"] = {
+					"Defeat Ante {C:attention}6",
+					"with {C:purple}Purple Deck?"
+				}
+			},
+			["b_bld_golddispenser"] = {
+				["name"] = "Gold Deck? (not shiny yet)",
+				["text"] = {
+					"???",
+					"{C:bld_obj_mineral}Level up{} the hand",
+					"that beats each {C:attention}Small{}",
+					"and {C:attention}Big Joker{}",
+					"{s:0.2} {}",
+					"Lose {C:money}$3{} each round"
+				},
+				["unlock"] = {
+					"Defeat Ante {C:attention}6",
+					"with {C:attention}Orange Deck?"
+				}
 			},
 			["b_bld_yellowdispenser"] = {
-				["name"] = "Yellow Deck?",
+				["name"] = "Penny Deck?",
 				["text"] = {
 					"???",
 					"Start with {C:attention,T:v_bld_swearjar}Swear Jar",
@@ -222,6 +263,11 @@ return {
 					"Extra hands earn",
 					"{C:attention}no money"
 				},
+				["unlock"] = {
+					"Earn {C:money}$8 in a",
+					"single round from",
+					"{C:attention,E:1}Playing with Fire",
+				}
 			},
 			["b_bld_painteddispenser"] = {
 				["name"] = "Painted Deck?",
@@ -229,6 +275,10 @@ return {
 					"???",
 					"{C:attention}+2{} hand size",
 					"{C:attention}-1{} Trinket slot",
+				},
+				["unlock"] = {
+					"Defeat all {C:attention}6",
+					"{C:attention}Small Jokers"
 				},
 			}
 		},
@@ -261,11 +311,34 @@ return {
 					"start of round",
 				}
 			},
+			['v_bld_souvenir'] = {
+				["name"] = "Souvenir",
+				["text"] = {
+					"All Trinkets",
+					"are {C:attention}33%{} off"
+				}
+			},
+			['v_bld_mementomori'] = {
+				["name"] = "Memento Mori",
+				["text"] = {
+					"All Trinkets",
+					"are {C:attention}66%{} off"
+				}
+			},
 			["v_bld_scissors"] = {
 				["name"] = "Scissors",
 				["text"] = {
-					"Leftmost initial blind or",
-					"booster each shop is {C:attention}free"
+					"Leftmost initial Blind,",
+					"Booster, or card each",
+					"shop is {C:attention}free"
+				},
+			},
+			["v_bld_exactoblade"] = {
+				["name"] = "Exacto Blade",
+				["text"] = {
+					"All initial Blinds,",
+					"Boosters, and cards",
+					"each shop are {C:attention}free"
 				},
 			},
 			["v_bld_swearjar"] = {
@@ -285,6 +358,13 @@ return {
 					"each {C:attention}Joker{} is defeated"
 				},
 			},
+			["v_bld_microscope"] = {
+				["name"] = "Microscope",
+				["text"] = {
+					"Rerolls cost",
+					"{C:money}$2{} less"
+				},
+			},
 			["v_bld_meteor"] = {
 				["name"] = "Meteor",
 				["text"] = {
@@ -299,11 +379,25 @@ return {
 					"{C:attention}-1{} Hand Size"
 				},
 			},
+			["v_bld_timemachine"] = {
+				["name"] = "Time Machine",
+				["text"] = {
+					"{C:attention}+1{} Ante",
+					"{C:blue}+2{} Hands"
+				},
+			},
 			["v_bld_jugglingballs"] = {
 				["name"] = "Juggling Balls",
 				["text"] = {
-					"Create a {C:attention}Juggle{} Tag after",
+					"Create a {C:attention}Juggle Tag{} after",
 					"each {C:attention}Boss Joker{} is defeated"
+				},
+			},
+			["v_bld_cannonball"] = {
+				["name"] = "Cannonball",
+				["text"] = {
+					"Create a {C:attention}Toss Tag{} at the",
+					"start of every {C:attention}shop"
 				},
 			},
 			["v_bld_antidote"] = {
@@ -326,6 +420,13 @@ return {
 					"in Blind Shops"
 				},
 			},
+			["v_bld_satellite"] = {
+				["name"] = "Satellite",
+				["text"] = {
+					"{C:attention}+1{} choice in",
+					"{C:bld_obj_filmcard}Channel Packs"
+				},
+			},
 			["v_bld_magnet"] = {
 				["name"] = "Magnet",
 				["text"] = {
@@ -341,6 +442,20 @@ return {
 					"{C:attention}1{} free",
 					"reroll in shop",
 				},
+			},
+			['tag_bld_souvenir_relic'] = {
+				["name"] = "Souvenir",
+				["text"] = {
+					"All Trinkets",
+					"are {C:attention}33%{} off"
+				}
+			},
+			['tag_bld_mementomori_relic'] = {
+				["name"] = "Memento Mori",
+				["text"] = {
+					"All Trinkets",
+					"are {C:attention}66%{} off"
+				}
 			},
 			["tag_bld_grabbyhand_relic"] = {
 				["name"] = "Grabby Hand",
@@ -359,8 +474,17 @@ return {
 			["tag_bld_scissors_relic"] = {
 				["name"] = "Scissors",
 				["text"] = {
-					"Leftmost initial blind or",
-					"booster each shop is {C:attention}free"
+					"Leftmost initial Blind,",
+					"Booster, or card each",
+					"shop is {C:attention}free"
+				},
+			},
+			["tag_bld_exactoblade_relic"] = {
+				["name"] = "Exacto Blade",
+				["text"] = {
+					"All initial Blinds,",
+					"Boosters, and cards",
+					"each shop are {C:attention}free"
 				},
 			},
 			["tag_bld_swearjar_relic"] = {
@@ -378,6 +502,13 @@ return {
 					"each {C:attention}Joker{} is defeated"
 				},
 			},
+			["tag_bld_microscope_relic"] = {
+				["name"] = "Microscope",
+				["text"] = {
+					"Rerolls cost",
+					"{C:money}$2{} less"
+				},
+			},
 			["tag_bld_meteor_relic"] = {
 				["name"] = "Meteor",
 				["text"] = {
@@ -392,11 +523,25 @@ return {
 					"{C:attention}-1{} Hand Size"
 				},
 			},
+			["tag_bld_timemachine_relic"] = {
+				["name"] = "Time Machine",
+				["text"] = {
+					"{C:attention}+1{} Ante",
+					"{C:blue}+2{} Hands"
+				},
+			},
 			["tag_bld_jugglingballs_relic"] = {
 				["name"] = "Juggling Balls",
 				["text"] = {
-					"Create a {C:attention}Juggle{} Tag after",
+					"Create a {C:attention}Juggle Tag{} after",
 					"each {C:attention}Boss Joker{} is defeated"
+				},
+			},
+			["tag_bld_cannonball_relic"] = {
+				["name"] = "Cannonball",
+				["text"] = {
+					"Create a {C:attention}Toss Tag{} at the",
+					"start of every {C:attention}shop"
 				},
 			},
 			["tag_bld_bindle_relic"] = {
@@ -444,8 +589,9 @@ return {
 			["tag_bld_symmetry"] = {
 				["name"] = "Symmetry Tag",
 				["text"] = {
-					"{C:green}#1# in #2#{} chance to retrigger",
-					"scoring blinds"
+					"{C:green}#1# in #2#{} chance",
+					"to retrigger each",
+					"scoring blind"
 				},
 			},
 			["tag_bld_additive"] = {
@@ -566,6 +712,13 @@ return {
 					"in Blind Shops"
 				},
 			},
+			["tag_bld_satellite_relic"] = {
+				["name"] = "Satellite",
+				["text"] = {
+					"{C:attention}+1{} choice in",
+					"{C:bld_obj_filmcard}Channel Packs"
+				},
+			},
 			["tag_bld_dental"] = {
 				["name"] = "Dental Tag",
 				["text"] = {
@@ -618,6 +771,15 @@ return {
 				["text"] = {
 					"Disables next",
 					"{C:attention}Boss Joker{}"
+				},
+			},
+			["tag_bld_neon"] = {
+				["name"] = "Neon Tag",
+				["text"] = {
+					"Leftover {C:blue}hands",
+					"give {C:money}$3{} each",
+					"Leftover {C:red}discards",
+					"give {C:money}$5{} each"
 				},
 			}
 		},
@@ -1118,9 +1280,9 @@ return {
 				["name"] = "Cartoon",
 				["text"] = {
                     "Select {C:attention}#1#{} blinds,",
-                    "apply the {C:attention}left{} blind's",
+                    "apply the {C:attention}right{} blind's",
 					"{C:attention}Trim{} and {C:dark_edition}Edition",
-                    "onto the {C:attention}right{} blind",
+                    "onto the {C:attention}left{} blind",
 				},
 			},
 		},
@@ -1784,7 +1946,7 @@ return {
 				["text"] = {
 					"{X:money,C:white}Yellow{}",
 					"If scoring hand",
-					"conatins 5 Blinds, creates a",
+					"contains 5 Blinds, creates a",
 					"{C:chips,E:1}Wave Tag{} and {C:attention}burns{}"
 				},
 			},
@@ -1943,7 +2105,7 @@ return {
 					"Retriggers all",
 					"{C:attention}scored blinds"},
 					{"Always Scores"},
-					{"If played hand conatins",
+					{"If played hand contains",
 					"{C:attention}5{} Blinds, {C:red}debuffs{} self",}
 				},
 			},
@@ -2200,6 +2362,15 @@ return {
 					{"Always scores"},
 				},
 			},
+			["m_bld_blank_upgraded"] = {
+				["name"] = "The Blank",	
+				["text"] = {
+					{"{X:dark_edition,C:white}Faded{}",
+					"Retriggers {C:attention}adjacent",
+					"{C:attention}Blinds twice"},
+					{"Always scores"},
+				},
+			},
 			["m_bld_deck"] = {
 				["name"] = "The Deck",	
 				["text"] = {
@@ -2237,7 +2408,7 @@ return {
 				["text"] = {
 					{"{X:chips,C:white}Blue{}",
 					"{C:chips}+#2#{} Chips"},
-					{"{C:green}Retain{} all cards",
+					{"{C:green}Retain{} all Blinds",
 					"{C:attention}held in hand"},
 				},
 			},
@@ -2246,7 +2417,7 @@ return {
 				["text"] = {
 					{"{X:chips,C:white}Blue{}",
 					"{C:chips}+#2#{} Chips"},
-					{"{C:green}Retain{} all cards",
+					{"{C:green}Retain{} all Blinds",
 					"{C:attention}held in hand"},
 					{"{C:green}Retained"}
 				},
@@ -2549,7 +2720,7 @@ return {
 				["text"] = {
 					"{X:mult,C:white}Red{} {X:money,C:white}Yellow{}",
 					"If scoring hand",
-					"conatins at least",
+					"contains at least",
 					"3 Blinds, creates a",
 					"{C:mult,E:1}Strike Tag{} and {C:attention}burns{}"
 				},
@@ -2560,7 +2731,7 @@ return {
 					{"{X:mult,C:white}Red{} {X:money,C:white}Yellow{}",
 					"{C:money}+#1#${}"},
 					{"If scoring hand",
-					"conatins at least",
+					"contains at least",
 					"3 Blinds, creates a",
 					"{C:mult,E:1}Strike Tag{} and {C:attention}burns{}"}
 				},
@@ -2920,8 +3091,8 @@ return {
 			['j_bld_doubloon'] = {
 				["name"] = "Copper Doubloon",
 				["text"] = {
-					"Retriggers all scoring",
-					"{X:green,C:white}Green{} Blinds",
+					"When {C:attention}Joker{} is selected,",
+					"creates a {C:green}Symmetry Tag"
 				}
 			},
 			['j_bld_toyrobot'] = {
@@ -2965,8 +3136,7 @@ return {
 				["name"] = "Pendant",
 				["text"] = {
 					"{C:attention}Astral{} Blinds",
-					"give {C:red}+#1#{} Mult per",
-					"hand level"
+					"give {C:white,X:red}X#1#{} Mult",
 				}
 			},
 			['j_bld_glasseye'] = {
@@ -2995,7 +3165,7 @@ return {
 			['j_bld_stuffedtoy'] = {
 				["name"] = "Stuffed Toy",
 				["text"] = {
-					"If played hand contains,",
+					"If played hand contains",
 					"{C:attention}3{} or less Blinds,",
 					"{X:dark_edition,C:white}-#1#%{} Chips to Joker"
 				}
@@ -3072,7 +3242,7 @@ return {
 				["name"] = "3D Glasses",
 				["text"] = {
 					"If scoring hand contains",
-					"only both {X:mult,C:white}Red{} and {X:blue,C:white}Blue{} Blinds,",
+					"exactly {X:mult,C:white}Red{} and {X:blue,C:white}Blue{} Blinds,",
 					"create a {C:bld_obj_filmcard}Channel{} Card",
 					"{C:inactive,S:0.8}(Must have room)"
 				}
@@ -3180,11 +3350,18 @@ return {
 					"contains no {C:attention}Pairs"
 				}
 			},
-			['j_bld_necronomicon'] = { -- ritual later, but lets first get another trinket that gives channels
+			['j_bld_necronomicon'] = {
 				["name"] = "Necronomicon",
 				["text"] = {
-					"placeholder effect (still works):",
-					"Create a {C:bld_obj_filmcard}Channel{} Card",
+					"Creates a {C:bld_obj_ritual}Ritual{} Card",
+					"when {C:attention}Boss Joker{}",
+					"is selected"
+				}
+			},
+			['j_bld_sockpuppet'] = {
+				["name"] = "Sock Puppet",
+				["text"] = {
+					"Creates a {C:bld_obj_filmcard}Channel{} Card",
 					"when {C:attention}Joker{} is selected"
 				}
 			},
@@ -3224,7 +3401,7 @@ return {
 				["text"] = {
 					{"{C:attention}+#1#{} hand size"},
 					{"When using a {C:red}discard,",
-					"always draw at least",
+					"always draw exactly",
 					"{C:attention}3{} Blinds"}
 				}
 			},
@@ -3233,6 +3410,15 @@ return {
 				["text"] = {
 					"Retrigger {C:attention}2{} scoring",
 					"Blinds at random"
+				}
+			},
+			['j_bld_nixietubes'] = {
+				["name"] = "Nixie Tubes",
+				["text"] = {
+					"Every 10 used {C:blue}hands{}",
+					"and {C:red}discards{}, creates",
+					"a {C:attention}Neon Tag",
+					"{C:inactive}(Currently #1# left)"
 				}
 			}
 		},

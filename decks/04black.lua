@@ -4,6 +4,7 @@ SMODS.Back({
     config = {
         no_interest = true,
         hand_size = -1,
+        hands = 1,
         discards = -1,
         extra = {
             cash = 8,
@@ -11,7 +12,7 @@ SMODS.Back({
         },
         ante_scaling = 0.5,
     },
-    unlocked = true,
+    unlocked = false,
     pos = { x = 3, y = 0 },
     loc_vars = function (self, info_queue, card)
         return {

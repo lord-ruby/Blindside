@@ -3,8 +3,8 @@
         key = 'sewingkit',
         atlas = 'bld_trinkets',
         pos = {x = 9, y = 5},
-        rarity = 'bld_hobby',
-        cost = 7,
+        rarity = 'bld_keepsake',
+        cost = 12,
         blueprint_compat = true,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)

@@ -28,6 +28,7 @@
             G.GAME.planet_rate = 0
             G.GAME.bld_inversions = 0
             G.GAME.playing_with_fire = 0
+            G.GAME.playing_with_fire_num = 0
             SMODS.change_booster_limit(1)
             G.GAME.starting_params.reroll_cost = 3
             G.GAME.banned_keys['p_buffoon_normal_1'] = true
@@ -891,13 +892,22 @@ function BLINDSIDE.add_trinket_to_shop(key, dont_save)
         end
     end
     local card = Card(G.shop_jokers.T.x + G.shop_jokers.T.w/2,
-        G.shop_jokers.T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, G.P_CENTERS[key],{bypass_discovery_center = true, bypass_discovery_ui = true})
-        create_shop_card_ui(card, 'Voucher', G.shop_jokers)
-        card.shop_voucher = true
-        card:start_materialize()
-        G.shop_jokers:emplace(card)
-        G.shop_jokers.config.card_limit = #G.shop_jokers.cards
-        return card
+    G.shop_jokers.T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, G.P_CENTERS[key],{bypass_discovery_center = true, bypass_discovery_ui = true})
+    create_shop_card_ui(card, 'Voucher', G.shop_jokers)
+    card.shop_voucher = true
+    card:start_materialize()
+    G.shop_jokers:emplace(card)
+    G.shop_jokers.config.card_limit = #G.shop_jokers.cards
+    local price_mod = 1
+    if G.GAME.used_vouchers.v_bld_souvenir then
+        price_mod = price_mod - 0.33
+    end
+    if G.GAME.used_vouchers.v_bld_mementomori then
+        price_mod = price_mod - 0.33
+    end
+
+    card.cost = math.floor(card.cost*price_mod)
+    return card
 end
 
 G.FUNCS.shop_trinket_empty = function(e)

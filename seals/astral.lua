@@ -22,13 +22,14 @@ SMODS.Seal {
     calculate = function(self, card, context)
         if context.main_scoring and context.cardarea == G.play and card.facing ~= 'back' then
             return {
-                mult = G.GAME.hands[context.scoring_name].level*(card.ability.seal.extra.mult + (#SMODS.find_card("j_bld_pendant")))}
+                mult = G.GAME.hands[context.scoring_name].level*card.ability.seal.extra.mult
+            }
         end
     end,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.seal.extra.mult + (#SMODS.find_card("j_bld_pendant"))
+                card.ability.seal.extra.mult
             }
         }
     end

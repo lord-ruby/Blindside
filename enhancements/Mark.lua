@@ -19,6 +19,13 @@
                 }
             }
         end,
+        calculate = function(self, card, context)
+            if context.main_scoring then
+                return {
+                    xmult = card.ability.extra.xmult
+                }
+            end
+        end,
         upgrade = function(card) 
             if not card.ability.extra.upgraded then
             card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_gain

@@ -40,8 +40,26 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.end_of_round and not context.repetition and not context.individual and not context.blueprint and card.ability.extra.hand_count < 9 and not card.ability.extra.queen then
+            if context.end_of_round and not context.repetition and not context.individual and not context.blueprint and not card.ability.extra.queen then
                 card.ability.extra.hand_count = card.ability.extra.hand_count+1
+
+                if card.ability.extra.hand_count >= 8 then
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                        play_sound('tarot1')
+                        card:juice_up(0.3, 0.4)
+                        card.ability.extra.queen = true
+                        card.ability.extra.x_value = {x = 9, y = 0}
+                        card.children.center:set_sprite_pos(card.ability.extra.x_value)
+                        return true
+                        end
+                    }))
+                    return {
+                        message = localize("k_promote_ex"),
+                        colour = G.C.MULT,
+                        card = card
+                    }
+                end
                 return {
                     message = card.ability.extra.hand_count.."/8"
                 }
@@ -50,23 +68,6 @@
                 return {
                     mult = card.ability.extra.mult
                 }
-            end
-            if context.end_of_round and not context.repetition and not context.individual and card.ability.extra.hand_count == 8 and not context.blueprint and not card.ability.extra.queen then 
-                G.E_MANAGER:add_event(Event({
-                    func = function()
-                    play_sound('tarot1')
-                    card:juice_up(0.3, 0.4)
-                    card.ability.extra.queen = true
-                    card.ability.extra.x_value = {x = 9, y = 0}
-                    card.children.center:set_sprite_pos(card.ability.extra.x_value)
-                    return true
-                    end
-                }))
-                    return {
-                        message = localize("k_promote_ex"),
-                        colour = G.C.MULT,
-                        card = card
-                    }
             end
             if context.joker_main and card.ability.extra.queen then
                 return {

@@ -1,6 +1,6 @@
 SMODS.Voucher {
     key = 'coolrock',
-    atlas = 'bld_voucher',
+    atlas = 'bld_price_tag',
     pos = {x = 5, y = 0},
     cost = 15,
     in_pool = function(self, args)

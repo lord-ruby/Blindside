@@ -29,7 +29,7 @@
                 local eval = function() return card.ability.extra.active end
                 juice_card_until(card, eval, true)
             end
-            if context.before and card.ability.extra.active and G.GAME.current_round.hands_played == 0 then
+            if context.before and card.ability.extra.active then
                 if #context.full_hand == 1 then
                     card.ability.extra.active = false
                     context.full_hand[1]:set_ability(G.P_CENTERS.m_bld_blank, nil, true)

@@ -62,7 +62,7 @@
         end,
         loc_vars = function(self, info_queue, card)
             return {
-                key = card.ability.extra.upgraded and 'm_bld_blank_upgrade' or 'm_bld_blank',
+                key = card.ability.extra.upgraded and 'm_bld_blank_upgraded' or 'm_bld_blank',
             }
         end,
         upgrade = function(card) 

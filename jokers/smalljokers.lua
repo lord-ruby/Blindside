@@ -21,11 +21,15 @@ BLINDSIDE.Joker({
                     hasWildCanvas = true
                 end
             end
+            G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
             G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_boss_joker"
             G.GAME.playing_with_fire = G.GAME.playing_with_fire + 1
             BLINDSIDE.chipsmodify(2 - (hasWildCanvas and 1 or 0), 0, 0)
         end
     end,
+    defeat_joker = function(self)
+        BLINDSIDE.inc_stats('small_joker_defeat', self.key, true)
+    end
 })
 
 BLINDSIDE.Joker({
@@ -58,6 +62,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -83,12 +90,16 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
         end
     end,
+    defeat_joker = function(self)
+        BLINDSIDE.inc_stats('small_joker_defeat', self.key, true)
+    end
 })
 
 
@@ -123,6 +134,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -148,13 +162,16 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
                 G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
         end
     end,
+    defeat_joker = function(self)
+        BLINDSIDE.inc_stats('small_joker_defeat', self.key, true)
+    end
 })
 
 
@@ -189,7 +206,10 @@ BLINDSIDE.Joker({
             end
         end
 
-                if context.before then
+                if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
+        if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
                 for key, value in pairs(context.scoring_hand) do
@@ -214,13 +234,16 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
         end
     end,
+    defeat_joker = function(self)
+        BLINDSIDE.inc_stats('small_joker_defeat', self.key, true)
+    end
 })
 
 BLINDSIDE.Joker({
@@ -253,6 +276,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -278,12 +304,16 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
         end
     end,
+    defeat_joker = function(self)
+        BLINDSIDE.inc_stats('small_joker_defeat', self.key, true)
+    end
 })
 
 BLINDSIDE.Joker({
@@ -316,6 +346,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -341,12 +374,16 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
         end
     end,
+    defeat_joker = function(self)
+        BLINDSIDE.inc_stats('small_joker_defeat', self.key, true)
+    end
 })
 
 BLINDSIDE.Joker({
@@ -390,6 +427,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -415,7 +455,8 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -481,6 +522,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -506,7 +550,8 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -572,6 +617,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -597,7 +645,8 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -663,6 +712,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then
@@ -688,7 +740,8 @@ BLINDSIDE.Joker({
                 end
             end
             if changed then
-                G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_small_joker"
                 G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
                 BLINDSIDE.chipsmodify(4 - (hasWildCanvas and 2 or 0), 0, 0)
             end
@@ -754,6 +807,9 @@ BLINDSIDE.Joker({
             end
         end
 
+        if context.pre_discard then
+            BLINDSIDE.alert_debuff(self, false)
+        end
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big then

@@ -68,8 +68,8 @@
         frames = 21
     })
     SMODS.Atlas({
-        key = 'bld_voucher',
-        path = 'voucher.png',
+        key = 'bld_price_tag',
+        path = 'price_tag.png',
         px = 71,
         py = 95,
     })
@@ -447,6 +447,8 @@ local trinket_list = {
         "hourglass",
         "snaketotem",
         "bingoball",
+        "sockpuppet",
+        "nixietubes"
 }
 
 local joker_list = {
