@@ -47,8 +47,8 @@ BLINDSIDE.Joker({
                 end
             end
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
-            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_big_joker"
-            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_big_joker_2" or "bld_playing_with_fire_each_big_joker_1"
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2 * (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
             BLINDSIDE.chipsmodify(0, 0, 0, 2- (hasWildCanvas and 0.5 or 0))
             blind.active = false
         end
@@ -103,8 +103,8 @@ BLINDSIDE.Joker({
                 end
             end
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
-            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_big_joker"
-            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 3
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_big_joker_2" or "bld_playing_with_fire_each_big_joker_1"
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 3 * (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
             BLINDSIDE.chipsmodify(0, 0, 0, 3- (hasWildCanvas and 0.5 or 0))
             blind.active = false
         end
@@ -159,8 +159,8 @@ BLINDSIDE.Joker({
                 end
             end
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
-            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_big_joker"
-            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 3
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_big_joker_2" or "bld_playing_with_fire_each_big_joker_1"
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 3 * (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
             BLINDSIDE.chipsmodify(0, 0, 0, 3- (hasWildCanvas and 0.5 or 0))
             blind.active = false
         end
@@ -216,8 +216,8 @@ BLINDSIDE.Joker({
                 end
             end
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
-            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_big_joker"
-            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 4
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_big_joker_2" or "bld_playing_with_fire_each_big_joker_1"
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 4 * (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
             BLINDSIDE.chipsmodify(0, 0, 0, 4- (hasWildCanvas and 1 or 0))
             blind.active = false
         end
@@ -273,8 +273,8 @@ BLINDSIDE.Joker({
                 end
             end
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
-            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_big_joker"
-            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 4
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_big_joker_2" or "bld_playing_with_fire_each_big_joker_1"
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 4 * (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
             BLINDSIDE.chipsmodify(0, 0, 0, 4- (hasWildCanvas and 1 or 0))
             blind.active = false
         end
@@ -337,8 +337,8 @@ BLINDSIDE.Joker({
                 end
             end
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
-            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_big_joker"
-            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 3
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_big_joker_2" or "bld_playing_with_fire_each_big_joker_1"
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 3 * (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
             BLINDSIDE.chipsmodify(0, 0, 0, 3 - (hasWildCanvas and 0.5 or 0))
             blind.active = false
         end
@@ -417,8 +417,8 @@ BLINDSIDE.Joker({
                 end
             end
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
-            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_big_joker"
-            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 4
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_big_joker_2" or "bld_playing_with_fire_each_big_joker_1"
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 4 * (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
             BLINDSIDE.chipsmodify(0, 0, 0, 4 - (hasWildCanvas and 0.5 or 0))
             blind.active = false
         end
@@ -497,8 +497,8 @@ BLINDSIDE.Joker({
                 end
             end
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
-            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_big_joker"
-            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 4
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_big_joker_2" or "bld_playing_with_fire_each_big_joker_1"
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 4 * (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
             BLINDSIDE.chipsmodify(0, 0, 0, 4 - (hasWildCanvas and 0.5 or 0))
             blind.active = false
         end
@@ -577,8 +577,8 @@ BLINDSIDE.Joker({
                 end
             end
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
-            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_big_joker"
-            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 4
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_big_joker_2" or "bld_playing_with_fire_each_big_joker_1"
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 4 * (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
             BLINDSIDE.chipsmodify(0, 0, 0, 4 - (hasWildCanvas and 0.5 or 0))
             blind.active = false
         end
@@ -657,8 +657,8 @@ BLINDSIDE.Joker({
                 end
             end
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
-            G.GAME.playing_with_fire_each = "bld_playing_with_fire_each_big_joker"
-            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_big_joker_2" or "bld_playing_with_fire_each_big_joker_1"
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 2 * (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
             BLINDSIDE.chipsmodify(0, 0, 0, 2 - (hasWildCanvas and 0.5 or 0))
             blind.active = false
         end

@@ -57,9 +57,11 @@ return {
 			['k_fossil_excavate'] = "Excavated!",
 			['k_exorcised_ex'] = "Exorcised!",
 			['bld_playing_with_fire'] = "Playing With Fire",
-			['bld_playing_with_fire_each_boss_joker'] = "$1 each",
-			['bld_playing_with_fire_each_big_joker'] = "$1 each XMult",
-			['bld_playing_with_fire_each_small_joker'] = "$2 each",
+			['bld_playing_with_fire_each_1'] = "$1 each",
+			['bld_playing_with_fire_each_2'] = "$2 each",
+			['bld_playing_with_fire_each_3'] = "$3 each",
+			['bld_playing_with_fire_each_big_joker_1'] = "$1 each XMult",
+			['bld_playing_with_fire_each_big_joker_2'] = "$2 each XMult",
 			['bld_neon_hands'] = 'Hands, Neon Tag ($3 each)',
 			['bld_neon_discards'] = 'Discards, Neon Tag ($5 each)'
 			},
@@ -344,11 +346,9 @@ return {
 			["v_bld_swearjar"] = {
 				["name"] = "Swear Jar",
 				["text"] = {
-					"Earn {C:money}interest{} on",
-					"held {C:money}money"
-					--[["Gain {C:money}$1{} for each",
-					"held {C:money}$5{} at end",
-					"of round",]]
+					"{C:attention,E:1}Playing with Fire{}",
+					"gives {C:money}$1{} more each",
+					"Joker trigger"
 				},
 			},
 			["v_bld_magnifyingglass"] = {
@@ -547,9 +547,9 @@ return {
 			["tag_bld_swearjar_relic"] = {
 				["name"] = "Swear Jar",
 				["text"] = {
-					"Gain {C:money}$1{} for each",
-					"held {C:money}$5{} at end",
-					"of round",
+					"{C:attention,E:1}Playing with Fire{}",
+					"gives {C:money}$1{} more each",
+					"Joker trigger"
 				},
 			},
 			["tag_bld_magnifyingglass_relic"] = {

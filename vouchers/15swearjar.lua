@@ -16,6 +16,5 @@ SMODS.Voucher {
     end,
     redeem = function(self, card)
         add_tag(Tag('tag_bld_swearjar_relic'))
-        G.GAME.modifiers.no_interest = false
     end
 }
