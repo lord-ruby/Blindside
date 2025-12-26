@@ -356,6 +356,13 @@ return {
 					"{C:attention}-1{} Hand Size"
 				},
 			},
+			["v_bld_timemachine"] = {
+				["name"] = "Time Machine",
+				["text"] = {
+					"{C:attention}+1{} Ante",
+					"{C:blue}+2{} Hands"
+				},
+			},
 			["v_bld_jugglingballs"] = {
 				["name"] = "Juggling Balls",
 				["text"] = {
@@ -468,6 +475,13 @@ return {
 				["text"] = {
 					"{C:attention}-1{} Ante",
 					"{C:attention}-1{} Hand Size"
+				},
+			},
+			["tag_bld_timemachine_relic"] = {
+				["name"] = "Time Machine",
+				["text"] = {
+					"{C:attention}+1{} Ante",
+					"{C:blue}+2{} Hands"
 				},
 			},
 			["tag_bld_jugglingballs_relic"] = {
