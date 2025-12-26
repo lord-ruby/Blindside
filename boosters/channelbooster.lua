@@ -3,7 +3,6 @@ SMODS.Booster{
         config = {extra = 3, choose = 1},
         discovered = false,
         get_weight = function(self)
-            
             if G.GAME.selected_back.effect.center.config.extra then
                 if not G.GAME.selected_back.effect.center.config.extra.blindside then return 0 end
                 return 2
@@ -18,7 +17,7 @@ SMODS.Booster{
         draw_hand = true,
         pos = { x = 0, y = 2 },
         loc_vars = function(self, info_queue, card)
-            return {vars = {card.config.center.config.choose, card.ability.extra}}
+            return {vars = {card.config.center.config.choose + (G.GAME.used_vouchers.v_bld_satellite and 1 or 0), card.ability.extra}}
         end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.bld_obj_filmcard)
@@ -57,7 +56,7 @@ SMODS.Booster{
         draw_hand = true,
         pos = { x = 1, y = 2 },
         loc_vars = function(self, info_queue, card)
-            return {vars = {card.config.center.config.choose, card.ability.extra}}
+            return {vars = {card.config.center.config.choose + (G.GAME.used_vouchers.v_bld_satellite and 1 or 0), card.ability.extra}}
         end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.bld_obj_filmcard)
@@ -96,7 +95,7 @@ SMODS.Booster{
         draw_hand = true,
         pos = { x = 0, y = 2 },
         loc_vars = function(self, info_queue, card)
-            return {vars = {card.config.center.config.choose, card.ability.extra}}
+            return {vars = {card.config.center.config.choose + (G.GAME.used_vouchers.v_bld_satellite and 1 or 0), card.ability.extra}}
         end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.bld_obj_filmcard)
@@ -135,7 +134,7 @@ SMODS.Booster{
         draw_hand = true,
         pos = { x = 1, y = 2 },
         loc_vars = function(self, info_queue, card)
-            return {vars = {card.config.center.config.choose, card.ability.extra}}
+            return {vars = {card.config.center.config.choose + (G.GAME.used_vouchers.v_bld_satellite and 1 or 0), card.ability.extra}}
         end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.bld_obj_filmcard)
@@ -174,7 +173,7 @@ SMODS.Booster{
         draw_hand = true,
         pos = { x = 0, y = 3 },
         loc_vars = function(self, info_queue, card)
-            return {vars = {card.config.center.config.choose, card.ability.extra}}
+            return {vars = {card.config.center.config.choose + (G.GAME.used_vouchers.v_bld_satellite and 1 or 0), card.ability.extra}}
         end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.bld_obj_filmcard)
@@ -214,7 +213,7 @@ SMODS.Booster{
         draw_hand = true,
         pos = { x = 0, y = 3 },
         loc_vars = function(self, info_queue, card)
-            return {vars = {card.config.center.config.choose, card.ability.extra}}
+            return {vars = {card.config.center.config.choose + (G.GAME.used_vouchers.v_bld_satellite and 1 or 0), card.ability.extra}}
         end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.bld_obj_filmcard)
@@ -254,7 +253,7 @@ SMODS.Booster{
         draw_hand = true,
         pos = { x = 2, y = 3 },
         loc_vars = function(self, info_queue, card)
-            return {vars = {card.config.center.config.choose, card.ability.extra}}
+            return {vars = {card.config.center.config.choose + (G.GAME.used_vouchers.v_bld_satellite and 1 or 0), card.ability.extra}}
         end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.bld_obj_filmcard)
@@ -294,7 +293,7 @@ SMODS.Booster{
         draw_hand = true,
         pos = { x = 2, y = 3 },
         loc_vars = function(self, info_queue, card)
-            return {vars = {card.config.center.config.choose, card.ability.extra}}
+            return {vars = {card.config.center.config.choose + (G.GAME.used_vouchers.v_bld_satellite and 1 or 0), card.ability.extra}}
         end,
         ease_background_colour = function(self)
             ease_colour(G.C.DYN_UI.MAIN, G.C.SECONDARY_SET.bld_obj_filmcard)

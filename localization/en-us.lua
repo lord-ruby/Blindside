@@ -383,6 +383,13 @@ return {
 					"in Blind Shops"
 				},
 			},
+			["v_bld_satellite"] = {
+				["name"] = "Satellite",
+				["text"] = {
+					"{C:attention}+1{} choice in",
+					"{C:bld_obj_filmcard}Channel Packs"
+				},
+			},
 			["v_bld_magnet"] = {
 				["name"] = "Magnet",
 				["text"] = {
@@ -629,6 +636,13 @@ return {
 				["text"] = {
 					"{C:bld_obj_filmcard}Channel{} cards may appear",
 					"in Blind Shops"
+				},
+			},
+			["tag_bld_satellite_relic"] = {
+				["name"] = "Satellite",
+				["text"] = {
+					"{C:attention}+1{} choice in",
+					"{C:bld_obj_filmcard}Channel Packs"
 				},
 			},
 			["tag_bld_dental"] = {
