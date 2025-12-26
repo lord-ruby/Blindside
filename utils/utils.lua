@@ -1388,13 +1388,14 @@ end
 
 -- borrowed from lucky rabbit
 local shuffle_ref = CardArea.shuffle
-function CardArea:shuffle(_seed)
+function CardArea:shuffle(_seed, reshuffle)
+    reshuffle = reshuffle or false
     local g = shuffle_ref(self, _seed)
     if self == G.deck then
         local priorities = {}
         local others = {}
         for k, v in pairs(self.cards) do
-            if v.seal == 'bld_ruin' or (v.ability.extra.upgraded and G.GAME.used_vouchers["v_bld_thingamajig"]) then
+            if (v.seal == 'bld_ruin' and not reshuffle) or (v.ability.extra.upgraded and G.GAME.used_vouchers["v_bld_thingamajig"] and reshuffle) then
                 table.insert(priorities, v)
             else
                 table.insert(others, v)
