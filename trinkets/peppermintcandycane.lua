@@ -23,15 +23,15 @@
                 local red = nil
                 local faded = nil
                 for key, value in pairs(context.scoring_hand) do
-                    if value:is_color("Red") and (red == faded or not red) then
+                    if value:is_color("Red") and not red then
                         red = value
                     end
-                    if value:is_color("Faded") and (red == faded or not faded) then
+                    if value:is_color("Faded") and not faded then
                         faded = value
                     end
                 end
                 
-                if red and faded and red ~= faded then
+                if red and faded then
                     local cards = choose_stuff(context.scoring_hand, 1, pseudoseed('peppermint'))
                     for key, value in pairs(cards) do
                         G.E_MANAGER:add_event(Event({

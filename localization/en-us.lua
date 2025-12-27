@@ -3559,8 +3559,11 @@ return {
 			['j_bld_peppermintcandycane'] = {
 				["name"] = "Peppermint Candy Cane",
 				["text"] = {
-
-				}
+					"If scoring hand contains",
+					"a {C:white,X:mult}Red{} and a {C:white,X:dark_edition}Faded{} Blind,",
+					"a random scoring Blind",
+					"becomes {C:money}Mint"
+				},
 			},
 		},
 		["Edition"] = {
