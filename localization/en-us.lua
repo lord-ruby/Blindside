@@ -2996,6 +2996,14 @@ return {
 					{"{C:attention}Stubborn"},
 				},
 			},
+			["m_bld_thirst"] = {
+				["name"] = "The Thirst",
+				["text"] = {
+					{"{X:chips,C:white}Blue{} {X:black,C:white}Cursed{}",
+					"{C:white,X:chips}X#1#{} Chips"},
+					{"{C:attention}Stubborn"},
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
