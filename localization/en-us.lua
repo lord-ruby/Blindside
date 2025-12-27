@@ -3650,8 +3650,11 @@ return {
 			["bld_wild_seal"]	= {
 				["name"] = "Wild Blind",
 				["text"] = {
-					"Can be used",
-					"as every Hue"
+					"Can be used as",
+					"every Hue, and",
+					"is immune to all",
+					"debuffs not from",
+					"its own effects"
 				}
 			},
 			["bld_astral_seal"]	= {
