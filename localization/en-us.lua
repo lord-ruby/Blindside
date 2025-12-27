@@ -2467,7 +2467,6 @@ return {
 					"{X:mult,C:white}X#1#{} Mult when scored",
 					"or {C:attention}held in hand"},
 					{"Drawn face down"},
-					{"Always scores"},
 				},
 			},
 			["m_bld_blank"] = {

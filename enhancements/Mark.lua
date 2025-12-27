@@ -11,7 +11,6 @@
                 flipped = true,
             }},
         hues = {"Red"},
-        always_scores = true,
         loc_vars = function(self, info_queue, card)
             return {
                 vars = {
