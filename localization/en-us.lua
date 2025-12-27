@@ -3565,6 +3565,15 @@ return {
 					"becomes {C:money}Mint"
 				},
 			},
+			['j_bld_fruitycandycane'] = {
+				["name"] = "Fruity Candy Cane",
+				["text"] = {
+					"If scoring hand contains",
+					"a {C:white,X:mult}Red{} and a {C:white,X:dark_edition}Green{} Blind,",
+					"a random scoring Blind",
+					"becomes {C:attention}Enamel"
+				},
+			},
 		},
 		["Edition"] = {
 			['e_bld_enameled'] = {
