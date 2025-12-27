@@ -20,7 +20,7 @@
             }
         end,
         calculate = function(self, card, context)
-            if context.main_scoring then
+            if context.main_scoring and context.cardarea == G.play then
                 return {
                     xmult = card.ability.extra.xmult
                 }
