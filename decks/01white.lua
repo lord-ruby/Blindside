@@ -16,7 +16,7 @@ SMODS.Back({
     apply = function(self)
         BLINDSIDE.set_up_blindside()
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.8, func = function()
-            BLINDSIDE.set_up_deck({}, {'m_bld_blank', 'm_bld_blank'}, {})
+            BLINDSIDE.set_up_deck({}, {'m_bld_blank', 'm_bld_blank'}, {'m_bld_curse', 'm_bld_curse'})
             local ante = G.GAME.win_ante * 0.75 
             local int_part, frac_part = math.modf(ante)
             local rounded = int_part + (frac_part >= 0.5 and 1 or 0) 

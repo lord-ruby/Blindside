@@ -2978,6 +2978,14 @@ return {
 					"{C:white,X:money}Yellow{} Blind"},
 				},
 			},
+			["m_bld_curse"] = {
+				["name"] = "The Curse",
+				["text"] = {
+					{"{X:dark_edition,C:white}Faded{} {X:black,C:white}Cursed{}",
+					"{C:mult}+#1#{} Mult to {C:attention}Joker"},
+					{"{C:attention}Burns"},
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
@@ -3647,12 +3655,8 @@ return {
 			["stake_bld_magic_deck"] = {
 				name = "Magic Stake??",
 				text = {
-					"{C:attention}Small{} Jokers {C:red}debuff",
-					"their respective {C:attention}hue",
-					"{C:attention}Big{} Jokers {C:red}debuff",
-					"Blinds when triggered"
-					--"Start with",
-					--"{C:attention}2{} {X:dark_edition,C:white}Cursed{} Blinds"
+					"Start with",
+					"{C:attention}2{} {X:black,C:white}Cursed{} Blinds"
 				}
 			},
 			["stake_bld_anaglyph_deck"] = {
