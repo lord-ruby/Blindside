@@ -16,54 +16,7 @@ SMODS.Back({
     apply = function(self)
         BLINDSIDE.set_up_blindside()
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.8, func = function()
-            local keys_to_remove = {}
-            local keys_to_alpha = {}
-            local keys_to_beta = {}
-            local keys_to_flip = {}
-            local keys_to_pot = {}
-            local keys_to_bite = {}
-            local keys_to_blank = {}
-            for k, v in pairs(G.playing_cards) do
-                if (v.base.suit ~= 'Spades' and v.base.suit ~= 'Hearts' and v.base.suit ~= 'Clubs') or v:is_face() then
-                    table.insert(keys_to_remove, v)
-                elseif v:get_id() >= 8 and v.base.suit == 'Spades' then
-                    table.insert(keys_to_alpha, v)
-                elseif v:get_id() <= 5 and v.base.suit == 'Spades' then
-                    table.insert(keys_to_beta, v)
-                elseif v:get_id() >= 8 and v.base.suit == 'Hearts' then
-                    table.insert(keys_to_pot, v)
-                elseif v:get_id() <= 5 and v.base.suit == 'Hearts' then
-                    table.insert(keys_to_flip, v)
-                elseif v:get_id() <= 5 and v.base.suit == 'Clubs' then
-                    table.insert(keys_to_bite, v)
-                elseif (v:get_id() == 6 or v:get_id() == 7) and v.base.suit == 'Clubs' then
-                    table.insert(keys_to_blank, v)
-                else
-                    table.insert(keys_to_remove, v)
-                end
-            end
-            for i = 1, #keys_to_remove do
-                keys_to_remove[i]:remove()
-            end
-            for i = 1, #keys_to_alpha do
-                keys_to_alpha[i]:set_ability("m_bld_adder")
-            end
-            for i = 1, #keys_to_beta do
-                keys_to_beta[i]:set_ability("m_bld_sharp")
-            end
-            for i = 1, #keys_to_flip do
-                keys_to_flip[i]:set_ability("m_bld_flip")
-            end
-            for i = 1, #keys_to_pot do
-                keys_to_pot[i]:set_ability("m_bld_pot")
-            end
-            for i = 1, #keys_to_bite do
-                keys_to_bite[i]:set_ability("m_bld_bite")
-            end
-            for key, value in pairs(keys_to_blank) do
-                value:set_ability("m_bld_blank")
-            end
-            G.GAME.starting_deck_size = #G.playing_cards
+            BLINDSIDE.set_up_deck({}, {'m_bld_blank', 'm_bld_blank'}, {})
             local ante = G.GAME.win_ante * 0.75 
             local int_part, frac_part = math.modf(ante)
             local rounded = int_part + (frac_part >= 0.5 and 1 or 0) 
