@@ -5,10 +5,10 @@
         config = {
             extra = {
                 value = 12,
-                x_chips = 1.5,
-                chips = -20,
-                x_chips_up = 0.5,
-                chips_up = -10,
+                x_chips = 1.75,
+                chips = -25,
+                x_chips_up = 0.75,
+                chips_up = -25,
             }},
         always_scores = true,
         hues = {"Purple"},
