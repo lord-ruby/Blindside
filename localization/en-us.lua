@@ -3561,7 +3561,8 @@ return {
 			['e_bld_enameled'] = {
 				name = "Enamel",
 				text = {
-					"{C:chips}+#1#{} Chips",
+					"{C:chips}+#1#{} Chips when scored",
+					"or {C:attention}held in hand",
 				}
 			},
 			['e_bld_mint'] = {

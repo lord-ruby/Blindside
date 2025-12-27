@@ -104,6 +104,7 @@ BLINDSIDE = {}
 ---@ field hues hue[] Table of hues. 99% of blinds have 1 or 2 hues. Required.
 ---@ field basic? boolean Whether this blind is basic and should be excluded from generation.
 ---@ field rare? boolean Whether this blind is rare and should generate less often.
+---@ field curse? boolean Whether this 
 ---@ field hidden? boolean Whether this blind is excluded from generation (not required for basic blinds).
 BLINDSIDE.Blind = SMODS.Enhancement:extend {
     in_pool = function(self, args)

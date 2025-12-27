@@ -20,4 +20,5 @@ SMODS.Voucher {
     redeem = function(self, card)
         add_tag(Tag('tag_bld_irradiate_relic'))
     end,
+    requires = {'v_bld_polish'}
 }
