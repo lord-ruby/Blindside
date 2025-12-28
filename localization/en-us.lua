@@ -2708,8 +2708,9 @@ return {
 					"{C:mult}+#1#{} Mult for",
 					"each {C:attention}Tag{} held",
 					"{C:inactive}(Currently: {C:mult}+#2#{C:inactive} Mult)"},
-					{"Creates a random {C:attention}Round Tag{}",
-					"when discarded"}
+					{"Creates a random",
+					"{C:attention}Round Tag{} when",
+					"discarded"}
 
 				},
 			},
