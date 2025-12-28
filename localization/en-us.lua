@@ -3049,6 +3049,14 @@ return {
 					{"{C:green}Retained"}
 				},
 			},
+			["m_bld_stress"] = {
+				["name"] = "The Stress",
+				["text"] = {
+					"{X:purple,C:white}Purple{} {X:black,C:white}Cursed{}",
+					"{C:white,X:red}X#1#{} Mult when",
+					"{C:attention}held in hand{}",
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {

@@ -104,6 +104,7 @@
         "m_bld_sad",
         "m_bld_silence",
         "m_bld_mold",
+        "m_bld_stress",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",
