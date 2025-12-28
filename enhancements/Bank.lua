@@ -12,7 +12,7 @@
             }
         },
         hues = {"Yellow"},
-        rare = true
+        rare = true,
         calculate = function(self, card, context)
             if context.cardarea == G.play and context.main_scoring then
                 return {
