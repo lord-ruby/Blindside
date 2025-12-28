@@ -3057,6 +3057,16 @@ return {
 					"{C:attention}held in hand{}",
 				},
 			},
+			["m_bld_hunger"] = {
+				["name"] = "The Hunger",
+				["text"] = {
+					{"{X:mult,C:white}Red{} {X:black,C:white}Cursed{}",
+					"{C:red}#1#{} Mult when",
+					"{C:attention}held in hand{},",
+					"then {C:attention}burns"},
+					{"{C:attention}Stubborn"}
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {

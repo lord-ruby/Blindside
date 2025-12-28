@@ -105,6 +105,7 @@
         "m_bld_silence",
         "m_bld_mold",
         "m_bld_stress",
+        "m_bld_hunger",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",
