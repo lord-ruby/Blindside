@@ -3070,6 +3070,16 @@ return {
 					{"{C:attention}Stubborn"}
 				},
 			},
+			["m_bld_bank"] = {
+				["name"] = "The Bank",
+				["text"] = {
+					{"{X:money,C:white}Yellow{}",
+					"Currently {C:white,X:red}X#3#{} Mult",
+					"and {C:money}-$#4#{}"},
+					{"Gains {C:white,X:red}+X#1#{} Mult for",
+					"every {C:money}$#2#{} held"},
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
