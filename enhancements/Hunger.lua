@@ -11,8 +11,8 @@
         hues = {"Red"},
         curse = true,
         calculate = function(self, card, context)
-            if context.burn_card and context.cardarea == G.hand and context.burn_card == card then
-                return { remove = true }
+            if context.hand_discard and context.other_card == card then
+                return { burn = true }
             end
             if context.cardarea == G.hand and context.main_scoring then
                 return {

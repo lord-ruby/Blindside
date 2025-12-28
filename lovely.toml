@@ -1394,7 +1394,7 @@ if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effe
         end
     end
     for k, v in ipairs(G.hand.cards) do
-        if not ((magnet and v.ability.extra and v.ability.extra.upgraded) or (v.config.center.config.extra and v.config.center.config.extra.retain) or v.seal == 'bld_sticky' or v.retain or (v.ability.extra and v.ability.extra.retain)) then
+        if not ((magnet and v.ability.extra and v.ability.extra.upgraded) or (v.config.center.config.extra and v.config.center.config.extra.retain) or v.seal == 'bld_sticky' or v.retain or (v.ability.extra and v.ability.extra.retain)) or v.burned then
         _cards[#_cards+1] = v
         end
         v.retain = false
@@ -1421,19 +1421,19 @@ if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effe
             end
             table.insert(cards, _cards[i])
             if removed then
-                destroyed_cards[#destroyed_cards + 1] = _cards[i]
-                if SMODS.shatters(_cards[i]) then
-                    _cards[i]:shatter()
+                destroyed_cards[#destroyed_cards + 1] = cards[i]
+                if SMODS.shatters(cards[i]) then
+                    cards[i]:shatter()
                 else
-                    _cards[i]:start_dissolve()
+                    cards[i]:start_dissolve()
                 end
             else 
                 if burned then
-                    burned_cards[#burned_cards + 1] = _cards[i]
-                    _cards[i]:start_burn(G.hand)
-                    else
-                    _cards[i].ability.discarded = true
-                    draw_card(G.hand, G.discard, i*100/#_cards, 'down', false, _cards[i])
+                    burned_cards[#burned_cards + 1] = cards[i]
+                    cards[i]:start_burn(G.hand)
+                else
+                    cards[i].ability.discarded = true
+                    draw_card(G.hand, G.discard, i*100/#cards, 'down', false, cards[i])
                 end
             end
     end
