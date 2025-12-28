@@ -2246,7 +2246,7 @@ return {
 				["text"] = {
 					"{X:money,C:white}Yellow{}",
 					"{C:money}+#1#${} when scored",
-					"or held in hand",
+					"or {C:attention}held in hand",
 				},
 			},
 			["m_bld_price"] = {
@@ -2593,8 +2593,11 @@ return {
 				["name"] = "The Sun",
 				["text"] = {
 					{"{X:money,C:white}Yellow{}",
-					"{C:money}+#1#${} when {C:attention}held in hand",
-					"at end of round"},
+					"{C:white,X:mult}X#1#{} Mult when",
+					"{C:attention}held in hand"},
+					{"{C:money}+#2#${} when {C:attention}held in",
+					"{C:attention}hand{} at end",
+					"of round"},
 					{"{C:green}Retained"}
 				},
 			},
