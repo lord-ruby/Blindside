@@ -3035,7 +3035,7 @@ return {
 				["text"] = {
 					"{X:dark_edition,C:white}Faded{} {X:black,C:white}Cursed{}",
 					"While {C:attention}held in hand{},",
-					"{C:red}Debuffs{} all cards",
+					"{C:red}debuffs{} all cards",
 					"{C:attention}held in hand{}"
 				},
 			},

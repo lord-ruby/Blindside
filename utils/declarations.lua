@@ -102,6 +102,7 @@
         "m_bld_spent",
         "m_bld_sick",
         "m_bld_sad",
+        "m_bld_silence",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",
