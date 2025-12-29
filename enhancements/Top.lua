@@ -5,8 +5,8 @@
         config = {
             extra = {
                 value = 100,
-                chips_gain = 4,
-                chips_gain_gain = 4,
+                chips_gain = 5,
+                chips_gain_gain = 5,
                 chip_return = 0,
                 chips = 0,
             }},
