@@ -4,7 +4,7 @@
         atlas = 'bld_trinkets',
         pos = {x = 2, y = 5},
         rarity = 'bld_doodad',
-        cost = 7,
+        cost = 8,
         blueprint_compat = true,
         eternal_compat = true,
         in_pool = function(self, args)
@@ -17,25 +17,22 @@
         end,
         calculate = function(self, card, context)
             if context.joker_main then
-                local nonblue = false
+                local blues = 0
                 for k, v in ipairs(G.hand.cards) do
-                    if not v:is_color('Blue', nil, true) then
-                        nonblue = true
-                        break
+                    if v:is_color('Blue') then
+                        blues = blues + 1
                     end
                 end
-                if not nonblue then
+                print(blues)
+                if blues >= 2 then
                     return {
-                        extra = {focus = card, message = localize('k_hey_ex'), func = function()
-                            G.E_MANAGER:add_event(Event({
-                                trigger = 'immediate',
-                                func = (function()
-                                    ease_discard(1)
-                                    return true
-                                end)}))
-                        end},
-                        colour = G.C.RED,
-                        card = card
+                        extra = {
+                            message = localize('k_hey_ex'),
+                            func = function()
+                                ease_discard(1)
+                            end
+                        },
+                        colour = G.C.RED
                     }
                 end
             end

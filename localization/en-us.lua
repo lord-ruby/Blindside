@@ -3198,9 +3198,9 @@ return {
 			['j_bld_talkingfish'] = {
 				["name"] = "Talking Fish",
 				["text"] = {
-					"If held hand contains",
-					"only {X:blue,C:white}Blue{} Blinds,",
-					"{C:red}+1{} Discard",
+					"If held hand",
+					"contains {C:attention}2{} {X:blue,C:white}Blue{}",
+					"Blinds, {C:red}+1{} Discard",
 				}
 			},
 			['j_bld_stoplight'] = {
