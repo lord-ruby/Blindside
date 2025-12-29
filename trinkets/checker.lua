@@ -3,8 +3,8 @@
         key = 'checker',
         atlas = 'bld_trinkets',
         pos = {x = 7, y = 6},
-        rarity = 'bld_hobby',
-        cost = 9,
+        rarity = 'bld_keepsake',
+        cost = 12,
         blueprint_compat = false,
         eternal_compat = true,
         loc_vars = function (self, info_queue, card)
