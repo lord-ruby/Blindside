@@ -25,7 +25,7 @@
                     end
                 end
             end
-            if context.cardarea == G.play and context.main_scoring then
+            if context.cardarea == G.play and context.main_scoring and G.GAME.blind.mult > 1 then
                 if card.facing ~= 'back' then
                     return {
                         extra = {focus = card, message = localize{type='variable',key='a_rmult',vars={card.ability.extra.multreduc}}, 

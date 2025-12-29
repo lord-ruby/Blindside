@@ -28,7 +28,7 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.reshuffle then
+            if context.reshuffle and G.GAME.blind.mult > 1 then
                 return {
                     extra = {focus = card, message = localize{type='variable',key='a_rmult',vars={card.ability.extra.multreduc}}, 
                     colour = G.C.RED, func = function()
