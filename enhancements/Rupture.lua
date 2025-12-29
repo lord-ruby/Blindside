@@ -5,12 +5,12 @@
         config = {
             extra = {
                 value = 21,
-                mult = 4,
+                mult = 5,
                 chips = 40,
                 chance = 1,
                 trigger = 2,
                 chipsup = 20,
-                multup = 4,
+                multup = 5,
             }
         },
         hues = {"Green"},
