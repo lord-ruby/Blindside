@@ -5,18 +5,20 @@ SMODS.Joker({
     rarity = 'bld_hobby',
     config = {
         extra = {
-            sell_value = 5,
-            broken = false
+            sell_value = 3,
+            broken = false,
+            xmult = 2
         }
     },
-    cost = 6,
+    cost = 10,
     blueprint_compat = false,
     eternal_compat = true,
     loc_vars = function (self, info_queue, card)
         return {
             key = (card.ability.extra.broken and "j_bld_porcelaindoll_broken") or card.config.center.key,
             vars = {
-            card.ability.extra.sell_value
+            card.ability.extra.sell_value,
+            card.ability.extra.xmult
         }
     }
     end,
@@ -40,6 +42,11 @@ SMODS.Joker({
             return {
                 message = localize('k_val_up'),
                 colour = G.C.MONEY
+            }
+        end
+        if context.joker_main and not card.ability.extra.broken then
+            return {
+                xmult = card.ability.extra.xmult
             }
         end
         if context.after and context.scoring_hand and not context.blueprint and not context.other_card and not card.ability.extra.broken then

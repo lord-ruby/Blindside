@@ -3522,6 +3522,7 @@ return {
 			['j_bld_porcelaindoll'] = {
 				["name"] = "Porcelain Doll",
 				["text"] = {
+					{"{X:mult,C:white}X#2#{} Mult"},
 					{"At end of {C:attention}Round{},",
 					"gains {C:money}+#1#{} Sell Value"},
 					{"{C:red}Breaks{} if scoring hand",
