@@ -2714,9 +2714,10 @@ return {
 					"{C:mult}+#1#{} Mult for",
 					"each {C:attention}Tag{} held",
 					"{C:inactive}(Currently: {C:mult}+#2#{C:inactive} Mult)"},
-					{"Creates a random",
+					{"Once each round,",
+					"creates a random",
 					"{C:attention}Round Tag{} when",
-					"played"}
+					"scored"}
 				},
 			},
 			["m_bld_moon_inactive"] = {
@@ -2726,9 +2727,10 @@ return {
 					"{C:mult}+#1#{} Mult for",
 					"each {C:attention}Tag{} held",
 					"{C:inactive}(Currently: {C:mult}+#2#{C:inactive} Mult)"},
-					{"{C:inactive}Creates a random",
+					{"{C:inactive}Once each round,",
+					"{C:inactive}creates a random",
 					"{C:inactive}Round Tag when",
-					"{C:inactive}played"}
+					"{C:inactive}scored"}
 				},
 			},
 			["m_bld_dove"] = {
