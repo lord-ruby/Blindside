@@ -110,6 +110,7 @@
         "m_bld_bank",
         "m_bld_rupture",
         "m_bld_market",
+        "m_bld_rain",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",

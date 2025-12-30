@@ -443,6 +443,7 @@ local card_list = {
     "Stress",
     "Hunger",
     "Lottery",
+    "Rain",
 }
 
 local trinket_list = {

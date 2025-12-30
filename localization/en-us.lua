@@ -3208,6 +3208,16 @@ return {
 					"{C:white,X:mult}X#3#{} Mult"},
 				},
 			},
+			["m_bld_rain"] = {
+				["name"] = "The Rain",
+				["text"] = {
+					{"{X:chips,C:white}Blue{}",
+					"{C:white,X:chips}X0{} Chips"},
+					{"{C:white,X:chips}+X#1#{} Chips for every",
+					"other {C:white,X:chips}Blue{} Blind played",
+					"or {C:attention}held in hand"},
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
