@@ -423,6 +423,7 @@
         "bl_bld_wee",
         "bl_bld_burnt",
         "bl_bld_idol",
+        "bl_bld_throwback",
         "bl_bld_yorick",
         },
     }

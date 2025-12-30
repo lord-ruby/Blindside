@@ -549,3 +549,23 @@ BLINDSIDE.Joker({
         end
     end
 })
+
+BLINDSIDE.Joker({
+    key = 'throwback',
+    atlas = 'bld_joker',
+    pos = {x=0, y=30},
+    boss_colour = HEX('64FDDF'),
+    mult = 12,
+    dollars = 6,
+    order = 15,
+    boss = {min = 1},
+    active = true,
+    set_joker = function(self)
+        if G.GAME.round_resets.blind_states.Small == 'Skipped' or G.GAME.round_resets.blind_states.Big == 'Skipped' then
+            BLINDSIDE.chipsmodify(0, 0, 4, 0, true)
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+                BLINDSIDE.chipsupdate()
+            return true end }))
+        end
+    end,
+})
