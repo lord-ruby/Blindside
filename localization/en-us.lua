@@ -274,6 +274,19 @@ return {
 					"{C:attention,E:1}Playing with Fire",
 				}
 			},
+			["b_bld_buttondispenser"] = {
+				["name"] = "Button Deck?",
+				["text"] = {
+					"???",
+					"First {C:attention}2{} times the",
+					"deck {C:attention}reshuffles{} each",
+					"round, {C:red}+1{} discard",
+				},
+				["unlock"] = {
+					"Reach a deck",
+					"size of 18"
+				},
+			},
 			["b_bld_painteddispenser"] = {
 				["name"] = "Painted Deck?",
 				["text"] = {
@@ -1595,7 +1608,7 @@ return {
 				["name"] = "Deceitful Jokers",
 				["text"] = {
 					"Once per Round,",
-					"Gains X2 Chips if",
+					"gains X2 Chips if",
 					"played hand contains",
 					"a Pair",
 				},
@@ -1604,7 +1617,7 @@ return {
 				["name"] = "Deceitful Jokers",
 				["text"] = {
 					"Once per Round,",
-					"Gains X2 Chips if",
+					"gains X2 Chips if",
 					"played hand contains",
 					"a Pair",
 				},
@@ -1767,8 +1780,8 @@ return {
 			["bl_bld_burglar"] = {
 				["name"] = "Burglar",
 				["text"] = {
-					"Play only one hand",
-					"Gain 5 discards",
+					"Play only two hands,",
+					"gain 3 discards",
 				},
 			},
 			["bl_bld_stone"] = {
