@@ -375,6 +375,7 @@
         "tag_bld_imprisonment",
         "tag_bld_neon",
         "tag_bld_battery",
+        "tag_bld_voodoo",
         "bl_bld_joker",
         "bl_bld_lustyjoker",
         "bl_bld_wrathfuljoker",

@@ -919,6 +919,13 @@ return {
 					"this round"
 				},
 			},
+			["tag_bld_voodoo"] = {
+				["name"] = "Voodoo Tag",
+				["text"] = {
+					"Gives an unskippable",
+					"{C:attention}Voodoo Pack{}"
+				},
+			},
 		},
 		["bld_obj_mineral"] = {
 			["c_bld_stibnite"] = {
@@ -3878,13 +3885,14 @@ return {
 			["stake_bld_anaglyph_deck"] = {
 				name = "Anaglyph Stake??",
 				text = {
-					"Does {C:attention}nothing{} yet"
+					"After defeating each",
+					"{C:attention}Boss Joker{}, choose {C:attention}1",
+					"of {C:attention}3{} {C:white,X:black}Cursed{} Blinds"
 				}
 			},
 			["stake_bld_zodiac_deck"] = {
 				name = "Zodiac Stake??",
 				text = {
-					"{C:inactive}(BUGGY RIGHT NOW)",
 					"{C:white,X:black}Cursed{} Blinds may",
 					"appear in {C:attention}shops"
 				}
@@ -4294,6 +4302,14 @@ return {
 					"Choose {C:attention}#1#{} of up to",
 					"{C:attention}#2#{C:attention} {C:bld_obj_rune}Ritual{} cards to",
 					"use immediately"
+				}
+			},
+			["p_bld_voodoo"] = {
+				["group_name"] = "Voodoo Pack",
+				["name"] = "Voodoo Pack",
+				["text"] = {
+					"Choose {C:attention}1{} of {C:attention}3{}",
+					"{C:white,X:black}Cursed{} Blinds"
 				}
 			},
 			["bld_upgrade"] = {
