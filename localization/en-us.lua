@@ -1837,6 +1837,20 @@ return {
 					"considered Faded"
 				},
 			},
+			["bl_bld_bull"] = {
+				["name"] = "Bull Rider",
+				["text"] = {
+					"Gains +4 Mult for",
+					"every $8 held"
+				},
+			},
+			["bl_bld_matador"] = {
+				["name"] = "Bull Rider",
+				["text"] = {
+					"Gains +4 Mult for",
+					"every $8 held"
+				},
+			},
 			["bl_bld_yorick"] = {
 				["name"] = "Yorick",
 				["text"] = {

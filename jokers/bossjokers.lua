@@ -614,3 +614,42 @@ BLINDSIDE.Joker({
     boss = {min = 1},
     active = true,
 })
+
+BLINDSIDE.Joker({
+    key = 'bull',
+    atlas = 'bld_joker',
+    pos = {x=0, y=35},
+    boss_colour = G.C.L_BLACK,
+    mult = 10,
+    dollars = 6,
+    order = 16,
+    boss = {min = 2},
+    active = true,
+    set_joker = function ()
+        local times = math.floor(G.GAME.dollars/8)
+        if times > 0 then
+            G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + times
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1) * times
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_2" or "bld_playing_with_fire_each_1"
+            BLINDSIDE.chipsmodify(times * 4, 0, 0)
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+                BLINDSIDE.chipsupdate()
+            return true end }))
+        end
+    end,
+    get_assist = function (self)
+        return G.P_BLINDS["bl_bld_matador"]
+    end,
+})
+
+BLINDSIDE.Joker({
+    key = 'matador',
+    atlas = 'bld_joker',
+    pos = {x=0, y=34},
+    boss_colour = G.C.ORANGE,
+    mult = 6,
+    dollars = 6,
+    boss = {min = 2},
+    order = 16,
+    is_assistant = true,
+})

@@ -427,6 +427,8 @@
         "bl_bld_throwback",
         "bl_bld_glass",
         "bl_bld_smeared",
+        "bl_bld_bull",
+        "bl_bld_matador",
         "bl_bld_yorick",
         },
     }
