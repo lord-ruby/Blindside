@@ -18,6 +18,10 @@ SMODS.Back({
         BLINDSIDE.set_up_blindside()
         G.E_MANAGER:add_event(Event({func = function()
             BLINDSIDE.set_up_deck({"Purple"}, {"m_bld_snow", "m_bld_snow", "m_bld_hook", "m_bld_hook"}, {'m_bld_daze', 'm_bld_daze'})
+            local ante = G.GAME.win_ante * 0.75 
+            local int_part, frac_part = math.modf(ante)
+            local rounded = int_part + (frac_part >= 0.5 and 1 or 0) 
+            G.GAME.win_ante = rounded
             G.E_MANAGER:add_event(Event({func = function()
                 SMODS.change_discard_limit(2)
             return true end }))
