@@ -1826,8 +1826,8 @@ return {
 				["name"] = "Glass Joker",
 				["text"] = {
 					"X2 Mult each hand,",
-					"#1# in #2# chance",
-					"to break each hand",
+					"Breaks when scoring",
+					"over #1# Chips",
 				},
 			},
 			["bl_bld_yorick"] = {

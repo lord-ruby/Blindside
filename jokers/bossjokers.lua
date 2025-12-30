@@ -583,23 +583,21 @@ BLINDSIDE.Joker({
     order = 15,
     boss = {min = 1},
     active = true,
-    loc_vars = function(self)
-        local numerator, denominator = SMODS.get_probability_vars(self, 1, 4, 'glass')
-        return { vars = { numerator, denominator } }
+    loc_vars = function(self, blind)
+        return { vars = { G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].mult*get_blind_amount(G.GAME.round_resets.ante)*G.GAME.starting_params.ante_scaling } }
     end,
     collection_loc_vars = function(self)
-        return { vars = { '1', '4' } }
+        return { vars = { '6X Base' } }
     end,
     calculate = function(self, blind, context)
         if context.after and not G.GAME.blind.disabled then
             BLINDSIDE.chipsmodify(0, 0, 2, 0, true)
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
-            if SMODS.pseudorandom_probability(blind, 'glass', 1, 4) then
-                G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-                    G.GAME.blind.mult = 0
-                    play_sound('glass'..math.random(1, 6), math.random()*0.2 + 0.9,0.5)
-                    blind:defeat()
-                return true end }))
+            if blind.original_mult*blind.original_chips < SMODS.calculate_round_score() then
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+                play_sound('glass'..math.random(1, 6), math.random()*0.2 + 0.9,0.5)
+                blind:disable()
+            return true end }))
             end
         end
     end,
