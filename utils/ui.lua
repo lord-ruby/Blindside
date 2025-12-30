@@ -385,7 +385,7 @@ function blind_jokers_ui(exit)
 								options = page_options,
 								w = 4.5,
 								cycle_shoulders = true,
-								opt_callback = 'your_collection_blinds_page',
+								opt_callback = 'your_collection_blindjokers_page',
 								focus_args = {snap_to = true, nav = 'wide'},
 								current_option = page,
 								colour = G.ACTIVE_MOD_UI and (G.ACTIVE_MOD_UI.ui_config or {}).collection_option_cycle_colour or G.C.RED,
@@ -398,6 +398,112 @@ function blind_jokers_ui(exit)
 		}
 	})
 	return t
+end
+
+function G.FUNCS.your_collection_blindjokers_page(args)
+	if not args or not args.cycle_config then return end
+	for j = 1, #G.your_collection do
+		for i = #G.your_collection[j].cards, 1, -1 do
+			local c = G.your_collection[j]:remove_card(G.your_collection[j].cards[i])
+			c:remove()
+			c = nil
+		end
+	end
+
+	local cols = 5
+	local rows = 6
+	local page = args.cycle_config.current_option
+    local blindjokers = {}
+    for k, v in pairs(G.P_BLINDS) do
+        if BLINDSIDE.is_blindside(v.key) and not BLINDSIDE.is_dupe(v.key) then
+            table.insert(blindjokers, v)
+        end
+    end
+
+	local blind_tab = SMODS.collection_pool(blindjokers)
+    table.sort(blind_tab, function(a, b) return a.order + (a.boss and a.boss.showdown and 1000 or 0) < b.order + (b.boss and b.boss.showdown and 1000 or 0) end)
+
+	local this_page = {}
+	for i, v in ipairs(blind_tab) do
+		if i > rows*cols*(page-1) and i <= rows*cols*page then
+			table.insert(this_page, v)
+		elseif i > rows*cols*page then
+			break
+		end
+	end
+	blind_tab = this_page
+
+	local blinds_to_be_alerted = {}
+	local row, col = 1, 1
+	for k, v in ipairs(blind_tab) do
+		local atlas_key = v.discovered and v.atlas or 'blind_chips'
+		local temp_blind = SMODS.create_sprite(G.your_collection[row].T.x + G.your_collection[row].T.w/2, G.your_collection[row].T.y, 1.3, 1.3, atlas_key, v.discovered and v.pos or G.b_undiscovered.pos)
+		temp_blind.states.click.can = false
+		temp_blind.states.drag.can = false
+		temp_blind.states.hover.can = true
+		local card = Card(G.your_collection[row].T.x + G.your_collection[row].T.w/2, G.your_collection[row].T.y, 1.3, 1.3, G.P_CARDS.empty, G.P_CENTERS.c_base)
+		temp_blind.states.click.can = false
+		card.states.drag.can = false
+		card.states.hover.can = true
+		card.children.center = temp_blind
+		temp_blind:set_role({major = card, role_type = 'Glued', draw_major = card})
+		card.set_sprites = function(...)
+			local args = {...}
+			if not args[1].animation then return end -- fix for debug unlock
+			local c = card.children.center
+			Card.set_sprites(...)
+			card.children.center = c
+		end
+		temp_blind:define_draw_steps({
+			{ shader = 'dissolve', shadow_height = 0.05 },
+			{ shader = 'dissolve' }
+		})
+		temp_blind.float = true
+		card.states.collide.can = true
+		card.config.blind = v
+		card.config.force_focus = true
+		if v.discovered and not v.alerted then
+			blinds_to_be_alerted[#blinds_to_be_alerted + 1] = card
+		end
+		card.hover = function()
+			if not G.CONTROLLER.dragging.target or G.CONTROLLER.using_touch then
+				if not card.hovering and card.states.visible then
+					card.hovering = true
+					card.hover_tilt = 3
+					card:juice_up(0.05, 0.02)
+					play_sound('chips1', math.random() * 0.1 + 0.55, 0.12)
+					card.config.h_popup = create_UIBox_blind_popup(v, card.config.blind.discovered)
+					card.config.h_popup_config = card:align_h_popup()
+					Node.hover(card)
+					if card.children.alert then
+						card.children.alert:remove()
+						card.children.alert = nil
+						card.config.blind.alerted = true
+						G:save_progress()
+					end
+				end
+			end
+			card.stop_hover = function()
+				card.hovering = false; Node.stop_hover(card); card.hover_tilt = 0
+			end
+		end
+		G.your_collection[row]:emplace(card)
+		col = col + 1
+		if col > cols then col = 1; row = row + 1 end
+	end
+	G.E_MANAGER:add_event(Event({
+		trigger = 'immediate',
+		func = (function()
+			for _, v in ipairs(blinds_to_be_alerted) do
+			  v.children.alert = UIBox{
+				definition = create_UIBox_card_alert(),
+				config = { align="tri", offset = {x = 0.1, y = 0.1}, parent = v}
+			  }
+			  v.children.alert.states.collide.can = false
+			end
+			return true
+		end)
+	}))
 end
 
 function blind_decks_ui()
@@ -811,7 +917,6 @@ end
     end
     
     local blinds_page_ref = G.FUNCS.your_collection_blinds_page
-
     function G.FUNCS.your_collection_blinds_page(args)
         return wrap_without_blindjokerspage(blinds_page_ref,args)
     end
