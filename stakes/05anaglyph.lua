@@ -10,7 +10,7 @@ SMODS.Stake{
     end,
 
     calculate = function (self, context)
-        if G.GAME.modifiers.enable_voodoo_pack and context.ante_end and context.main_eval then
+        if G.GAME.modifiers.enable_voodoo_pack and context.ante_end and context.ante_change and context.main_eval then
             G.E_MANAGER:add_event(Event({
                 func = function ()
                     add_tag(Tag('tag_bld_voodoo'))
