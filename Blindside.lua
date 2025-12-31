@@ -208,6 +208,10 @@ function BLINDSIDE.Blind:set_params()
         self.weight = 3 -- secret code for "i am rare"
     end
 
+    if self.basic then
+        self.weight = 33 -- secret code for "i am basic"
+    end
+
     if self.curse then
         self.weight = 67 -- secret code for "i am cursed"
     end

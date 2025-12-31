@@ -689,3 +689,48 @@ BLINDSIDE.Joker({
         end
     end,
 })
+
+BLINDSIDE.Joker({
+    key = 'certificate',
+    atlas = 'bld_joker',
+    pos = {x=0, y=29},
+    boss_colour = HEX('8a7a5f'),
+    mult = 16,
+    dollars = 6,
+    order = 22,
+    boss = {min = 2},
+    active = true,
+    set_joker = function ()
+        for i = 1, G.GAME.round_resets.ante * 2 + 8, 1 do
+            local enhancement = pseudorandom_element({'m_bld_sharp', 'm_bld_adder', 'm_bld_flip', 'm_bld_bite', 'm_bld_pot', 'm_bld_sharp', 'm_bld_adder', 'm_bld_flip', 'm_bld_bite', 'm_bld_pot', 'm_bld_blank'}, pseudoseed('bld_certificate'))
+            local card = SMODS.create_card { set = "Base", enhancement = enhancement, area = G.discard }
+            G.playing_card = (G.playing_card and G.playing_card + 1) or 1
+            card.playing_card = G.playing_card
+            table.insert(G.playing_cards, card)
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 0.3,
+                func = function()
+                        card:start_materialize({ G.C.SECONDARY_SET.Enhanced })
+                        G.deck:emplace(card)
+                    return true
+                end
+            }))
+            card.ability.extra.certificate_generated = true
+        end
+    end,
+    defeat_joker = function ()
+        for key, value in pairs(G.playing_cards) do
+            if value.ability.extra.certificate_generated then
+                value:start_dissolve()
+            end
+        end
+    end,
+    loc_vars = function(self)
+        return {
+            vars = {
+                G.GAME.round_resets.ante and math.min(20, 8 + 2 * G.GAME.round_resets.ante) or "8 + 2*Ante"
+            }
+        }
+    end,
+})
