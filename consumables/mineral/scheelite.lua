@@ -3,24 +3,28 @@ SMODS.Consumable {
     set = 'bld_obj_mineral',
     atlas = 'bld_consumable',
     pos = {x=9, y=2},
-    config = {
-        hand_type = 'bld_blind_stack',
-    },
+    config = {},
     in_pool = function(self, args)
-        if G.GAME.hands[self.config.hand_type].played > 0 then
+        if G.GAME.hands['bld_blind_down'].played > 0 then
             return true
         else
             return false
         end
     end,
+    can_use = function()
+        return true
+    end,
+    use = function(self, card, area)
+        for key, value in pairs({'bld_blind_double_down', 'bld_blind_triple_down', 'bld_blind_quadruple_down'}) do
+            SMODS.smart_level_up_hand(card, value, true, 1)
+        end
+
+        level_up_hand(card, 'bld_blind_down', false, 1)
+    end,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                G.GAME.hands[card.ability.hand_type].level,
-                localize(card.ability.hand_type, 'poker_hands'), 
-                G.GAME.hands[card.ability.hand_type].l_mult, 
-                G.GAME.hands[card.ability.hand_type].l_chips,
-            colours = {(G.GAME.hands[card.ability.hand_type].level==1 and G.C.UI.TEXT_DARK or G.C.HAND_LEVELS[math.min(7, G.GAME.hands[card.ability.hand_type].level)])}
+                localize('bld_blind_down', 'poker_hands'),
             }
         }
     end

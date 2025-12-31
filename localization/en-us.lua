@@ -114,7 +114,10 @@ return {
             ['bld_blind_fullhouse'] = 'Full House',
             ['bld_raise'] = 'Raise',
             ['bld_blind_4oak'] = 'Four of a Blind',
-            ['bld_blind_stack'] = 'Stack',
+            ['bld_blind_down'] = 'Down',
+			['bld_blind_double_down'] = 'Double Down',
+			['bld_blind_triple_down'] = 'Triple Down',
+			['bld_blind_quadruple_down'] = 'Quadruple Down',
             ['bld_allin'] = 'All In',
 		},
 		["poker_hand_descriptions"] = {
@@ -147,8 +150,21 @@ return {
                 "4 Blinds that share the same hue. They may",
                 "be played with up to 1 other unscored Blind"
             },
-            ['bld_blind_stack'] = {
-                "A Flush of 5 unique blinds",
+            ['bld_blind_down'] = {
+				"2 Pairs of unique",
+				"hues which overlap"
+            },
+			['bld_blind_double_down'] = {
+                "A hand which contains",
+				"a Down and a Two Pair"
+            },
+			['bld_blind_triple_down'] = {
+                "A hand which contains",
+				"a Down and Full House"
+            },
+			['bld_blind_quadruple_down'] = {
+                "A hand which contains",
+				"a Down and Four of a Blind"
             },
             ['bld_allin'] = {
                 "5 of the same blind"
@@ -245,7 +261,7 @@ return {
 				}
 			},
 			["b_bld_golddispenser"] = {
-				["name"] = "Gold Deck? (not shiny yet)",
+				["name"] = "Gold Deck?",
 				["text"] = {
 					"???",
 					"{C:bld_obj_mineral}Level up{} the hand",
@@ -1012,10 +1028,8 @@ return {
 			["c_bld_scheelite"] = {
 				["name"] = "Scheelite",
 				["text"] = {
-                    "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Level up",
-                    "{C:attention}#2#",
-                    "{C:mult}+#3#{} Mult and",
-                    "{C:chips}+#4#{} chips"
+                    "Level up all hands",
+                    "containing {C:attention}#1#",
 				},
 			},
 		},
