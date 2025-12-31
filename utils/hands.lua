@@ -149,6 +149,51 @@
         return ret
     end
 
+    function get_contained_in_down(hand)
+        local part_4ob = get_X_blind_same(4, hand)
+        local part_3ob = get_X_blind_same(3, hand)
+        local part_pair = get_X_blind_same(2, hand)
+
+        local all_combos = {}
+
+        for _, value in pairs(part_pair) do
+            table.insert(all_combos, value)
+        end
+        for _, value in pairs(part_3ob) do
+            table.insert(all_combos, value)
+        end
+        for _, value in pairs(part_4ob) do
+            table.insert(all_combos, value)
+        end
+
+        local overlaps = {}
+        for _, pair1 in pairs(all_combos) do
+            for _, pair2 in pairs(all_combos) do
+                if pair1 ~= pair2 then
+                    for _, card1 in pairs(pair1) do
+                        for _, card2 in pairs(pair2) do
+                            if card1 == card2 then
+                                for _, value in pairs(pair1) do
+                                    if not tableContains(value, overlaps) then
+                                        table.insert(overlaps, value)
+                                    end
+                                end
+                                for _, value in pairs(pair2) do
+                                    if not tableContains(value, overlaps) then
+                                        table.insert(overlaps, value)
+                                    end
+                                end
+                                break
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+        return overlaps
+    end
+
     function get_X_blind_same(num, hand, color_data, get_all_pairs)
         local colors = {"Red", "Green", "Blue", "Purple", "Yellow", "Faded"}
 
@@ -385,6 +430,28 @@
     }
 
     SMODS.PokerHandPart {
+        key = 'blind_down_prt',
+        func = function(hand)
+            if G.GAME.selected_back.effect.center.config.extra then
+                if not G.GAME.selected_back.effect.center.config.extra.blindside then return {} end
+                return get_contained_in_down(hand)
+            end
+        end
+    }
+
+    SMODS.PokerHandPart {
+        key = 'blind_hand',
+        func = function(hand)
+            if G.GAME.selected_back.effect.center.config.extra then
+            if not G.GAME.selected_back.effect.center.config.extra.blindside then return {} end
+                return hand
+            else
+                return {}
+            end
+        end
+    }
+
+    SMODS.PokerHandPart {
         key = 'blind_all_pairs',
         func = function(hand)
             if G.GAME.selected_back.effect.center.config.extra then
@@ -491,6 +558,7 @@
     function Card:get_color()
             return self.config.center.config.extra.hues[1]
         end
+        
 
     SMODS.PokerHandPart{ -- Spectrum base (Referenced from SixSuits) (and then from Bunco)
     key = 'allin',
@@ -583,11 +651,10 @@ SMODS.PokerHand{ -- high
     l_chips = 25,
     l_mult = 3,
     example = {
-        { 'C_3',    true, enhancement = "m_bld_ox" },
-        { 'C_3',    false, enhancement = "m_bld_house" },
-        { 'C_3',    false, enhancement = "m_bld_fruit" },
-        { 'C_3',    false, enhancement = "m_bld_psychic" },
-        { 'C_3',    false, enhancement = "m_bld_manacle" },
+        { 'C_3',    true, enhancement = "m_bld_pot" },
+        { 'C_3',    false, enhancement = "m_bld_bite" },
+        { 'C_3',    false, enhancement = "m_bld_sharp" },
+        { 'C_3',    false, enhancement = "m_bld_adder" },
 
     },
     evaluate = function(parts)
@@ -606,33 +673,28 @@ SMODS.PokerHand{ -- 2oak
         { 'C_3',    false, enhancement = "m_bld_fish" },
         { 'C_3',    true, enhancement = "m_bld_sharp" },
         { 'C_3',    true, enhancement = "m_bld_mark" },
-        { 'C_3',    false, enhancement = "m_bld_wheel" },
+        { 'C_3',    false, enhancement = "m_bld_needle" },
         { 'C_3',    false, enhancement = "m_bld_club" },
 
     },
     evaluate = function(parts)
         return #parts.bld_blind_2 >= 1 and parts.bld_blind_all_pairs or nil
     end,
-    modify_display_text = function (self, cards, scoring_hand)
-        if #scoring_hand > 2 then
-            return "Down (Pair)" -- localize("bld_blind_down")
-        end
-    end
 }
 
 SMODS.PokerHand{ -- 3oak
     key = 'blind_3oak',
     visible = false,
     chips = 25,
-    mult = 2,
+    mult = 3,
     l_chips = 15,
     l_mult = 3,
     example = {
         { 'C_3',    false, enhancement = "m_bld_adder" },
         { 'S_2',    true, enhancement = "m_bld_goad" },
-        { 'S_2',    true, enhancement = "m_bld_skull" },
+        { 'S_2',    true, enhancement = "m_bld_bite" },
         { 'S_2',    true, enhancement = "m_bld_blend" },
-        { 'C_3',    false, enhancement = "m_bld_flip" },
+        { 'C_3',    false, enhancement = "m_bld_pot" },
     },
     evaluate = function(parts)
         return parts.bld_blind_3
@@ -643,15 +705,15 @@ SMODS.PokerHand{ -- 2pair
     key = 'blind_2pair',
     visible = false,
     chips = 30,
-    mult = 2,
+    mult = 3,
     l_chips = 15,
     l_mult = 2,
     example = {
         { 'C_3',    true, enhancement = "m_bld_wall" },
         { 'C_3',    true, enhancement = "m_bld_mouth" },
-        { 'C_3',    false, enhancement = "m_bld_house" },
         { 'C_3',    true, enhancement = "m_bld_hook" },
         { 'C_3',    true, enhancement = "m_bld_tooth" },
+        { 'C_3',    false, enhancement = "m_bld_adder" },
     },
     evaluate = function(parts)
         local diagnostic = true
@@ -663,46 +725,13 @@ SMODS.PokerHand{ -- 2pair
         if (#parts.bld_blind_2 < 2 and #parts.bld_blind_3 == 0) or not diagnostic then return {} end
         return parts.bld_blind_all_pairs
     end,
-    modify_display_text = function (self, cards, scoring_hand)
-        local part_threeob = get_X_blind_same(3, cards)
-        local part_pair = get_X_blind_same(2, cards)
-
-        local overlaps = false
-        for _, pair1 in pairs(part_pair) do
-            for _, pair2 in pairs(part_pair) do
-                if pair1 ~= pair2 then
-                    for _, card1 in pairs(pair1) do
-                        for _, card2 in pairs(pair2) do
-                            if card1 == card2 then
-                                overlaps = true
-                                break
-                            end
-                        end
-                        if overlaps then
-                            break
-                        end
-                    end
-                end
-                if overlaps then
-                    break
-                end
-            end
-            if overlaps then
-                break
-            end
-        end
-
-        if #scoring_hand > 4 or #part_threeob > 0 or overlaps then
-            return "Double Down (2Pr)" --localize("bld_blind_double_down")
-        end
-    end
 }
 
 SMODS.PokerHand{ -- flush
     key = 'blind_flush',
     visible = false,
-    chips = 60,
-    mult = 6,
+    chips = 70,
+    mult = 7,
     l_chips = 20,
     l_mult = 1,
     example = {
@@ -710,7 +739,7 @@ SMODS.PokerHand{ -- flush
         { 'S_2',    true, enhancement = "m_bld_eye" },
         { 'S_2',    true, enhancement = "m_bld_deck" },
         { 'S_2',    true, enhancement = "m_bld_eye" },
-        { 'C_3',    true, enhancement = "m_bld_adder" },
+        { 'C_3',    true, enhancement = "m_bld_pile" },
     },
     evaluate = function(parts)
         return parts.bld_blind_flush
@@ -741,67 +770,6 @@ SMODS.PokerHand{ -- full house
         if (#parts.bld_blind_3 == 0) or (#parts.bld_blind_3 < 2 and #parts.bld_blind_2 == 0) or not diagnostic then return {} end
         return parts.bld_blind_all_pairs
     end,
-    modify_display_text = function (self, cards, scoring_hand)
-        local part_threeob = get_X_blind_same(3, cards)
-        local part_pair = get_X_blind_same(2, cards)
-
-        -- this code determines whether the hand has a unique pair
-        -- which is NOT contained in any Three of a Kind.
-        -- in the case where all the 3oks overlap at least
-        -- one blind in each pair, this is considered a Triple Down.
-        local contains_extraneous_pair = false
-        for _, value in pairs(part_pair) do
-            local total_inside = 0
-            for _, card in pairs(value) do
-                local inside = false
-                for _, value2 in pairs(part_threeob) do
-                    for _, card2 in pairs(value2) do
-                        if card == card2 then
-                            inside = true
-                            break
-                        end
-                    end
-                    if inside then
-                        total_inside = total_inside + 1
-                        break
-                    end
-                end
-            end
-            if total_inside == 0 then
-                contains_extraneous_pair = true
-                break
-            end
-        end
-
-        local overlaps = false
-        for _, pair1 in pairs(part_pair) do
-            for _, pair2 in pairs(part_pair) do
-                if pair1 ~= pair2 then
-                    for _, card1 in pairs(pair1) do
-                        for _, card2 in pairs(pair2) do
-                            if card1 == card2 then
-                                overlaps = true
-                                break
-                            end
-                        end
-                        if overlaps then
-                            break
-                        end
-                    end
-                end
-                if overlaps then
-                    break
-                end
-            end
-            if overlaps then
-                break
-            end
-        end
-
-        if not contains_extraneous_pair or overlaps then
-            return "Triple Down (FH)" --localize("bld_blind_triple_down")
-        end
-    end
 }
 
 SMODS.PokerHand{ -- Spectrum (Referenced from SixSuits) (ty Bunco)
@@ -835,35 +803,86 @@ SMODS.PokerHand{ -- four of a kind
         { 'S_2',    true, enhancement = "m_bld_wheel" },
         { 'S_2',    true, enhancement = "m_bld_serpent" },
         { 'S_2',    true, enhancement = "m_bld_cell" },
-        { 'C_3',    false, enhancement = "m_bld_club" },
+        { 'C_3',    false, enhancement = "m_bld_sharp" },
     },
     evaluate = function(parts)
         return #parts.bld_blind_4 > 0 and parts.bld_blind_all_pairs or nil
     end,
-    modify_display_text = function (self, cards, scoring_hand)
-        if #scoring_hand > 4 then
-            return "Quadruple Down (4oB)"--localize("bld_blind_quadruple_down")
-        end
+}
+
+SMODS.PokerHand{ -- down
+    key = 'blind_down',
+    visible = false,
+    chips = 25,
+    mult = 2,
+    l_chips = 25,
+    l_mult = 3,
+    example = {
+        { 'C_3',    true, enhancement = "m_bld_pot" },
+        { 'S_2',    true, enhancement = "m_bld_spear" },
+        { 'S_2',    true, enhancement = "m_bld_sharp" },
+        { 'S_2',    false, enhancement = "m_bld_bite" },
+        { 'C_3',    false, enhancement = "m_bld_adder" },
+    },
+    evaluate = function(parts)
+        return #parts.bld_blind_down_prt > 0 and parts.bld_blind_all_pairs or nil
     end
 }
 
-SMODS.PokerHand{ -- stack
-    key = 'blind_stack',
+SMODS.PokerHand{ -- double down
+    key = 'blind_double_down',
     visible = false,
-    chips = 100,
-    mult = 8,
+    chips = 35,
+    mult = 4,
+    l_chips = 20,
+    l_mult = 2,
+    example = {
+        { 'C_3',    true, enhancement = "m_bld_pot" },
+        { 'S_2',    true, enhancement = "m_bld_joy" },
+        { 'S_2',    true, enhancement = "m_bld_adder" },
+        { 'S_2',    true, enhancement = "m_bld_adder" },
+        { 'C_3',    false, enhancement = "m_bld_bite" },
+    },
+    evaluate = function(parts)
+        return (#parts.bld_blind_down_prt > 0 and (#parts.bld_blind_2 >= 3 or #parts.bld_blind_3 >= 1) and #parts.bld_blind_hand >= 4) and parts.bld_blind_all_pairs or nil
+    end
+}
+
+SMODS.PokerHand{ -- triple down
+    key = 'blind_triple_down',
+    visible = false,
+    chips = 50,
+    mult = 5,
     l_chips = 25,
     l_mult = 1,
     example = {
-        { 'C_3',    true, enhancement = "m_bld_pot" },
-        { 'S_2',    true, enhancement = "m_bld_psychic" },
-        { 'S_2',    true, enhancement = "m_bld_flint" },
-        { 'S_2',    true, enhancement = "m_bld_ox" },
-        { 'C_3',    true, enhancement = "m_bld_club" },
+        { 'C_3',    true, enhancement = "m_bld_adder" },
+        { 'S_2',    true, enhancement = "m_bld_adder" },
+        { 'S_2',    true, enhancement = "m_bld_path" },
+        { 'S_2',    true, enhancement = "m_bld_sharp" },
+        { 'C_3',    true, enhancement = "m_bld_sharp" },
     },
     evaluate = function(parts)
-        if #parts.bld_blind_paired_2 or not next(parts.bld_blind_flush) then return {} end
-            return parts.bld_blind_flush
+        return (#parts.bld_blind_down_prt > 0 and #parts.bld_blind_3 >= 2 and #parts.bld_blind_hand >= 5) and parts.bld_blind_all_pairs or nil
+    end
+}
+
+SMODS.PokerHand{ -- quadruple down
+    key = 'blind_quadruple_down',
+    visible = false,
+    chips = 60,
+    mult = 6,
+    l_chips = 30,
+    l_mult = 1,
+    example = {
+        { 'C_3',    true, enhancement = "m_bld_sharp" },
+        { 'S_2',    true, enhancement = "m_bld_thorn" },
+        { 'S_2',    true, enhancement = "m_bld_flip" },
+        { 'S_2',    true, enhancement = "m_bld_flip" },
+        { 'C_3',    true, enhancement = "m_bld_flip" },
+    },
+    evaluate = function(parts)
+        return (#parts.bld_blind_down_prt > 0 and #parts.bld_blind_4 >= 1 and #parts.bld_blind_hand >= 5) and parts.bld_blind_all_pairs or nil
     end
 }
 
