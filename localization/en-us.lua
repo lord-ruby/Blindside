@@ -3288,6 +3288,16 @@ return {
 					{"{C:attention}Stubborn"}
 				},
 			},
+			["m_bld_tax"] = {
+				["name"] = "The Tax",
+				["text"] = {
+					{"{X:money,C:white}Yellow{} {X:black,C:white}Cursed{}",
+					"Takes {C:attention}half{} of all held",
+					"money more than {C:money}$20{}",
+					"{C:inactive}(Currently {C:money}-$#1#{C:inactive})"},
+					{"{C:attention}Stubborn"}
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
