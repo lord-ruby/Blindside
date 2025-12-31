@@ -14,6 +14,12 @@
                 return { remove = true }
             end
             if G.GAME.current_round.discards_left > 0 and context.cardarea == G.play and context.main_scoring then
+                G.E_MANAGER:add_event(Event({
+                    func = function ()
+                        card:juice_up()
+                        return true
+                    end
+                }))
                 ease_discard(-1)
             end
         end,
