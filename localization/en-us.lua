@@ -3280,6 +3280,14 @@ return {
 					"Sets {C:mult}Mult{} to {C:attention}0",
 				},
 			},
+			["m_bld_bill"] = {
+				["name"] = "The Bill",
+				["text"] = {
+					{"{X:money,C:white}Yellow{} {X:black,C:white}Cursed{}",
+					"{C:money}-$#1#{} and {C:attention}burns"},
+					{"{C:attention}Stubborn"}
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {

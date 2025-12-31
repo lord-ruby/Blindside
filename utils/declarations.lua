@@ -115,6 +115,7 @@
         "m_bld_sinker",
         "m_bld_downer",
         "m_bld_nil",
+        "m_bld_bill",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",

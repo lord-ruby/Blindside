@@ -452,6 +452,7 @@ local card_list = {
     "Sinker",
     "Downer",
     "Nil",
+    "Bill",
 }
 
 local trinket_list = {
