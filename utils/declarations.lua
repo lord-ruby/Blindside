@@ -765,6 +765,7 @@
         pools = {
             ["Joker"] = true,
         },
+        disable_if_empty = false,
         default_weight = 0.0000000001
     }
     SMODS.Rarity {
@@ -776,6 +777,7 @@
         pools = {
             ["Joker"] = true,
         },
+        disable_if_empty = false,
         default_weight = 0.0000000001
     }
     SMODS.Rarity {
@@ -787,6 +789,7 @@
         pools = {
             ["Joker"] = true,
         },
+        disable_if_empty = false,
         default_weight = 0.0000000001
     }
     SMODS.Rarity {
@@ -798,6 +801,7 @@
         pools = {
             ["Joker"] = true,
         },
+        disable_if_empty = false,
         default_weight = 0.0000000001
     }
 
