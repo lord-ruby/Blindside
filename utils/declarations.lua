@@ -432,6 +432,7 @@
         "bl_bld_smeared",
         "bl_bld_bull",
         "bl_bld_matador",
+        "bl_bld_luckycat",
         "bl_bld_yorick",
         },
     }

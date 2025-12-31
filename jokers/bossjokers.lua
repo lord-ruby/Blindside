@@ -151,7 +151,9 @@ BLINDSIDE.Joker({
             G.GAME.playing_with_fire = G.GAME.playing_with_fire + 1 + (G.GAME.used_vouchers.v_bld_swearjar and 1 or 0)
             BLINDSIDE.chipsmodify(2, 0, 0)
             blind:wiggle()
-            BLINDSIDE.chipsupdate()
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+                BLINDSIDE.chipsupdate()
+            return true end }))
         end
     end,
 })
@@ -508,7 +510,7 @@ BLINDSIDE.Joker({
     boss_colour = HEX('E5D332'),
     mult = 12,
     dollars = 8,
-    order = 15,
+    order = 16,
     boss = {min = 2},
     active = true,
     calculate = function(self, blind, context)
@@ -557,7 +559,7 @@ BLINDSIDE.Joker({
     boss_colour = HEX('64FDDF'),
     mult = 16,
     dollars = 6,
-    order = 15,
+    order = 17,
     boss = {min = 1},
     active = true,
     set_joker = function(self)
@@ -580,7 +582,7 @@ BLINDSIDE.Joker({
     boss_colour = HEX('FD867F'),
     mult = 6,
     dollars = 6,
-    order = 15,
+    order = 18,
     boss = {min = 1},
     active = true,
     loc_vars = function(self, blind)
@@ -612,7 +614,7 @@ BLINDSIDE.Joker({
     boss_colour = HEX('FD5F55'),
     mult = 12,
     dollars = 6,
-    order = 15,
+    order = 19,
     boss = {min = 1},
     active = true,
 })
@@ -624,7 +626,7 @@ BLINDSIDE.Joker({
     boss_colour = G.C.L_BLACK,
     mult = 10,
     dollars = 6,
-    order = 16,
+    order = 20,
     boss = {min = 2},
     active = true,
     set_joker = function ()
@@ -652,6 +654,38 @@ BLINDSIDE.Joker({
     mult = 6,
     dollars = 6,
     boss = {min = 2},
-    order = 16,
+    order = 21,
     is_assistant = true,
+})
+
+BLINDSIDE.Joker({
+    key = 'luckycat',
+    atlas = 'bld_joker',
+    pos = {x=0, y=31},
+    boss_colour = HEX('D79F41'),
+    mult = 10,
+    dollars = 6,
+    order = 22,
+    boss = {min = 2},
+    active = true,
+    calculate = function(self, blind, context)
+        if context.mod_probability and not context.blueprint then
+            return {
+                numerator = context.numerator * 0
+            }
+        end
+        if context.pseudorandom_result and not context.result then
+            blind.triggered = true
+            BLINDSIDE.chipsmodify(1, 0, 0)
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            blind:wiggle()
+            return true end }))
+        end
+        if context.after and blind.triggered then
+            blind.triggered = false
+            G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+            G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_2" or "bld_playing_with_fire_each_1"
+            G.GAME.playing_with_fire = G.GAME.playing_with_fire + 1 + (G.GAME.used_vouchers.v_bld_swearjar and 1 or 0)
+        end
+    end,
 })

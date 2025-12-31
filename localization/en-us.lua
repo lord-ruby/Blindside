@@ -1858,6 +1858,14 @@ return {
 					"every $8 held"
 				},
 			},
+			["bl_bld_luckycat"] = {
+				["name"] = "Lucky Cat",
+				["text"] = {
+					"Sets probabilities to 0",
+					"Gains +1 Mult when a",
+					"probability fails"
+				},
+			},
 			["bl_bld_yorick"] = {
 				["name"] = "Yorick",
 				["text"] = {
