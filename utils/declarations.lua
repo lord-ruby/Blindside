@@ -120,6 +120,7 @@
         "m_bld_famous",
         "m_bld_pill",
         "m_bld_hurt",
+        "m_bld_grind",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",

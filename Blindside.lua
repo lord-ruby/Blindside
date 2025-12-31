@@ -455,6 +455,7 @@ local card_list = {
     "Famous",
 
     "Hurt",
+    "Grind",
     "Pill",
     "Rain",
     "Death",

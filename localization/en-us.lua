@@ -3327,6 +3327,15 @@ return {
 					"{C:inactive}(Currently {C:mult}#3#{C:inactive} Mult)"
 				},
 			},
+			["m_bld_grind"] = {
+				["name"] = "The Grind",
+				["text"] = {
+					"{X:money,C:white}Yellow{} {X:black,C:white}Cursed{}",
+					"{C:money}-$#1#{}, then {C:money}+$#2#{} for",
+					"every other {X:black,C:white}Cursed{}",
+					"Blind in played hand",
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
