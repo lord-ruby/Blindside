@@ -3317,6 +3317,16 @@ return {
 					"{C:attention}be selected",}
 				},
 			},
+			["m_bld_hurt"] = {
+				["name"] = "The Hurt",
+				["text"] = {
+					"{X:mult,C:white}Red{} {X:black,C:white}Cursed{}",
+					"{C:mult}#1#{} Mult, then {C:mult}+#2#{} for",
+					"every {X:black,C:white}Cursed{} Blind in",
+					"full deck",
+					"{C:inactive}(Currently {C:mult}#3#{C:inactive} Mult)"
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {

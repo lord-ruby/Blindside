@@ -453,7 +453,8 @@ local card_list = {
     "Bill",
     "Tax",
     "Famous",
-    
+
+    "Hurt",
     "Pill",
     "Rain",
     "Death",
