@@ -3652,8 +3652,8 @@ return {
 			['j_bld_pendant'] = {
 				["name"] = "Pendant",
 				["text"] = {
-					"{C:attention}Astral{} Blinds",
-					"give {C:white,X:red}X#1#{} Mult",
+					"{X:mult,C:white}X#1#{} Mult for each",
+					"level of played hand"
 				}
 			},
 			['j_bld_glasseye'] = {

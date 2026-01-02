@@ -6,7 +6,7 @@
         rarity = 'bld_curio',
         config = {
             extra = {
-                x_mult = 1.2
+                x_mult = 0.1
             }
         },
         cost = 12,
@@ -21,9 +21,9 @@
             }
         end,
         calculate = function (self, card, context)
-            if context.individual and context.cardarea == G.play and context.other_card.seal == "bld_astral" and not context.other_card.facing ~= 'back' then
+            if context.joker_main then
                 return {
-                    xmult = card.ability.extra.x_mult
+                    xmult = 1 + G.GAME.hands[context.scoring_name].level*card.ability.extra.x_mult
                 }
             end
         end,
