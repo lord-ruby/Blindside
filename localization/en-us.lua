@@ -3676,9 +3676,11 @@ return {
 			['j_bld_bracelet'] = {
 				["name"] = "Bracelets",
 				["text"] = {
-					"{C:attention}Floral{} Blinds have",
+					{"{C:attention}Floral{} Blinds have",
 					"{X:green,C:white}+1{} increased {E:1,C:green}probabilities{} on",
-					"each Floral effect"
+					"each Floral effect"},
+					{"The {C:attention}leftmost{} blind of each",
+					"winning hand becomes {C:attention}Floral{}"}
 				}
 			},
 			['j_bld_stuffedtoy'] = {
