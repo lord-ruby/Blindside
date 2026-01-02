@@ -17,7 +17,7 @@ BLINDSIDE.Joker({
         if context.after and not G.GAME.blind.disabled then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
-                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
                     hasWildCanvas = true
                 end
             end
@@ -79,7 +79,7 @@ BLINDSIDE.Joker({
         if context.after and not G.GAME.blind.disabled then            
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
-                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
                     hasWildCanvas = true
                 end
             end
@@ -151,7 +151,7 @@ BLINDSIDE.Joker({
         if context.after and not G.GAME.blind.disabled then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
-                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
                     hasWildCanvas = true
                 end
             end
@@ -223,7 +223,7 @@ BLINDSIDE.Joker({
         if context.after and not G.GAME.blind.disabled then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
-                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
                     hasWildCanvas = true
                 end
             end
@@ -293,7 +293,7 @@ BLINDSIDE.Joker({
         if context.after and not G.GAME.blind.disabled then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
-                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
                     hasWildCanvas = true
                 end
             end
@@ -363,7 +363,7 @@ BLINDSIDE.Joker({
         if context.after and not G.GAME.blind.disabled then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
-                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
                     hasWildCanvas = true
                 end
             end
@@ -444,7 +444,7 @@ BLINDSIDE.Joker({
         if context.after and not G.GAME.blind.disabled then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
-                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
                     hasWildCanvas = true
                 end
             end
@@ -539,7 +539,7 @@ BLINDSIDE.Joker({
         if context.after and not G.GAME.blind.disabled then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
-                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
                     hasWildCanvas = true
                 end
             end
@@ -634,7 +634,7 @@ BLINDSIDE.Joker({
         if context.after and not G.GAME.blind.disabled then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
-                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
                     hasWildCanvas = true
                 end
             end
@@ -729,7 +729,7 @@ BLINDSIDE.Joker({
         if context.after and not G.GAME.blind.disabled then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
-                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
                     hasWildCanvas = true
                 end
             end
@@ -824,7 +824,7 @@ BLINDSIDE.Joker({
         if context.after and not G.GAME.blind.disabled then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
-                if context.scoring_hand[i].seal == "bld_wild" and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
+                if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
                     hasWildCanvas = true
                 end
             end

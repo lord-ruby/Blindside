@@ -3378,8 +3378,10 @@ return {
 			['j_bld_canvas'] = {
 				["name"] = "Canvas",
 				["text"] = {
-					"If played hand contains a {C:attention}Wild Blind{}",
-					"reduce effect of {C:attention}Big{} and {C:attention}Small Jokers"
+					"If played hand contains a",
+					"{C:attention}Wild Blind{} or {C:attention}Multicolor",
+					"Blind, reduce effect of",
+					"{C:attention}Big{} or {C:attention}Small Joker"
 				}
 			},
 			['j_bld_toysoldier'] = {
