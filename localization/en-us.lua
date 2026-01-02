@@ -3440,9 +3440,13 @@ return {
 			['j_bld_pumpkin'] = {
 				["name"] = "Pumpkin",
 				["text"] = {
-					"{C:attention}Spooky Blinds{} reduce",
-					"by an additional",
-					"{X:dark_edition,C:white}-2%{} and {C:attention}burn",
+					{"Each hand, {C:green}#2# in #3#{}",
+					"chance for {C:mult}-#1#{} Joker Mult"},
+					{"Reduction chance increases",
+					"by {C:green}+1{} for each scoring",
+					"{C:attention}Spooky{} Blind"},
+					{"Chance resets",
+					"after trigger"}
 				}
 			},
 			['j_bld_statuette'] = {

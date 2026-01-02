@@ -248,7 +248,9 @@ end
 function BLINDSIDE.chipsmodify(mult, originalchips, xmult, xchips, silent)
         if mult and mult ~= 0 then
             G.E_MANAGER:add_event(Event({trigger = 'before', delay = 0.3, func = function()
-        G.GAME.blind.mult = G.GAME.blind.mult + mult
+                if G.GAME.blind.mult ~= 1 or mult > 0 then
+                    G.GAME.blind.mult = G.GAME.blind.mult + mult
+                end
             G.hand_text_area.blind_mult_text:juice_up()
                 G.GAME.blind.mult_text = number_format(G.GAME.blind.mult)
                 if not silent then play_sound('multhit1') end
