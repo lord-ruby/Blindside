@@ -3619,9 +3619,11 @@ return {
 			['j_bld_award'] = {
 				["name"] = "Award",
 				["text"] = {
-					"At the end of round,",
-					"{X:money,C:white}Yellow{} Blinds held",
-					"in hand give {C:money}+#1#${}",
+					{"At the end of round,",
+					"Blinds {C:attention}held in hand",
+					"give {C:money}+$#1#{}"},
+					{"{X:money,C:white}Yellow{} Blinds instead",
+					"give {C:money}+$#2#{}"}
 				}
 			},
 			['j_bld_kazoo'] = {

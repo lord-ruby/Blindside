@@ -6,7 +6,8 @@
         rarity = 'bld_curio',
         config = {
             extra = {
-                money = 3,
+                money = 2,
+                money_yeller = 3, 
             }
         },
         cost = 10,
@@ -15,7 +16,8 @@
         loc_vars = function (self, info_queue, card)
             return {
                 vars = {
-                card.ability.extra.money
+                card.ability.extra.money,
+                card.ability.extra.money_yeller
             }
         }
         end,
@@ -30,11 +32,15 @@
         calculate = function(self, card, context)
             if context.individual and context.end_of_round and context.cardarea == G.hand then
                 local other_card = context.other_card
-                if other_card:is_color("Yellow") and not other_card.debuff then
-                    G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + card.ability.extra.money
+                if not other_card.debuff then
+                    local given = card.ability.extra.money
+                    if other_card:is_color("Yellow") then
+                        given = card.ability.extra.money_yeller
+                    end
+                    G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + given
                     G.E_MANAGER:add_event(Event({func = (function() G.GAME.dollar_buffer = 0; return true end)}))
                     return {
-                        dollars = card.ability.extra.money,
+                        dollars = given,
                         card = card
                     }
                 end
