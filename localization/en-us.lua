@@ -3455,6 +3455,14 @@ return {
 					"{C:attention}be selected",}
 				},
 			},
+			["m_bld_violet_vessel"] = {
+				["name"] = "Violet Vessel",
+				["text"] = {
+					{"{X:purple,C:white}Purple{} {C:white,X:purple,E:1}Legendary{}",
+					"{C:white,X:chips}X#1#{} Chips to {C:attention}Joker"},
+					{"{C:attention}Burns",}
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
