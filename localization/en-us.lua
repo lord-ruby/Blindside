@@ -3463,6 +3463,24 @@ return {
 					{"{C:attention}Burns",}
 				},
 			},
+			["m_bld_crimson_heart"] = {
+				["name"] = "Crimson Heart",
+				["text"] = {
+					"{X:mult,C:white}Red{} {C:white,X:purple,E:1}Legendary{}",
+					"Once per ante, {C:red}disables",
+					"{C:attention}Joker{} when scored",
+					"{C:inactive}(Currently: #1#)"
+				},
+			},
+			["m_bld_crimson_heart_upgraded"] = {
+				["name"] = "Crimson Heart",
+				["text"] = {
+					"{X:mult,C:white}Red{} {C:white,X:purple,E:1}Legendary{}",
+					"Twice per ante, {C:red}disables",
+					"{C:attention}Joker{} when scored",
+					"{C:inactive}(Currently: #1#)"
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {

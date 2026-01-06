@@ -134,6 +134,7 @@
         "m_bld_amber_acorn",
         "m_bld_cerulean_bell",
         "m_bld_violet_vessel",
+        "m_bld_crimson_heart",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",
