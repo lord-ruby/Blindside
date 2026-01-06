@@ -1449,7 +1449,7 @@ return {
 			["bl_bld_joker"] = {
 				["name"] = "Joker",
 				["text"] = {
-					"Gains +2 Mult",
+					"Gains +1 Mult",
 					"after every hand"
 				},
 			},
@@ -1887,6 +1887,22 @@ return {
 					"Shuffles #1# random",
 					"Basic Blinds into",
 					"the deck"
+				},
+			},
+			["bl_bld_oddtodd"] = {
+				["name"] = "Odd Todd",
+				["text"] = {
+					"X1.31 Chips if",
+					"hand contains an odd",
+					"number of Blinds"
+				},
+			},
+			["bl_bld_evensteven"] = {
+				["name"] = "Even Steven",
+				["text"] = {
+					"+4 Mult if hand",
+					"contains an even",
+					"number of Blinds"
 				},
 			},
 			["bl_bld_yorick"] = {
@@ -3371,6 +3387,36 @@ return {
 					{"Always scores"},
 				},
 			},
+			["m_bld_king"] = {
+				["name"] = "The King",
+				["text"] = {
+					"{X:dark_edition,C:white}Faded{} {X:black,C:white}Cursed{}",
+					"{C:white,X:mult}X#1#{} Mult to {C:attention}Joker",
+					"when {C:attention}held in hand",
+				},
+			},
+			["m_bld_queen"] = {
+				["name"] = "The Queen",
+				["text"] = {
+					"{X:dark_edition,C:white}Faded{} {X:black,C:white}Cursed{}",
+					"{C:white,X:mult}X#1#{} Mult to {C:attention}Joker",
+					"when {C:red}discarded",
+				},
+			},
+			["m_bld_small"] = {
+				["name"] = "Small Blind",
+				["text"] = {
+					"{X:chips,C:white}Blue{}",
+					"{C:chips}+#1#{} Chips",
+				},
+			},
+			["m_bld_big"] = {
+				["name"] = "Big Blind",
+				["text"] = {
+					"{X:money,C:white}Yellow{}",
+					"{C:white,X:mult}X#1#{} Mult",
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
@@ -4085,7 +4131,8 @@ return {
 			["stake_bld_plasma_deck"] = {
 				name = "Plasma Stake??",
 				text = {
-					"Does {C:attention}nothing{} yet"
+					"Face off against {C:red}tougher",
+					"{C:attention}Small{} and {C:attention}Big Jokers"
 				}
 			},
 			["stake_bld_ghost_deck"] = {

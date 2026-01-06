@@ -113,7 +113,7 @@ function Game:main_menu(change_context)
                     n = G.UIT.T,
                     config = {
                         scale = 0.3,
-                        text = "Blindside ALPHA v0.5.0",
+                        text = "Blindside ALPHA v0.6.1-EXP",
                         colour = G.C.UI.TEXT_LIGHT
                     }
                 }
@@ -433,6 +433,10 @@ local card_list = {
 
     "Beta",
     "Tablet",
+    "King",
+    "Queen",
+    "Small",
+    "Big",
     
     -- "Atomic",
     
