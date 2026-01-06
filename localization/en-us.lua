@@ -1892,7 +1892,7 @@ return {
 			["bl_bld_oddtodd"] = {
 				["name"] = "Odd Todd",
 				["text"] = {
-					"X1.31 Chips if",
+					"X1.31 Chips if played",
 					"hand contains an odd",
 					"number of Blinds"
 				},
@@ -1900,8 +1900,8 @@ return {
 			["bl_bld_evensteven"] = {
 				["name"] = "Even Steven",
 				["text"] = {
-					"+4 Mult if hand",
-					"contains an even",
+					"+4 Mult if played",
+					"hand contains an even",
 					"number of Blinds"
 				},
 			},
