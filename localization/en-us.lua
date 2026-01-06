@@ -3387,6 +3387,22 @@ return {
 					{"Always scores"},
 				},
 			},
+			["m_bld_king"] = {
+				["name"] = "The King",
+				["text"] = {
+					"{X:dark_edition,C:white}Faded{} {X:black,C:white}Cursed{}",
+					"{C:white,X:mult}X#1#{} Mult to {C:attention}Joker",
+					"when {C:attention}held in hand",
+				},
+			},
+			["m_bld_queen"] = {
+				["name"] = "The Queen",
+				["text"] = {
+					"{X:dark_edition,C:white}Faded{} {X:black,C:white}Cursed{}",
+					"{C:white,X:mult}X#1#{} Mult to {C:attention}Joker",
+					"when {C:red}discarded",
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {

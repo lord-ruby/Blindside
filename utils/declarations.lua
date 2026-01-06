@@ -127,6 +127,8 @@
         "m_bld_grind",
         "m_bld_work",
         "m_bld_loop",
+        "m_bld_king",
+        "m_bld_queen",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",
