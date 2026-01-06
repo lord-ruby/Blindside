@@ -1920,6 +1920,15 @@ return {
 					"into the deck"
 				},
 			},
+			["bl_bld_perkeo"] = {
+				["name"] = "Perkeo",
+				["text"] = {
+					"Creates a",
+					"Negative",
+					"Joker after",
+					"each hand"
+				},
+			},
 		},
 		["Enhanced"] = {
 			["m_bld_adder"] = {

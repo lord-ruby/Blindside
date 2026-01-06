@@ -281,7 +281,7 @@ self.original_chips = get_blind_amount(G.GAME.round_resets.ante)*G.GAME.starting
 self.basechips = get_blind_amount(G.GAME.round_resets.ante)*G.GAME.starting_params.ante_scaling
 self.basechips_text = number_format(self.basechips)
 self.mult_text = number_format(self.mult)
-self.blindassist = blind and blind.blindassist or nil
+self.blindassist = blind and blind.blindassist or {}
 
 '''
 
@@ -805,6 +805,20 @@ pattern = '''
 '''
 payload = '''
                 blind_assist.config and {n=G.UIT.O, config={object = blind_assist.animation}} or nil,
+'''
+
+# blind assists
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/utils.lua"]'
+match_indent = true
+position = 'before'
+pattern = '''-- TARGET: add your own individual scoring targets
+'''
+payload = '''
+        if G.GAME.blindassist and G.GAME.blindassist.children and G.GAME.blindassist.children.animatedSprite and G.GAME.blindassist.config.blind then 
+            t[#t + 1] = { object = G.GAME.blindassist, scored_card = G.GAME.blindassist.children.animatedSprite } 
+        end
 '''
 
 # blind assists

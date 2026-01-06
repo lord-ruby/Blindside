@@ -458,6 +458,7 @@
         "bl_bld_certificate",
         "bl_bld_yorick",
         "bl_bld_triboulet",
+        "bl_bld_perkeo",
         },
     }
 

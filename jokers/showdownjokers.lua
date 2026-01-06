@@ -92,3 +92,215 @@ BLINDSIDE.Joker({
         end
     end,
 })
+
+local function get_new_perkeo_boss()
+    G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {
+    }
+    if G.GAME.perscribed_bosses and G.GAME.perscribed_bosses[G.GAME.round_resets.ante] then 
+        local ret_boss = G.GAME.perscribed_bosses[G.GAME.round_resets.ante] 
+        G.GAME.perscribed_bosses[G.GAME.round_resets.ante] = nil
+        G.GAME.bosses_used[ret_boss] = G.GAME.bosses_used[ret_boss] + 1
+        return ret_boss
+    end
+    if G.FORCE_BOSS then return G.FORCE_BOSS end
+    
+    local eligible_bosses = {}
+    for k, v in pairs(G.P_BLINDS) do
+        local res, options = SMODS.add_to_pool(v)
+        options = options or {}
+        if not v.boss then
+        
+        elseif options.ignore_showdown_check then
+            eligible_bosses[k] = res and true or nil
+        elseif v.in_pool and type(v.in_pool) == 'function' and not v.boss.showdown then
+            eligible_bosses[k] = res and true or nil
+        end
+    end
+    for k, v in pairs(G.GAME.banned_keys) do
+        if eligible_bosses[k] then eligible_bosses[k] = nil end
+    end
+
+    if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside then
+        for k, v in pairs(eligible_bosses) do
+            if eligible_bosses[k] and not G.P_BLINDS[k].mod or G.P_BLINDS[k].mod.id ~= 'Blindside' then
+                eligible_bosses[k] = nil
+            end
+        end
+    end
+    local min_use = 100
+    for k, v in pairs(G.GAME.bosses_used) do
+        if eligible_bosses[k] then
+            eligible_bosses[k] = v
+            if eligible_bosses[k] <= min_use then 
+                min_use = eligible_bosses[k]
+            end
+        end
+    end
+    for k, v in pairs(eligible_bosses) do
+        if eligible_bosses[k] then
+            if eligible_bosses[k] > min_use then 
+                eligible_bosses[k] = nil
+            end
+        end
+    end
+    local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))
+    G.GAME.bosses_used[boss] = G.GAME.bosses_used[boss] + 1
+    
+    return boss
+end
+
+BLINDSIDE.Joker({
+    key = 'perkeo',
+    atlas = 'bld_joker',
+    pos = {x=0, y=43},
+    boss_colour = HEX('56A786'),
+    mult = 16,
+    dollars = 10,
+    boss = {min = 1, showdown = true},
+    set_joker = function(self)
+        self.hands = {}
+        for _, poker_hand in ipairs(G.handlist) do
+            self.hands[poker_hand] = false
+        end
+    end,
+    in_pool = function(self, args)
+        if G.GAME.selected_back.effect.center.config.extra then
+            if not G.GAME.selected_back.effect.center.config.extra.blindside and G.GAME.round_resets.ante%6 == 0 then return false end
+            return true
+        else
+        return false
+        end
+    end,
+    calculate = function(self, blind, context)
+        if context.setting_blind and not context.disabled then
+            for _, poker_hand in ipairs(G.handlist) do
+                blind.hands = blind.hands or {}
+                blind.hands[poker_hand] = false
+            end
+        end
+        if context.after then
+            blind.blindassist = get_new_perkeo_boss()
+            print(blind.blindassist.name)
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+                SMODS.calculate_context({setting_blind = true, blind = G.GAME.round_resets.blind})
+                G.GAME.blindassist:set_assist_blind(G.P_BLINDS[blind.blindassist])
+                G.GAME.blindassist.states.visible = true
+                G.GAME.blindassist:change_dim(1.5,1.5)
+            return true end }))
+            blind.hands[context.scoring_name] = true
+        end
+    end,
+})
+
+function Blind:set_assist_blind(blind, reset, silent)
+    if not reset then
+        self.config.blind = blind or {}
+        self.effect = type(self.config.blind.config) == "table" and copy_table(self.config.blind.config) or {}
+        self.name = blind and blind.name or ''
+        self.small = blind and not not blind.small
+        self.big = blind and not not blind.big
+        self.dollars = blind and blind.dollars or 0
+        self.sound_pings = self.dollars + 2
+        if G.GAME.modifiers.no_blind_reward and G.GAME.modifiers.no_blind_reward[self:get_type()] then self.dollars = 0 end
+        self.debuff = blind and blind.debuff or {}
+        self.pos = blind and blind.pos
+        self.mult = blind and blind.mult or 0
+        self.disabled = false
+        self.discards_sub = nil
+        self.hands_sub = nil
+        self.boss = blind and not not blind.boss
+        self.blind_set = false
+        self.triggered = nil
+        self.prepped = true
+        self:set_text()
+
+        local obj = self.config.blind
+        self.children.animatedSprite = SMODS.create_sprite(self.T.x, self.T.y, self.T.w, self.T.h, obj.atlas or 'blind_chips', obj.pos or G.P_BLINDS.bl_small.pos)
+        self.children.animatedSprite.states = self.states
+        G.GAME.last_blind = G.GAME.last_blind or {}
+        G.GAME.last_blind.boss = self.boss
+        G.GAME.last_blind.name = self.name
+
+        if blind and blind.name then
+            self:change_colour()
+            local obj = self.config.blind
+            if obj.load and type(obj.load) == 'function' then
+                obj:load()
+            end
+        else
+            self:change_colour(G.C.BLACK)
+        end
+
+        self.original_mult = self.mult
+        self.active = self.active
+        self.small = self.small
+        self.big = self.big
+        self.extra = self.extra
+        self.original_chips = get_blind_amount(G.GAME.round_resets.ante)*G.GAME.starting_params.ante_scaling
+        self.basechips = get_blind_amount(G.GAME.round_resets.ante)*G.GAME.starting_params.ante_scaling
+        self.basechips_text = number_format(self.basechips)
+        self.mult_text = number_format(self.mult)
+        self.blindassist = blind and blind.blindassist or {}
+        
+        self.chips = get_blind_amount(G.GAME.round_resets.ante)*self.mult*G.GAME.starting_params.ante_scaling
+        self.chip_text = number_format(self.chips)
+
+        if not blind then self.chips = 0 end
+        G.HUD_blind:recalculate(false)
+
+        if blind and blind.name and blind.name ~= '' then 
+            self:alert_debuff(true)
+
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 0.05,
+                blockable = false,
+                func = (function()
+                        G.HUD_blind:get_UIE_by_ID("HUD_blind_name").states.visible = false
+                        G.HUD_blind:get_UIE_by_ID("dollars_to_be_earned").parent.parent.states.visible = false
+                        G.HUD_blind.alignment.offset.y = 0
+                    G.E_MANAGER:add_event(Event({
+                        trigger = 'after',
+                        delay = 0.15,
+                        blockable = false,
+                        func = (function()
+                            G.HUD_blind:get_UIE_by_ID("HUD_blind_name").states.visible = true
+                            G.HUD_blind:get_UIE_by_ID("dollars_to_be_earned").parent.parent.states.visible = true
+                            G.HUD_blind:get_UIE_by_ID("dollars_to_be_earned").config.object:pop_in(0)
+                            G.HUD_blind:get_UIE_by_ID("HUD_blind_name").config.object:pop_in(0)
+                            G.HUD_blind:get_UIE_by_ID("HUD_blind_count"):juice_up()
+                            self.dissolve = 0
+                            self.children.animatedSprite:set_sprite_pos(self.config.blind.pos)
+                            self.blind_set = true
+                            self.negative = true
+                            if not reset and not silent then
+                                self:juice_up()
+                                if blind then play_sound('chips1', math.random()*0.1 + 0.55, 0.42);play_sound('negative', 1.5, 0.4)--play_sound('cancel')
+                                end
+                            end
+                            return true
+                        end)
+                    }))
+                    return true
+                end)
+            }))
+        end
+
+
+        self.config.h_popup_config ={align="tm", offset = {x=0,y=-0.1},parent = self}
+    end
+
+    if blind then
+        self.in_blind = true
+    end
+end
+
+local blind_draw_hook = Blind.draw
+function Blind:draw()
+    blind_draw_hook(self)
+
+    if self.negative then
+        self.children.animatedSprite:draw_shader("negative_shine", nil, self.ARGS.send_to_shader)
+        self.children.animatedSprite:draw_shader("negative", nil, self.ARGS.send_to_shader)
+    end
+end
