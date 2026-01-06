@@ -9,6 +9,7 @@
             }},
         hues = {"Faded"},
         curse = true,
+        hidden = true,
         calculate = function(self, card, context)
             if context.cardarea == G.hand and context.main_scoring then
                 BLINDSIDE.chipsmodify(0, 0, card.ability.extra.jokerxmult)
