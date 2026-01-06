@@ -129,6 +129,8 @@
         "m_bld_loop",
         "m_bld_king",
         "m_bld_queen",
+        "m_bld_small",
+        "m_bld_big",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",

@@ -3403,6 +3403,20 @@ return {
 					"when {C:red}discarded",
 				},
 			},
+			["m_bld_small"] = {
+				["name"] = "Small Blind",
+				["text"] = {
+					"{X:chips,C:white}Blue{}",
+					"{C:chips}+#1#{} Chips",
+				},
+			},
+			["m_bld_big"] = {
+				["name"] = "Big Blind",
+				["text"] = {
+					"{X:money,C:white}Yellow{}",
+					"{C:white,X:mult}X#1#{} Mult",
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {

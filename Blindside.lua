@@ -435,6 +435,8 @@ local card_list = {
     "Tablet",
     "King",
     "Queen",
+    "Small",
+    "Big",
     
     -- "Atomic",
     
