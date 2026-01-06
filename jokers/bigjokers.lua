@@ -1,7 +1,7 @@
 BLINDSIDE.Joker({
     key = 'oddtodd',
     atlas = 'bld_joker',
-    pos = {x=0, y=36},
+    pos = {x=0, y=37},
     boss_colour = HEX("009CFD"),
     mult = 12,
     dollars = 6,
@@ -17,7 +17,7 @@ BLINDSIDE.Joker({
         end
 
         if context.scoring_name and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled then
-            if #context.scoring_hand % 2 == 1 then
+            if #G.hand.highlighted % 2 == 1 then
                 BLINDSIDE.alert_debuff(self, true, "Hand is odd")
             else
                 BLINDSIDE.alert_debuff(self, false)
@@ -32,7 +32,7 @@ BLINDSIDE.Joker({
         if context.setting_blind and not context.disabled then
             blind.active = true
         end
-        if context.after and not G.GAME.blind.disabled and #context.scoring_hand % 2 == 1 then
+        if context.after and not G.GAME.blind.disabled and #G.hand.highlighted % 2 == 1 then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
                 if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
@@ -50,7 +50,7 @@ BLINDSIDE.Joker({
 BLINDSIDE.Joker({
     key = 'evensteven',
     atlas = 'bld_joker',
-    pos = {x=0, y=37},
+    pos = {x=0, y=36},
     boss_colour = HEX("FD5F55"),
     mult = 12,
     dollars = 6,
@@ -66,7 +66,7 @@ BLINDSIDE.Joker({
         end
 
         if context.scoring_name and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled then
-            if #context.scoring_hand % 2 == 0 then
+            if #G.hand.highlighted % 2 == 0 then
                 BLINDSIDE.alert_debuff(self, true, "Hand is even")
             else
                 BLINDSIDE.alert_debuff(self, false)
@@ -81,7 +81,7 @@ BLINDSIDE.Joker({
         if context.setting_blind and not context.disabled then
             blind.active = true
         end
-        if context.after and not G.GAME.blind.disabled and #context.scoring_hand % 2 == 0 then
+        if context.after and not G.GAME.blind.disabled and #G.hand.highlighted % 2 == 0 then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
                 if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
