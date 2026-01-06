@@ -1449,7 +1449,7 @@ return {
 			["bl_bld_joker"] = {
 				["name"] = "Joker",
 				["text"] = {
-					"Gains +2 Mult",
+					"Gains +1 Mult",
 					"after every hand"
 				},
 			},
@@ -1887,6 +1887,22 @@ return {
 					"Shuffles #1# random",
 					"Basic Blinds into",
 					"the deck"
+				},
+			},
+			["bl_bld_oddtodd"] = {
+				["name"] = "Odd Todd",
+				["text"] = {
+					"X1.31 Chips if",
+					"hand contains an odd",
+					"number of Blinds"
+				},
+			},
+			["bl_bld_evensteven"] = {
+				["name"] = "Even Steven",
+				["text"] = {
+					"+4 Mult if hand",
+					"contains an even",
+					"number of Blinds"
 				},
 			},
 			["bl_bld_yorick"] = {

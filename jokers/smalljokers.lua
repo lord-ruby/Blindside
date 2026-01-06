@@ -3,12 +3,12 @@ BLINDSIDE.Joker({
     atlas = 'bld_joker',
     pos = {x=0, y=0},
     boss_colour = G.C.RED,
-    mult = 5,
+    mult = 6,
     dollars = 4,
     small = {min = 1},
     order = 1,
     pool_override =function ()
-        return G.GAME.round_resets.ante == 1
+        return G.GAME.round_resets.ante == 1 or not G.GAME.modifiers.enable_bld_tough_jokers
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
@@ -24,7 +24,7 @@ BLINDSIDE.Joker({
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
             G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_2" or "bld_playing_with_fire_each_1"
             G.GAME.playing_with_fire = G.GAME.playing_with_fire + 1 + (G.GAME.used_vouchers.v_bld_swearjar and 1 or 0)
-            BLINDSIDE.chipsmodify(2 - (hasWildCanvas and 1 or 0), 0, 0)
+            BLINDSIDE.chipsmodify(1 - (hasWildCanvas and 0.5 or 0), 0, 0)
         end
     end,
     defeat_joker = function(self)

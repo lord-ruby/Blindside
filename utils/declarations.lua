@@ -395,6 +395,8 @@
         "tag_bld_battery",
         "tag_bld_voodoo",
         "bl_bld_joker",
+        "bl_bld_oddtodd",
+        "bl_bld_evensteven",
         "bl_bld_lustyjoker",
         "bl_bld_wrathfuljoker",
         "bl_bld_gluttonousjoker",
