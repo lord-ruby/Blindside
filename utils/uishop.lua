@@ -332,7 +332,7 @@ end
     end
   end
   
-function BLINDSIDE.create_blindcard_for_shop(area, is_boss_shop)
+function BLINDSIDE.create_blindcard_for_shop(area, is_boss_shop, forced_enhancement)
     local forced_tag = nil
     for k, v in ipairs(G.GAME.tags) do
       if not forced_tag then
@@ -367,6 +367,9 @@ function BLINDSIDE.create_blindcard_for_shop(area, is_boss_shop)
               args.options = G.P_CENTER_POOLS.bld_obj_blindcard_generate
               args.shop = true
               local cardtype = BLINDSIDE.poll_enhancement(args)
+              if forced_enhancement then
+                cardtype = forced_enhancement
+              end
               local card = SMODS.create_card({ set = 'Base', seal = enhancement, enhancement = cardtype, area = area })
               create_shop_card_ui(card, 'Enhanced', area)
               local edition = poll_edition(pseudoseed('shop_blind_roll' .. G.GAME.round_resets.ante), G.GAME.used_vouchers.v_bld_polish and 3 or nil, true, false, {'e_bld_enameled', 'e_bld_finish', 'e_bld_mint', 'e_bld_shiny'})
@@ -411,3 +414,24 @@ function BLINDSIDE.create_blindcard_for_shop(area, is_boss_shop)
           check_rate = check_rate + v.val
         end
   end
+
+--[[local old_buy = G.FUNCS.buy_from_shop
+  G.FUNCS.buy_from_shop = function(e)
+    local c1 = e.config.ref_table
+    if c1 and c1:is(Card) then
+      G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        delay = 0.1,
+        func = function()
+          if c1.ability and c1.ability.extra and type(c1.ability.extra) == "table" and c1.config.center.weight ~= 3 and (not c1.ability.extra.creation_depth or c1.ability.extra.creation_depth < 2) and c1.ability.extra.hues and c1.ability.set == 'Enhanced' then
+            -- then it is a blind
+            local card = BLINDSIDE.create_blindcard_for_shop(G.shop_booster, G.GAME.last_joker, c1.config.center.key)
+            card.ability.extra.creation_depth = (c1.ability.extra.creation_depth or 0) + 1
+            G.shop_booster:emplace(card)
+          end
+          return true
+        end
+      }))
+    end    
+    old_buy(e)
+  end]]
