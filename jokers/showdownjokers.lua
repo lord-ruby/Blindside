@@ -185,11 +185,6 @@ BLINDSIDE.Joker({
         return false
         end
     end,
-    get_assist = function(self, blind)
-        if blind then
-            return G.P_BLINDS[blind.blindassist]
-        end
-    end,
     calculate = function(self, blind, context)
         if context.setting_blind and not context.disabled then
             for _, poker_hand in ipairs(G.handlist) do
@@ -204,6 +199,7 @@ BLINDSIDE.Joker({
                 G.GAME.blindassist.states.visible = true
                 G.GAME.blindassist:change_dim(1.5,1.5)
                 G.GAME.blindassist.negative = true
+                play_sound('negative', 1.5, 0.4)
                 SMODS.calculate_context({setting_blind = true, blind = G.GAME.round_resets.blind})
             return true end }))
             blind.hands[context.scoring_name] = true
@@ -234,7 +230,7 @@ function Blind:set_assist_blind(blind, reset, silent)
         self:set_text()
 
         local obj = self.config.blind
-        self.children.animatedSprite = AnimatedSprite(self.T.x, self.T.y, self.T.w, self.T.h, G.ANIMATION_ATLAS[obj.config.atlas] or G.ANIMATION_ATLAS['blind_chips'],  obj.config.pos)
+        self.children.animatedSprite = AnimatedSprite(self.T.x, self.T.y, self.T.w, self.T.h, G.ANIMATION_ATLAS[obj.config.atlas] or G.ANIMATION_ATLAS['bld_joker'],  obj.config.pos)
         self.children.animatedSprite.states = self.states
         G.GAME.last_blind = G.GAME.last_blind or {}
         G.GAME.last_blind.boss = self.boss
@@ -296,7 +292,7 @@ function Blind:set_assist_blind(blind, reset, silent)
                             self.blind_set = true
                             if not reset and not silent then
                                 self:juice_up()
-                                if blind then play_sound('chips1', math.random()*0.1 + 0.55, 0.42);play_sound('negative', 1.5, 0.4)--play_sound('cancel')
+                                if blind then play_sound('chips1', math.random()*0.1 + 0.55, 0.42);--play_sound('cancel')
                                 end
                             end
                             return true
