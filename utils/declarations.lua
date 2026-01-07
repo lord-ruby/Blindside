@@ -465,6 +465,7 @@
         "bl_bld_triboulet",
         "bl_bld_perkeo",
         "bl_bld_chicot",
+        "bl_bld_canio",
         },
     }
 

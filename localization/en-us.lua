@@ -1937,6 +1937,13 @@ return {
 					"blinds after scoring",
 				},
 			},
+			["bl_bld_canio"] = {
+				["name"] = "Canio",
+				["text"] = {
+					"Disables an additional",
+					"trinket each hand",
+				},
+			},
 		},
 		["Enhanced"] = {
 			["m_bld_adder"] = {

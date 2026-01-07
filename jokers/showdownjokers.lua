@@ -203,6 +203,7 @@ BLINDSIDE.Joker({
                 G.GAME.blindassist:set_assist_blind(G.P_BLINDS[blind.blindassist])
                 G.GAME.blindassist.states.visible = true
                 G.GAME.blindassist:change_dim(1.5,1.5)
+                G.GAME.blindassist.negative = true
                 SMODS.calculate_context({setting_blind = true, blind = G.GAME.round_resets.blind})
             return true end }))
             blind.hands[context.scoring_name] = true
@@ -233,7 +234,7 @@ function Blind:set_assist_blind(blind, reset, silent)
         self:set_text()
 
         local obj = self.config.blind
-        self.children.animatedSprite = SMODS.create_sprite(self.T.x, self.T.y, self.T.w, self.T.h, obj.atlas or 'blind_chips', obj.pos or G.P_BLINDS.bl_small.pos)
+        self.children.animatedSprite = AnimatedSprite(self.T.x, self.T.y, self.T.w, self.T.h, G.ANIMATION_ATLAS[obj.config.atlas] or G.ANIMATION_ATLAS['blind_chips'],  obj.config.pos)
         self.children.animatedSprite.states = self.states
         G.GAME.last_blind = G.GAME.last_blind or {}
         G.GAME.last_blind.boss = self.boss
@@ -293,7 +294,6 @@ function Blind:set_assist_blind(blind, reset, silent)
                             self.dissolve = 0
                             self.children.animatedSprite:set_sprite_pos(self.config.blind.pos)
                             self.blind_set = true
-                            self.negative = true
                             if not reset and not silent then
                                 self:juice_up()
                                 if blind then play_sound('chips1', math.random()*0.1 + 0.55, 0.42);play_sound('negative', 1.5, 0.4)--play_sound('cancel')
@@ -385,6 +385,81 @@ BLINDSIDE.Joker({
                 value:set_ability(value.original.config.center)
                 value = value.original
             end
+        end
+    end
+})
+
+BLINDSIDE.Joker({
+    key = 'canio',
+    atlas = 'bld_joker',
+    pos = {x=0, y=40},
+    boss_colour = HEX('FFFFFF'),
+    mult = 16,
+    dollars = 10,
+    hands = {},
+    boss = {min = 1, showdown = true},
+    in_pool = function(self, args)
+        if G.GAME.selected_back.effect.center.config.extra then
+            if not G.GAME.selected_back.effect.center.config.extra.blindside and G.GAME.round_resets.ante%6 == 0 then return false end
+            return true
+        else
+        return false
+        end
+    end,
+    calculate = function(self, blind, context)
+        if not blind.disabled then
+            if context.debuff_card and context.debuff_card.area == G.jokers then
+                if context.debuff_card.ability.canio_debuffed then
+                    return {
+                        debuff = true
+                    }
+                end
+            end
+            if context.press_play and G.jokers.cards[1] then
+                blind.prepped = true
+            end
+            if context.hand_drawn then
+                if blind.prepped and G.jokers.cards[1] then
+                    local prev_chosen_set = {}
+                    local fallback_jokers = {}
+                    local jokers = {}
+                    for i = 1, #G.jokers.cards do
+                        if G.jokers.cards[i].ability.canio_debuffed then
+                            prev_chosen_set[G.jokers.cards[i]] = true
+                            if G.jokers.cards[i].debuff then SMODS.recalc_debuff(G.jokers.cards[i]) end
+                        end
+                    end
+                    for i = 1, #G.jokers.cards do
+                        if not G.jokers.cards[i].debuff then
+                            if not prev_chosen_set[G.jokers.cards[i]] then
+                                jokers[#jokers + 1] = G.jokers.cards[i]
+                            end
+                            table.insert(fallback_jokers, G.jokers.cards[i])
+                        end
+                    end
+                    if #jokers == 0 then jokers = fallback_jokers end
+                    local _card = pseudorandom_element(jokers, 'vremade_crimson_heart')
+                    if _card then
+                        _card.ability.canio_debuffed = true
+                        SMODS.recalc_debuff(_card)
+                        _card:juice_up()
+                        blind:wiggle()
+                    end
+                end
+            end
+        if context.hand_drawn then
+            blind.prepped = nil
+        end
+        end
+    end,
+    disable = function(self)
+        for _, joker in ipairs(G.jokers.cards) do
+            joker.ability.canio_debuffed = nil
+        end
+    end,
+    defeat_joker = function()
+        for _, joker in ipairs(G.jokers.cards) do
+            joker.ability.canio_debuffed = nil
         end
     end
 })

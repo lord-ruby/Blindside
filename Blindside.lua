@@ -278,10 +278,10 @@ BLINDSIDE.Joker = SMODS.Blind:extend {
             return
         end
 
-        local assistant = self.get_assist and self:get_assist(self)
+        local assistant = self.get_assist and self:get_assist()
         if assistant then
             G.GAME.blindassist.states.visible = true
-            G.GAME.blindassist:set_blind(assistant)
+            G.GAME.blindassist:set_assist_blind(assistant)
             G.GAME.blindassist:change_dim(1.5,1.5)
         else
             G.GAME.blindassist.states.visible = false
@@ -297,10 +297,10 @@ BLINDSIDE.Joker = SMODS.Blind:extend {
             return
         end
 
-        local assistant = self.get_assist and self:get_assist(self)
+        local assistant = self.get_assist and self:get_assist()
         if assistant then
             G.GAME.blindassist.states.visible = true
-            G.GAME.blindassist:set_blind(assistant)
+            G.GAME.blindassist:set_assist_blind(assistant)
             G.GAME.blindassist:change_dim(1.5,1.5)
         else
             G.GAME.blindassist.states.visible = false
@@ -312,7 +312,7 @@ BLINDSIDE.Joker = SMODS.Blind:extend {
         end
     end,
     defeat = function(self)
-        local assistant = self.get_assist and self:get_assist(self)
+        local assistant = self.get_assist and self:get_assist()
         if assistant then
             G.GAME.blindassist:defeat()
         end
