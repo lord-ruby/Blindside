@@ -154,8 +154,9 @@ BLINDSIDE.Joker({
     atlas = 'bld_joker',
     pos = {x=0, y=43},
     boss_colour = HEX('56A786'),
-    mult = 16,
+    mult = 12,
     dollars = 10,
+    hands = {},
     boss = {min = 1, showdown = true},
     set_joker = function(self)
         self.hands = {}
@@ -171,6 +172,11 @@ BLINDSIDE.Joker({
         return false
         end
     end,
+    get_assist = function(self, blind)
+        if blind then
+            return G.P_BLINDS[blind.blindassist]
+        end
+    end,
     calculate = function(self, blind, context)
         if context.setting_blind and not context.disabled then
             for _, poker_hand in ipairs(G.handlist) do
@@ -180,12 +186,11 @@ BLINDSIDE.Joker({
         end
         if context.after then
             blind.blindassist = get_new_perkeo_boss()
-            print(blind.blindassist.name)
             G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-                SMODS.calculate_context({setting_blind = true, blind = G.GAME.round_resets.blind})
                 G.GAME.blindassist:set_assist_blind(G.P_BLINDS[blind.blindassist])
                 G.GAME.blindassist.states.visible = true
                 G.GAME.blindassist:change_dim(1.5,1.5)
+                SMODS.calculate_context({setting_blind = true, blind = G.GAME.round_resets.blind})
             return true end }))
             blind.hands[context.scoring_name] = true
         end
@@ -229,6 +234,9 @@ function Blind:set_assist_blind(blind, reset, silent)
             end
         else
             self:change_colour(G.C.BLACK)
+        end
+        if not reset and obj.set_blind and type(obj.set_blind) == 'function' then
+            obj:set_blind()
         end
 
         self.original_mult = self.mult

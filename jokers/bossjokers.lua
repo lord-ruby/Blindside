@@ -242,7 +242,7 @@ BLINDSIDE.Joker({
     end,
     calculate = function(self, blind, context)
         if context.scoring_name and G.STATE == G.STATES.SELECTING_HAND and not blind.disabled then
-            if blind.hands[context.scoring_name] then
+            if blind.hands[context.scoring_name] or G.GAME.blind.hands[context.scoring_name] then
                 BLINDSIDE.alert_debuff(self, true, "Poker hand was already played")
             else
                 BLINDSIDE.alert_debuff(self, false)

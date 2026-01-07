@@ -500,7 +500,7 @@
                     allFaded = true
                 end
         end
-        if G.GAME.blind.name == 'bl_bld_smeared' and not G.GAME.blind.disabled then
+        if G.GAME.blind.name == 'bl_bld_smeared' and not G.GAME.blind.disabled or G.GAME.blindassist.name == 'bl_bld_smeared' and not G.GAME.blindassist.disabled then
             allFaded = true
         end
         if not allFaded then
