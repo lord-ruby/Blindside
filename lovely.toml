@@ -1837,3 +1837,32 @@ payload = '''
 '''
 match_indent = true
 
+# credits
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+pattern = '''      local cols'''
+position = "before"
+payload = '''
+if AUT.credits then
+    local name_nodes = {{n=G.UIT.T, config={text = "Artist", scale = 0.32, colour = G.C.UI.TEXT_LIGHT}}}
+    local t = {
+	{n=G.UIT.R, config={align = "cm"}, nodes={
+		{n=G.UIT.T, config={text = "Art by ", colour = G.C.UI.TEXT_DARK, scale = 0.33}},
+		{n=G.UIT.T, config={text = AUT.credits.art, colour = G.C.ORANGE, scale = 0.33}},
+        }}
+    }
+    local artistdisplay = {n=G.UIT.R, config={align = "cm", colour = lighten(G.C.GREY, 0.15), r = 0.1}, nodes={
+      {n=G.UIT.R, config={align = "tm", minh = 0.36, padding = 0.03}, nodes=name_nodes},
+      {n=G.UIT.R, config={align = "cm", minw = 1.5, minh = 0.4, r = 0.1, padding = 0.05, colour = G.C.WHITE}, nodes={{n=G.UIT.R, config={align = "cm", padding = 0.03}, nodes=t}}}
+    }}
+info_boxes[#info_boxes+1] =
+    {n=G.UIT.R, config={align = "cm"}, nodes={
+        {n=G.UIT.R, config={align = "cm", colour = lighten(G.C.JOKER_GREY, 0.5), r = 0.1, padding = 0.05, emboss = 0.05}, nodes={
+        artistdisplay
+        }}
+    }}
+end
+'''
+match_indent = true
+
