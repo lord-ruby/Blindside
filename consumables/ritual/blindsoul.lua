@@ -8,6 +8,7 @@ SMODS.Consumable {
         'bld_obj_filmcard',
         'bld_obj_mineral',
         'Playing Card',
+        'Enhanced',
     },
     soul_rate = 0.003,
     can_use = function (self, card)
