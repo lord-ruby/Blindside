@@ -1495,8 +1495,9 @@ if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effe
                         burned_cards[#burned_cards + 1] = cards[#cards]
                         cards[#cards]:start_burn(G.hand)
                     else
-                        cards[#cards].ability.discarded = true
-                        draw_card(G.hand, G.discard, i*100/#cards, 'down', false, cards[#cards])
+                        --do nothing because it was retained
+                        --cards[#cards].ability.discarded = true
+                        --draw_card(G.hand, G.discard, i*100/#cards, 'down', false, cards[#cards])
                     end
                 end
             end
