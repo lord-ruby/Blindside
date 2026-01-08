@@ -1255,7 +1255,7 @@ G.GAME.round_resets.tags_bought = G.GAME.round_resets.tags_bought + 1
 for _, key in ipairs(G.GAME.current_round.voucher or {}) do
     if G.P_CENTERS[key] and G.GAME.current_round.voucher.spawn[key] then
         SMODS.add_voucher_to_shop(key)
-        G.shop_vouchers.cards[1].cost = G.shop_vouchers.cards[1].cost + 5*G.GAME.round_resets.tags_bought
+        G.shop_vouchers.cards[1].cost = math.max(G.shop_vouchers.cards[1].cost + 5*G.GAME.round_resets.tags_bought - (G.GAME.used_vouchers['v_bld_treasurechest'] and 20 or 0), 0)
     end
 end
 end

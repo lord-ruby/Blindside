@@ -384,6 +384,13 @@ return {
 					"Joker trigger"
 				},
 			},
+			["v_bld_treasurechest"] = {
+				["name"] = "Treasure Chest",
+				["text"] = {
+					"Reduces cost of future",
+					"{C:attention}Price Tags{} by {C:money}$20"
+				},
+			},
 			["v_bld_magnifyingglass"] = {
 				["name"] = "Magnifying Glass",
 				["text"] = {
@@ -583,6 +590,13 @@ return {
 					"{C:attention,E:1}Playing with Fire{}",
 					"gives {C:money}$1{} more each",
 					"Joker trigger"
+				},
+			},
+			["tag_bld_treasurechest_relic"] = {
+				["name"] = "Treasure Chest",
+				["text"] = {
+					"Reduces cost of future",
+					"{C:attention}Price Tags{} by {C:money}$20"
 				},
 			},
 			["tag_bld_magnifyingglass_relic"] = {
