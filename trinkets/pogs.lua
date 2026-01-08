@@ -16,7 +16,7 @@
         end,
         credit = {
             art = "AstraLuna",
-            code = "FILL LATER",
+            code = "base4",
             concept = "AstraLuna"
         },
         in_pool = function(self, args)

@@ -24,7 +24,7 @@
         credit = {
             art = "Gappie",
             code = "base4",
-            concept = "FILL LATER"
+            concept = "base4"
         },
         loc_vars = function(self, info_queue, card)
             return {

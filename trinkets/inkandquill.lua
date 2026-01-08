@@ -23,7 +23,7 @@ SMODS.Joker({
     credit = {
         art = "Huycorn",
         code = "base4",
-        concept = "FILL LATER"
+        concept = "base4"
     },
     in_pool = function(self, args)
         if G.GAME.selected_back.effect.center.config.extra then

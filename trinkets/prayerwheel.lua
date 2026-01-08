@@ -18,7 +18,7 @@
         credit = {
             art = "Gappie",
             code = "base4",
-            concept = "FILL LATER"
+            concept = "AstraLuna"
         },
         calculate = function(self, card, context)
             if context.playing_card_added then
