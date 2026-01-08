@@ -1665,3 +1665,23 @@ UIBox_button({label = {localize('b_reroll_boss'), localize('$')..'10'}, button =
 UIBox_button({label = {localize('b_reroll_boss'), '1 Hand'}, button = "blind_reroll_boss", func = 'blind_reroll_boss_button'}) or nil,
 '''
 match_indent = true
+
+# clapper
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''for _, v in ipairs(SMODS.Consumable.legendaries) do'''
+position = "before"
+payload = '''
+for _, v in ipairs(SMODS.Consumable.legendaries) do
+    for _, soul_set in ipairs(v.soul_sets) do
+        if (_type == soul_set) and not (G.GAME.used_jokers[v.key] and not SMODS.showman(v.key) and not v.can_repeat_soul) and SMODS.add_to_pool(v) then
+            soul_total_rate = soul_total_rate + v.soul_rate
+            non_soul_rate = non_soul_rate * (1 - v.soul_rate)
+            non_soul_rate = math.max(non_soul_rate, 0)
+            table.insert(modded_souls, v)
+        end
+    end
+end
+'''
+match_indent = true

@@ -301,6 +301,7 @@
         "c_bld_journey",
         "c_bld_purify",
         "c_bld_banish",
+        "c_bld_blindsoul",
         "bld_wild",
         "bld_astral",
         "bld_floral",
@@ -669,6 +670,20 @@
             SMODS.remove_pool(G.P_CENTER_POOLS['bld_obj_blindcard_dual'], center.key)
         end,
     }
+    
+    SMODS.ObjectType {
+        key = "bld_obj_blindcard_legendary",
+	    default = "m_bld_verdant_leaf",
+        inject_card = function(self, center)
+            SMODS.ObjectType.inject_card(self, center)
+            SMODS.insert_pool(G.P_CENTER_POOLS['bld_obj_blindcard_legendary'], center)
+        end,
+        delete_card = function(self, center)
+            SMODS.ObjectType.delete_card(self, center)
+            SMODS.remove_pool(G.P_CENTER_POOLS['bld_obj_blindcard_legendary'], center.key)
+        end,
+    }
+
     SMODS.ObjectType {
         key = "bld_obj_enhancements",
 	    default = "bld_wild",
@@ -849,6 +864,12 @@
         key = 'bld_clang',
         path = 'clang.wav'
     })
+    
+    SMODS.Sound({
+        key = 'bld_crack',
+        path = 'glass_crack.wav'
+    })
+
 
     SMODS.Sound({
         key = 'bld_lockpick',

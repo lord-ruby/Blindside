@@ -9,7 +9,8 @@
             }
         },
         hues = {"Red"},
-        basic = true,
+        hidden = true,
+        legendary = true,
         calculate = function(self, card, context) 
             if context.cardarea == G.play and context.after then
                 card.ability.extra.was_last_hand = true

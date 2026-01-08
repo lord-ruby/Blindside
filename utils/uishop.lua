@@ -95,6 +95,7 @@ function Game:blindupdate_shop(dt)
                                                 card.ability.booster_pos = i
                                                 card:start_materialize()
                                                 card.cost = card.cost + (G.GAME.used_vouchers["v_bld_vaccine"] and -1 or 0)
+                                                card.soulable = true
                                                 G.shop_booster:emplace(card)
                                             end
                                           else

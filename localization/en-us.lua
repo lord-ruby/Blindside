@@ -1275,6 +1275,13 @@ return {
 					"{C:attention}Imprisonment Tag"
 				},
 			},
+			["c_bld_blindsoul"] = {
+				["name"] = "The Cage",
+				["text"] = {
+					"Creates a",
+					"{C:purple,E:1}Legendary{} Blind"
+				},
+			},
 		},
 		["bld_obj_filmcard"] = {
 			["c_bld_horror"] = {

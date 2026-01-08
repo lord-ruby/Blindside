@@ -32,7 +32,7 @@ SMODS.Booster{
             end
         end,
         create_card = function(self, card)
-            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = false}
+            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = card.soulable}
         end,
         group_key = "k_bld_filmcard_pack",
 }
@@ -71,7 +71,7 @@ SMODS.Booster{
             end
         end,
         create_card = function(self, card)
-            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = false}
+            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = card.soulable}
         end,
         group_key = "k_bld_filmcard_pack",
 }
@@ -110,7 +110,7 @@ SMODS.Booster{
             end
         end,
         create_card = function(self, card)
-            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = false}
+            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = card.soulable}
         end,
         group_key = "k_bld_filmcard_pack",
 }
@@ -149,7 +149,7 @@ SMODS.Booster{
             end
         end,
         create_card = function(self, card)
-            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = false}
+            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = card.soulable}
         end,
         group_key = "k_bld_filmcard_pack",
 }
@@ -188,7 +188,7 @@ SMODS.Booster{
             end
         end,
         create_card = function(self, card)
-            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = false}
+            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = card.soulable}
         end,
         group_key = "k_bld_filmcard_pack",
 }
@@ -228,7 +228,7 @@ SMODS.Booster{
             end
         end,
         create_card = function(self, card)
-            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = false}
+            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = card.soulable}
         end,
         group_key = "k_bld_filmcard_pack",
 }
@@ -268,7 +268,7 @@ SMODS.Booster{
             end
         end,
         create_card = function(self, card)
-            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = false}
+            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = card.soulable}
         end,
         group_key = "k_bld_filmcard_pack",
 }
@@ -308,7 +308,7 @@ SMODS.Booster{
             end
         end,
         create_card = function(self, card)
-            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = false}
+            return {set = "bld_obj_filmcard", area = G.pack_cards, skip_materialize = true, soulable = card.soulable}
         end,
         group_key = "k_bld_filmcard_pack",
 }

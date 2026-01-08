@@ -973,6 +973,8 @@ function BLINDSIDE.poll_enhancement(args)
         end
     elseif args.cursed then
         rarity = 3
+    elseif args.legendary then
+        rarity = 4
     else
         if (rand < 0.85) then
         rarity = 0
@@ -993,8 +995,8 @@ function BLINDSIDE.poll_enhancement(args)
                 assert(G.P_CENTERS[v], ("Could not find enhancement \"%s\"."):format(v))
                 local wght = G.P_CENTERS[v].weight or 5
                 local multicolor = #G.P_CENTERS[v].config.extra.hues > 1
-                local good_rarity = (wght == 5 and rarity == 0) or (wght == 3 and rarity == 1) or (wght == 1 and rarity == 2) or (wght == 67 and rarity == 3)
-                local good_colors = rarity == 0 or (multicolor and rand >= 0.95) or (not multicolor and rand < 0.95) or rarity == 3
+                local good_rarity = (wght == 5 and rarity == 0) or (wght == 3 and rarity == 1) or (wght == 1 and rarity == 2) or (wght == 67 and rarity == 3) or (wght == 99 and rarity == 4)
+                local good_colors = rarity == 0 or (multicolor and rand >= 0.95) or (not multicolor and rand < 0.95) or rarity == 3 or rarity == 4
 
                 if good_colors and good_rarity then
                     enhance_option = { key = v, weight = 5 }
@@ -1005,8 +1007,8 @@ function BLINDSIDE.poll_enhancement(args)
                 assert(G.P_CENTERS[v.key], ("Could not find enhancement \"%s\"."):format(v.key))
                 local wght = v.weight or 5
                 local multicolor = #v.config.extra.hues > 1
-                local good_rarity = (wght == 5 and rarity == 0) or (wght == 3 and rarity == 1) or (wght == 1 and rarity == 2) or (wght == 67 and rarity == 3)
-                local good_colors = rarity == 0 or (multicolor and rand >= 0.95) or (not multicolor and rand < 0.95) or rarity == 3
+                local good_rarity = (wght == 5 and rarity == 0) or (wght == 3 and rarity == 1) or (wght == 1 and rarity == 2) or (wght == 67 and rarity == 3) or (wght == 99 and rarity == 4)
+                local good_colors = rarity == 0 or (multicolor and rand >= 0.95) or (not multicolor and rand < 0.95) or rarity == 3 or rarity == 4
 
                 if good_colors and good_rarity then
                     enhance_option = { key = v.key, weight = 5 }

@@ -2,36 +2,71 @@ SMODS.Consumable {
     key = 'blindsoul',
     set = 'bld_obj_ritual',
     atlas = 'bld_consumable',
+    hidden = true,
+    soul_sets = {
+        'bld_obj_ritual',
+        'bld_obj_filmcard',
+        'bld_obj_mineral',
+        'Playing Card',
+    },
+    soul_rate = 0.003,
     can_use = function (self, card)
         return true
     end,
     pos = {x=7, y=3},
     use = function(self, card, area)
-        local pool = {}
-        for key, value in pairs(G.jokers.cards) do
-            if not value.edition then
-                table.insert(pool, value)
-            end
-        end
-        local chosen_cards = choose_stuff(pool, 1, 'worship')
+        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function() 
+                play_sound('bld_crack', 1.0, 0.8)
+                card:juice_up(0.8, 0.5)
+        return true end }))
+        delay(1)
+        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
+                play_sound('bld_crack', 1.1, 1)
+                card:juice_up(0.8, 0.5)
+        return true end }))
+        delay(1)
+        G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.4,func = function()
+                play_sound('bld_crack', 1.3, 1.1)
+                card:juice_up(0.8, 0.5)
+        card:explode()
+        return true end }))
+        delay(1.5)
+        local args = {}
+        args.guaranteed = true
+        args.options = G.P_CENTER_POOLS.bld_obj_blindcard_legendary
+        args.legendary = true
+        local cardtype = BLINDSIDE.poll_enhancement(args)
+        local legendary = SMODS.create_card({ set = 'Playing Card', enhancement = cardtype, area = G.play })
+        legendary.states.visible = false
+        G.playing_card = (G.playing_card and G.playing_card + 1) or 1
+        legendary.playing_card = G.playing_card
+        table.insert(G.playing_cards, legendary)
         G.E_MANAGER:add_event(Event({
-            func = function ()
-                chosen_cards[1]:set_edition('e_bld_shiny', true)
+            trigger = 'after',
+            delay = 2,
+            func = function()
+                    G.play:emplace(legendary)
+                    legendary:start_materialize({ G.C.SECONDARY_SET.Enhanced })
                 return true
             end
         }))
-        delay(0.6)
         G.E_MANAGER:add_event(Event({
-            func = function ()
-                add_tag(Tag('tag_bld_awe'))
-                play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
-                play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
+            trigger = 'after',
+            delay = 1.2,
+            func = function()
+                local legendary = G.play[1]
+                draw_card(G.play, G.deck, 90, 'up')
+                SMODS.calculate_context({ playing_card_added = true, cards = {legendary} })
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'after',
+                    delay = 0.7,
+                    func = function()
+                        pseudoshuffle(G.deck.cards, 'blindsoul'..G.GAME.round_resets.ante)
+                        return true
+                    end
+                }))
                 return true
             end
         }))
     end,
-    loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue + 1] = G.P_TAGS['tag_bld_awe']
-        info_queue[#info_queue + 1] = G.P_CENTERS['e_bld_shiny']
-    end
 }

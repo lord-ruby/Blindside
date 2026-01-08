@@ -12,6 +12,7 @@
         },
         hues = {"Yellow"},
         hidden = true,
+        legendary = true,
         calculate = function(self, card, context) 
             if context.cardarea == G.play and context.main_scoring then
                 local step = 0
