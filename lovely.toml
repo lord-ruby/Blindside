@@ -1826,3 +1826,14 @@ G.blindside_title_top:hard_set_VT()
 '''
 match_indent = true
 
+# logo
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''if self.SPLASH_LOGO then self.SPLASH_LOGO:remove(); self.SPLASH_LOGO = nil end'''
+position = "after"
+payload = '''
+        if self.BLINDSIDE_LOGO then self.BLINDSIDE_LOGO:remove(); self.BLINDSIDE_LOGO = nil end
+'''
+match_indent = true
+
