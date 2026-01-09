@@ -935,7 +935,7 @@ end
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
-pattern = "SMODS.calculate_context({open_booster = true, card = self})"
+pattern = "SMODS.calculate_context({open_booster = true, card = self, booster = booster_obj})"
 position = 'after'
 match_indent = true
 payload = '''
