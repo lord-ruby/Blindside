@@ -49,6 +49,7 @@ return {
 			['k_bld_filmcard_pack'] = 'Cinema Pack',
 			['k_bld_ritual_pack'] = 'Hallow Pack',
 			['k_bld_noble_pack'] = 'Noble Pack',
+			['k_bld_voodoo_pack'] = 'Voodoo Pack',
 			['ui_bld_deck_view'] = 'Deck View',
 			["ph_mask_saved"] = "Saved by Ancient Mask",
 			["ph_defeat_this_joker_1"] = "Defeat this Joker",
