@@ -12,6 +12,9 @@
             }},
         hues = {"Blue"},
         loc_vars = function(self, info_queue, card)
+            if card.ability.extra.upgraded then
+                info_queue[#info_queue+1] = {key = 'bld_retain', set = 'Other'}
+            end
             return {
                 key = card.ability.extra.upgraded and 'm_bld_eye_upgrade' or 'm_bld_eye',
                 vars = {

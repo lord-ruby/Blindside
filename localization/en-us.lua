@@ -384,6 +384,13 @@ return {
 					"Joker trigger"
 				},
 			},
+			["v_bld_treasurechest"] = {
+				["name"] = "Treasure Chest",
+				["text"] = {
+					"Reduces cost of future",
+					"{C:attention}Price Tags{} by {C:money}$20"
+				},
+			},
 			["v_bld_magnifyingglass"] = {
 				["name"] = "Magnifying Glass",
 				["text"] = {
@@ -583,6 +590,13 @@ return {
 					"{C:attention,E:1}Playing with Fire{}",
 					"gives {C:money}$1{} more each",
 					"Joker trigger"
+				},
+			},
+			["tag_bld_treasurechest_relic"] = {
+				["name"] = "Treasure Chest",
+				["text"] = {
+					"Reduces cost of future",
+					"{C:attention}Price Tags{} by {C:money}$20"
 				},
 			},
 			["tag_bld_magnifyingglass_relic"] = {
@@ -2267,8 +2281,8 @@ return {
 				["name"] = "The Blend",
 				["text"] = {
 					{"{X:purple,C:white}Purple{}",
-					"Creates up to",
-					"{C:attention}2{} random {C:bld_obj_filmcard}Channel{} cards",
+					"Creates up to {C:attention}2{}",
+					"random {C:bld_obj_filmcard}Channel{} cards",
 					"{C:inactive,S:0.8}(Must have room)"},
 					{"{C:red}Debuffs{} all scoring",
 					"{X:mult,C:white}Red{} and {X:chips,C:white}Blue{} Blinds"},
@@ -3237,8 +3251,17 @@ return {
 				["text"] = {
 					"{X:dark_edition,C:white}Faded{} {X:black,C:white}Cursed{}",
 					"While {C:attention}held in hand{},",
-					"{C:red}debuffs{} all cards",
-					"{C:attention}held in hand{}"
+					"creates a {C:attention}Debuff Tag{}",
+					"for the {C:attention}played hand{}"
+				},
+			},
+			["m_bld_silence_upgraded"] = {
+				["name"] = "The Silence",
+				["text"] = {
+					"{X:dark_edition,C:white}Faded{} {X:black,C:white}Cursed{}",
+					"While {C:attention}held in hand{},",
+					"levels up the {C:attention}played",
+					"{C:attention}hand{} and {C:attention}burns"
 				},
 			},
 			["m_bld_mold"] = {
@@ -4390,7 +4413,8 @@ return {
 					"{C:attention}Always scores",
 					"{s:0.2} {}",
 					"If {C:green}chance{} fails,",
-					"{C:red}debuffs{} self"
+					"instead {C:red}fails{}",
+					"to score"
 				}
 			},
 			["bld_wild_seal"]	= {
@@ -4441,16 +4465,16 @@ return {
 					"at round start",
 					"{s:0.2} {}",
 					"{C:green}#1# in #2#{} chance",
-					"to {C:red}debuff{} self",
-					"when played"
+					"to temporarily {C:red}debuff{}",
+					"self when played"
 				}
 			},
 			["bld_frost_seal"] = {
 				["name"] = "Frost Blind",
 				["text"] = {
-					"If remaining hands of",
-					"round are {C:attention}even{},",
-					"retriggers {C:attention}once{}"
+					"If remaining {C:blue}hands{} are",
+					"{C:attention}even{} when this blind {C:attention}scores{},",
+					"it retriggers {C:attention}once{}"
 				}
 			},
 			["bld_spooky_seal"]	= {

@@ -1255,7 +1255,7 @@ G.GAME.round_resets.tags_bought = G.GAME.round_resets.tags_bought + 1
 for _, key in ipairs(G.GAME.current_round.voucher or {}) do
     if G.P_CENTERS[key] and G.GAME.current_round.voucher.spawn[key] then
         SMODS.add_voucher_to_shop(key)
-        G.shop_vouchers.cards[1].cost = G.shop_vouchers.cards[1].cost + 5*G.GAME.round_resets.tags_bought
+        G.shop_vouchers.cards[1].cost = math.max(G.shop_vouchers.cards[1].cost + 5*G.GAME.round_resets.tags_bought - (G.GAME.used_vouchers['v_bld_treasurechest'] and 20 or 0), 0)
     end
 end
 end
@@ -1401,57 +1401,108 @@ payload = '''
 if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside then
     local any_selected = nil
     local _cards = {}
+    local _retained_cards = {}
+
+    -- get magnet
     local magnet = false
     for i = 1, #G.GAME.tags do
         if G.GAME.tags[i].key == "tag_bld_magnet_relic" then
             magnet = true
         end
     end
+
+    -- sort cards into discarded and retained tables
     for k, v in ipairs(G.hand.cards) do
-        if not ((magnet and v.ability.extra and v.ability.extra.upgraded) or (v.config.center.config.extra and v.config.center.config.extra.retain) or v.seal == 'bld_sticky' or v.retain or (v.ability.extra and v.ability.extra.retain)) or v.burned then
-        _cards[#_cards+1] = v
+        local magnetized = magnet and v.ability.extra and v.ability.extra.upgraded
+        local innate_retain = v.config.center.config.extra and v.config.center.config.extra.retain
+        local is_sticky = v.seal == 'bld_sticky'
+        local set_to_retain = v.retain
+        local acquired_retain = v.ability.extra and v.ability.extra.retain
+        if not (magnetized or innate_retain or acquired_retain or set_to_retain or is_sticky) or v.burned then
+            _cards[#_cards+1] = v
+        elseif magnetized or innate_retain or acquired_retain or set_to_retain or is_sticky then
+            _retained_cards[#_retained_cards+1] = v
         end
         v.retain = false
     end
-        local cards = {}
-        local burned_cards = {}
-        local destroyed_cards = {}
+
+    local cards = {}
+    local burned_cards = {}
+    local destroyed_cards = {}
     G.E_MANAGER:add_event(Event({
-            trigger = 'immediate',
-            func = function()
-    for i = 1, #_cards do
-    local removed = false
-            local burned = false
-            local effects = {}
-            SMODS.calculate_context({hand_discard = true, other_card =  _cards[i], full_hand = _cards, ignore_other_debuff = true}, effects)
-            SMODS.trigger_effects(effects)
-            for _, eval in pairs(effects) do
-                if type(eval) == 'table' then
-                    for key, eval2 in pairs(eval) do
-                        if key == 'remove' or (type(eval2) == 'table' and eval2.remove) then removed = true end
-                        if key == 'burn' or (type(eval2) == 'table' and eval2.burn) then burned = true end
+        trigger = 'immediate',
+        func = function()
+            -- calc hand discard context
+            for i = 1, #_cards do
+                local removed = false
+                local burned = false
+                local effects = {}
+                SMODS.calculate_context({hand_discard = true, other_card =  _cards[i], full_hand = _cards, ignore_other_debuff = true}, effects)
+                SMODS.trigger_effects(effects)
+                for _, eval in pairs(effects) do
+                    if type(eval) == 'table' then
+                        for key, eval2 in pairs(eval) do
+                            if key == 'remove' or (type(eval2) == 'table' and eval2.remove) then removed = true end
+                            if key == 'burn' or (type(eval2) == 'table' and eval2.burn) then burned = true end
+                        end
+                    end
+                end
+                table.insert(cards, _cards[i])
+                if removed then
+                    destroyed_cards[#destroyed_cards + 1] = cards[i]
+                    if SMODS.shatters(cards[i]) then
+                        cards[i]:shatter()
+                    else
+                        cards[i]:start_dissolve()
+                    end
+                else 
+                    if burned then
+                        burned_cards[#burned_cards + 1] = cards[i]
+                        cards[i]:start_burn(G.hand)
+                    else
+                        cards[i].ability.discarded = true
+                        draw_card(G.hand, G.discard, i*100/#cards, 'down', false, cards[i])
                     end
                 end
             end
-            table.insert(cards, _cards[i])
-            if removed then
-                destroyed_cards[#destroyed_cards + 1] = cards[i]
-                if SMODS.shatters(cards[i]) then
-                    cards[i]:shatter()
-                else
-                    cards[i]:start_dissolve()
+
+            -- calc hand retain context
+            for i = 1, #_retained_cards do
+                local removed = false
+                local burned = false
+                local effects = {}
+                SMODS.calculate_context({hand_retain = true, other_card =  _retained_cards[i], full_hand = _retained_cards, ignore_other_debuff = true}, effects)
+                SMODS.trigger_effects(effects)
+                for _, eval in pairs(effects) do
+                    if type(eval) == 'table' then
+                        for key, eval2 in pairs(eval) do
+                            if key == 'remove' or (type(eval2) == 'table' and eval2.remove) then removed = true end
+                            if key == 'burn' or (type(eval2) == 'table' and eval2.burn) then burned = true end
+                        end
+                    end
                 end
-            else 
-                if burned then
-                    burned_cards[#burned_cards + 1] = cards[i]
-                    cards[i]:start_burn(G.hand)
-                else
-                    cards[i].ability.discarded = true
-                    draw_card(G.hand, G.discard, i*100/#cards, 'down', false, cards[i])
+                table.insert(cards, _retained_cards[i])
+                if removed then
+                    destroyed_cards[#destroyed_cards + 1] = cards[#cards]
+                    if SMODS.shatters(cards[#cards]) then
+                        cards[#cards]:shatter()
+                    else
+                        cards[#cards]:start_dissolve()
+                    end
+                else 
+                    if burned then
+                        burned_cards[#burned_cards + 1] = cards[#cards]
+                        cards[#cards]:start_burn(G.hand)
+                    else
+                        --do nothing because it was retained
+                        --cards[#cards].ability.discarded = true
+                        --draw_card(G.hand, G.discard, i*100/#cards, 'down', false, cards[#cards])
+                    end
                 end
             end
-    end
-    return true end }))
+            return true
+        end
+    }))
     if burned_cards[1] then
         SMODS.calculate_context({remove_playing_cards = true, cards_burned = burned_cards})
     end

@@ -34,7 +34,7 @@
             end
         end,
         calculate = function(self, card, context)
-            if context.hand_discard then
+            if context.hand_discard or context.hand_retain then
                 return {burn = true}
             end
             if context.joker_main then

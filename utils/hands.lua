@@ -767,7 +767,8 @@ SMODS.PokerHand{ -- full house
                 diagnostic = false
             end
         end
-        if (#parts.bld_blind_3 == 0) or (#parts.bld_blind_3 < 2 and #parts.bld_blind_2 == 0) or not diagnostic then return {} end
+        -- if it has a down then it's not a full house
+        if (#parts.bld_blind_down_prt > 0) or (#parts.bld_blind_3 == 0) or (#parts.bld_blind_3 < 2 and #parts.bld_blind_2 == 0) or not diagnostic then return {} end
         return parts.bld_blind_all_pairs
     end,
 }

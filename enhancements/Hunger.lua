@@ -17,7 +17,7 @@
             concept = "AnneBean"
         },
         calculate = function(self, card, context)
-            if context.hand_discard and context.other_card == card then
+            if (context.hand_discard or context.hand_retain) and context.other_card == card then
                 return { burn = true }
             end
             if context.cardarea == G.hand and context.main_scoring then

@@ -14,33 +14,42 @@
             code = "base4",
             concept = "base4"
         },
+        loc_vars = function(self, info_queue, card)
+            if card.ability.extra.upgraded then
+                info_queue[#info_queue+1] = {key = 'bld_burn', set = 'Other'}
+            else
+                info_queue[#info_queue+1] = G.P_TAGS['tag_bld_debuff']
+            end
+
+            return {
+                key = card.ability.extra.upgraded and 'm_bld_silence_upgraded' or 'm_bld_silence'
+            }
+        end,
         upgrade = function(card)
             if not card.ability.extra.upgraded then
                 card.ability.extra.upgraded = true
             end
         end,
         calculate = function(self, card, context)
-            if context.before and context.main_eval then
-                for key, value in pairs(G.hand.cards) do
-                    if value == card then
-                        local progress = 0
-                        for key, value2 in pairs(G.hand.cards) do
-                            local this_progress = progress
-                            progress = progress + 1
-                            G.E_MANAGER:add_event(Event({
-                                trigger = 'before',
-                                delay = 0.4,
-                                func = function ()
-                                    card:juice_up()
-                                    play_sound('card1', 0.8 + 0.05 * this_progress, 0.9)
-                                    value2.config.center.blind_debuff(value2, true)
-                                    return true
-                                end
-                            }))
-                        end
-                        break
+            if context.before and context.main_eval and card.ability.extra.upgraded and context.scoring_name and tableContains(card, G.hand.cards) then
+                level_up_hand(card, context.scoring_name, false, 1)
+            end
+
+            if (context.hand_discard or context.hand_retain) and context.other_card == card and card.ability.extra.upgraded then
+                return { burn = true }
+            end
+
+            if context.after and context.scoring_name and not card.ability.extra.upgraded and context.main_eval and tableContains(card, G.hand.cards) then
+                G.E_MANAGER:add_event(Event({
+                    func = function ()
+                        G.bolt_played_hand = context.scoring_name
+                        add_tag(Tag('tag_bld_debuff'))
+                        return true
                     end
-                end
+                }))
+                return {
+                    message = localize('k_tagged_ex')
+                }
             end
         end
     })

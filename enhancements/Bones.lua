@@ -28,7 +28,7 @@
                 if context.burn_card and context.cardarea == G.play and context.burn_card == card then
                     return { remove = true }
                 end
-                if card.ability.extra.upgraded and context.hand_discard and context.other_card == card then
+                if card.ability.extra.upgraded and (context.hand_discard or context.hand_retain) and context.other_card == card then
                     return {
                         burn = true
                     }
