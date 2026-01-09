@@ -21,5 +21,6 @@ SMODS.Voucher {
     },
     redeem = function(self, card)
         add_tag(Tag('tag_bld_treasurechest_relic'))
-    end
+    end,
+    requires = {'v_bld_swearjar'}
 }
