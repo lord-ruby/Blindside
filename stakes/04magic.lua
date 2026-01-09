@@ -9,6 +9,7 @@ SMODS.Stake{
         G.GAME.modifiers.enable_bld_starting_curses = true
         --G.GAME.modifiers.enable_bld_deadly_small_big = true
     end,
+    unlocked = true,
 
     --colour = ,
 

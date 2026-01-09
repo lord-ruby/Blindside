@@ -7,8 +7,9 @@ SMODS.Stake{
     
     modifiers = function()
         G.GAME.modifiers.enable_bld_less_joker_reward = true
-        -- G.GAME.modifiers.enable_bld_skip_costs_money = true
+        -- 
     end,
+    unlocked = true,
 
     --colour = ,
 
