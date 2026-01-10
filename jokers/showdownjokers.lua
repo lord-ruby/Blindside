@@ -186,13 +186,13 @@ BLINDSIDE.Joker({
         end
     end,
     calculate = function(self, blind, context)
-        if context.setting_blind and not context.disabled then
+        if context.setting_blind and not blind.disabled then
             for _, poker_hand in ipairs(G.handlist) do
                 blind.hands = blind.hands or {}
                 blind.hands[poker_hand] = false
             end
         end
-        if context.after then
+        if context.after and not blind.disabled then
             blind.blindassist = get_new_perkeo_boss()
             G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
                 G.GAME.blindassist:set_assist_blind(G.P_BLINDS[blind.blindassist])
