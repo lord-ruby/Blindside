@@ -16,8 +16,8 @@
             end
         end,
         credit = {
-            art = "AstraLuna",
-            code = "AstraLuna",
+            art = "Gappie",
+            code = "base4",
             concept = "AstraLuna"
         },
         calculate = function(self, card, context)
