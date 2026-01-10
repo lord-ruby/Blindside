@@ -5,7 +5,7 @@ SMODS.Tag {
     },
     hide_ability = false,
     atlas = 'bld_relic',
-    pos = {x = 4, y = 2},
+    pos = {x = 5, y = 4},
     in_pool = function(self, args)
         return false
     end,
