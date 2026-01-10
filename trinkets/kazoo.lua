@@ -34,10 +34,7 @@
                 card.ability.extra.reds = card.ability.extra.reds + 1
             end
             if context.discard and context.other_card == context.full_hand[#context.full_hand] and card.ability.extra.reds >= 3 then
-                    print(card.ability.extra.ikeeptrackofdiscards)
-                    print(G.GAME.current_round.discards_left)
                 if card.ability.extra.ikeeptrackofdiscards ~= G.GAME.current_round.discards_left then
-                    print(card.ability.extra.reds)
                     add_tag(Tag('tag_bld_maxim'))
                     card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('k_tagged_ex'), colour = G.C.MULT, card = card})
                 end

@@ -243,6 +243,7 @@ meta.__call = function (...)
 end
 
 ---@ class BLINDSIDE.Joker : SMODS.Blind
+---@ field base_dollars number Dollars awarded when beaten. Do not set dollars.
 ---@ field get_assist? fun(self: BLINDSIDE.Joker) Returns an assistant Joker object.
 ---@ field is_assistant? boolean Whether this Joker should be excluded from the pool because it is an assistant.
 ---@ field set_joker? fun(self: BLINDSIDE.Joker) Will be called after set_blind. Use as if it were set_blind.
@@ -337,6 +338,13 @@ BLINDSIDE.Joker = SMODS.Blind:extend {
         end
     end,
 }
+
+BLINDSIDE.Joker.__index = function(self, key)
+  if key == "dollars" then
+    return math.max(rawget(self, 'base_dollars') - ((G.GAME.modifiers.enable_bld_less_joker_reward and G.GAME.round_resets.ante and G.GAME.round_resets.ante > 1) and 2 or 0), 0) 
+  end
+  return rawget(BLINDSIDE.Joker, key) or SMODS.Blind[key]
+end
 
 SMODS.current_mod.optional_features = {
     retrigger_joker = true,

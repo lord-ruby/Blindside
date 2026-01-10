@@ -17,7 +17,7 @@ SMODS.Blind({
     pos = {x=0, y=39},
     boss_colour = HEX('e8b867'),
     mult = 16,
-    dollars = 10,
+    base_dollars = 10,
     boss = {min = 1, showdown = true},
     in_pool = function(self, args)
         if G.GAME.selected_back.effect.center.config.extra then
@@ -60,7 +60,7 @@ BLINDSIDE.Joker({
     pos = {x=0, y=41},
     boss_colour = HEX('009CFD'),
     mult = 16,
-    dollars = 10,
+    base_dollars = 10,
     boss = {min = 1, showdown = true},
     in_pool = function(self, args)
         if G.GAME.selected_back.effect.center.config.extra then
@@ -168,7 +168,7 @@ BLINDSIDE.Joker({
     pos = {x=0, y=43},
     boss_colour = HEX('56A786'),
     mult = 12,
-    dollars = 10,
+    base_dollars = 10,
     hands = {},
     boss = {min = 1, showdown = true},
     set_joker = function(self)
@@ -214,9 +214,9 @@ function Blind:set_assist_blind(blind, reset, silent)
         self.name = blind and blind.name or ''
         self.small = blind and not not blind.small
         self.big = blind and not not blind.big
-        self.dollars = blind and blind.dollars or 0
+        self.base_dollars = blind and blind.dollars or 0
         self.sound_pings = self.dollars + 2
-        if G.GAME.modifiers.no_blind_reward and G.GAME.modifiers.no_blind_reward[self:get_type()] then self.dollars = 0 end
+        if G.GAME.modifiers.no_blind_reward and G.GAME.modifiers.no_blind_reward[self:get_type()] then self.base_dollars = 0 end
         self.debuff = blind and blind.debuff or {}
         self.pos = blind and blind.pos
         self.mult = blind and blind.mult or 0
@@ -328,7 +328,7 @@ BLINDSIDE.Joker({
     pos = {x=0, y=42},
     boss_colour = HEX('FD5F55'),
     mult = 16,
-    dollars = 10,
+    base_dollars = 10,
     hands = {},
     boss = {min = 1, showdown = true},
     in_pool = function(self, args)
@@ -391,7 +391,7 @@ BLINDSIDE.Joker({
     pos = {x=0, y=40},
     boss_colour = HEX('FFFFFF'),
     mult = 16,
-    dollars = 10,
+    base_dollars = 10,
     hands = {},
     boss = {min = 1, showdown = true},
     in_pool = function(self, args)

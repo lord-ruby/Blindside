@@ -6,7 +6,8 @@ SMODS.Stake{
     prefix_config = {above_stake = {mod = false}, applied_stakes = {mod = false}, unlocked_stake = {mod = false}},
     
     modifiers = function()
-        G.GAME.modifiers.enable_bld_skip_costs_money = true
+        G.GAME.modifiers.enable_bld_less_joker_reward = true
+        -- 
     end,
 
     --colour = ,

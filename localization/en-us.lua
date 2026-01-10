@@ -348,14 +348,14 @@ return {
 				}
 			},
 			['v_bld_souvenir'] = {
-				["name"] = "Souvenir",
+				["name"] = "Poor Disguise",
 				["text"] = {
 					"All Trinkets",
 					"are {C:attention}33%{} off"
 				}
 			},
 			['v_bld_mementomori'] = {
-				["name"] = "Memento Mori",
+				["name"] = "Masquerade",
 				["text"] = {
 					"All Trinkets",
 					"are {C:attention}66%{} off"
@@ -542,14 +542,14 @@ return {
 				},
 			},
 			['tag_bld_souvenir_relic'] = {
-				["name"] = "Souvenir",
+				["name"] = "Poor Disguise",
 				["text"] = {
 					"All Trinkets",
 					"are {C:attention}33%{} off"
 				}
 			},
 			['tag_bld_mementomori_relic'] = {
-				["name"] = "Memento Mori",
+				["name"] = "Masquerade",
 				["text"] = {
 					"All Trinkets",
 					"are {C:attention}66%{} off"
@@ -955,7 +955,7 @@ return {
 				["name"] = "Voodoo Tag",
 				["text"] = {
 					"Gives an unskippable",
-					"{C:attention}Cursed Pack{}"
+					"{C:attention}Voodoo Pack{}"
 				},
 			},
 			["tag_bld_heartbreak"] = {
@@ -3409,7 +3409,7 @@ return {
 				["name"] = "The Nil",
 				["text"] = {
 					"{X:dark_edition,C:white}Faded{} {X:black,C:white}Cursed{}",
-					"Sets {C:mult}Mult{} to {C:attention}0",
+					"Sets {C:mult}Mult{} to {C:attention}#1#",
 				},
 			},
 			["m_bld_bill"] = {
@@ -4318,8 +4318,8 @@ return {
 			["stake_bld_green_deck"] = {
 				name = "Green Stake?",
 				text = {
-					"Skipping Jokers costs",
-					"{C:money}$2{} per {C:attention}Ante"
+					"After {C:attention}Ante 1{}, decrease",
+					"{C:attention}Joker{} rewards by {C:money}$2"
 				}
 			},
 			["stake_bld_black_deck"] = {
@@ -4333,7 +4333,10 @@ return {
 				name = "Magic Stake??",
 				text = {
 					"Start with",
-					"{C:attention}2{} {X:black,C:white}Cursed{} Blinds"
+					"{C:attention}2{} {X:black,C:white}Cursed{} Blinds",
+					"{s:0.2} {}",
+					"{C:white,X:black}Cursed{} Blinds may",
+					"appear in {C:attention}shops"
 				}
 			},
 			["stake_bld_anaglyph_deck"] = {
@@ -4347,15 +4350,15 @@ return {
 			["stake_bld_zodiac_deck"] = {
 				name = "Zodiac Stake??",
 				text = {
-					"{C:white,X:black}Cursed{} Blinds may",
-					"appear in {C:attention}shops"
+					"Face off against {C:red}tougher",
+					"{C:attention}Small{} and {C:attention}Big Jokers"
 				}
 			},
 			["stake_bld_plasma_deck"] = {
 				name = "Plasma Stake??",
 				text = {
-					"Face off against {C:red}tougher",
-					"{C:attention}Small{} and {C:attention}Big Jokers"
+					"Skipping Jokers costs",
+					"{C:money}$2{} per {C:attention}Ante"
 				}
 			},
 			["stake_bld_ghost_deck"] = {
@@ -4797,8 +4800,8 @@ return {
 				}
 			},
 			["p_bld_voodoo"] = {
-				["group_name"] = "Cursed Pack",
-				["name"] = "Cursed Pack",
+				["group_name"] = "Voodoo Pack",
+				["name"] = "Voodoo Pack",
 				["text"] = {
 					"Choose {C:attention}1{} of {C:attention}3{}",
 					"{C:white,X:black}Cursed{} Blinds"

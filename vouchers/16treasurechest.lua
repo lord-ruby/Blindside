@@ -21,5 +21,7 @@ SMODS.Voucher {
     },
     redeem = function(self, card)
         add_tag(Tag('tag_bld_treasurechest_relic'))
-    end
+        G.shop_vouchers.cards[1].cost = math.max(G.shop_vouchers.cards[1].cost + 5*G.GAME.round_resets.tags_bought - 15, 0)
+    end,
+    requires = {'v_bld_swearjar'}
 }

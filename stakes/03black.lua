@@ -9,6 +9,7 @@ SMODS.Stake{
         G.GAME.modifiers.enable_bld_deplete_hands = true
     end,
 
+
     --colour = ,
 
     pos = {x = 2, y = 0},

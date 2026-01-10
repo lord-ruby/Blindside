@@ -6,7 +6,7 @@
             extra = {
                 value = 30,
                 xchips = 0.25,
-                xchipsup = 1,
+                xchipsup = 1.5,
                 stubborn = true
             }},
         hues = {"Blue"},
