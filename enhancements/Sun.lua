@@ -13,7 +13,7 @@
             }},
         hues = {"Yellow"},
         calculate = function(self, card, context)
-            if context.cardarea == G.hand and context.end_of_round and context.other_card == card then
+            if context.cardarea == G.hand and context.end_of_round and context.other_card == card and not context.repetition then
                 return {
                     dollars = card.ability.extra.money
                 }
