@@ -4280,6 +4280,13 @@ return {
 					"hand contains a {C:attention}Down{}",
 				},
 			},
+			['j_bld_makeup'] = {
+				["name"] = "Makeup",
+				["text"] = {
+					"{C:attention}Retrigger{} all Blinds",
+					"{C:attention}held in hand{}",
+				},
+			},
 		},
 		["Edition"] = {
 			['e_bld_enameled'] = {

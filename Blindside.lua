@@ -570,7 +570,8 @@ local trinket_list = {
         "geode",
         "peppermintcandycane",
         "fruitycandycane",
-        "inkandquill"
+        "inkandquill",
+        "makeup"
 }
 
 local joker_list = {
