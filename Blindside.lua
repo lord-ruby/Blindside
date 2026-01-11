@@ -436,6 +436,7 @@ local card_list = {
     "Bank",
     "Market",
     "Loop",
+    "Bid",
 
     "Top",
     "Path",

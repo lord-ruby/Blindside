@@ -137,6 +137,7 @@
         "m_bld_violet_vessel",
         "m_bld_crimson_heart",
         "m_bld_verdant_leaf",
+        "m_bld_bid",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",

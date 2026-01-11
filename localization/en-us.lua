@@ -3642,6 +3642,16 @@ return {
 					"{C:inactive}(Currently: {C:white,X:mult}X#1#{C:inactive} Mult)"
 				},
 			},
+			["m_bld_bid"] = {
+				["name"] = "The Bid",
+				["text"] = {
+					{"{X:money,C:white}Yellow{}",
+					"{X:mult,C:white}X#1#{} Mult"},
+					{"{C:attention}Retriggers{} once for",
+					"every {C:attention}2{} Tags held",
+					"{C:inactive}(Currently #2# time#3#)"},
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
