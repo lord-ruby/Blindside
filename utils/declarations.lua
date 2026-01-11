@@ -881,7 +881,7 @@
 
     SMODS.Sound({
         key = 'bld_chipslide1',
-        path = 'chipslide1.wav'
+        path = 'chipSlide1-2.wav'
     })
 
     SMODS.Sound({
@@ -891,7 +891,7 @@
 
     SMODS.Sound({
         key = 'bld_chip1',
-        path = 'chip1.wav'
+        path = 'poker_chip4.wav'
     })
 
 
