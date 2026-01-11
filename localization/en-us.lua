@@ -199,7 +199,7 @@ return {
 					"???",
 					"{C:attention}+1{} consumable slot",
 					"Start with {C:attention,T:v_bld_coolrock}Cool Rock{}",
-					"and {C:attention,T:v_bld_television}Television{}",
+					"and {C:attention,T:v_bld_television}Antenna{}",
 				},
 				["unlock"] = {
 					"Reach Ante {C:attention}5",
@@ -455,7 +455,7 @@ return {
 				},
 			},
 			["v_bld_television"] = {
-				["name"] = "Television",
+				["name"] = "Antenna",
 				["text"] = {
 					"{C:bld_obj_filmcard}Channel{} cards may",
 					"appear in Blind Shops"
@@ -811,7 +811,7 @@ return {
 				},
 			},
 			["tag_bld_television_relic"] = {
-				["name"] = "Television",
+				["name"] = "Antenna",
 				["text"] = {
 					"{C:bld_obj_filmcard}Channel{} cards may",
 					"appear in Blind Shops"
