@@ -1469,8 +1469,8 @@ return {
 				["text"] = {
                     "Select {C:attention}#1#{} blinds,",
                     "copy the {C:attention}right{} blind's",
-					"{C:attention}Trim{} and {C:dark_edition}Edition",
-                    "onto the {C:attention}left{} blind",
+					"{C:attention}Trim{} and {C:dark_edition}Edition{} onto",
+                    "the {C:attention}left{} blind",
 				},
 			},
 		},

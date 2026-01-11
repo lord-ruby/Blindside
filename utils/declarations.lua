@@ -873,10 +873,14 @@
         path = 'glass_crack.wav'
     })
 
+    SMODS.Sound({
+        key = 'bld_xylo1',
+        path = 'xylo1.wav'
+    })
 
     SMODS.Sound({
-        key = 'bld_lockpick',
-        path = 'lockpick.wav'
+        key = 'bld_chip1',
+        path = 'poker_chip4.wav'
     })
 
 

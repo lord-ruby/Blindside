@@ -1944,3 +1944,57 @@ if (applied_stake ~= 'stake_bld_green_deck' and applied_stake ~= 'stake_bld_blac
     if not deck.wins_by_key[applied_stake] then return false end
 end
 '''
+
+
+# xylophone (funny)
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''--disabled patch play_sound('card1', 0.85 + percent*0.2/100, 0.6*(vol or 1))'''
+position = "at"
+payload = '''
+if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside then
+    play_sound('bld_xylo1', 1.05476607648 ^ (percent/10), 0.7*(vol or 1))
+else
+    play_sound('card1', 0.85 + percent*0.2/100, 0.6*(vol or 1))
+end
+'''
+match_indent = true
+
+
+# chippy noise
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''play_sound('card1', 0.85 + percent*0.2/100, 0.6*(vol or 1))'''
+position = "at"
+payload = '''
+if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside then
+    play_sound('bld_chip1', 0.9 + percent*0.2/100, 1.1*(vol or 1))
+else
+    play_sound('card1', 0.85 + percent*0.2/100, 0.6*(vol or 1))
+end
+'''
+match_indent = true
+
+# play_sound('card1')
+# card.lua
+
+# chippy noise
+[[patches]]
+[patches.pattern]
+target = "cardarea.lua"
+pattern = '''--disabled if not silent then play_sound('cardSlide1') end'''
+position = "at"
+payload = '''
+if not silent then
+    if G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside then
+        --play_sound('bld_chip1')
+        --play_sound('chips1', 0.8, 0.25)
+        play_sound('cardSlide1')
+    else
+        play_sound('cardSlide1')
+    end
+end
+'''
+match_indent = true
