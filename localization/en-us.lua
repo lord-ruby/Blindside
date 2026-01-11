@@ -17,6 +17,7 @@ return {
 			["k_broke_ex"] = "Shattered!",
 			["k_snow_ex"] = "Snow!",
 			["k_filmcard_ex"] = "Channel!",
+			["k_ritual_ex"] = "Ritual!",
 			["k_reroll_ex"] = "Reroll!",
 			["k_tryone_ex"] = "Get One Free!",
 			["k_tryfree_ex"] = "What A Bargain!",
@@ -4516,6 +4517,14 @@ return {
 					"discarded after",
 					"play when {C:attention}held",
 					"{C:attention}in hand"
+				}
+			},
+			["bld_active"] = {
+				["name"] = "Active",
+				["text"] = {
+					"When {C:attention}used{}, effect is",
+					"{C:attention}active{} until timer is",
+					"expired" -- later, "until the \n round ends, then the rune \n must recharge"
 				}
 			},
 			["bld_burn"]	= {
