@@ -197,7 +197,7 @@ position = 'before'
 match_indent = true
 payload = '''
 for i = 1, #G.GAME.tags do
-    if G.GAME.tags[i].key == "tag_bld_debuff" and G.GAME.tags[i].ability.debuffed_hand == handname and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
+    if G.GAME.tags[i].key == "tag_bld_debuff" and G.GAME.tags[i].ability.debuffed_hand == handname then
         flags.debuff = true
         flags.debuff_text = G.GAME.tags[i].ability.debuff_text
     end
@@ -849,7 +849,7 @@ local splashed = SMODS.always_scores(G.play.cards[i]) or next(find_joker('Splash
 payload = '''
 local waved = false
 for i = 1, #G.GAME.tags do
-    if G.GAME.tags[i].key == "tag_bld_wave" and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
+    if G.GAME.tags[i].key == "tag_bld_wave" then
         waved = true
     end
 end

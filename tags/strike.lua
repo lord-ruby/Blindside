@@ -27,7 +27,7 @@ SMODS.Tag {
                     return true end)
                 tag.triggered = true
         end
-        if context.type == 'after_money' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) and G.STATE == G.STATES.HAND_PLAYED then
+        if context.type == 'after_money' and G.STATE == G.STATES.HAND_PLAYED then
             mult = mod_mult(mult + tag.config.mult)
             update_hand_text({delay = 0}, {mult = mult})
             tag_area_status_text(tag, "+5", G.C.RED, false, 0)

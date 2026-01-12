@@ -27,7 +27,7 @@ SMODS.Tag {
                     return true end)
                 tag.triggered = true
         end
-        if context.type == 'after_hand' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker))  then
+        if context.type == 'after_hand' then
             mult = mod_mult(mult * tag.config.xmult)
             update_hand_text({delay = 0}, {mult = mult})
             tag_area_status_text(tag, "X1.5", G.C.RED, false, 0)

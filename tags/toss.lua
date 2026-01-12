@@ -30,7 +30,7 @@ SMODS.Tag {
                 return true end)
             tag.triggered = true
         end
-        if tag.config.extra.give and context.type == 'real_round_start' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
+        if tag.config.extra.give and context.type == 'real_round_start' then
             tag.config.extra.give = false
             G.hand:change_size(1)
             G.GAME.round_resets.temp_handsize = (G.GAME.round_resets.temp_handsize or 0) + 1

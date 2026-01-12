@@ -29,7 +29,7 @@ SMODS.Tag {
                     return true end)
                 tag.triggered = true
         end
-        if context.type == 'before' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
+        if context.type == 'before' then
             local converts = {}
                 for k, v in ipairs(context.scoring_hand) do
                     if SMODS.pseudorandom_probability(tag, pseudoseed("flip"), tag.ability.chance, tag.ability.trigger, 'flip') then 

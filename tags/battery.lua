@@ -20,22 +20,19 @@ SMODS.Tag {
         tag.config.extra.give = true
     end,
     apply = function(self, tag, context)
-        if tag.config.extra.give and #G.hand.cards > 0 and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
+        if tag.config.extra.give and #G.hand.cards > 0 then
             tag.config.extra.give = false
             ease_hands_played(1)
-            G.GAME.round_resets.hands = (G.GAME.round_resets.hands or 0) + 1
         end
         if context.type == 'shop_start' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
             tag:yep('+', G.C.GREEN, function() 
-                G.GAME.round_resets.hands = (G.GAME.round_resets.hands or 0) - 1
                 ease_hands_played(-1)
                 return true end)
             tag.triggered = true
         end
-        if tag.config.extra.give and context.type == 'real_round_start' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
+        if tag.config.extra.give and context.type == 'real_round_start' then
             tag.config.extra.give = false
             ease_hands_played(1)
-            G.GAME.round_resets.hands = (G.GAME.round_resets.hands or 0) + 1
             return true
         end
     end,

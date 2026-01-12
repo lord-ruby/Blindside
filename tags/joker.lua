@@ -7,7 +7,7 @@ SMODS.Tag {
         return false
     end,
     apply = function(self, tag, context)
-        if context.type == 'after_hand' and not (next(SMODS.find_card("j_bld_taglock"))) then
+        if context.type == 'after_hand' then
             BLINDSIDE.chipsmodify(1, 0, 0)
         end
 

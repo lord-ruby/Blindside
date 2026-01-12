@@ -27,7 +27,7 @@ SMODS.Tag {
                 return true end)
             tag.triggered = true
         end
-        if context.type == 'after_hand' and not (next(SMODS.find_card("j_bld_taglock"))) then
+        if context.type == 'after_hand' then
             for key, value in pairs(G.play.cards) do
                 if (value.edition or value.seal) and SMODS.pseudorandom_probability(tag, pseudoseed('bld_downpour'), 1, 2, 'bld_downpour') then
                     G.E_MANAGER:add_event(Event({

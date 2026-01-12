@@ -27,7 +27,7 @@ SMODS.Tag {
                     return true end)
                 tag.triggered = true
         end
-        if context.type == 'after_hand' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
+        if context.type == 'after_hand' then
             hand_chips = mod_chips(hand_chips + 15*#G.GAME.tags)
             update_hand_text({delay = 0}, {chips = hand_chips, mult = mult})
             tag_area_status_text(tag, "+" .. tostring(15*#G.GAME.tags), G.C.BLUE, false, 0)

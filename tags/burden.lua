@@ -17,7 +17,7 @@ SMODS.Tag {
                 return true end)
             tag.triggered = true
         end
-        if context.type == 'after_hand' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
+        if context.type == 'after_hand' then
             if not G.GAME.dollar_buffer then
                 G.GAME.dollar_buffer = 0
             end

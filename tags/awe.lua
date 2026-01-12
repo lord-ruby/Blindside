@@ -20,7 +20,7 @@ SMODS.Tag {
                 return true end)
             tag.triggered = true
         end
-        if context.type == 'before' and not (next(SMODS.find_card("j_bld_taglock"))) then
+        if context.type == 'before' then
             for key, value in pairs(G.jokers.cards) do
                 value:set_debuff(false)
             end

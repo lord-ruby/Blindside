@@ -22,7 +22,7 @@ SMODS.Tag {
                 return true end)
             tag.triggered = true
         end
-        if context.type == 'before' and not (next(SMODS.find_card("j_bld_taglock")) and not (G.GAME.blind.boss or G.GAME.last_joker)) then
+        if context.type == 'before' then
             for key, value in pairs(G.play.cards) do
                 G.E_MANAGER:add_event(Event({
                     trigger = 'after',
