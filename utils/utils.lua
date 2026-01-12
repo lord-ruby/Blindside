@@ -1,7 +1,7 @@
     function BLINDSIDE.is_blindside(string)
         for _, v in ipairs(SMODS.ObjectTypes.bld_obj_blindside.cards) do
-            if v == string then
-            return true
+            if v == string or (G.P_CENTERS[string] and G.P_CENTERS[string].hues) then
+                return true
             end
         end
     end

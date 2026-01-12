@@ -7,7 +7,7 @@
                 money = 1,
                 value = 999,
                 moneyup = 1,
-                mult = 1,
+                mult = 2,
                 multup = 1,
             }},
         hues = {"Yellow"},

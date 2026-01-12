@@ -16,6 +16,7 @@ SMODS.Consumable {
         end
     end,
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = {key = 'bld_active', set = 'Other'}
         return {
             key = (card.ability.extra.value == 2 and "c_bld_arengeetwo") or (card.ability.extra.value == 3 and "c_bld_arengeethree") or
             (card.ability.extra.value == 4 and "c_bld_arengeefour") or (card.ability.extra.value == 5 and "c_bld_arengeefive") or

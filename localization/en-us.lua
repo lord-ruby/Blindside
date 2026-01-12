@@ -17,6 +17,7 @@ return {
 			["k_broke_ex"] = "Shattered!",
 			["k_snow_ex"] = "Snow!",
 			["k_filmcard_ex"] = "Channel!",
+			["k_ritual_ex"] = "Ritual!",
 			["k_reroll_ex"] = "Reroll!",
 			["k_tryone_ex"] = "Get One Free!",
 			["k_tryfree_ex"] = "What A Bargain!",
@@ -3642,6 +3643,27 @@ return {
 					"{C:inactive}(Currently: {C:white,X:mult}X#1#{C:inactive} Mult)"
 				},
 			},
+			["m_bld_bid"] = {
+				["name"] = "The Bid",
+				["text"] = {
+					{"{X:money,C:white}Yellow{}",
+					"{X:mult,C:white}X#1#{} Mult"},
+					{"{C:attention}Retriggers{} once for",
+					"every {C:attention}2{} Tags held",
+					"{C:inactive}(Currently #2# time#3#)"},
+				},
+			},
+			["m_bld_trench"] = {
+				["name"] = "The Trench",
+				["text"] = {
+					{"{X:chips,C:white}Blue{}",
+					"Currently {X:chips,C:white}X#2#{} Chips"},
+					{"Gains {C:white,X:chips}X#1#{} Chips",
+					"when {C:attention}scored"},
+					{"{C:attention}Resets{} to {C:white,X:chips}X#3#",
+					"each round"},
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
@@ -4506,6 +4528,14 @@ return {
 					"discarded after",
 					"play when {C:attention}held",
 					"{C:attention}in hand"
+				}
+			},
+			["bld_active"] = {
+				["name"] = "Active",
+				["text"] = {
+					"When {C:attention}used{}, effect is",
+					"{C:attention}active{} until timer is",
+					"expired" -- later, "until the \n round ends, then the rune \n must recharge"
 				}
 			},
 			["bld_burn"]	= {

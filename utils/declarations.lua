@@ -137,6 +137,8 @@
         "m_bld_violet_vessel",
         "m_bld_crimson_heart",
         "m_bld_verdant_leaf",
+        "m_bld_bid",
+        "m_bld_trench",
         "e_bld_finish",
         "e_bld_blue",
         "e_bld_mint",
@@ -880,7 +882,7 @@
 
     SMODS.Sound({
         key = 'bld_chipslide1',
-        path = 'chipslide1.wav'
+        path = 'chipSlide1-2.wav'
     })
 
     SMODS.Sound({
@@ -890,7 +892,7 @@
 
     SMODS.Sound({
         key = 'bld_chip1',
-        path = 'chip1.wav'
+        path = 'poker_chip4.wav'
     })
 
 

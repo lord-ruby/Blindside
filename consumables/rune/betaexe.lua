@@ -15,6 +15,7 @@ SMODS.Consumable {
         end
     end,
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = {key = 'bld_active', set = 'Other'}
         info_queue[#info_queue + 1] = G.P_CENTERS.m_bld_beta
         return {
             vars = {
