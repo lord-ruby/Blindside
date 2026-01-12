@@ -3695,6 +3695,16 @@ return {
 					"{C:white,X:mult}+X#2#{} Mult"},
 				},
 			},
+			["m_bld_hearth"] = {
+				["name"] = "The Hearth",
+				["text"] = {
+					{"{X:mult,C:white}Red{}",
+					"{X:mult,C:white}X#1#{} Mult"},
+					{"{C:attention}Burns{} all Blinds",
+					"in {C:attention}scoring hand",
+					"except {C:attention}The Hearth"}
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {
