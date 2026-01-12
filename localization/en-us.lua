@@ -3664,6 +3664,15 @@ return {
 					"each round"},
 				},
 			},
+			["m_bld_square"] = {
+				["name"] = "The Square",
+				["text"] = {
+					"{X:mult,C:white}Red{}",
+					"{X:mult,C:white}X#1#{} Mult if",
+					"{C:attention}scoring hand{} contains",
+					"exactly {C:attention}4{} Blinds"
+				},
+			},
 		},
 		['Joker'] = {
 			['j_bld_paycheck'] = {

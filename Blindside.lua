@@ -440,6 +440,7 @@ local card_list = {
     "Loop",
     "Bid",
     "Trench",
+    "Square",
 
     "Top",
     "Path",
