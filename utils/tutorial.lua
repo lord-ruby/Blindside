@@ -3,7 +3,7 @@ G.FUNCS.start_blind_run = function(e, args)
   if e and e.config.id == 'restart_button' then G.GAME.viewed_back = nil end
   args = args or {}
   args.deck = Back(G.P_CENTERS['b_bld_whitedispenser'])
-  args.seed = "tutorial"
+  args.seed = "BLINDSDE"
   G.E_MANAGER:clear_queue()
   G.FUNCS.wipe_on()
   G.E_MANAGER:add_event(Event({
@@ -29,6 +29,7 @@ G.FUNCS.blindside_tutorial_controller = function()
     if G.F_SKIP_TUTORIAL then
         G.SETTINGS.blindside_tutorial_complete = true
         G.SETTINGS.blindside_tutorial_progress = nil
+        
         return
     end
     G.SETTINGS.blindside_tutorial_progress = G.SETTINGS.blindside_tutorial_progress or 
@@ -39,6 +40,7 @@ G.FUNCS.blindside_tutorial_controller = function()
         hold_parts = {},
         completed_parts = {},
     }
+    G.SETTINGS.blindside_tutorial_progress.forced_boss = 'bl_bld_hittheroad'
     G.SETTINGS.blindside_tutorial_progress.forced_shop.spawn = {}
     G.SETTINGS.blindside_tutorial_progress.forced_shop.spawn['j_bld_pirateship'] = true
     G.SETTINGS.blindside_tutorial_progress.forced_shop.spawn['j_bld_glasses'] = true
@@ -169,15 +171,6 @@ G.FUNCS.blindside_tutorial_part = function(_part)
         step = blindside_tutorial_info({
             hard_set = true,
             text_key = 'bld_wtf_2',
-            highlight = {
-                G.hand,
-            },
-            attach = {major = G.hand, type = 'cl', offset = {x = -1.5, y = 0}},
-            step = step,
-        })
-        step = blindside_tutorial_info({
-            hard_set = true,
-            text_key = 'bld_wtf_3',
             highlight = {
                 G.hand,
             },

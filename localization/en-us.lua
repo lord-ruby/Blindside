@@ -21,9 +21,9 @@ return {
                 "hover over each to see!",
             },
             ["bld_fh_5"] = {
-                "As always, you can check the",
-                "{C:attention}Run Info{} screen to",
-                "{C:attention}Poker Hands{} playable",
+                "As always, you can check",
+                "the {C:attention}Run Info{} screen to",
+                "see the {C:attention}Poker Hands{} playable",
                 "with these new blinds!",
             },
             ["bld_fh_6"] = {
@@ -38,10 +38,6 @@ return {
 				"And the rest of your",
 				"hand was {C:attention}discarded{}",
 				"for a brand new one!",
-            },
-            ["bld_wtf_3"] = {
-				"Seems like things change",
-				"after each hand you play!",
             },
             ["bld_wtf_4"] = {
 				"Whatever the case, try",

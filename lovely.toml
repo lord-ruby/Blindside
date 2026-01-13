@@ -2158,6 +2158,19 @@ payload = '''
 self.GAME.round_resets.blind_tags.Big = G.SETTINGS.tutorial_progress and G.SETTINGS.tutorial_progress.forced_tags and G.SETTINGS.tutorial_progress.forced_tags[2] or (G.SETTINGS.blindside_tutorial_progress and G.SETTINGS.blindside_tutorial_progress.forced_tags and G.SETTINGS.blindside_tutorial_progress.forced_tags[2]) or get_next_tag_key()
 '''
 
+# TUTORIAL - Forced Joker
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''
+self.GAME.round_resets.blind_choices.Boss = get_new_boss()
+'''
+match_indent = true
+position = 'at'
+payload = '''
+self.GAME.round_resets.blind_choices.Boss = (G.SETTINGS.blindside_tutorial_progress or {}).forced_boss or get_new_boss()
+'''
+
 # TUTORIAL - cannot buy booster
 [[patches]]
 [patches.pattern]
