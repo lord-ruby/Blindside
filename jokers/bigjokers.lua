@@ -1,4 +1,113 @@
 BLINDSIDE.Joker({
+    key = 'gros_michel',
+    atlas = 'bld_joker',
+    pos = {x=0, y=44},
+    boss_colour = HEX("bfbf26"),
+    mult = 6,
+    base_dollars = 6,
+    order = 7,
+    active = true,
+    big = {min = 1},
+    loc_vars = function(self, blind)
+        return { vars = { G.P_BLINDS['bl_bld_gros_michel'].mult*get_blind_amount(G.GAME.round_resets.ante)*G.GAME.starting_params.ante_scaling } }
+    end,
+    collection_loc_vars = function(self)
+        return { vars = { '6X Base' } }
+    end,
+    pool_override = function()
+        return not G.GAME.modifiers.enable_bld_tough_jokers and G.GAME.round_resets.ante == 1
+    end,
+    calculate = function(self, blind, context)
+        if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
+            ease_hands_played(-1)
+        end
+
+        if context.after and not G.GAME.blind.disabled then
+            if blind.original_mult*blind.original_chips < G.GAME.chips + SMODS.calculate_round_score() then
+                G.E_MANAGER:add_event(Event({
+                    func = function ()
+                        card_eval_status_text(blind, "extra", nil, nil, nil, {message = localize('k_extinct_ex')})
+                        G.E_MANAGER:add_event(Event({
+                            func = function ()
+                                blind:disable()
+                                play_sound('tarot1')
+                                blind.T.r = -0.2
+                                blind:juice_up(0.3, 0.4)
+                                blind.children.animatedSprite.pinch.x = true
+                                blind.states.drag.is = true
+                                return true
+                            end
+                        }))
+                        return true
+                    end
+                }))
+            else
+                BLINDSIDE.chipsmodify(2, 0, 0, 0)
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+                G.GAME.playing_with_fire = G.GAME.playing_with_fire + (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
+                G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_3" or "bld_playing_with_fire_each_2"
+            end
+        end
+    end,
+})
+
+BLINDSIDE.Joker({
+    key = 'cavendish',
+    atlas = 'bld_joker',
+    pos = {x=0, y=45},
+    boss_colour = HEX("e0e04c"),
+    mult = 8,
+    base_dollars = 6,
+    order = 7,
+    active = true,
+    loc_vars = function(self, blind)
+        return { vars = { G.P_BLINDS['bl_bld_cavendish'].mult*get_blind_amount(G.GAME.round_resets.ante)*G.GAME.starting_params.ante_scaling } }
+    end,
+    collection_loc_vars = function(self)
+        return { vars = { '8X Base' } }
+    end,
+    big = {min = 1},
+    pool_override = function()
+        return G.GAME.modifiers.enable_bld_tough_jokers and G.GAME.round_resets.ante == 1
+    end,
+    calculate = function(self, blind, context)
+        if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
+            ease_hands_played(-1)
+        end
+
+        if context.after and not G.GAME.blind.disabled then
+            if blind.original_mult*blind.original_chips < G.GAME.chips + SMODS.calculate_round_score() then
+                G.E_MANAGER:add_event(Event({
+                    func = function ()
+                        card_eval_status_text(blind, "extra", nil, nil, nil, {message = localize('k_extinct_ex')})
+                        G.E_MANAGER:add_event(Event({
+                            func = function ()
+                                blind:disable()
+                                play_sound('tarot1')
+                                blind.T.r = -0.2
+                                blind:juice_up(0.3, 0.4)
+                                blind.children.animatedSprite.pinch.x = true
+                                blind.states.drag.is = true
+                                return true
+                            end
+                        }))
+                        return true
+                    end
+                }))
+            else
+                BLINDSIDE.chipsmodify(0, 0, 1.5, 0)
+                G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
+                G.GAME.playing_with_fire = G.GAME.playing_with_fire + (G.GAME.used_vouchers.v_bld_swearjar and 2 or 1)
+                G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_3" or "bld_playing_with_fire_each_2"
+            end
+        end
+    end,
+    defeat_joker = function()
+        G.GAME.gros_xmult = 1.4
+    end,
+})
+
+BLINDSIDE.Joker({
     key = 'oddtodd',
     atlas = 'bld_joker',
     pos = {x=0, y=37},
@@ -9,7 +118,7 @@ BLINDSIDE.Joker({
     active = true,
     big = {min = 1},
     pool_override = function()
-        return not G.GAME.modifiers.enable_bld_tough_jokers and G.GAME.round_resets.ante % 2 == 1
+        return not G.GAME.modifiers.enable_bld_tough_jokers and G.GAME.round_resets.ante ~= 1 and G.GAME.round_resets.ante % 2 == 1
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
@@ -107,7 +216,7 @@ BLINDSIDE.Joker({
     active = true,
     big = {min = 1},
     pool_override = function()
-        return not (G.GAME.modifiers.enable_bld_elites and G.GAME.round_resets.ante == 5) and G.GAME.modifiers.enable_bld_tough_jokers
+        return G.GAME.round_resets.ante ~= 1 and not (G.GAME.modifiers.enable_bld_elites and G.GAME.round_resets.ante == 5) and G.GAME.modifiers.enable_bld_tough_jokers
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
@@ -164,7 +273,7 @@ BLINDSIDE.Joker({
     active = true,
     big = {min = 1},
     pool_override = function()
-        return not (G.GAME.modifiers.enable_bld_elites and G.GAME.round_resets.ante == 5) and G.GAME.modifiers.enable_bld_tough_jokers
+        return G.GAME.round_resets.ante ~= 1 and not (G.GAME.modifiers.enable_bld_elites and G.GAME.round_resets.ante == 5) and G.GAME.modifiers.enable_bld_tough_jokers
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
@@ -220,7 +329,7 @@ BLINDSIDE.Joker({
     active = true,
     big = {min = 1},
     pool_override = function()
-        return not (G.GAME.modifiers.enable_bld_elites and G.GAME.round_resets.ante == 5) and G.GAME.modifiers.enable_bld_tough_jokers
+        return G.GAME.round_resets.ante ~= 1 and not (G.GAME.modifiers.enable_bld_elites and G.GAME.round_resets.ante == 5) and G.GAME.modifiers.enable_bld_tough_jokers
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
@@ -276,7 +385,7 @@ BLINDSIDE.Joker({
     active = true,
     big = {min = 1},
     pool_override = function()
-        return not (G.GAME.modifiers.enable_bld_elites and G.GAME.round_resets.ante == 5) and G.GAME.modifiers.enable_bld_tough_jokers
+        return G.GAME.round_resets.ante ~= 1 and not (G.GAME.modifiers.enable_bld_elites and G.GAME.round_resets.ante == 5) and G.GAME.modifiers.enable_bld_tough_jokers
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
@@ -334,7 +443,7 @@ BLINDSIDE.Joker({
     active = true,
     big = {min = 1},
     pool_override = function()
-        return not (G.GAME.modifiers.enable_bld_elites and G.GAME.round_resets.ante == 5) and G.GAME.modifiers.enable_bld_tough_jokers
+        return G.GAME.round_resets.ante ~= 1 and not (G.GAME.modifiers.enable_bld_elites and G.GAME.round_resets.ante == 5) and G.GAME.modifiers.enable_bld_tough_jokers
     end,
     calculate = function(self, blind, context)
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then

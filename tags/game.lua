@@ -1,4 +1,4 @@
-SMODS.Tag {
+--[[SMODS.Tag {
     key = "game",
     hide_ability = false,
     atlas = 'bld_tag',
@@ -31,4 +31,4 @@ SMODS.Tag {
             return card
         end
     end,
-}
+}]]

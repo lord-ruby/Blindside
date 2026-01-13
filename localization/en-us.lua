@@ -178,7 +178,7 @@ return {
 			['bld_neon_discards'] = 'Discards, Neon Tag ($5 each)',
 			['k_bld_inactive'] = "Inactive",
 			['k_bld_ate_mineral'] = "Crunch!",
-			['bld_idol_placeholder'] = "[most common blind]",
+			['bld_idol_placeholder'] = "[most played blind]",
 			['k_downgrade_ex'] = "Downgrade!",
 			},
 		["v_dictionary"] = {
@@ -836,8 +836,8 @@ return {
 			["tag_bld_magic"] = {
 				["name"] = "Magic Tag",
 				["text"] = {
-					"Create a random",
-					"{C:bld_curio}Curio Trinket",
+					"Create a",
+					"random {C:bld_curio}Trinket",
 					"{C:inactive}(Must have room)"
 				},
 			},
@@ -1988,7 +1988,7 @@ return {
 				["name"] = "Glass Joker",
 				["text"] = {
 					"X2 Mult each hand,",
-					"Breaks when scoring",
+					"breaks when scoring",
 					"over #1# Chips",
 				},
 			},
@@ -2043,6 +2043,22 @@ return {
 					"+4 Mult if played",
 					"hand contains an even",
 					"number of Blinds"
+				},
+			},
+			["bl_bld_gros_michel"] = {
+				["name"] = "Gros Michel",
+				["text"] = {
+					"+2 Mult each hand,",
+					"extinct when scoring",
+					"over #1# Chips",
+				},
+			},
+			["bl_bld_cavendish"] = {
+				["name"] = "Cavendish",
+				["text"] = {
+					"X1.5 Mult each hand,",
+					"extinct when scoring",
+					"over #1# Chips",
 				},
 			},
 			["bl_bld_yorick"] = {

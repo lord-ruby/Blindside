@@ -396,11 +396,11 @@
         "tag_bld_wave",
         "tag_bld_symmetry",
         "tag_bld_mining",
-        "tag_bld_game",
+        --"tag_bld_game",
         "tag_bld_magic",
         "tag_bld_memory",
         "tag_bld_collector",
-        "tag_bld_tech",
+        --"tag_bld_tech",
         "tag_bld_toss",
         "tag_bld_strike",
         "tag_bld_dental",
@@ -810,12 +810,15 @@
         pos = {x = 7,y = 6},
     }
 
+    -- dear readers: this rarity system was purely cosmetic
+    -- and was merged last-minute for being confusing.
+    -- it will be removed entirely in a later build.
     SMODS.Rarity {
         key = 'doodad',
         loc_txt = {
-        name = "Doodad Trinket",
+        name = "Trinket",
         },
-	    badge_colour = HEX("3e8fd1"),
+	    badge_colour = HEX("d19c2b"),--HEX("3e8fd1"),
         pools = {
             ["Joker"] = true,
         },
@@ -837,9 +840,9 @@
     SMODS.Rarity {
         key = 'curio',
         loc_txt = {
-        name = "Curio Trinket",
+        name = "Trinket",
         },
-	    badge_colour = HEX("934ace"),
+	    badge_colour = HEX("d19c2b"),--HEX("934ace"),
         pools = {
             ["Joker"] = true,
         },
@@ -849,7 +852,7 @@
     SMODS.Rarity {
         key = 'hobby',
         loc_txt = {
-        name = "Hobby Trinket",
+        name = "Trinket",
         },
 	    badge_colour = HEX("d19c2b"),
         pools = {
