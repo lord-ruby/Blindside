@@ -141,7 +141,7 @@ end
 ---@alias hue "Red" | "Green" | "Blue" | "Yellow" | "Purple" | "Faded"
 
 ---@ class BLINDSIDE.Blind : SMODS.Enhancement
----@ field upgrade fun(self: BLINDSIDE.Blind, card: Card): nil Function to define how a blind's config.extra table changes when it becomes upgraded. Not technically required, but upgrades fail otherwise. Must set card.ability.extra.upgraded = true.
+---@ field upgrade fun(self: BLINDSIDE.Blind, card: Card): nil Function to define how a blind's config table changes when it becomes upgraded. Not technically required, but upgrades fail otherwise. Must set card.ability.extra.upgraded = true.
 ---@ field hues hue[] Table of hues. 99% of blinds have 1 or 2 hues. Required.
 ---@ field basic? boolean Whether this blind is basic and should be excluded from generation.
 ---@ field rare? boolean Whether this blind is rare and should generate less often.
