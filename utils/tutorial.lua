@@ -121,6 +121,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
             highlight = {
                 G.hand,
             },
+            look = {1, 0},
             attach = {major = G.hand, type = 'cl', offset = {x = -1.5, y = 0}},
             snap_to = function() return G.hand.cards[1] end,
             step = step,
@@ -131,6 +132,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
             highlight = {
                 G.hand,
             },
+            look = {1, 0},
             attach = {major = G.hand, type = 'cl', offset = {x = -1.5, y = 0}},
             snap_to = function() return G.hand.cards[1] end,
             step = step,
@@ -142,6 +144,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
                 G.hand,
                 G.HUD:get_UIE_by_ID('run_info_button')
             },
+            look = {-1, 0.3},
             no_button = true,
             button_listen = 'run_info',
             snap_to = function() return G.HUD:get_UIE_by_ID('run_info_button') end,
@@ -154,6 +157,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
                 G.hand,
                 G.buttons:get_UIE_by_ID('play_button'),
             },
+            look = {1, 0},
             attach = {major = G.hand, type = 'cl', offset = {x = -1.5, y = 0}},
             no_button = true,
             button_listen = 'play_cards_from_highlighted',
@@ -166,6 +170,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
             highlight = {
                 G.HUD_blind,
             },
+            look = {0, -1},
             attach = {major = G.HUD_blind, type = 'cm', offset = {x = 0, y = 6}},
             step = step,
         })
@@ -175,6 +180,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
             highlight = {
                 G.hand,
             },
+            look = {1, 0},
             attach = {major = G.hand, type = 'cl', offset = {x = -1.5, y = 0}},
             step = step,
         })
@@ -209,6 +215,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
             highlight = {
                 G.HUD_blind
             },
+            look = {0, -1},
             attach = {major =  G.HUD_blind, type = 'cm', offset = {x = 0, y = 6}},
             step = step,
         })
@@ -218,6 +225,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
             highlight = {
                 G.HUD_blind
             },
+            look = {0, -1},
             attach = {major =  G.HUD_blind, type = 'cm', offset = {x = 0, y = 6}},
             step = step,
         })
@@ -238,6 +246,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
                 G.HUD:get_UIE_by_ID('dollar_text_UI').parent.parent.parent,
                 G.shop_booster
             },
+            look = {0, -1},
             snap_to = function() return G.shop_booster.cards[1] end,
             attach = {major = G.shop, type = 'tm', offset = {x = 0, y = 8}},
             no_button = true,
@@ -250,6 +259,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
                 G.shop:get_UIE_by_ID('next_round_button'),
                 G.shop_booster
             } end,
+            look = {-0.2, -1},
             snap_to = function() if G.shop then return G.shop:get_UIE_by_ID('next_round_button') end end,
             no_button = true,
             button_listen = 'toggle_shop',
@@ -288,6 +298,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
                 G.jokers,
                 G.shop_jokers
             } end,
+            look = {0, -1},
             snap_to = function() if G.shop then return G.shop:get_UIE_by_ID('next_round_button') end end,
             no_button = true,
             button_listen = 'toggle_shop',
@@ -319,6 +330,7 @@ G.FUNCS.blindside_tutorial_part = function(_part)
                 G.HUD:get_UIE_by_ID('dollar_text_UI').parent.parent.parent,
                 G.shop_booster
             },
+            look = {1, 0},
             snap_to = function() return G.shop_booster.cards[1] end,
             attach = {major = G.shop, type = 'tm', offset = {x = -4, y = 4}},
             step = step,
@@ -392,6 +404,7 @@ function blindside_tutorial_info(args)
                 G.CONTROLLER.interrupt.focus = true
                 G.OVERLAY_TUTORIAL.Jimbo = G.OVERLAY_TUTORIAL.Jimbo or Card_Character(pos)
                 G.OVERLAY_TUTORIAL.Jimbo.children.card.googly = true
+                G.OVERLAY_TUTORIAL.Jimbo.children.card.force_look_dir = args.look
                 if type(args.highlight) == 'function' then args.highlight = args.highlight() end
                 args.highlight[#args.highlight+1] = G.OVERLAY_TUTORIAL.Jimbo
                 G.OVERLAY_TUTORIAL.Jimbo:add_speech_bubble(args.text_key, align, args.loc_vars)

@@ -65,8 +65,15 @@ SMODS.DrawStep({
         gravity_x = gravity_x / gravity_mag
         gravity_y = gravity_y / gravity_mag
 
+        if self.force_look_dir then
+            local fld_mag = (self.force_look_dir[1] ^ 2 + self.force_look_dir[2] ^ 2) ^ 0.5
+            if fld_mag == 0 then fld_mag = 1 end
+            gravity_x = gravity_x + (self.force_look_dir[1] / fld_mag * (GOOGLY_OUTER_RADIUS - GOOGLY_INNER_RADIUS)) / 2
+            gravity_y = gravity_y + (self.force_look_dir[2] / fld_mag * (GOOGLY_OUTER_RADIUS - GOOGLY_INNER_RADIUS)) / 2
+        end
         self.xoff = self.xoff + gravity_x * last_dt * 25
         self.yoff = self.yoff + gravity_y * last_dt * 25
+
 
         local pos_mag = (self.xoff ^ 2 + self.yoff ^ 2) ^ 0.5 / (GOOGLY_OUTER_RADIUS - GOOGLY_INNER_RADIUS)
         if pos_mag > 1 then
