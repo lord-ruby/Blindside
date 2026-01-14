@@ -18,6 +18,8 @@ function love.update(dt)
     last_dt = dt
 end
 
+-- DRAWSTEP BY NOTMARIO!!! THANK YOU!!!
+
 SMODS.DrawStep({
 	key = "googly",
 	order = 25,
