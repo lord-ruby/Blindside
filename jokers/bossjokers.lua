@@ -104,6 +104,12 @@ BLINDSIDE.Joker({
     joker_defeat = function(self)
 		G.hand:change_size(-2)
     end,
+    disable = function ()
+        BLINDSIDE.chipsmodify(0, G.GAME.blind.basechips*-2/3, 0, 0, true)
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            BLINDSIDE.chipsupdate()
+        return true end }))
+    end,
 })
 
 
@@ -223,6 +229,12 @@ BLINDSIDE.Joker({
             blind:wiggle()
             return true end }))
         end
+    end,
+    disable = function ()
+        BLINDSIDE.chipsmodify(-20, 0, 0)
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            BLINDSIDE.chipsupdate()
+        return true end }))
     end,
 })
 
@@ -673,19 +685,19 @@ BLINDSIDE.Joker({
     boss = {min = 2},
     active = true,
     calculate = function(self, blind, context)
-        if context.mod_probability and not context.blueprint then
+        if context.mod_probability and not context.blueprint and not G.GAME.blind.disabled then
             return {
                 numerator = context.numerator * 0
             }
         end
-        if context.pseudorandom_result and not context.result then
+        if context.pseudorandom_result and not context.result and not G.GAME.blind.disabled then
             blind.triggered = true
             BLINDSIDE.chipsmodify(1, 0, 0)
             G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
             blind:wiggle()
             return true end }))
         end
-        if context.after and blind.triggered then
+        if context.after and blind.triggered and not G.GAME.blind.disabled then
             blind.triggered = false
             G.GAME.playing_with_fire_num = G.GAME.playing_with_fire_num + 1
             G.GAME.playing_with_fire_each = G.GAME.used_vouchers.v_bld_swearjar and "bld_playing_with_fire_each_3" or "bld_playing_with_fire_each_2"
