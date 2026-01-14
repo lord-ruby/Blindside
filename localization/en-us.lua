@@ -21,10 +21,10 @@ return {
                 "Hover over them to see!",
             },
             ["bld_fh_5"] = {
-                "As always, you can check",
-                "the {C:attention}Run Info{} screen to",
+                "Check the {C:attention}Run Info{} screen to",
                 "see the playable {C:attention}Poker Hands{}.",
-                "There might be some new ones!",
+                "There's a new one you",
+				"might be interested in...",
             },
             ["bld_fh_6"] = {
 				"Now, put those classic {C:attention}Balatro{}",
