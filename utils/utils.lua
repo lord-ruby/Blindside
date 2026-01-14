@@ -666,6 +666,7 @@ function Card:start_burn(cardarea, dissolve_colours, silent, dissolve_time_fac, 
     self.dissolve_colours = dissolve_colours
         or {G.C.BLACK, G.C.ORANGE, G.C.RED, G.C.GOLD, G.C.JOKER_GREY}
     if not no_juice then self:juice_up() end
+    if cardarea then self = cardarea:remove_card(self) end
     
     G.E_MANAGER:add_event(Event({
         trigger = 'before',
