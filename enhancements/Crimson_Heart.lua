@@ -12,12 +12,10 @@
         hues = {"Red"},
         hidden = true,
         legendary = true,
-        calculate = function(self, card, context) 
-            if context.cardarea == G.play and context.other_card == card and context.after then
-                card.ability.extra.was_last_hand = true
-            end
+        calculate = function(self, card, context)
 
             if context.cardarea == G.play and context.main_scoring then
+                card.ability.extra.was_last_hand = true
                 return {
                     xmult = card.ability.extra.xmult
                 }
