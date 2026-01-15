@@ -126,7 +126,7 @@ function Game:main_menu(change_context)
                     n = G.UIT.T,
                     config = {
                         scale = 0.3,
-                        text = "Blindside BETA PRERELEASE v0.1.0",
+                        text = "Blindside BETA v0.1.0",
                         colour = G.C.UI.TEXT_LIGHT
                     }
                 }
