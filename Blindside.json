@@ -11,6 +11,6 @@
 	"display_name": "Blindside",
 	"version": "0.1.0-BETA",
 	"dependencies": [
-		"Steamodded"
+		"Steamodded (>=1.0.0~BETA-1224a)"
 	]
 }

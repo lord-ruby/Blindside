@@ -142,8 +142,7 @@ function Game:main_menu(change_context)
             major = G.ROOM_ATTACH
         }
     })
-
-    
+    G.SETTINGS.tutorial_complete = true
 end
 
 
