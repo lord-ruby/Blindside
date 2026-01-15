@@ -525,7 +525,7 @@ BLINDSIDE.Joker({
     active = true,
     calculate = function(self, blind, context)
         if context.scoring_hand and context.individual and context.cardarea == G.play then
-            if tableContains(context.other_card, context.scoring_hand) and context.other_card.config.center.key == G.GAME.bld_idol_blind then
+            if tableContains(context.other_card, context.scoring_hand) and context.other_card.config.center.key == G.GAME.bld_idol_blind and context.other_card.facing ~= 'back' then
                 return {
                     message = "X1.5 JMult",
                     colour = G.C.BLACK,
