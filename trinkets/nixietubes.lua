@@ -44,7 +44,7 @@
                         message = "1!"
                     }
                 elseif card.ability.extra.count == 0 then
-                    card.ability.extra.count = 10
+                    card.ability.extra.count = 8
                     G.E_MANAGER:add_event(Event({
                         trigger = 'before',
                         delay = 0.5,
@@ -72,7 +72,7 @@
                         message = "1!"
                     }
                 elseif card.ability.extra.count == 0 then
-                    card.ability.extra.count = 10
+                    card.ability.extra.count = 8
                     G.E_MANAGER:add_event(Event({
                         trigger = 'before',
                         delay = 0.5,
