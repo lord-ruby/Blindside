@@ -2183,3 +2183,16 @@ position = 'at'
 payload = '''
 if (e.config.ref_table.cost) > 0 and (e.config.ref_table.cost > G.GAME.dollars - G.GAME.bankrupt_at) or ((not G.SETTINGS.blindside_tutorial_complete and not G.SETTINGS.blindside_tutorial_progress.hold_parts['shop_3'])) then
 '''
+
+# TUTORIAL - tutorial autocomplete
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''
+if (not G.SETTINGS.tutorial_complete) and G.SETTINGS.tutorial_progress.completed_parts['big_blind'] then G.SETTINGS.tutorial_complete = true end
+'''
+match_indent = true
+position = 'at'
+payload = '''
+if (not G.SETTINGS.blindside_tutorial_complete) and G.SETTINGS.blindside_tutorial_progress and G.SETTINGS.blindside_tutorial_progress.completed_parts['shop_3'] then G.SETTINGS.tutorial_complete = true end
+'''
