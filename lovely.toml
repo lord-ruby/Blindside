@@ -2209,3 +2209,16 @@ position = 'at'
 payload = '''
 self.children.back = Sprite(self.T.x, self.T.y, self.T.w, self.T.h, (self.playing_card and G.GAME[self.back].atlas) or G.ASSET_ATLAS["centers"], self.params.bypass_back or (self.playing_card and G.GAME[self.back].pos or G.P_CENTERS['b_red'].pos))
 '''
+
+# blindside name tag instead of blank
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = '''
+elseif _type == 'Voucher' then _pool[#_pool + 1] = "v_blank"
+'''
+match_indent = true
+position = 'at'
+payload = '''
+elseif _type == 'Voucher' then _pool[#_pool + 1] = (G.GAME.selected_back.effect.center.config.extra and G.GAME.selected_back.effect.center.config.extra.blindside) and "v_bld_nametag" or "v_blank"
+'''
