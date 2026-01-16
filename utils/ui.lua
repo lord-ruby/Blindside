@@ -693,8 +693,8 @@ function blindtags_ui()
     end
 
     table.sort(tag_tab, function(a, b)
-        local a_index = -1
-        local b_index = -1
+        local a_index = 999
+        local b_index = 999
         for index, value in ipairs(SMODS.ObjectTypes.bld_obj_blindside.cards) do
             if value == a.key then
                 a_index = index
