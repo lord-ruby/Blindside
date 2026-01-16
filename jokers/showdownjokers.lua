@@ -205,6 +205,18 @@ BLINDSIDE.Joker({
             blind.hands[context.scoring_name] = true
         end
     end,
+    joker_defeat = function(self)
+        if G.GAME.blindassist then
+            G.GAME.blindassist:defeat()
+        end
+    end,
+    joker_load = function(self)
+        if G.GAME.blind.blindassist then
+            G.GAME.blindassist.states.visible = true
+            G.GAME.blindassist:set_assist_blind(G.GAME.blind.blindassist)
+            G.GAME.blindassist:change_dim(1.5,1.5)
+        end
+    end
 })
 
 function Blind:set_assist_blind(blind, reset, silent)
