@@ -183,6 +183,7 @@ return {
 			['k_bld_ate_mineral'] = "Crunch!",
 			['bld_idol_placeholder'] = "[most played blind]",
 			['k_downgrade_ex'] = "Downgrade!",
+			['bld_hand_contains'] = "Hand contains ",
 			},
 		["v_dictionary"] = {
 			["a_rmult"] = "-#1#",
@@ -2611,11 +2612,6 @@ return {
 					"{X:blue,C:white}X#1#{} Chips if poker",
 					"hand does not contain",
 					"{C:attention}Three of a Blind{}"
-					--[[{"{X:blue,C:white}Blue{}",
-					"Currently {X:blue,C:white}X#1#{} Chips"},
-					{"If poker hand does not",
-					"contain {C:attention}Three of a Blind{},",
-					"gains {X:blue,C:white}X#2#{} Chips"},]]
 				},
 			},
 			["m_bld_meteor"] = {
@@ -2838,11 +2834,10 @@ return {
 				["name"] = "The Vast",
 				["text"] = {
 					"{X:chips,C:white}Blue{}",
-					"While held in hand,",
-					"if scoring hand contains",
-					"a {X:chips,C:white}Blue{} Blind, creates a",
-					"random {C:attention}Mineral{} card",
-					"{C:inactive,S:0.8}(Must have room)"
+					"While {C:attention}held in hand{},",
+					"{C:attention}retriggers{} adjacent",
+					"Blinds {C:attention}held in hand{}",
+					"twice"
 				},
 			},
 			["m_bld_pile"] = {
@@ -3108,7 +3103,9 @@ return {
 			["m_bld_wound"] = {
 				["name"] = "The Wound",
 				["text"] = {
-					{"{X:mult,C:white}Red{} {X:black,C:white}Cursed{}"},
+					{"{X:mult,C:white}Red{} {X:black,C:white}Cursed{}",
+					"{C:mult}-#1#{} Mult for each scoring",
+					"Blind without {X:mult,C:white}Red{} hue"},
 					{"{C:attention}Burns{}"}
 				},
 			},
@@ -3116,7 +3113,9 @@ return {
 				["name"] = "The Wound",
 				["text"] = {
 					{"{X:mult,C:white}Red{} {X:black,C:white}Cursed{}",
-					"{X:mult,C:white}X#1#{} Mult"},
+					"{C:mult}-#1#{} Mult for each scoring",
+					"Blind without {X:mult,C:white}Red{} hue,",
+					"then {X:mult,C:white}X#2#{} Mult"},
 					{"{C:attention}Burns{}"}
 				},
 			},
@@ -3747,15 +3746,6 @@ return {
 			["m_bld_crimson_heart"] = {
 				["name"] = "Crimson Heart",
 				["text"] = {
-					"{X:mult,C:white}Red{} {C:white,X:purple,E:1}Legendary{}",
-					"If scored in the",
-					"{C:attention}winning hand{}, creates",
-					"an {C:attention}Heartbreak Tag"
-				},
-			},
-			["m_bld_crimson_heart_upgraded"] = {
-				["name"] = "Crimson Heart",
-				["text"] = {
 					{"{X:mult,C:white}Red{} {C:white,X:purple,E:1}Legendary{}",
 					"{C:white,X:mult}X#1#{} Mult"},
 					{"If scored in the",
@@ -3781,6 +3771,10 @@ return {
 					{"{C:attention}Retriggers{} once for",
 					"every {C:attention}2{} Tags held",
 					"{C:inactive}(Currently #2# time#3#)"},
+					{"This blind is bugged,",
+					"and retriggers {C:attention}ALL{} played blinds",
+					"when held in hand! You may enjoy",
+					"this bug until next update"}
 				},
 			},
 			["m_bld_trench"] = {

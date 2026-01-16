@@ -5,7 +5,8 @@
         config = {
             extra = {
                 value = 30,
-                xmult = 1.5,
+                mult = 2,
+                xmult = 1.75,
             }},
         hues = {"Red"},
         curse = true,
@@ -13,10 +14,24 @@
             if context.burn_card and context.cardarea == G.play and context.burn_card == card then
                 return { remove = true }
             end
-            if card.ability.extra.upgraded and context.cardarea == G.play and context.main_scoring then
-                return {
-                    xmult = card.ability.extra.xmult
-                }
+
+            if context.cardarea == G.play and context.main_scoring then
+                local not_red = 0
+                for key, value in pairs(context.scoring_hand) do
+                    if not value:is_color('Red') then
+                        not_red = not_red + 1
+                    end
+                end
+                if card.ability.extra.upgraded then
+                    return {
+                        mult = -card.ability.extra.mult * not_red,
+                        xmult = card.ability.extra.xmult
+                    }
+                else
+                    return {
+                        mult = -card.ability.extra.mult * not_red
+                    }
+                end
             end
         end,
         loc_vars = function(self, info_queue, card)
@@ -24,6 +39,7 @@
             return {
                 key = card.ability.extra.upgraded and 'm_bld_wound_upgraded' or 'm_bld_wound',
                 vars = {
+                    card.ability.extra.mult,
                     card.ability.extra.xmult
                 }
             }

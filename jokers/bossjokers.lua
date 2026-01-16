@@ -525,7 +525,7 @@ BLINDSIDE.Joker({
     active = true,
     calculate = function(self, blind, context)
         if context.scoring_hand and context.individual and context.cardarea == G.play then
-            if tableContains(context.other_card, context.scoring_hand) and context.other_card.config.center.key == G.GAME.bld_idol_blind then
+            if tableContains(context.other_card, context.scoring_hand) and context.other_card.config.center.key == G.GAME.bld_idol_blind and context.other_card.facing ~= 'back' then
                 return {
                     message = "X1.5 JMult",
                     colour = G.C.BLACK,
@@ -659,6 +659,13 @@ BLINDSIDE.Joker({
     end,
     get_assist = function (self)
         return G.P_BLINDS["bl_bld_matador"]
+    end,
+    disable = function()
+        local times = math.floor(G.GAME.dollars/8)
+        BLINDSIDE.chipsmodify(times * -4, 0, 0, 0, true)
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            BLINDSIDE.chipsupdate()
+        return true end }))
     end,
 })
 

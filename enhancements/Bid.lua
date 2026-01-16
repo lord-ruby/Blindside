@@ -24,7 +24,7 @@
                 }
             end
 
-            if context.cardarea == G.play and context.repetition then
+            if context.cardarea == G.play  and context.repetition then -- and context.other_card == card    <-- implement later!
                 local tags = 0
 
                 for key, tag in pairs(G.GAME.tags) do

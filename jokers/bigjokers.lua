@@ -272,7 +272,7 @@ BLINDSIDE.Joker({
 
         if context.scoring_name and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled and blind.active then
             if has_group_of(2, context.poker_hands) then
-                BLINDSIDE.alert_debuff(self, true, "Hand contains Pair")
+                BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_blind_2oak', "poker_hands"))
             else
                 BLINDSIDE.alert_debuff(self, false)
             end
@@ -328,7 +328,7 @@ BLINDSIDE.Joker({
         end
         if context.scoring_name and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled and blind.active then
             if has_group_of(3, context.poker_hands) then
-                BLINDSIDE.alert_debuff(self, true, "Hand contains Three of a Blind")
+                BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_blind_3oak', "poker_hands"))
             else
                 BLINDSIDE.alert_debuff(self, false)
             end
@@ -384,7 +384,7 @@ BLINDSIDE.Joker({
         end
         if context.scoring_name and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled and blind.active then
             if (next(context.poker_hands['bld_blind_2pair']) or next(context.poker_hands['bld_blind_fullhouse']) or next(context.poker_hands['bld_blind_quadruple_down'])) then
-                BLINDSIDE.alert_debuff(self, true, "Hand contains Two Pair")
+                BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_blind_2pair', "poker_hands"))
             else
                 BLINDSIDE.alert_debuff(self, false)
             end
@@ -440,7 +440,7 @@ BLINDSIDE.Joker({
         end
         if context.scoring_name and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled and blind.active then
             if next(context.poker_hands['bld_raise']) then
-                BLINDSIDE.alert_debuff(self, true, "Hand contains Raise")
+                BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_raise', "poker_hands"))
             else
                 BLINDSIDE.alert_debuff(self, false)
             end
@@ -498,7 +498,7 @@ BLINDSIDE.Joker({
         end
         if context.scoring_name and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled and blind.active then
             if has_group_of(5, context.poker_hands) then
-                BLINDSIDE.alert_debuff(self, true, "Hand contains Flush")
+                BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_blind_flush', "poker_hands"))
             else
                 BLINDSIDE.alert_debuff(self, false)
             end
@@ -557,10 +557,10 @@ BLINDSIDE.Joker({
         end
         if context.scoring_hand and context.poker_hands and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled and blind.active then
             if cond1 then
-                BLINDSIDE.alert_debuff(self, true, "Hand contains " .. "Three of a Blind")
+                BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_blind_3oak', "poker_hands"))
             else
                 if cond2 then
-                    BLINDSIDE.alert_debuff(self, true, "Hand contains " .. "Two Pair")
+                    BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_blind_2pair', "poker_hands"))
                 else
                     BLINDSIDE.alert_debuff(self, false)
                 end
@@ -637,10 +637,10 @@ BLINDSIDE.Joker({
         end
         if context.scoring_hand and context.poker_hands and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled and blind.active then
             if cond1 then
-                BLINDSIDE.alert_debuff(self, true, "Hand contains " .. "Raise")
+                BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_raise', "poker_hands"))
             else
                 if cond2 then
-                    BLINDSIDE.alert_debuff(self, true, "Hand contains " .. "Three of a Blind")
+                    BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_blind_3oak', "poker_hands"))
                 else
                     BLINDSIDE.alert_debuff(self, false)
                 end
@@ -717,10 +717,10 @@ BLINDSIDE.Joker({
         end
         if context.scoring_hand and context.poker_hands and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled and blind.active then
             if cond1 then
-                BLINDSIDE.alert_debuff(self, true, "Hand contains " .. "Two Pair")
+                BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_blind_2pair', "poker_hands"))
             else
                 if cond2 then
-                    BLINDSIDE.alert_debuff(self, true, "Hand contains " .. "Flush")
+                    BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_blind_flush', "poker_hands"))
                 else
                     BLINDSIDE.alert_debuff(self, false)
                 end
@@ -797,10 +797,10 @@ BLINDSIDE.Joker({
         end
         if context.scoring_hand and context.poker_hands and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled and blind.active then
             if cond1 then
-                BLINDSIDE.alert_debuff(self, true, "Hand contains " .. "Flush")
+                BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_blind_flush', "poker_hands"))
             else
                 if cond2 then
-                    BLINDSIDE.alert_debuff(self, true, "Hand contains " .. "Raise")
+                    BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_raise', "poker_hands"))
                 else
                     BLINDSIDE.alert_debuff(self, false)
                 end
@@ -870,20 +870,15 @@ BLINDSIDE.Joker({
     end,
     calculate = function(self, blind, context)
         local cond1 = context.poker_hands and has_group_of(2, context.poker_hands)
-        local cond2 = cond1
 
         if context.setting_blind and G.GAME.modifiers.enable_bld_deplete_hands and G.GAME.current_round.hands_left > 1 then
             ease_hands_played(-1)
         end
         if context.scoring_hand and context.poker_hands and G.STATE == G.STATES.SELECTING_HAND and not G.GAME.blind.disabled and blind.active then
             if cond1 then
-                BLINDSIDE.alert_debuff(self, true, "Hand contains " .. "Pair")
+                BLINDSIDE.alert_debuff(self, true, localize('bld_hand_contains') .. localize('bld_blind_2oak', "poker_hands"))
             else
-                if cond2 then
-                    BLINDSIDE.alert_debuff(self, true, "Hand contains " .. "Pair")
-                else
-                    BLINDSIDE.alert_debuff(self, false)
-                end
+                BLINDSIDE.alert_debuff(self, false)
             end
         end
 
@@ -893,7 +888,7 @@ BLINDSIDE.Joker({
         if context.before then
             BLINDSIDE.alert_debuff(self, false)
             if context.scoring_hand and not G.GAME.blind.disabled and G.GAME.modifiers.enable_bld_deadly_small_big and blind.active then
-                if cond1 or cond2 then
+                if cond1 then
                     for key, value in pairs(context.scoring_hand) do
                         value.config.center.blind_debuff(value, true)
                     end
@@ -903,7 +898,7 @@ BLINDSIDE.Joker({
         if context.setting_blind and not context.disabled then
             blind.active = true
         end
-        if context.after and not G.GAME.blind.disabled and blind.active and (cond1 or cond2) then
+        if context.after and not G.GAME.blind.disabled and blind.active and cond1 then
             local hasWildCanvas = false
             for i = 1, #context.scoring_hand do
                 if (context.scoring_hand[i].seal == "bld_wild" or #context.scoring_hand[i].ability.extra.hues >= 2) and context.scoring_hand[i].facing ~= "back" and next(SMODS.find_card('j_bld_canvas')) then
